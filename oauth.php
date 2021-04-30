@@ -1,11 +1,9 @@
 <?php 
+session_start();
 
 if ($_GET['code']){
-    echo $_GET['code'];
-    $location = 'login.php';
-} else if ($_GET['access_token']){
-    echo $_GET['access_token'];
-    // $location = 'login.php';
+    echo 'Code: '.$_GET['code']."<br>";
+    $_SESSION['auth_code'] = $_GET['code'];
+    echo 'Session: '.$_SESSION['auth_code'];
 }
-
-// header('Location: '.$location);
+header("Location: login.php");

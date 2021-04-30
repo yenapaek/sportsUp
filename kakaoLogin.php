@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Kakao JavaScript SDK</title>
+    <title>Login with Kakao</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         // Initialize SDK with JavaScript key for your app. 
@@ -21,9 +21,9 @@
         function loginWithKakao() {
             console.log("redirecting to login.php");
             Kakao.Auth.authorize({
-            redirectUri: 'https://127.0.0.1/sportsEvent/oauth.php'
-            })
-        }
+                redirectUri: 'https://127.0.0.1/sportsEvent/oauth.php'
+            });
+        };
     </script>
 </body>
 </html>
