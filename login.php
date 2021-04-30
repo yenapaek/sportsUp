@@ -14,9 +14,9 @@
 </head>
 <body> 
   <?php
-    $auth_code = $_GET['code'];
-    echo 'Authorization Code: '.$auth_code;
-    echo "<br>";
+    $auth_code = include('oauth.php');
+    // echo 'Authorization Code: '.$auth_code;
+    // echo "<br>";
 
     // header("Access-Control-Allow-Origin: *");
     $url = 'https://kauth.kakao.com/oauth/token'; // API Link
@@ -24,7 +24,7 @@
     $auth_data = array(
       'grant_type' => 'authorization_code',
       'client_id' => '37fea6edf3b24bab4469275577842ba5', // REST API key
-      'redirect_uri' => 'https://127.0.0.1/sportsEvent/loggedin.php',
+      'redirect_uri' => 'https://127.0.0.1/sportsEvent/oauth.php',
       'code' => $auth_code,
       // 'client_secret' => '4Ju15p8RUww2ImFQnFUTpGzyK2tljf7k',
     );
