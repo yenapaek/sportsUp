@@ -14,6 +14,7 @@
 </head>
 <body>
     <h1>Login with Kakao</h1>
+    <!-- add an action to the onlick -->
     <a id="custom-login-btn" onclick="loginWithKakao();">
         <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/>
     </a>

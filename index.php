@@ -2,15 +2,13 @@
 
 require("./controller/controller.php");
 try {
-
-
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
-        case "landing":
-            // landing();
-            break;
+        case "profile":
+            profile();
+            break;            
         default:
-        // landing();
+            landing();
             break;
     }
 }

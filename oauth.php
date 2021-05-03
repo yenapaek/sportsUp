@@ -6,4 +6,4 @@ if ($_GET['code']){
     $_SESSION['auth_code'] = $_GET['code'];
     echo 'Session: '.$_SESSION['auth_code'];
 }
-header("Location: login.php");
+// header("Location: kakaoUserData.php");
