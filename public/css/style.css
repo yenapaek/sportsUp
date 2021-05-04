@@ -1,1 +1,275 @@
 /* i am a generic css page */
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Varela+Round&display=swap');
+
+ body{
+	 background: #000000;
+ }
+#top {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	height: 100px;
+	padding: 0;
+	margin: 0;
+	background: rgb(0,0,0);
+}
+.top-left {
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	}
+.logo {
+	margin-left: 60px;
+	width: 190px;
+}
+
+.logo> img {
+	width: 100%;
+	border-radius: 15px;
+}
+.sup {
+	width: 65%;
+	margin-left: 240px;
+	display: flex;
+	align-self: center;
+}
+/* .sup> h1{
+	color: #ffffff;
+	font-size: 3.5em;
+	font-family: 'Righteous', cursive;
+	position: relative;
+	bottom: 4px;
+	padding-bottom: 0;	 
+}	  */
+.sup> a h1{
+	font-family: 'Righteous', cursive;
+	font-size: 50px	;
+    font-weight: 500;
+	text-transform: uppercase;
+	color: #ffffff;
+	text-decoration: none;
+	line-height: 50px;
+	position: relative;
+	display: inline-block;
+	text-align: center;
+}
+
+
+	/* ---------------------style for the menu on top---------------------  */
+
+#top {
+	background: rgb(0,0,0);
+}
+.top-right {
+    right: 50px;
+    background: rgb(0,0,0);
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif;
+    width: 550px;
+    height: 50px;
+    overflow: hidden;
+	display: flex;
+	align-self: center;
+}
+
+.rightBox {
+    margin:0px ;
+}
+nav{
+	position: relative;
+	margin: 270px auto 0;
+	width: 590px;
+	height: 50px;
+	border-radius: 8px;
+	font-size: 0;
+}
+nav a{
+	font-size: 15px;
+    font-weight: 500;
+	text-transform: uppercase;
+	color: #ffffff;
+	text-decoration: none;
+	line-height: 50px;
+	position: relative;
+	display: inline-block;
+	text-align: center;
+}
+nav .animation{
+	position: absolute;
+	height: 10%;
+	bottom: 0;
+	background: rgba(237, 40, 40, 0.85);
+	border-radius: 8px;
+	transition: all .5s ease 0s;
+}
+nav a:nth-child(1){
+	width: 100px;
+}
+nav .start-home, a:nth-child(1):hover~.animation{
+	width: 100px;
+	left: 0;
+}
+nav a:nth-child(2){
+	width: 100px;
+}
+nav a:nth-child(2):hover~.animation{
+	width: 100px;
+	left: 100px;
+}
+nav a:nth-child(3){
+	width: 100px;
+}
+nav a:nth-child(3):hover~.animation{
+	width: 100px;
+	left: 200px;
+}
+nav a:nth-child(4){
+	width: 100px;
+}
+nav a:nth-child(4):hover~.animation{
+	width: 100px;
+	left: 300px;
+}
+nav a:nth-child(5){
+	width: 120px;
+}
+nav a:nth-child(5):hover~.animation{
+	width: 100px;
+	left: 400px;
+}
+
+
+/* ------------------style for buttons ------------------*/
+
+
+.box{
+	position:absolute;
+	bottom:10%;
+	right:0;
+	transform : translate(-50% ,-50%);
+	
+  }
+.box1{
+	position:absolute;
+	bottom:4%;
+	right:40%;
+	transform : translate(-50% ,-50%);
+	
+  }
+  
+.btn:link,
+.btn:visited{
+	text-decoration: none;
+	text-transform:uppercase;
+	position:relative;
+	top:0;
+	left:0;
+	padding:20px 40px;
+	border-radius:100px;
+	display:inline-block;
+	transition: all .5s;
+}
+
+.btn-white{
+	background-color: rgba(237, 40, 40, 0.85);
+	color:rgb(255, 255, 255);
+	font-size: 1.3em;
+	font-weight: 630;
+}
+
+.btn:hover{
+	box-shadow:0px 10px 10px rgba(0,0,0,0.2);
+	transform : translateY(-3px);
+}
+
+.btn:active{
+	box-shadow:0px 5px 10px rgba(0,0,0,0.2);
+	transform: translateY(-1px);
+}
+
+.btn-bottom-animation-1{
+	animation:comeFromBottom 1s ease-out .8s;
+}
+
+.btn::after{
+	content:"";
+	text-decoration: none;
+	text-transform:uppercase;
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	border-radius:100px;
+	display:inline-block;
+	z-index:-1;
+	transition: all .5s;
+}
+
+.btn-white::after {
+	background: rgba(237, 40, 40, 0.85);
+}
+
+.btn-animation-1:hover::after {
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+}
+
+@keyframes comeFromBottom{
+0%{
+	opacity:0;
+	transform:translateY(40px);
+} 
+100%{
+	opacity:1;
+	transform:translateY(0);
+}
+}
+
+
+
+
+/*-------------------style for footer--------------  */
+
+.footerContent {
+	font-family: 'Varela Round', sans-serif;
+	background: rgb(0,0,0);
+	width: 100%;
+	height: 150px;
+	/* border: 2px solid green; */
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.footerContent h1 {
+	font-size: 25px;
+}
+
+.footerContent h1, p {
+	color: white;
+}
+.footerContent p {
+	font-size: 15px;
+}
+
+.contactInfo {
+	margin-left: 20px;
+}
+.adress {
+	margin-left: 20px;
+}
+.sns-icons {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+}
+.sns-icon {
+	width: 32px;
+	height: 32px;
+}
+.sns-icon  img {
+	width: 100%;
+}

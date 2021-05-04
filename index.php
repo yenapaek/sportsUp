@@ -7,10 +7,13 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
         case "landing":
-            // landing();
+            landing();
             break;
         default:
-        // landing();
+        landing();
+            break;
+        case "aboutUs":
+            aboutUs();
             break;
     }
 }
