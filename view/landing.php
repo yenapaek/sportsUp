@@ -3,9 +3,9 @@
 
 <?php ob_start(); ?>
 <h1>I AM a LANDING PAGE</h1>
-<a href="index.php?action=signIn">signIn</a>
+<a href="index.php?action=signIn">Sign In</a>
 <br>
-<a href="index.php?action=signUp">signUp</a>
+<a href="index.php?action=signUp">Sign Up</a>
 <br>
 <a href="index.php?action=profile">Profile</a>
 

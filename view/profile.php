@@ -14,14 +14,13 @@
         </div>
 
         <div>
-            <!-- INFO FROM DATABASE -->
-            <p>UserName : </p>
-            <p>FirstName :</p>
-            <p>LastName : </p>
-            <p>Birthday : </p>
-            <p>Email : </p>
-            <p>Nationality : </p>
-            <p>City : </p>
+            <p>UserName : <?= !empty($infoProfil) ? $infoProfil['userName'] : '...'; ?></p>
+            <p>FirstName : <?= !empty($infoProfil['firstName']) ? $infoProfil['firstName'] : '...'; ?></p>
+            <p>LastName : <?= !empty($infoProfil['lastName']) ? $infoProfil['lastName'] : '...' ?></p>
+            <p>Birthday : <?= !empty($infoProfil['birthDate']) ? $infoProfil['birthDate'] : '...'; ?></p>
+            <p>Email : <?= !empty($infoProfil['email']) ? $infoProfil['email'] : '...' ?></p>
+            <p>Nationality : <?= !empty($infoProfil['nationality']) ? $infoProfil['nationality'] : '...' ?></p>
+            <p>City : <?= !empty($infoProfil['city']) ? $infoProfil['city'] : '...' ?></p>
         </div>
     </div>
 
@@ -31,12 +30,21 @@
             <button>Add Sport</button>
         </div>
         <div>
-            <!-- INFO FROM DATABASE -->
             <ul>
-                <li>Tennis</li>
-                <li>Basket</li>
-                <li>Football</li>
+                <?php
+                if (!empty($mySports)) {
+                    foreach ($mySports as $sport) {
+                ?>
+                        <li><?= $sport['category_name']; ?></li><br>
+                <?php
+                    }
+                } else {
+                    echo '<li> No sport added</li>';
+                }
+                ?>
             </ul>
+
+
         </div>
     </div>
 </section>

@@ -17,7 +17,7 @@ try {
             break;
 
         case "profile":
-            profile();
+            profile(2); // #TODO Parameter should be replaced after we implement the loggin ID
             break;
 
         case "signInSubmit":
