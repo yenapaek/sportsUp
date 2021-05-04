@@ -4,13 +4,13 @@ $style = "./public/css/aboutUs.css";
 
 ob_start();
 ?>
-<section>
+<div id="aboutUs">
     <div class="container">
         <h1 class="heading">Meet the team</h1>
         <div class="card-wrapper">
             <div class="card">
                 <img src="./public/images/aboutUs/city.jpg" alt="card background" class="card-img">
-                <img src="./public/images/aboutUs/profile1.jpg" alt="profile image" class="profile-img">
+                <img src="./public/images/aboutUs/Alexis.png" alt="profile image" class="profile-img">
                 <h1>Alexis</h1>
                 <p class="job-title">Job title</p>
                 <p class="about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente quis, 
@@ -78,7 +78,7 @@ ob_start();
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <?php
     $content = ob_get_clean();

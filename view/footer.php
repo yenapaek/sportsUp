@@ -9,7 +9,7 @@
         </p>
     </div>
     <div class="adress">
-        <h1>Adress</h1>
+        <h1>Address</h1>
         <p>
             용산구 한강대로40길 39-13, 1층 <br>
             39-13, Hangang-daero 40-gil, <br>
