@@ -1,0 +1,31 @@
+#bothForm {
+    width: 100%;
+    height: 100%;
+}
+
+#signInFormSection,
+#signUpFormSection {
+    display: flex;
+    background-color: yellow;
+    justify-content: space-around;
+}
+div h1{
+background-color: red;
+text-align: center;
+}
+
+#signInFormSection img,
+#signUpFormSection img {
+    height: 400px;
+    width: 300px;
+}
+
+#signInForm,
+#signUpForm {
+    height: 400px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: red;
+}

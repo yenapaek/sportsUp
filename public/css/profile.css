@@ -1,0 +1,36 @@
+#personnalInfo,
+#eventInfo,
+#articleInfo {
+    display: flex;
+    margin: 30px;
+}
+
+#personnalInfo div,
+#eventInfo div,
+#articleInfo div {
+    display: flex;
+    border: 1px solid black;
+    width: 100%;
+    text-align: center;
+}
+
+#myEvents {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleEdit {
+    display: flex;
+    justify-content: space-around;
+}
+
+#myInfos,
+#mySports {
+    display: flex;
+    flex-direction: column;
+}
+
+#myInfos div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
