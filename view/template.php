@@ -10,8 +10,12 @@
 </head>
 
 <body>
-    <!-- NEED TO ADD THE MENU HERE -->
+    <?php include "menu.php";?>
+
     <?= $content; ?>
+    <footer>
+        <?php include "footer.php";?>
+    </footer>
 </body>
 
 </html>

@@ -10,6 +10,9 @@ try {
     switch ($action) {
         case "landing":
             landing();
+            break;  
+        case "aboutUs":
+            aboutUs();
             break;
         case "signIn":
         case "signUp":
