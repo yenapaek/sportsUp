@@ -22,6 +22,5 @@ const inputVerification = (inputId) => {
             passwordConf.style.backgroundColor = "white";
         }
     }
-
-    
 };
+

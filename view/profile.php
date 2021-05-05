@@ -1,6 +1,5 @@
-<?php $title = "Profile" ?>
-<?php $style = "./public/css/profile.css"; ?>
-
+<?php $title = !isset($title) ? "Profile" : $title;
+$style = "./public/css/profile.css"; ?>
 <?php ob_start(); ?>
 <p><a href="index.php">Back to HOMEPAGE</a></p>
 <h1>I am a Profile PAGE</h1>

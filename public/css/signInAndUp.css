@@ -29,3 +29,8 @@ text-align: center;
     justify-content: space-around;
     background-color: red;
 }
+
+#kakao-login-btn {
+    height: 2rem;
+    margin-left: 33%;
+}

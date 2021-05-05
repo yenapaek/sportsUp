@@ -25,5 +25,16 @@ function manualLogin($email, $pass)
         $title = "You get in";
         #TODO need to implement what to do if u logged IN
     }
-    require("./view/landing.php"); 
+    require("./view/profile.php"); 
+}
+
+function kakaoAPICall($authCode){
+    $kakaoId = kakaoAPICallModel($authCode);
+    if ($kakaoId) {
+        $title = $kakaoId." logged in";
+        #TODO need to implement what to do if u logged IN
+    } else {
+        $title = "error";
+    }
+    require("./view/profile.php"); 
 }

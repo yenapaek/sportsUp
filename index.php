@@ -4,8 +4,6 @@ require("./controller/controller.php");
 require("./controller/usersController.php");
 
 try {
-
-
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
         case "landing":
@@ -14,15 +12,13 @@ try {
         case "aboutUs":
             aboutUs();
             break;
+        case "profile":
+            profile();
+            break;
         case "signIn":
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
-
-        case "profile":
-            profile();
-            break;
-
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);
@@ -35,6 +31,14 @@ try {
                 newUser($_POST['userNameSignUp'], $_POST['emailSignUp'], $_POST['passwordSignUp'], $_POST['passwordConfSignUp']);
             } else {
                 throw new Exception("Please fill again the form");
+            }
+            break;
+        case "kakaoAPICall":
+            session_start();
+            if (isset($_SESSION['code'])){
+                kakaoAPICall($_SESSION['code']);
+            } else {
+                throw new Exception("Error with Kakao Login.");
             }
             break;
         default:
