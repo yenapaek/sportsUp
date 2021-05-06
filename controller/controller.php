@@ -1,6 +1,7 @@
  <?php
 
   require_once("./model/profileManager.php");
+  #ToDo move line 3 to a different controller and profile function. 
 
   function landing()
   {

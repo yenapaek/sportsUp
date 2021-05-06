@@ -30,16 +30,16 @@ function checkInputs() {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
-    let submittableUser,
-        submittableEmail,
+    let submittableUser =
+        submittableEmail=
         submittablePass = false;
 
     if (usernameValue === "") {
         setErrorFor(username, "Username cannot be blank");
-        submittableUser = false;
+        // submittableUser = false;
     } else if (usernameValue.length < 6) {
         setErrorFor(username, "Username cannot be shorter than 6 characters");
-        submittableUser = false;
+        // submittableUser = false;
     } else {
         setSuccessFor(username);
         submittableUser = true;
@@ -47,10 +47,10 @@ function checkInputs() {
 
     if (emailValue === "") {
         setErrorFor(email, "Email cannot be blank");
-        submittableEmail = false;
+        // submittableEmail = false;
     } else if (!isEmail(emailValue)) {
         setErrorFor(email, "Not a valid email");
-        submittableEmail = false;
+        // submittableEmail = false;
     } else {
         setSuccessFor(email);
         submittableEmail = true;
@@ -58,7 +58,7 @@ function checkInputs() {
 
     if (passwordValue === "") {
         setErrorFor(password, "Password cannot be blank");
-        submittablePass = false;
+        // submittablePass = false;
     } else {
         setSuccessFor(password);
         submittablePass = true;
@@ -66,16 +66,16 @@ function checkInputs() {
 
     if (password2Value === "") {
         setErrorFor(password2, "Password2 cannot be blank");
-        submittablePass = false;
+        // submittablePass = false;
     } else if (passwordValue !== password2Value) {
         setErrorFor(password2, "Passwords does not match");
-        submittablePass = false;
+        // submittablePass = false;
     } else {
         setSuccessFor(password2);
         submittablePass = true;
     }
 
-    return submittableUser && submittableEmail && submittablePass == true
+    return submittableUser && submittableEmail && submittablePass
         ? true
         : false;
 }

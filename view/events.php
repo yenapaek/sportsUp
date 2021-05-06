@@ -21,7 +21,7 @@
                     <select name="sportsCriteria" id="sportsCriteria"> 
                         <option value="default" selected disbled>Select Your Sport</option>
                         <?php foreach($categories as $category): ?>
-                        <option value="<?= $category["name"]; ?>"><?=$category["name"]; ?></option>
+                            <option value="<?= $category["name"]; ?>"><?=$category["name"]; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
