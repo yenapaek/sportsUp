@@ -24,6 +24,10 @@ function manualLogin($email, $pass)
     if ($login) {
         $title = "You get in";
         #TODO need to implement what to do if u logged IN
+        require('./view/profile.php');
+    } else {
+        $title = 'signIn';
+        require('./view/signInAndUp.php');
     }
     require("./view/profile.php"); 
 }

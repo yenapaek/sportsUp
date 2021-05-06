@@ -3,13 +3,14 @@
 #articleInfo {
     display: flex;
     margin: 30px;
+    color: white;
 }
 
 #personnalInfo div,
 #eventInfo div,
 #articleInfo div {
     display: flex;
-    border: 1px solid black;
+    border: 1px solid white;
     width: 100%;
     text-align: center;
 }
@@ -25,7 +26,10 @@
 }
 
 #myInfos,
-#mySports {
+#mySports,
+#myEventsSuggestion,
+#myArticles,
+#myArticlesSuggestion {
     display: flex;
     flex-direction: column;
 }

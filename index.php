@@ -8,17 +8,19 @@ try {
     switch ($action) {
         case "landing":
             landing();
-            break;  
+            break;
         case "aboutUs":
             aboutUs();
-            break;
-        case "profile":
-            profile();
             break;
         case "signIn":
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
+
+        case "profile":
+            profile(1); // #TODO Parameter should be replaced after we implement the loggin ID
+            break;
+
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);
@@ -35,7 +37,7 @@ try {
             break;
         case "kakaoAPICall":
             session_start();
-            if (isset($_SESSION['code'])){
+            if (isset($_SESSION['code'])) {
                 kakaoAPICall($_SESSION['code']);
             } else {
                 throw new Exception("Error with Kakao Login.");
