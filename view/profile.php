@@ -1,10 +1,7 @@
-<?php $title = "Profile" ?>
+<?php !isset($title) ? "Profile" : $title; ?>
 <?php $style = "./public/css/profile.css"; ?>
 
 <?php ob_start(); ?>
-<p><a href="index.php">Back to HOMEPAGE</a></p>
-<h1>I am a Profile PAGE</h1>
-
 <section id="personnalInfo">
 
     <div id="myInfos">
@@ -43,41 +40,114 @@
                 }
                 ?>
             </ul>
-
-
         </div>
     </div>
 </section>
+
 <section id="eventInfo">
 
     <div id="myEvents">
         <h1>My Events</h1>
+
+        <div class="titleEdit">
+            <h2>Created</h2>
+            <button>Create Event</button>
+            <!-- INFO FROM DATABASE -->
+        </div>
         <div>
-            <div class="titleEdit">
-                <h2>Created</h2>
-                <button>Create Event</button>
-                <!-- INFO FROM DATABASE -->
-            </div>
-            <div>
-                <h2>Attenting</h2>
-                <!-- INFO FROM DATABASE -->
-            </div>
+            <ul>
+                <?php
+                if (!empty($myEvents)) {
+                    foreach ($myEvents as $event) {
+                ?>
+                        <li><?= $event['FillMeUp']; ?></li><br>
+                <?php
+                    }
+                } else {
+                    echo '<li> No events</li>';
+                }
+                ?>
+            </ul>
+        </div>
+        <div class="titleEdit">
+            <h2>Attenting</h2>
+        </div>
+        <!-- INFO FROM DATABASE -->
+        <div>
+            <ul>
+                <?php
+                if (!empty($attendingEvents)) {
+                    foreach ($attendingEvents as $attentingevent) {
+                ?>
+                        <li><?= $attentingevent['FillMeUp']; ?></li><br>
+                <?php
+                    }
+                } else {
+                    echo '<li> No events</li>';
+                }
+                ?>
+            </ul>
         </div>
     </div>
 
-    <div>
+    <div id="myEventsSuggestion">
         <h1>Suggestion</h1>
         <!-- INFO FROM DATABASE -->
+        <div>
+            <ul>
+                <?php
+                if (!empty($suggestionEvents)) {
+                    foreach ($suggestionEvents as $suggestionEvent) {
+                ?>
+                        <li><?= $suggestionEvent['FillMeUp']; ?></li><br>
+                <?php
+                    }
+                } else {
+                    echo '<li> No events</li>';
+                }
+                ?>
+            </ul>
+        </div>
     </div>
 </section>
 <section id="articleInfo">
-    <div>
+    <div id="myArticles">
         <h1>My Articles</h1>
         <!-- INFO FROM DATABASE -->
+        <div>
+            <ul>
+                <?php
+                if (!empty($articles)) {
+                    foreach ($articles as $article) {
+                ?>
+                        <li><?= $article['FillMeUp']; ?></li><br>
+                <?php
+                    }
+                } else {
+                    echo '<li> No articles</li>';
+                }
+                ?>
+            </ul>
+        </div>
     </div>
-    <div>
+    <div id="myArticlesSuggestion">
         <h1>Suggestion</h1>
         <!-- INFO FROM DATABASE -->
+        <div>
+            <ul>
+                <?php
+                if (!empty($suggestionArticles)) {
+                    foreach ($suggestionArticles as $suggestionArticle) {
+                ?>
+                        <li><?= $suggestionArticle['FillMeUp']; ?></li><br>
+                <?php
+                    }
+                } else {
+                    echo '<li> No articles</li>';
+                }
+                ?>
+            </ul>
+        </div>
     </div>
 </section>
 

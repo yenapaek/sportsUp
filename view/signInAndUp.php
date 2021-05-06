@@ -2,8 +2,6 @@
 
 <?php ob_start(); ?>
 
-<p><a href="index.php">Back to HOMEPAGE</a></p>
-
 <div id="bothForm">
     <h1><?= $title ?></h1>
     <?php if ($title === 'signIn') { ?>
