@@ -99,7 +99,7 @@ ob_start();
                 <h1>Sign Up section</h1>
         </div> -->
         <div class="box1">
-            <a href="#" class="btn btn-white btn-animation-1">Sign Up</a> 
+            <a href="index.php?action=signUp" class="btn btn-white btn-animation-1">Sign Up</a> 
         </div>
     </div>       
 </div>

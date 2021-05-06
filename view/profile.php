@@ -59,7 +59,10 @@ $style = "./public/css/profile.css"; ?>
                 if (!empty($myEvents)) {
                     foreach ($myEvents as $event) {
                 ?>
-                        <li><?= $event['FillMeUp']; ?></li><br>
+                        <li>
+                            <!-- PHP ECHO $event['FillMeUp']; -->
+                        </li><br>
+
                 <?php
                     }
                 } else {
