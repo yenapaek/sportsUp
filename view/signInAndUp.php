@@ -2,6 +2,7 @@
 
 <?php ob_start(); ?>
 
+<p><a href="index.php">Back to HOMEPAGE</a></p>
 <div id="bothForm">
     <h1><?= $title ?></h1>
     <?php if ($title === 'signIn') { ?>
@@ -28,15 +29,19 @@
 
                     <button>Submit</button>
                 </form>
+                <div>
+                    <input type="image" id="kakao-login-btn" src="./public/images/kakaoLoginBtnEN.png" onclick="loginWithKakao();"></input>
+                </div>
             </div>
             <div>
                 <img src="./public/images/signInAndUp/ball.png" alt="signIn image">
             </div>
+            <!-- <div>
+                <a id="kakao-login-btn-en" onclick="loginWithKakao();">
+                    <img src="./public/images/kakaoLoginBtnEN.png" width="222"/>
+                </a>
+            </div> -->
         </section>
-        <div>
-            <h1>YENA's sign IN form</h1>
-        </div>
-
     <?php
     } else {
     ?>
@@ -79,14 +84,16 @@
                 </form>
             </div>
         </section>
-        <div>
-            <h1>YENA's sign UP form</h1>
-        </div>
 </div>
 <?php
     }
 ?>
-
 <script src="./public/js/signInAndUpVerification.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+    Kakao.init('339cdea24a4c89c54473cb56876710ec');
+    // console.log(Kakao.isInitialized());
+</script>
+<script src="./public/js/kakaoLogin.js"></script>
 <?php $content = ob_get_clean(); ?>
 <?php require("template.php"); ?>

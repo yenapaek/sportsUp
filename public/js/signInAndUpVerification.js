@@ -55,6 +55,7 @@ function checkInputs() {
         setSuccessFor(email);
         submittableEmail = true;
     }
+<<<<<<< HEAD
 
     if (passwordValue === "") {
         setErrorFor(password, "Password cannot be blank");
@@ -97,3 +98,7 @@ function isEmail(email) {
         email,
     );
 }
+=======
+};
+
+>>>>>>> 8443c9865639329fadd592fbcb544622c8efb7a8

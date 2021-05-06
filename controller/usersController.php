@@ -29,4 +29,16 @@ function manualLogin($email, $pass)
         $title = 'signIn';
         require('./view/signInAndUp.php');
     }
+    require("./view/profile.php"); 
+}
+
+function kakaoAPICall($authCode){
+    $kakaoId = kakaoAPICallModel($authCode);
+    if ($kakaoId) {
+        $title = $kakaoId." logged in";
+        #TODO need to implement what to do if u logged IN
+    } else {
+        $title = "error";
+    }
+    require("./view/profile.php"); 
 }

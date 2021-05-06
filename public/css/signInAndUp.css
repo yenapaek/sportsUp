@@ -118,3 +118,8 @@ div h1 {
     width: 100%;
     cursor: pointer;
 }
+
+#kakao-login-btn {
+    height: 2rem;
+    margin-left: 33%;
+}

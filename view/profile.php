@@ -1,6 +1,5 @@
-<?php !isset($title) ? "Profile" : $title; ?>
-<?php $style = "./public/css/profile.css"; ?>
-
+<?php $title = !isset($title) ? "Profile" : $title;
+$style = "./public/css/profile.css"; ?>
 <?php ob_start(); ?>
 <section id="personnalInfo">
 

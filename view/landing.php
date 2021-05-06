@@ -1,10 +1,9 @@
 <?php 
-$title = "Sport Events";
+$title = "Sports Up - Home";
 $style = "./public/css/landing.css";
 
 ob_start();
 ?>
-
 <div id="mainContent">
     <div class = "firstSection">
         <div class="banner1">
@@ -41,7 +40,7 @@ ob_start();
         </div>
         <!-- BUTTON -->
         <div class="box">
-            <a href="#" class="btn btn-white btn-animation-1">Sign Up</a> 
+            <a href="index.php?action=signUp" class="btn btn-white btn-animation-1">Sign Up</a> 
         </div>
 
     </div>

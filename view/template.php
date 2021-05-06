@@ -10,11 +10,11 @@
 </head>
 
 <body>
-    <?php include "menu.php";?>
+    <?php include "menu.php"; ?>
 
     <?= $content; ?>
     <footer>
-        <?php include "footer.php";?>
+        <?php include "footer.php"; ?>
     </footer>
 </body>
 
