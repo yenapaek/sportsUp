@@ -2,6 +2,7 @@
 
 require("./controller/controller.php");
 require("./controller/usersController.php");
+require("./controller/eventsController.php");
 
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
@@ -36,6 +37,7 @@ try {
             }
             break;
         case "kakaoAPICall":
+            // To DO ssesion start should be earlier on the code.
             session_start();
             if (isset($_SESSION['code'])) {
                 kakaoAPICall($_SESSION['code']);
@@ -43,6 +45,18 @@ try {
                 throw new Exception("Error with Kakao Login.");
             }
             break;
+        case "events":
+            categoriesInfo();
+            break;
+
+        case "searchSubmit":
+            if (isset($_REQUEST['searchEvent'])) {
+                eventsSearchInput($_REQUEST['searchEvent']);
+            } elseif (isset($_REQUEST['sportCriteria'])) {
+                eventsSearchSelect($_REQUEST['sportCriteria']);
+            }
+            break;
+
         default:
             landing();
             break;

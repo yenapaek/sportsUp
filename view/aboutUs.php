@@ -1,6 +1,6 @@
 <?php 
 $title = "About Us";
-$style = "./public/css/aboutUs.css";
+$style = '<link href="./public/css/aboutUs.css" rel="stylesheet" />';
 
 ob_start();
 ?>

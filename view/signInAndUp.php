@@ -1,5 +1,4 @@
-<?php $style = "./public/css/signInAndUp.css"; ?>
-
+<?php $style = '<link href="./public/css/signInAndUp.css" rel="stylesheet" />';?>
 <?php ob_start(); ?>
 
 <p><a href="index.php">Back to HOMEPAGE</a></p>

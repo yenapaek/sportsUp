@@ -8,10 +8,7 @@
  }
 #top {
 	display:flex;
-	flex-direction: row;
 	justify-content: space-between;
-	width: 100%;
-	height: 100px;
 	padding: 0;
 	margin: 0;
 	background: rgb(255, 255, 255);
@@ -19,8 +16,7 @@
 .top-left {
 	width: 50%;
 	display: flex;
-	flex-direction: row;
-	}
+}
 .logo {
 	margin-left: 60px;
 	width: 190px;
@@ -62,13 +58,12 @@
 
 
 .top-right {
-    right: 50px;
+    /* right: 50px; */
     background: rgb(255, 255, 255);
-    display: inline-block;
+    /* display: inline-block; */
     font-family: 'Open Sans', sans-serif;
-    width: 550px;
+    width: 50%;
     height: 50px;
-    overflow: hidden;
 	display: flex;
 	align-self: center;
 }
@@ -78,11 +73,11 @@
 }
 nav{
 	position: relative;
-	margin: 270px auto 0;
-	width: 590px;
-	height: 50px;
-	border-radius: 8px;
-	font-size: 0;
+	/* margin: 270px auto 0; */
+	width: 100%;
+	/* height: 50px; */
+	/* border-radius: 8px; */
+	/* font-size: 0; */
 }
 nav a{
 	font-size: 15px;
@@ -96,6 +91,7 @@ nav a{
 	text-align: center;
 }
 nav .animation{
+	display: inline-block;
 	position: absolute;
 	height: 10%;
 	bottom: 0;
@@ -103,42 +99,32 @@ nav .animation{
 	border-radius: 8px;
 	transition: all .5s ease 0s;
 }
-nav a:nth-child(1){
-	width: 100px;
+
+nav a, nav .start-home, a:hover~.animation{ 
+	width: 15%;
 }
 nav .start-home, a:nth-child(1):hover~.animation{
-	width: 100px;
 	left: 0;
 }
-nav a:nth-child(2){
-	width: 100px;
-}
 nav a:nth-child(2):hover~.animation{
-	width: 100px;
-	left: 100px;
-}
-nav a:nth-child(3){
-	width: 100px;
-}
-nav a:nth-child(3):hover~.animation{
-	width: 100px;
-	left: 200px;
-}
-nav a:nth-child(4){
-	width: 100px;
-}
-nav a:nth-child(4):hover~.animation{
-	width: 100px;
-	left: 300px;
-}
-nav a:nth-child(5){
-	width: 120px;
-}
-nav a:nth-child(5):hover~.animation{
-	width: 100px;
-	left: 400px;
+	left: 15%;
 }
 
+nav a:nth-child(3):hover~.animation{
+	left: 30%;
+}
+
+nav a:nth-child(4):hover~.animation{
+	left: 45%;
+}
+
+nav a:nth-child(5):hover~.animation{
+	left: 60%;
+}
+
+nav a:nth-child(6):hover~.animation{
+	left: 75%;
+}
 
 /* ------------------style for buttons ------------------*/
 
@@ -152,7 +138,7 @@ nav a:nth-child(5):hover~.animation{
   }
 .box1{
 	position:absolute;
-	bottom:4%;
+	bottom:1%;
 	right:40%;
 	transform : translate(-50% ,-50%);
 	
@@ -217,14 +203,14 @@ nav a:nth-child(5):hover~.animation{
 }
 
 @keyframes comeFromBottom{
-0%{
-	opacity:0;
-	transform:translateY(40px);
-} 
-100%{
-	opacity:1;
-	transform:translateY(0);
-}
+	0%{
+		opacity:0;
+		transform:translateY(40px);
+	} 
+	100%{
+		opacity:1;
+		transform:translateY(0);
+	}
 }
 
 
@@ -256,7 +242,7 @@ nav a:nth-child(5):hover~.animation{
 .contactInfo {
 	margin-left: 20px;
 }
-.adress {
+.address {
 	margin-left: 20px;
 }
 .sns-icons {

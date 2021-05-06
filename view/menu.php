@@ -12,7 +12,8 @@
 
     <div class="top-right">
         <nav class="rightBox">
-            <a href="index.php"><strong>Events</strong> </a>
+            <a href="index.php?action=landing"><strong>Home</strong> </a>
+            <a href="index.php?action=events"><strong>Events</strong> </a>
             <a href="index.php?action=aboutUs"><strong>About Us</strong></a>
             <a href="index.php"><strong>SHOP</strong></a>
             <a href="index.php?action=signIn"><strong>Sign In</strong></a>

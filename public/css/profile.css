@@ -3,14 +3,14 @@
 #articleInfo {
     display: flex;
     margin: 30px;
-    color: white;
+    color: black;
 }
 
 #personnalInfo div,
 #eventInfo div,
 #articleInfo div {
     display: flex;
-    border: 1px solid white;
+    border: 1px solid black;
     width: 100%;
     text-align: center;
 }

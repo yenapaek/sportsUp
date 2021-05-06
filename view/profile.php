@@ -28,16 +28,15 @@ $style = "./public/css/profile.css"; ?>
         <div>
             <ul>
                 <?php
-                if (!empty($mySports)) {
-                    foreach ($mySports as $sport) {
+                if (!empty($mySports)) :
+                    foreach ($mySports as $sport) :
                 ?>
                         <li><?= $sport['category_name']; ?></li><br>
                 <?php
-                    }
-                } else {
-                    echo '<li> No sport added</li>';
-                }
-                ?>
+                    endforeach;
+                else : ?>
+                    <li> No sport added</li>
+                <?php endif;?>
             </ul>
         </div>
     </div>
@@ -59,7 +58,10 @@ $style = "./public/css/profile.css"; ?>
                 if (!empty($myEvents)) {
                     foreach ($myEvents as $event) {
                 ?>
-                        <li><?= $event['FillMeUp']; ?></li><br>
+                        <li>
+                            <!-- PHP ECHO $event['FillMeUp']; -->
+                        </li><br>
+
                 <?php
                     }
                 } else {
