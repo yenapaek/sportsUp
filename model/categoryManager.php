@@ -1,6 +1,6 @@
 <?php
 
-    require("manager.php");
+    // require("manager.php");
 
     function categoriesInfoModel () {
         $dataBase = dbConnect();
