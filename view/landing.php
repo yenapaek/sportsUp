@@ -96,14 +96,13 @@ ob_start();
         <div class="photo">
             <img src="./public/images/landing/photo1.jpg" alt="">
         </div>
-        <!-- <div class="textInside">
-                <h1>Sign Up section</h1>
-        </div> -->
+        
         <div class="box1">
             <a href="#" class="btn btn-white btn-animation-1">Sign Up</a> 
         </div>
     </div>       
 </div>
+
 
 <?php
     $content = ob_get_clean();
