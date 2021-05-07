@@ -10,11 +10,29 @@
         return $infoArray;
     }
 
+    function defaultSearch() {
+        $dataBase = dbConnect();
+        $rawResponse = $dataBase->query(
+            "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+            FROM events e
+            JOIN categories c
+            ON e.categoryId = c.id"
+        );
+        $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);  
+        $rawResponse->closeCursor();
+        return $infoArray;
+    }
+
     function inputSearch($name) {
         $dataBase = dbConnect();
-        $rawResponse = $dataBase->prepare("SELECT * FROM events WHERE name = :name");
-        $rawResponse->execute(array('name' => $name));
-        $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
+        $rawResponse = $dataBase->query(
+            "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+            FROM events e
+            JOIN categories c
+            ON e.categoryId = c.id
+            WHERE e.name = '$name'"
+        );
+        $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);  
         $rawResponse->closeCursor();
         return $infoArray;
     }
@@ -22,7 +40,7 @@
     function selectSearch($sportName) {
         $dataBase = dbConnect();
         $rawResponse = $dataBase->query(
-            "SELECT c.name AS categoryName, e.name AS eventName, e.picture as picture, e.eventDate as eventDate 
+            "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
