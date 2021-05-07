@@ -75,7 +75,7 @@ function getTokens($authCode){
     $url = 'https://kauth.kakao.com/oauth/token'; // API Link
 
     $grantType = 'authorization_code';
-    $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=https://127.0.0.1/sportsEvent/model/oauth.php&code='.$authCode;
+    $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=http://127.0.0.1/sportsEvent/model/oauth.php&code='.$authCode;
 
     $curl = curl_init();
 
@@ -133,6 +133,7 @@ function getKakaoUser($kakaoId) {
     $req->bindParam(":kakaoId", $kakaoId, PDO::PARAM_STR);
     $req->execute();
     $kakaoUserData = $req->fetch(PDO::FETCH_OBJ);
+    $req->closeCursor();
     return $kakaoUserData;
 } 
 

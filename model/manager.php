@@ -2,7 +2,7 @@
 
 function dbConnect()
 {
-    $host = 'localhost';
+    $host = '127.0.0.1';
     $dbName = 'sportsevent';
     $login = 'root';
     $pwd = ''; // MAC USER SHOULD PUT A PWD PROBABLY 'root'
