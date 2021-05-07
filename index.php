@@ -37,6 +37,7 @@ try {
             }
             break;
         case "kakaoAPICall":
+            // To DO ssesion start should be earlier on the code.
             session_start();
             if (isset($_SESSION['code'])) {
                 kakaoAPICall($_SESSION['code']);
