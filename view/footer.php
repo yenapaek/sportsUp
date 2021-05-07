@@ -18,8 +18,8 @@
         </p>
     </div>
     <div class="sns">
-         <h1>Join us on Social media</h1>
-         <div class="sns-icons">
+        <h1>Join us on Social media</h1>
+        <div class="sns-icons">
             <div class="sns-icon">
                 <a href=""><img src="./public/images/footer/facebook.png" alt=""></a>
             </div>
@@ -34,5 +34,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

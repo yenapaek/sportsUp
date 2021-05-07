@@ -31,7 +31,6 @@ function manualLogin($email, $pass)
         $title = 'signIn';
         header("Location: index.php?action=signIn");
     }
-    // require("./view/profile.php"); 
 }
 
 function kakaoAPICall($authCode){

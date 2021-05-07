@@ -1,6 +1,6 @@
-<?php 
-    $title = "Events"; 
-    $style = '<link href="./public/css/events.css" rel="stylesheet" />';
+<?php
+$title = "Events";
+$style = '<link href="./public/css/events.css" rel="stylesheet" />';
 ?>
 <?php ob_start(); ?>
 
@@ -18,10 +18,10 @@
                     <option value="Sport">By Sport</option>
                 </select>
                 <div id="sportSelect">
-                    <select name="sportsCriteria" id="sportsCriteria"> 
+                    <select name="sportsCriteria" id="sportsCriteria">
                         <option value="default" selected disbled>Select Your Sport</option>
-                        <?php foreach($categories as $category): ?>
-                            <option value="<?= $category["name"]; ?>"><?=$category["name"]; ?></option>
+                        <?php foreach ($categories as $category) : ?>
+                            <option value="<?= $category["name"]; ?>"><?= $category["name"]; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -34,11 +34,11 @@
     </header>
 
     <section>
-    <div>List of events</div>
+        <div>List of events</div>
     </section>
-    
+
     <section>
-        <?php require('eventList.php')?>
+        <?php require('eventList.php') ?>
     </section>
 </div>
 <script src="./public/js/events.js"></script>
