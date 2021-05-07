@@ -4,35 +4,13 @@
 // echo "<pre>";
 if (!empty($eventsSelect)) {
     foreach ($eventsSelect as $event): ?>
-        <div id="cardWrapper">
-            <div id="image">
-                <img src="<?php //$event["picture"]; ?>" alt="">
-            </div>
-            <div id="cardInfo">
-                <div id="cardInfoContainer">
-                    <p> <?= $event["eventName"]; ?> </p>
-                    <div id="cardAditionalInfo">
-                        <span> <?= $event["eventDate"]; ?> </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endforeach;
-}
-if (!empty($eventsInput)) {
-    foreach ($eventsInput as $event): ?>
-        <div id="cardWrapper">
-            <div id="image">
-                <img src="<?php //$event["picture"]; ?>" alt="">
-            </div>
-            <div id="cardInfo">
-                <div id="cardInfoContainer">
-                    <p> <?= $event["name"]; ?> </p>
-                    <div id="cardAditionalInfo">
-                        <span> <?= $event["eventDate"]; ?> </span>
-                    </div>
-                </div>
-            </div>
+        <div class="card">
+                <img src="<?= $event["categoryImage"] ?>" alt="card background" class="card-img">
+                
+                <h1><?= $event["eventName"] ?></h1>
+                <p class="job-title"><?= $event["categoryName"] ?></p>
+                <p class="about"><?= $event["eventDate"] ?></p>
+                <a href="#" class="btn btn-white btn-animation-1">Want to join in?</a>
         </div>
     <?php endforeach;
 }

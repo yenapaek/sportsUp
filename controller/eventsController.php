@@ -3,11 +3,12 @@
 
     function categoriesInfo() {
         $categories  = categoriesInfoModel();
+        $eventsSelect = defaultSearch(false);
         require("./view/events.php");
     }
 
     function eventsSearchInput($name) {
-        $eventsInput = inputSearch($name);
+        $eventsSelect = inputSearch($name);
         require("./view/eventList.php");
     }
 
@@ -15,3 +16,5 @@
         $eventsSelect = selectSearch($sportName);
         require("./view/eventList.php");
     } 
+
+    
