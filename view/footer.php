@@ -8,7 +8,7 @@
             02-5678-1234 <br>
         </p>
     </div>
-    <div class="adress">
+    <div class="address">
         <h1>Address</h1>
         <p>
             용산구 한강대로40길 39-13, 1층 <br>
@@ -18,8 +18,8 @@
         </p>
     </div>
     <div class="sns">
-         <h1>Join us on Social media</h1>
-         <div class="sns-icons">
+        <h1>Join us on Social media</h1>
+        <div class="sns-icons">
             <div class="sns-icon">
                 <a href=""><img src="./public/images/footer/facebook.png" alt=""></a>
             </div>
@@ -34,5 +34,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

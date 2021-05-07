@@ -26,15 +26,13 @@ body {
     height: 82vh; */
 }
 
-.banner1, .banner2, .banner3, .banner4 {
+.banner {
     height: 100vh;
     width: 100%;
 
 }
- .banner1> img, 
- .banner2> img,
- .banner3> img,
- .banner4> img {
+
+ .banner> img {
     width: 120%;
     position: absolute;
     left: 50%;
@@ -56,7 +54,7 @@ body {
     color: rgb(255, 255, 255);
     animation: textup 12s linear infinite;
     transform: translateY(100px);
-    box-shadow: 0 5px 20px rgba(56, 39, 39, 0.2)
+    /* background-color: rgba(0, 117, 250, 0.5); */
 }
 .text-box1 {
     animation-delay: 0s;
@@ -64,7 +62,7 @@ body {
 .text-box2 {
     animation-delay: 3s;
 }
-.text-box3 {
+#text-box3 {
     animation-delay: 6s;
 }
 .text-box4 {
@@ -98,16 +96,16 @@ body {
     width: 100px;
     position: absolute;
 }
-.banner1 {
+#banner1 {
     animation: slide1 12s linear infinite;
 }
-.banner2 {
+#banner2 {
     animation: slide2 12s linear infinite;
 }
-.banner3 {
+#banner3 {
     animation: slide3 12s linear infinite;
 }
-.banner4 {
+#banner4 {
     animation: slide4 12s linear infinite;
 }
 
@@ -186,7 +184,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     height: 650px;
     /* background: honeydew; */
 }
@@ -194,12 +192,12 @@ body {
 .cards {
     /* position: relative; */
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    /* padding: 30px; */
+    padding: 30px;
     /* background: grey; */
 }
 
@@ -211,11 +209,11 @@ body {
     border: 10px solid rgb(92, 92, 92); */
     /* background: #F5F5F5; */
     background: #ffffff;
-    box-shadow: 0 5px 20px rgba(56, 39, 39, 0.2);
+
     /* margin: 30px 10px; */
-    padding: 20px 15px;
-    /* display: flex;
-    flex-direction: column; */
+    /* padding: 20px 15px; */
+    /* display: flex; */
+    /* flex-direction: column; */
     transition: 0.3s ease-in-out;
 }
 .cards> .card:hover {
@@ -223,25 +221,26 @@ body {
 }
 
 .cards> .card> .imgBx {
-    
     position: relative;
     width: 260px;
-    /* height: 260px; */
+    height: 260px;
     top: -60px;
     left: 20px;
     z-index: 1;
-    box-shadow: 0 5px 20px rgba(56, 39, 39, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 
 }
 .cards .card .imgBx h2 {
+    /* font-family: 'Varela Round', sans-serif; */
     font-family: 'Righteous', cursive;
+
     font-size: 30px;
     text-align: center;
     color: rgb(0, 0, 0);
 }
 .cards .card .imgBx a:visited{
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 .cards .card .imgBx img {
     max-width: 100%;
@@ -250,7 +249,7 @@ body {
 }
 
 .cards .card .cardText {
-    /* position: relative; */
+    position: relative;
     margin-top: -140px;
     padding: 10px 15px;
     text-align: center;
@@ -277,25 +276,25 @@ a:visited{
 #thirdSection {
     width: 97%;
     /* height: 800px; */
-    height: 100%;
     margin: auto;
     /* border: 2px solid green; */
     overflow: hidden;
     position: relative;
     /* border-radius: 25px; */
+    padding-bottom: 70px;
 }
 .photo {
     /* height: 700px; */
     /* border: 2px solid red; */
     width: 100%;
     /* height: 800px; */
-    height: 700px;
+    /* height: 700px; */
     margin: auto;
     overflow: hidden;
     /* border-radius: 25px; */
 }
 .photo img {
-    position: relative;
+    /* position: relative; */
     width: 100%;
     z-index: 0;
 }
@@ -308,55 +307,4 @@ a:visited{
     z-index: 1;
     bottom: 10px;
     left: 50%;
-}
-
-nav .start-home, a:nth-child(1):hover~.animation{
-	width: 100px;
-	left: 0;
-}
-
-
-@media screen and (max-width: 820px) {
-    .text-box h1 {
-        font-size: 24px;
-        margin-left: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .text-box p {
-        margin-left: 20px;
-        font-size: 15px;
-        line-height: 18px;
-        margin-top: 40px;
-        color: rgb(255, 255, 255);
-    }
-    .text-box span {
-        margin-left: 20px;
-        background:rgb(237, 40, 40);
-        height: 3px;
-        width: 100px;
-        position: absolute;
-    }
-    .box {
-        display: none;
-    }
-    #secondSection {
-        padding: 30px;
-        height: 1500px;
-    }
-    .cards {
-        height: 100%;
-    }
-    /* .box1 {
-        position: relative;
-        margin: auto;
-    } */
-
-    /* .banner1> img, .banner2> img, .banner3> img, .banner4> img {
-     animation: none;
- }
-    .text-box {
-        animation: none;
-    } */
-    
 }

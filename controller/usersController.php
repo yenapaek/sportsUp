@@ -24,6 +24,22 @@ function manualLogin($email, $pass)
     if ($login) {
         $title = "You get in";
         #TODO need to implement what to do if u logged IN
+        // require('./view/profile.php');
+        header("Location: index.php?action=profile");
+        
+    } else {
+        $title = 'signIn';
+        header("Location: index.php?action=signIn");
     }
-    require("./view/landing.php"); 
+}
+
+function kakaoAPICall($authCode){
+    $kakaoId = kakaoAPICallModel($authCode);
+    if ($kakaoId) {
+        $title = $kakaoId." logged in";
+        #TODO need to implement what to do if u logged IN
+    } else {
+        $title = "error";
+    }
+    header("Location: index.php?action=profile");
 }

@@ -3,6 +3,7 @@
 #articleInfo {
     display: flex;
     margin: 30px;
+    color: black;
 }
 
 #personnalInfo div,
@@ -25,7 +26,10 @@
 }
 
 #myInfos,
-#mySports {
+#mySports,
+#myEventsSuggestion,
+#myArticles,
+#myArticlesSuggestion {
     display: flex;
     flex-direction: column;
 }

@@ -1,74 +1,100 @@
-<?php $style = "./public/css/signInAndUp.css"; ?>
-
+<?php $style = '<link href="./public/css/signInAndUp.css" rel="stylesheet" />'; ?>
 <?php ob_start(); ?>
 
-<p><a href="index.php">Back to HOMEPAGE</a></p>
-
 <div id="bothForm">
-    <h1><?= $title ?></h1>
+
     <?php if ($title === 'signIn') { ?>
+        <h1>LOG IN</h1>
 
         <section id="signInFormSection">
             <div>
-                <form id="signInForm" action="index.php" method="post">
+                <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
-                    <div>
-                        <label for="emailSignIn">Email :</label>
-                        <input type="text" name="emailSignIn" id="emailSignIn" autofocus>
+
+                    <div class="form-control">
+                        <label for="emailSignIn">Email</label>
+                        <input type="email" placeholder="yourMail@provider.com" id="emailSignIn" name="emailSignIn" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
                     </div>
-                    <div>
-                        <label for="passwordSignIn">Password :</label>
-                        <input type="password" name="passwordSignIn" id="passwordSignIn">
+                    <div class="form-control">
+                        <label for="passwordSignIn">Password</label>
+                        <input type="password" placeholder="Password" id="passwordSignIn" name="passwordSignIn" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
                     </div>
-                    <input type="submit" value="Sign In">
+
+                    <button>Log In</button>
                 </form>
+
             </div>
-            <div>
-                <img src="./public/images/ball.png" alt="signIn image">
+            <div class="kakaoDiv">
+                <h1>Or</h1>
+                <p>
+                    <input type="image" id="kakao-login-btn" src="./public/images/signInAndUp/kakaoLoginBtnEN.png" onclick="loginWithKakao();"></input>
+                </p>
             </div>
         </section>
-        <div>
-            <h1>YENA's sign IN form</h1>
-        </div>
-
     <?php
     } else {
     ?>
+        <h1>SIGN UP</h1>
         <section id="signUpFormSection">
-            <div>
-                <img src="./public/images/ball.png" alt="signUp image">
+            <div class="kakaoDiv">
+                <h1>Or</h1>
+                <p>
+                    <input type="image" id="kakao-login-btn" src="./public/images/signInAndUp/kakaoLoginBtnEN.png" onclick="loginWithKakao();"></input>
+                </p>
+                <p style="text-align: center;">
+                    <img style="width: 200px; height: 200px;" type="image" id="kakao-login-btn" src="./public/images/error/kakao.png" />
+                </p>
             </div>
             <div>
-                <form id="signUpForm" action="index.php" method="post">
+                <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
-                    <div>
-                        <label for="userNameSignUp">UserName :</label>
-                        <input type="text" name="userNameSignUp" id="userNameSignUp" autofocus onkeyup="inputVerification(this.id)">
+                    <div class="form-control">
+                        <label for="userNameSignUp">Username</label>
+                        <input type="text" placeholder="username" id="userNameSignUp" name="userNameSignUp" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
                     </div>
-                    <div>
-                        <label for="emailSignUp">Email :</label>
-                        <input type="text" name="emailSignUp" id="emailSignUp" onkeyup="inputVerification(this.id)">
+                    <div class="form-control">
+                        <label for="emailSignUp">Email</label>
+                        <input type="email" placeholder="yourMail@provider.com" id="emailSignUp" name="emailSignUp" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
                     </div>
-                    <div>
-                        <label for="passwordSignUp">Password :</label>
-                        <input type="password" name="passwordSignUp" id="passwordSignUp" onkeyup="inputVerification(this.id)" autocomplete="off">
+                    <div class="form-control">
+                        <label for="passwordSignUp">Password</label>
+                        <input type="password" placeholder="Password" id="passwordSignUp" name="passwordSignUp" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
                     </div>
-                    <div>
-                        <label for="passwordConfSignUp">Password Confirmation :</label>
-                        <input type="password" name="passwordConfSignUp" id="passwordConfSignUp" onkeyup="inputVerification(this.id)" autocomplete="off">
+                    <div class="form-control">
+                        <label for="passwordConfSignUp">Password check</label>
+                        <input type="password" placeholder="Password two" id="passwordConfSignUp" name="passwordConfSignUp" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
                     </div>
-                    <input type="submit" value="Sign Up">
+                    <button>Sign Up</button>
                 </form>
             </div>
         </section>
-        <div>
-            <h1>YENA's sign UP form</h1>
-        </div>
-</div>
-<?php
-    }
-?>
 
-<script src="./public/js/signInAndUpVerification.js"></script>
-<?php $content = ob_get_clean(); ?>
-<?php require("template.php"); ?>
+    <?php
+    }
+    ?>
+    <script src="./public/js/signInAndUpVerification.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        Kakao.init('339cdea24a4c89c54473cb56876710ec');
+    </script>
+    <script src="./public/js/kakaoLogin.js"></script>
+    <?php $content = ob_get_clean(); ?>
+    <?php require("template.php"); ?>
