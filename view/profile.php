@@ -1,5 +1,5 @@
-<?php $title = !isset($title) ? "Profile" : $title;
-$style = "./public/css/profile.css"; ?>
+<?php $title = !isset($title) ? "Profile" : $title; ?>
+<?php $style = '<link href="./public/css/profile.css" rel="stylesheet" />'; ?>
 <?php ob_start(); ?>
 <section id="personnalInfo">
 
@@ -32,11 +32,11 @@ $style = "./public/css/profile.css"; ?>
                     foreach ($mySports as $sport) :
                 ?>
                         <li><?= $sport['category_name']; ?></li><br>
-                <?php
+                    <?php
                     endforeach;
                 else : ?>
                     <li> No sport added</li>
-                <?php endif;?>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
