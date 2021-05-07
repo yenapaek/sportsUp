@@ -15,7 +15,7 @@
         $rawResponse = $dataBase->query(
             "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
-            OUTER JOIN categories c
+            JOIN categories c
             ON e.categoryId = c.id"
         );
         $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);  
