@@ -6,20 +6,20 @@
 <div id="main-body">
     <section id="personnalInfo">
         <div class="info-container" id="myInfos">
-            <div>
+            <!-- <div> -->
                 <img src="./public/images/aboutUs/Alexis.png" alt="profile image" class="profile-img">
+            <!-- </div> -->
+            <div>
+                <h1>Hi, <?= !empty($infoProfile) ? $infoProfile['userName'] : '...'; ?></h1>
             </div>
             <div>
-                <h1>Hi, <?= !empty($infoProfil) ? $infoProfil['userName'] : '...'; ?></h1>
-            </div>
-            <div>
-                <!-- <p>UserName : <?= !empty($infoProfil) ? $infoProfil['userName'] : '...'; ?></p> -->
-                <p>FirstName : <?= !empty($infoProfil['firstName']) ? $infoProfil['firstName'] : '...'; ?></p>
-                <p>LastName : <?= !empty($infoProfil['lastName']) ? $infoProfil['lastName'] : '...' ?></p>
-                <p>Birthday : <?= !empty($infoProfil['birthDate']) ? $infoProfil['birthDate'] : '...'; ?></p>
-                <p>Email : <?= !empty($infoProfil['email']) ? $infoProfil['email'] : '...' ?></p>
-                <p>Nationality : <?= !empty($infoProfil['nationality']) ? $infoProfil['nationality'] : '...' ?></p>
-                <p>City : <?= !empty($infoProfil['city']) ? $infoProfil['city'] : '...' ?></p>
+                <!-- <p>UserName : <?= !empty($infoProfile) ? $infoProfile['userName'] : '...'; ?></p> -->
+                <p>FirstName : <?= !empty($infoProfile['firstName']) ? $infoProfile['firstName'] : '...'; ?></p>
+                <p>LastName : <?= !empty($infoProfile['lastName']) ? $infoProfile['lastName'] : '...' ?></p>
+                <p>Birthday : <?= !empty($infoProfile['birthDate']) ? $infoProfile['birthDate'] : '...'; ?></p>
+                <p>Email : <?= !empty($infoProfile['email']) ? $infoProfile['email'] : '...' ?></p>
+                <p>Nationality : <?= !empty($infoProfile['nationality']) ? $infoProfile['nationality'] : '...' ?></p>
+                <p>City : <?= !empty($infoProfile['city']) ? $infoProfile['city'] : '...' ?></p>
             </div>
         </div>
 
@@ -53,17 +53,71 @@
                     <button>Create Event</button>
                     <!-- INFO FROM DATABASE -->
                 </div>
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
-                    <div>
-                        <div class="card-datetime"><i class="far fa-clock"></i>
-                        <span>Tues, May 11 @17:00</span>
+                <div id="list-event-cards">
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
+                        <div>
+                            <div class="card-datetime">
+                                <i class="far fa-clock"></i>
+                                <span>Tues, May 11 @17:00</span>
+                            </div>
+                            <div class="card-title"><span>Football Game in the Park</span></div>
+                            <div class="card-description"><span>Fun football game for all levels</span></div>
+                            <!-- <div class="card-location">                            
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Seoul</span>
+                            </div> -->
+                            <!-- <div class="card-btn"><span>View Details</span></div> -->
                         </div>
-                        <p class="card-title">Football Game in the Park</p>
-                        <p class="card-description">Fun football game for all levels</p>
-                        <p class="card-btn">View Details</p>
                     </div>
-
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
+                        <div>
+                            <div class="card-datetime">
+                                <i class="far fa-clock"></i>
+                                <span>Tues, May 11 @17:00</span>
+                            </div>
+                            <div class="card-title"><span>Football Game in the Park</span></div>
+                            <div class="card-description"><span>Fun football game for all levels</span></div>
+                            <!-- <div class="card-location">                            
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Seoul</span>
+                            </div> -->
+                            <!-- <div class="card-btn"><span>View Details</span></div> -->
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
+                        <div>
+                            <div class="card-datetime">
+                                <i class="far fa-clock"></i>
+                                <span>Tues, May 11 @17:00</span>
+                            </div>
+                            <div class="card-title"><span>Football Game in the Park</span></div>
+                            <div class="card-description"><span>Fun football game for all levels</span></div>
+                            <!-- <div class="card-location">                            
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Seoul</span>
+                            </div> -->
+                            <!-- <div class="card-btn"><span>View Details</span></div> -->
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
+                        <div>
+                            <div class="card-datetime">
+                                <i class="far fa-clock"></i>
+                                <span>Tues, May 11 @17:00</span>
+                            </div>
+                            <div class="card-title"><span>Football Game in the Park</span></div>
+                            <div class="card-description"><span>Fun football game for all levels</span></div>
+                            <!-- <div class="card-location">                            
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Seoul</span>
+                            </div> -->
+                            <!-- <div class="card-btn"><span>View Details</span></div> -->
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <ul>

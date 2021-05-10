@@ -34,6 +34,12 @@ function manualLogin($email, $pass)
     // require("./view/profile.php"); 
 }
 
+/**
+ * kakaoAPICall
+ *
+ * @param  mixed $authCode
+ * @return 
+ */
 function kakaoAPICall($authCode){
     $kakaoId = kakaoAPICallModel($authCode);
     if ($kakaoId) {

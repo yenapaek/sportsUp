@@ -21,7 +21,7 @@
    */
   function profile($userId)
   {
-    $infoProfil = myProfilModel($userId);
+    $infoProfile = myProfileModel($userId);
     $mySports = mySportsModel($userId);
     $myEvents = myEventsModel($userId);
     $attendingEvents = '';

@@ -1,22 +1,22 @@
 <?php
 
 /**
- * myProfilModel
+ * myProfileModel
  *
  * @param  mixed $userId
- * @return array all the informations of the user's profil.
+ * @return array all the informations of the user's profile.
  */
-function myProfilModel($userId)
+function myProfileModel($userId)
 {
     $db = dbConnect();
 
     $req = $db->prepare("SELECT * FROM users WHERE id=?");
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
-    $infoProfil = $req->fetch(PDO::FETCH_ASSOC);
+    $infoProfile = $req->fetch(PDO::FETCH_ASSOC);
     $req->closeCursor();
 
-    return $infoProfil;
+    return $infoProfile;
 }
 
 /**

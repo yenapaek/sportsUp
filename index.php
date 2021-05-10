@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require("./controller/controller.php");
 require("./controller/usersController.php");
@@ -19,7 +20,7 @@ try {
             break;
 
         case "profile":
-            profile(1); // #TODO Parameter should be replaced after we implement the loggin ID
+            profile($userId); // #TODO Parameter should be replaced after we implement the login ID
             break;
 
         case "signInSubmit":
@@ -37,8 +38,6 @@ try {
             }
             break;
         case "kakaoAPICall":
-            // To DO ssesion start should be earlier on the code.
-            session_start();
             if (isset($_SESSION['code'])) {
                 kakaoAPICall($_SESSION['code']);
             } else {
