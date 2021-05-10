@@ -84,7 +84,9 @@ function kakaoAPICallModel($authCode)
     if (!kakaoUserExists($kakaoId)) {
         addNewKakaoUser($kakaoUserObj);
     }
-    return $kakaoId;
+    $kakaoUserInfo = getKakaoUser($kakaoId);
+    $kakaoUserId = $kakaoUserInfo->id;
+    return $kakaoUserId;
 }
 
 
