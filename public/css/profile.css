@@ -76,13 +76,12 @@ p {
 /* #myInfos {
     position: fixed;
 } */
-
+/* #TODO make img center */
 .profile-img {
     width: 7rem;
     height: 7rem;
     object-fit: cover;
     border-radius: 50%;
-
 }
 
 .info-container {
@@ -119,6 +118,11 @@ p {
     font-family: 'Open Sans', sans-serif;
     /* font-size: 0.75rem; */
 }
+
+.event-detail>div i {
+    margin-right: 2%;
+}
+
 .card-datetime span {
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -126,15 +130,14 @@ p {
 }
 
 /* #TODO fix font weight of card title  */
-/* .card-title {
-    font-size: 1rem;
-    font-weight: bold;
+.card-title{
+    font-size: 1.1rem;
+    /* font-weight: 600; */
     color: black;
-} */
+}
 .card-description {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #757575;
+    font-size: 0.9rem;
+    color: #585858;
 }
 
 .card-btn {
