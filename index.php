@@ -17,11 +17,9 @@ try {
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
-
         case "profile":
-            profile($userId); // #TODO Parameter should be replaced after we implement the login ID
+            profile($_SESSION['userId']);
             break;
-
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);
@@ -55,6 +53,9 @@ try {
             }
             break;
 
+        case "logout":
+            logout();
+            break;
         default:
             landing();
             break;
