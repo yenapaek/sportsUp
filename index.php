@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require("./controller/controller.php");
 require("./controller/usersController.php");
 require("./controller/eventsController.php");

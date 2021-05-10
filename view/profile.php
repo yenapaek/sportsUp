@@ -148,9 +148,9 @@
                     <ul>
                         <?php
                         if (!empty($attendingEvents)) {
-                            foreach ($attendingEvents as $attentingevent) {
+                            foreach ($attendingEvents as $attendingEvent) {
                         ?>
-                                <li><?= $attentingevent['FillMeUp']; ?></li><br>
+                                <li><?= $attendingEvent['FillMeUp']; ?></li><br>
                         <?php
                             }
                         } else {

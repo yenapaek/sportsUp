@@ -1,10 +1,10 @@
-<?php $style = '<link href="./public/css/signInAndUp.css" rel="stylesheet" />';?>
+<?php $style = '<link href="./public/css/signInAndUp.css" rel="stylesheet" />'; ?>
 <?php ob_start(); ?>
 
-<p><a href="index.php">Back to HOMEPAGE</a></p>
 <div id="bothForm">
-    <h1><?= $title ?></h1>
+
     <?php if ($title === 'signIn') { ?>
+        <h1>LOG IN</h1>
 
         <section id="signInFormSection">
             <div>
@@ -26,27 +26,30 @@
                         <small>Error message</small>
                     </div>
 
-                    <button>Submit</button>
+                    <button>Log In</button>
                 </form>
-                <div>
-                    <input type="image" id="kakao-login-btn" src="./public/images/kakaoLoginBtnEN.png" onclick="loginWithKakao();"></input>
-                </div>
+
             </div>
-            <div>
-                <img src="./public/images/signInAndUp/ball.png" alt="signIn image">
+            <div class="kakaoDiv">
+                <h1>Or</h1>
+                <p>
+                    <input type="image" id="kakao-login-btn" src="./public/images/signInAndUp/kakaoLoginBtnEN.png" onclick="loginWithKakao();"></input>
+                </p>
             </div>
-            <!-- <div>
-                <a id="kakao-login-btn-en" onclick="loginWithKakao();">
-                    <img src="./public/images/kakaoLoginBtnEN.png" width="222"/>
-                </a>
-            </div> -->
         </section>
     <?php
     } else {
     ?>
+        <h1>SIGN UP</h1>
         <section id="signUpFormSection">
-            <div>
-                <img src="./public/images/signInAndUp/ball.png" alt="signUp image">
+            <div class="kakaoDiv">
+                <h1>Or</h1>
+                <p>
+                    <input type="image" id="kakao-login-btn" src="./public/images/signInAndUp/kakaoLoginBtnEN.png" onclick="loginWithKakao();"></input>
+                </p>
+                <p style="text-align: center;">
+                    <img style="width: 200px; height: 200px;" type="image" id="kakao-login-btn" src="./public/images/error/kakao.png" />
+                </p>
             </div>
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
@@ -79,20 +82,19 @@
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
                     </div>
-                    <button>Submit</button>
+                    <button>Sign Up</button>
                 </form>
             </div>
         </section>
-</div>
-<?php
+
+    <?php
     }
-?>
-<script src="./public/js/signInAndUpVerification.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
-    Kakao.init('339cdea24a4c89c54473cb56876710ec');
-    // console.log(Kakao.isInitialized());
-</script>
-<script src="./public/js/kakaoLogin.js"></script>
-<?php $content = ob_get_clean(); ?>
-<?php require("template.php"); ?>
+    ?>
+    <script src="./public/js/signInAndUpVerification.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        Kakao.init('339cdea24a4c89c54473cb56876710ec');
+    </script>
+    <script src="./public/js/kakaoLogin.js"></script>
+    <?php $content = ob_get_clean(); ?>
+    <?php require("template.php"); ?>
