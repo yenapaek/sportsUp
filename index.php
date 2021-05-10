@@ -17,7 +17,6 @@ try {
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
-
         case "profile":
             profile($_SESSION['userId']);
             break;

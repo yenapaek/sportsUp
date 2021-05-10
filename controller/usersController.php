@@ -6,12 +6,12 @@ require_once("./model/profileManager.php");
  * profile
  *
  * @param  mixed $userId
- * @return array all the informations of the user's profil.
+ * @return array all the informations of the user's profile.
  * @return array $mySports all the sports the user is interested in.
  */
 function profile($userId)
 {
-    $infoProfil = myProfilModel($userId);
+    $infoProfile = myProfileModel($userId);
     $mySports = mySportsModel($userId);
     $myEvents = myEventsModel($userId);
     $attendingEvents = '';
@@ -67,14 +67,22 @@ function manualLogin($email, $pass)
     }
 }
 
-function kakaoAPICall($authCode)
-{
-    $kakaoId = kakaoAPICallModel($authCode);
-    if ($kakaoId) {
-        $title = $kakaoId . " logged in";
+/**
+ * kakaoAPICall
+ *
+ * @param  mixed $authCode
+ * @return 
+ */
+function kakaoAPICall($authCode){
+    $kakaoUserId = kakaoAPICallModel($authCode);
+    if ($kakaoUserId) {
+        $title = "You get in";
         #TODO need to implement what to do if u logged IN
+
+        $_SESSION['userId'] = $kakaoUserId;
+        header("Location: index.php?action=profile");
     } else {
-        $title = "error";
+        $title = 'signIn';
+        header("Location: index.php?action=signIn");
     }
-    header("Location: index.php?action=profile");
 }

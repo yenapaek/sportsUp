@@ -1,6 +1,6 @@
-<?php
-$title = "Events";
-$style = '<link href="./public/css/events.css" rel="stylesheet" />';
+<?php 
+    $title = "Events"; 
+    $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
 ?>
 <?php ob_start(); ?>
 

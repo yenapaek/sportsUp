@@ -1,13 +1,13 @@
-#personnalInfo,
-#eventInfo,
+/* #personnalInfo, */
+/* #eventInfo, */
 #articleInfo {
     display: flex;
     margin: 30px;
     color: black;
 }
 
-#personnalInfo div,
-#eventInfo div,
+/* #personnalInfo div, */
+/* #eventInfo div, */
 #articleInfo div {
     display: flex;
     border: 1px solid black;
@@ -15,26 +15,140 @@
     text-align: center;
 }
 
-#myEvents {
+/* #myEvents {
     display: flex;
     flex-direction: column;
-}
-
+} */
+/* 
 .titleEdit {
     display: flex;
     justify-content: space-around;
-}
+} */
 
-#myInfos,
+/* #myInfos, */
 #mySports,
-#myEventsSuggestion,
+/* #myEventsSuggestion, */
 #myArticles,
 #myArticlesSuggestion {
     display: flex;
     flex-direction: column;
 }
 
-#myInfos div:nth-child(2) {
+/* #myInfos div:nth-child(2) {
     display: flex;
     flex-direction: column;
+} */
+
+/* Additions */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+h1, h2, h3 {
+    font-family: 'Varela Round', sans-serif;
+}
+h2 {
+    font-size: 1.2rem;
+}
+h3 {
+    font-size: 1rem;
+    color: rgba(237, 40, 40, 0.85);
+}
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#main-body {
+    display: flex;
+    /* #TODO change spacing to responsive, + media query */
+    justify-content: space-evenly;
+    padding: 100px 100px 0 100px;
+    background-color: #f6f7f8;
+}
+#personnalInfo {
+    /* #TODO change width to fixed size, + media query */
+    width: 25%;
+}
+#changedInfo {
+    /* #TODO change width to fixed size, + media query */
+    width: 65%;
+}
+
+/* #TODO make floating profile info aside */
+/* #myInfos {
+    position: fixed;
+} */
+/* #TODO make img center */
+.profile-img {
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.info-container {
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 15px 50px 50px 50px;
+    margin-bottom: 50px;
+    background-color: #ffffff;
+}
+
+#list-event-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+.event-card{
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    margin: 20px;
+    width: 260px;
+}
+
+.event-card img {
+    width: 13rem;
+}
+
+.event-card>div {
+    padding: 0 20px 0 20px;
+}
+
+.event-card>div div{
+    margin: 15px 0 15px 0;
+}
+.event-card p, span {
+    font-family: 'Open Sans', sans-serif;
+    /* font-size: 0.75rem; */
+}
+
+.event-detail>div i {
+    margin-right: 2%;
+}
+
+.card-datetime span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    /* font-weight: 600; */
+}
+
+/* #TODO fix font weight of card title  */
+.card-title{
+    font-size: 1.1rem;
+    /* font-weight: 600; */
+    color: black;
+}
+.card-description {
+    font-size: 0.9rem;
+    color: #585858;
+}
+
+.card-btn {
+    background-color: rgba(237, 40, 40, 0.85);
+    color:rgb(255, 255, 255);
+	border-radius: 25px;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+#list-event-cards {
+    display: flex;
+    flex-wrap: wrap;
 }
