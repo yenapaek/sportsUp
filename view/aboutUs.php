@@ -9,7 +9,7 @@ ob_start();
         <h1 class="heading">Meet the team</h1>
         <div class="card-wrapper">
             <div class="card">
-                <img src="./public/images/aboutUs/city.jpg" alt="card background" class="card-img">
+                <img src="./public/images/aboutUs/France.jpg" alt="card background" class="card-img">
                 <img src="./public/images/aboutUs/Alexis.png" alt="profile image" class="profile-img">
                 <h1>Alexis</h1>
                 <p class="job-title">Job title</p>
@@ -26,7 +26,7 @@ ob_start();
                 </ul>
             </div>
             <div class="card">
-                <img src="./public/images/aboutUs/city.jpg" alt="card background" class="card-img">
+                <img src="./public/images/aboutUs/USA.png" alt="card background" class="card-img">
                 <img src="./public/images/aboutUs/yena.png" alt="profile image" class="profile-img">
                 <h1>Yena</h1>
                 <p class="job-title">Job title</p>
@@ -43,7 +43,7 @@ ob_start();
                 </ul>
             </div>
             <div class="card">
-                <img src="./public/images/aboutUs/city.jpg" alt="card background" class="card-img">
+                <img src="./public/images/aboutUs/Mexico.jpg" alt="card background" class="card-img">
                 <img src="./public/images/aboutUs/Oscar.png" alt="profile image" class="profile-img">
                 <h1>Oscar</h1>
                 <p class="job-title">Job title</p>
@@ -60,7 +60,7 @@ ob_start();
                 </ul>
             </div>
             <div class="card">
-                <img src="./public/images/aboutUs/city.jpg" alt="card background" class="card-img">
+                <img src="./public/images/aboutUs/Russia.jpg" alt="card background" class="card-img">
                 <img src="./public/images/aboutUs/Ronnie.jpg" alt="profile image" class="profile-img">
                 <h1>Ronnie</h1>
                 <p class="job-title">Job title</p>

@@ -19,17 +19,17 @@
     </div>
     <div class="sns">
         <h1>Join us on Social media</h1>
-        <div class="sns-icons">
-            <div class="sns-icon">
+        <div class="snsIcons">
+            <div class="snsIcon">
                 <a href=""><img src="./public/images/footer/facebook.png" alt=""></a>
             </div>
-            <div class="sns-icon">
+            <div class="snsIcon">
                 <a href=""><img src="./public/images/footer/instagram.png" alt=""></a>
             </div>
-            <div class="sns-icon">
+            <div class="snsIcon">
                 <a href=""><img src="./public/images/footer/twitter.png" alt=""></a>
             </div>
-            <div class="sns-icon">
+            <div class="snsIcon">
                 <a href=""><img src="./public/images/footer/youtube.png" alt=""></a>
             </div>
         </div>

@@ -5,7 +5,7 @@ $style = '<link href="./public/css/landing.css" rel="stylesheet" />';
 ob_start();
 ?>
 <div id="mainContent">
-    <div class = "firstSection">
+    <div id = "firstSection">
         <div id="banner1" class="banner">
             <img src="./public/images/landing/banner1.jpeg" alt="banner image 1">
             <div class="text-box text-box1">
@@ -23,7 +23,7 @@ ob_start();
             </div>
         </div>
         <div id="banner3" class="banner">
-            <img src="./public//images/landing/banner3.jpeg" alt="banner image 3">
+            <img src="./public//images/landing/banner3.jpg" alt="banner image 3">
             <div id="text-box3" class="text-box text-box3">
                 <h1>Join our community!</h1>
                 <span></span>
@@ -31,7 +31,7 @@ ob_start();
             </div>
         </div>
         <div id="banner4" class="banner">
-            <img src="./public//images/landing/banner4-1.jpg" alt="banner image 4">
+            <img src="./public//images/landing/banner4.jpg" alt="banner image 4">
             <div class="text-box text-box4">
                 <h1>Shop</h1>
                 <span></span>
@@ -95,9 +95,10 @@ ob_start();
         <div class="photo">
             <img src="./public/images/landing/photo1.jpg" alt="">
         </div>
-        
-        <div class="box1">
-            <a href="index.php?action=signUp" class="btn btn-white btn-animation-1">Sign Up</a> 
+        <div class="boxContainer">
+            <div class="box1">
+                <a href="index.php?action=signUp" class="btn btn-white btn-animation-1">Sign Up</a> 
+            </div>
         </div>
     </div>       
 </div>

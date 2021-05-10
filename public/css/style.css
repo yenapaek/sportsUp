@@ -1,7 +1,7 @@
 /* i am a generic css page */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Righteous&family=Varela+Round&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Righteous&family=Varela+Round&display=swap"); */
 
 body {
     background: #ffffff;
@@ -13,7 +13,7 @@ body {
     margin: 0;
     background: rgb(255, 255, 255);
 }
-.top-left {
+.topLeft {
     width: 50%;
     display: flex;
 }
@@ -26,20 +26,20 @@ body {
     width: 100%;
     border-radius: 15px;
 }
-.sup {
+/* .sup {
     width: 65%;
     margin-left: 240px;
     display: flex;
     align-self: center;
 }
-/* .sup> h1{
+.sup> h1{
 	color: #ffffff;
 	font-size: 3.5em;
 	font-family: 'Righteous', cursive;
 	position: relative;
 	bottom: 4px;
 	padding-bottom: 0;	 
-}	  */
+}	 
 .sup > a h1 {
     font-family: "Righteous", cursive;
     font-size: 50px;
@@ -51,11 +51,11 @@ body {
     position: relative;
     display: inline-block;
     text-align: center;
-}
+} */
 
 /* ---------------------style for the MENU on top---------------------  */
 
-.top-right {
+.topRight {
     /* right: 50px; */
     background: rgb(255, 255, 255);
     /* display: inline-block; */
@@ -97,8 +97,13 @@ nav .animation {
     border-radius: 8px;
     transition: all 0.5s ease 0s;
 }
+/* .shop {
+    padding: 0;
+    margin: 0;
+    letter-spacing: 2px;
+} */
 
-nav a,
+/* nav a,
 nav .start-home,
 a:hover ~ .animation {
     width: 15%;
@@ -112,35 +117,32 @@ nav a:nth-child(2):hover ~ .animation {
 }
 
 nav a:nth-child(3):hover ~ .animation {
-    left: 30%;
+    left: 31%;
 }
 
 nav a:nth-child(4):hover ~ .animation {
-    left: 45%;
+    left: 46%;
 }
 
 nav a:nth-child(5):hover ~ .animation {
-    left: 60%;
+    left: 62%;
 }
 
 nav a:nth-child(6):hover ~ .animation {
-    left: 75%;
-}
+    left: 77%;
+} */
 
 /* ------------------style for buttons ------------------*/
+
 
 .box {
     position: absolute;
     bottom: 10%;
-    right: 0;
+    right: 20px;
     transform: translate(-50%, -50%);
 }
-.box1 {
-    position: absolute;
-    bottom: 1%;
-    right: 40%;
-    transform: translate(-50%, -50%);
-}
+
+
 
 .btn:link,
 .btn:visited {
@@ -212,7 +214,9 @@ nav a:nth-child(6):hover ~ .animation {
 }
 
 /*-------------------style for footer--------------  */
-
+footer {
+    margin-top: 100px;
+}
 .footerContent {
     font-family: "Varela Round", sans-serif;
     background: rgb(255, 255, 255);
@@ -241,15 +245,97 @@ p {
 .address {
     margin-left: 20px;
 }
-.sns-icons {
+.snsIcons{
     display: flex;
     justify-content: space-around;
     flex-direction: row;
 }
-.sns-icon {
+.snsIcon {
     width: 32px;
     height: 32px;
 }
-.sns-icon img {
+.snsIcon img {
     width: 100%;
+}
+
+
+/* #fixedBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    bottom: 30px;
+    right: 50px;
+    background: rgb(0, 238, 0);
+    border-radius: 50%;
+    z-index: 15;
+}
+#fixedBtn strong {
+    color: white;
+    font-size: 100px;
+}
+#fixedBtn a:visited{
+    text-decoration: none;
+    color: white;
+} */
+.openMenu, .closeMenu {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .rightBox {
+        /* display: none;
+        right: 0; */
+        position: fixed;
+        top: 0;
+        right: -400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        z-index: 15;
+        width: 400px;
+        height: 100vh;
+        background: white;
+        transition: 1s;
+    }
+    .closeMenu {
+        cursor: pointer;
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+    }
+    .rightBox a{
+        width: 150px;
+    }
+    nav .start-home {
+        display: none;
+    }
+    .openMenu {
+        cursor: pointer;
+        display: block;
+        position: fixed;
+        top: 50px;
+        right: 10px;
+        z-index: 14;
+
+    }
+    .openMenu i {
+        font-size: 40px;
+    }
+    .closeMenu {
+        font-size: 40px;
+    }
+    .cards> .card:hover {
+        height: 215px;
+    }
+    .cards .card:hover .cardText {
+        visibility: hidden;
+    }
+    .cards .card .cardText {
+        visibility: hidden;
+    }
 }
