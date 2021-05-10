@@ -19,7 +19,7 @@ try {
             break;
 
         case "profile":
-            profile(1); // #TODO Parameter should be replaced after we implement the loggin ID
+            profile($_SESSION['userId']);
             break;
 
         case "signInSubmit":
@@ -55,6 +55,9 @@ try {
             }
             break;
 
+        case "logout":
+            logout();
+            break;
         default:
             landing();
             break;

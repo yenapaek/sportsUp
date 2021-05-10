@@ -134,6 +134,18 @@ nav a:nth-child(6):hover ~ .animation {
 
 /* ------------------style for buttons ------------------*/
 
+.box {
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+    transform: translate(-50%, -50%);
+}
+.box1 {
+    position: absolute;
+    bottom: 1%;
+    right: 40%;
+    transform: translate(-50%, -50%);
+}
 
 .box {
     position: absolute;
@@ -211,6 +223,17 @@ nav a:nth-child(6):hover ~ .animation {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/*-------style for signup Button in NavBar---------  */
+
+#signUpBtn {
+    background-color: rgba(237, 40, 40, 0.85);
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+}
+#signUpBtn:hover {
+    color: rgb(0, 0, 0);
 }
 
 /*-------------------style for footer--------------  */

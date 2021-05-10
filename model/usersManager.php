@@ -1,6 +1,15 @@
 <?php
 require('./model/manager.php');
 
+/**
+ * newUserModel 
+ *
+ * @param  mixed $user
+ * @param  mixed $email
+ * @param  mixed $pass
+ * @param  mixed $conf
+ * @return Boolean according if it success to insert or not
+ */
 function newUserModel($user, $email, $pass, $conf)
 {
     $submittable = true;
@@ -39,30 +48,40 @@ function newUserModel($user, $email, $pass, $conf)
         return $status;
     }
 }
-
+#TODO need to modify the information of the function
+/**
+ * manualLoginModel
+ *
+ * @param  mixed $email
+ * @param  mixed $pass
+ * @return void
+ */
 function manualLoginModel($email, $pass)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT password FROM users WHERE email=?");
+    $req = $db->prepare("SELECT * FROM users WHERE email=?");
     $req->bindParam(1, $email, PDO::PARAM_STR);
     $req->execute();
-    $info = $req->fetch(PDO::FETCH_ASSOC);
+    $userInfo = $req->fetch(PDO::FETCH_ASSOC);
     $req->closeCursor();
 
-    if ($info) {
-        return password_verify($pass, $info['password']);
+    if ($userInfo) {
+        if (password_verify($pass, $userInfo['password'])) {
+            return $userInfo;
+        }
     }
     return false;
 }
 
 #TODO: Build kakao user profile creation. Currently, this function only creates a basic user from info taken from Kakao API call
-function kakaoAPICallModel($authCode){
+function kakaoAPICallModel($authCode)
+{
     $tokens = getTokens($authCode);
     $kakaoUserObj = requestKakaoAPIUserData($tokens['access_token']);
     $kakaoId = $kakaoUserObj['kakaoId'];
 
-    if (!kakaoUserExists($kakaoId)){
+    if (!kakaoUserExists($kakaoId)) {
         addNewKakaoUser($kakaoUserObj);
     }
     return $kakaoId;
@@ -71,11 +90,12 @@ function kakaoAPICallModel($authCode){
 
 #TODO: deal with errors when making requests
 
-function getTokens($authCode){
+function getTokens($authCode)
+{
     $url = 'https://kauth.kakao.com/oauth/token'; // API Link
 
     $grantType = 'authorization_code';
-    $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=https://127.0.0.1/sportsEvent/model/oauth.php&code='.$authCode;
+    $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=https://127.0.0.1/sportsEvent/model/oauth.php&code=' . $authCode;
 
     $curl = curl_init();
 
@@ -95,12 +115,13 @@ function getTokens($authCode){
     return $tokens;
 }
 
-function requestKakaoAPIUserData($accessToken){
+function requestKakaoAPIUserData($accessToken)
+{
     $url = 'https://kapi.kakao.com/v2/user/me';
 
     $headers = array(
-      'Authorization: Bearer '.$accessToken,
-      'Content-Type: application/x-www-form-urlencoded',
+        'Authorization: Bearer ' . $accessToken,
+        'Content-Type: application/x-www-form-urlencoded',
     );
 
     $curl = curl_init();
@@ -118,7 +139,8 @@ function requestKakaoAPIUserData($accessToken){
     return $kakaoUserObj;
 }
 
-function createKakaoUserObj($apiUserObj) {
+function createKakaoUserObj($apiUserObj)
+{
     $kakaoUserObj['kakaoId'] = $apiUserObj->id;
     $kakaoUserObj['dateConnected'] = $apiUserObj->connected_at;
     $kakaoUserObj['userName'] = ($apiUserObj->properties)->nickname;
@@ -127,20 +149,23 @@ function createKakaoUserObj($apiUserObj) {
     return $kakaoUserObj;
 }
 
-function getKakaoUser($kakaoId) {
+function getKakaoUser($kakaoId)
+{
     $db = dbConnect();
     $req = $db->prepare("SELECT * FROM users WHERE kakaoId = :kakaoId");
     $req->bindParam(":kakaoId", $kakaoId, PDO::PARAM_STR);
     $req->execute();
     $kakaoUserData = $req->fetch(PDO::FETCH_OBJ);
     return $kakaoUserData;
-} 
+}
 
-function kakaoUserExists($kakaoId){
+function kakaoUserExists($kakaoId)
+{
     return $status = getKakaoUser($kakaoId) ? 1 : 0;
 }
 
-function addNewKakaoUser($kakaoUserObj) {
+function addNewKakaoUser($kakaoUserObj)
+{
     $db = dbConnect();
     $kakaoId = $kakaoUserObj['kakaoId'];
     $req = $db->prepare("INSERT INTO users(id, userName, firstName, lastName, email, avatar, password, dateSignUp, birthDate, nationality, city, kakaoId, eventAttended)
@@ -173,7 +198,3 @@ function addNewKakaoUser($kakaoUserObj) {
 //     // $apiUserObj = json_decode($output);
 //     curl_close($curl);
 // }
-
-
-
-
