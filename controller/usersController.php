@@ -59,9 +59,6 @@ function manualLogin($email, $pass)
 {
     $userInfo = manualLoginModel($email, $pass);
     if ($userInfo) {
-        $title = "You get in";
-        #TODO need to implement what to do if u logged IN
-        
         $_SESSION['userId'] = $userInfo['id'];
         header("Location: index.php?action=profile");
     } else {

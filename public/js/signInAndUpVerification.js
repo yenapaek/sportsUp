@@ -1,29 +1,43 @@
-const formSignIn = document.getElementById("signInForm");
-const emailSignIn = document.getElementById("emailSignIn");
-const passwordSignIn = document.getElementById("passwordSignIn");
+const checkboxSlider = document.querySelector("#checkboxSlider");
 
-const form = document.getElementById("signUpForm");
-const username = document.getElementById("userNameSignUp");
-const email = document.getElementById("emailSignUp");
-const password = document.getElementById("passwordSignUp");
-const password2 = document.getElementById("passwordConfSignUp");
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    let submittable = checkInputs();
-    if (submittable) {
-        form.submit();
-    }
+checkboxSlider.addEventListener("change", function () {
+    window.location.href = checkboxSlider.checked
+        ? "index.php?action=signIn"
+        : "index.php?action=signUp";
 });
 
-formSignIn.addEventListener("submit", (e) => {
-    e.preventDefault();
+if (document.getElementById("signInForm")) {
+    checkboxSlider.checked = true;
+    const formSignIn = document.getElementById("signInForm");
+    const emailSignIn = document.getElementById("emailSignIn");
+    const passwordSignIn = document.getElementById("passwordSignIn");
 
-    if (emailSignIn.value.trim() != "" && passwordSignIn.value.trim() != "") {
-        formSignIn.submit();
-    }
-});
+    formSignIn.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (
+            emailSignIn.value.trim() != "" &&
+            passwordSignIn.value.trim() != ""
+        ) {
+            formSignIn.submit();
+        }
+    });
+} else {
+    const formSignUp = document.getElementById("signUpForm");
+    const username = document.getElementById("userNameSignUp");
+    const email = document.getElementById("emailSignUp");
+    const password = document.getElementById("passwordSignUp");
+    const password2 = document.getElementById("passwordConfSignUp");
+
+    formSignUp.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let submittable = checkInputs();
+        if (submittable) {
+            formSignUp.submit();
+        }
+    });
+}
 
 function checkInputs() {
     const usernameValue = username.value.trim();
@@ -74,13 +88,13 @@ function checkInputs() {
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
     const small = formControl.querySelector("small");
-    formControl.className = "form-control error";
+    formControl.className = "formControl error";
     small.innerText = message;
 }
 
 function setSuccessFor(input) {
     const formControl = input.parentElement;
-    formControl.className = "form-control success";
+    formControl.className = "formControl success";
 }
 
 function isEmail(email) {

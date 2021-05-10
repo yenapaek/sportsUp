@@ -18,13 +18,12 @@
             <a href="index.php"><strong>SHOP</strong></a>
             <?php if (isset($_SESSION['userId'])) {
             ?>
-                <a href="index.php?action=profile"><strong>Profile</strong></a>
+                <a href="index.php?action=profile" id="profileNavBar"><img src="./public/images/landing/avatar.png" alt="Avatar" class="avatar"><strong>Profile</strong></a>
                 <a href="index.php?action=logout"><strong>Log Out</strong> </a>
             <?php
             } else {
             ?>
-                <a href="index.php?action=signIn"><strong>Log In</strong></a>
-                <a href="index.php?action=signUp"><strong>Sign Up</strong> </a>
+                <a href="index.php?action=signUp" id="signUpBtn"><strong>Sign Up</strong> </a>
             <?php
             }
             ?>

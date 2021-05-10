@@ -1,4 +1,4 @@
-<?php $title = !isset($title) ? "Profile" : $title; ?>
+<?php $title = "Profile"; ?>
 <?php $style = '<link href="./public/css/profile.css" rel="stylesheet" />'; ?>
 <?php ob_start(); ?>
 <section id="personnalInfo">

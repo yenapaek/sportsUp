@@ -2,7 +2,7 @@
 require('./model/manager.php');
 
 /**
- * newUserModel
+ * newUserModel 
  *
  * @param  mixed $user
  * @param  mixed $email
