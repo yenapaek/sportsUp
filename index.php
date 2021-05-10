@@ -22,6 +22,10 @@ try {
             profile($_SESSION['userId']);
             break;
 
+        case "editPersonnalInfos":
+            editProfile();
+            break;
+
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);

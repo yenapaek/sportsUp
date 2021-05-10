@@ -6,7 +6,7 @@
     <div id="myInfos">
         <div class="titleEdit">
             <h1>My infos</h1>
-            <button>Modify infos</button>
+            <button id="editPersonnalInfos">Modify infos</button>
         </div>
 
         <div>
@@ -151,6 +151,6 @@
         </div>
     </div>
 </section>
-
+<script src="./public/js/profile.js"></script>
 <?php $content = ob_get_clean(); ?>
 <?php require("template.php"); ?>

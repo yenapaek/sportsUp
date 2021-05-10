@@ -8,7 +8,11 @@
   {
     require("./view/aboutUs.php");
   }
-
+  
+  function editProfile()
+  {
+    require("./view/editPersonnalInfos.php");
+  }
   function logout()
   {
     require("./view/logout.php");
