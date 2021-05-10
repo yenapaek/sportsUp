@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require("./controller/controller.php");
 require("./controller/usersController.php");
 require("./controller/eventsController.php");
@@ -37,8 +37,6 @@ try {
             }
             break;
         case "kakaoAPICall":
-            // To DO ssesion start should be earlier on the code.
-            session_start();
             if (isset($_SESSION['code'])) {
                 kakaoAPICall($_SESSION['code']);
             } else {
