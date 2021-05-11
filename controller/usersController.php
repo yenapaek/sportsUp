@@ -73,7 +73,8 @@ function manualLogin($email, $pass)
  * @param  mixed $authCode
  * @return 
  */
-function kakaoAPICall($authCode){
+function kakaoAPICall($authCode)
+{
     $kakaoUserId = kakaoAPICallModel($authCode);
     if ($kakaoUserId) {
         $title = "You get in";
@@ -85,4 +86,16 @@ function kakaoAPICall($authCode){
         $title = 'signIn';
         header("Location: index.php?action=signIn");
     }
+}
+
+
+/**
+ * editProfile allow you to update you profile informations
+ *
+ * @param  mixed $newInfos
+ * @return void
+ */
+function editProfile($firstName, $lastName, $email, $date, $city)
+{
+    editUserModel($firstName, $lastName, $email, $date, $city);
 }

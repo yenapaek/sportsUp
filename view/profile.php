@@ -1,7 +1,7 @@
 <?php
-    $title = !isset($title) ? "Profile" : $title;
-    $style = '<link href="./public/css/profile.css" rel="stylesheet" />';
-    ob_start();
+$title = !isset($title) ? "Profile" : $title;
+$style = '<link href="./public/css/profile.css" rel="stylesheet" />';
+ob_start();
 ?>
 <div id="main-body">
     <section id="personnalInfo">
@@ -14,11 +14,13 @@
                 <h1>Hi, <?= !empty($infoProfile) ? $infoProfile['userName'] : '...'; ?></h1>
             </div>
             <div>
-                <p>FirstName : <?= !empty($infoProfile['firstName']) ? $infoProfile['firstName'] : '...'; ?></p>
-                <p>LastName : <?= !empty($infoProfile['lastName']) ? $infoProfile['lastName'] : '...' ?></p>
-                <p>Birthday : <?= !empty($infoProfile['birthDate']) ? $infoProfile['birthDate'] : '...'; ?></p>
-                <p>Email : <?= !empty($infoProfile['email']) ? $infoProfile['email'] : '...' ?></p>
-                <p>City : <?= !empty($infoProfile['city']) ? $infoProfile['city'] : '...' ?></p>
+                <p>FirstName : <span><?= !empty($infoProfile['firstName']) ? $infoProfile['firstName'] : '...'; ?></span></p>
+                <p>LastName : <span><?= !empty($infoProfile['lastName']) ? $infoProfile['lastName'] : '...' ?></span></p>
+                <p>Birthday : <span><?= !empty($infoProfile['birthDate']) ? $infoProfile['birthDate'] : '...'; ?></span></p>
+                <p>Email : <span><?= !empty($infoProfile['email']) ? $infoProfile['email'] : '...' ?></span></p>
+                <p>City : <span><?= !empty($infoProfile['city']) ? $infoProfile['city'] : '...' ?></span></p>
+
+                <i id="editPersonnalInfos" class="far fa-edit fa-lg"></i>
             </div>
         </div>
 
@@ -34,11 +36,11 @@
                         foreach ($mySports as $sport) :
                     ?>
                             <li><?= $sport['category_name']; ?></li><br>
-                    <?php
+                        <?php
                         endforeach;
                     else : ?>
                         <li> No sport added</li>
-                    <?php endif;?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -62,6 +64,10 @@
                             </div>
                             <div class="card-title"><span>Football Game in the Park</span></div>
                             <div class="card-description"><span>Fun football game for all levels</span></div>
+                            <div>
+                                <i class="far fa-edit"></i>
+                                <i class="far fa-trash-alt"></i>
+                            </div>
                             <!-- <div class="card-location">                            
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>Seoul</span>
@@ -80,9 +86,13 @@
                                 <i class="far fa-calendar"></i>
                                 <span class="card-title">Football Game in the Park</span>
                             </div>
-                            <div class="card-location">                            
+                            <div class="card-location">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>Seoul</span>
+                            </div>
+                            <div>
+                                <i class="far fa-edit"></i>
+                                <i class="far fa-trash-alt"></i>
                             </div>
                             <!-- <div class="card-description"><span>Fun football game for all levels</span></div> -->
                             <!-- <div class="card-btn"><span>View Details</span></div> -->
@@ -97,6 +107,10 @@
                             </div>
                             <div class="card-title"><span>Football Game in the Park</span></div>
                             <div class="card-description"><span>Fun football game for all levels</span></div>
+                            <div>
+                                <i class="far fa-edit"></i>
+                                <i class="far fa-trash-alt"></i>
+                            </div>
                             <!-- <div class="card-location">                            
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>Seoul</span>
@@ -113,6 +127,10 @@
                             </div>
                             <div class="card-title"><span>Football Game in the Park</span></div>
                             <div class="card-description"><span>Fun football game for all levels</span></div>
+                            <div>
+                                <i class="far fa-edit"></i>
+                                <i class="far fa-trash-alt"></i>
+                            </div>
                             <!-- <div class="card-location">                            
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>Seoul</span>
@@ -127,14 +145,14 @@
                         if (!empty($myEvents)) {
                             foreach ($myEvents as $event) {
                         ?>
-                                    <?php 
-                                        #TODO create an event creater function that saves db data into an array
-                                        // print_r($event);
-                                        // echo $event['name'];
-                                        // echo $event['picture'];
-                                        // echo $event['eventDate'];
+                                <?php
+                                #TODO create an event creater function that saves db data into an array
+                                // print_r($event);
+                                // echo $event['name'];
+                                // echo $event['picture'];
+                                // echo $event['eventDate'];
 
-                                    ?>
+                                ?>
                         <?php
                             }
                         } else {
@@ -226,12 +244,7 @@
             </div>
         </section>
     </div>
-<<<<<<< HEAD
-</section>
-<script src="./public/js/profile.js"></script>
-=======
 </div>
-
->>>>>>> d863a01029cd0558b634ff54992a791d35f23712
+<script src="./public/js/profile.js"></script>
 <?php $content = ob_get_clean(); ?>
 <?php require("template.php"); ?>

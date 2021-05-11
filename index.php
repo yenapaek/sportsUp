@@ -22,7 +22,7 @@ try {
             break;
 
         case "editPersonnalInfos":
-            editProfile();
+            editProfile($_POST['first'],$_POST['last'], $_POST['email'], $_POST['date'], $_POST['city']);
             break;
 
         case "signInSubmit":
