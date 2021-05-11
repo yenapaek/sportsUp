@@ -26,10 +26,12 @@ nav .start-home{
     left: 31%;
 }
 a:nth-child(1):hover ~ .animation {
-    left: 0%;
+    left: 2.5%;
+    width: 10%;
 }
 nav a:nth-child(2):hover ~ .animation {
-    left: 15%;
+    left: 16.5%;
+    width: 12%;
 }
 
 /* nav a:nth-child(3):hover ~ .animation {
@@ -37,16 +39,18 @@ nav a:nth-child(2):hover ~ .animation {
 } */
 
 nav a:nth-child(4):hover ~ .animation {
-    left: 46%;
+    left: 48%;
+    width: 10%;
 }
 
 nav a:nth-child(5):hover ~ .animation {
-    left: 62%;
+    left: 72%;
+    width: 0px;
 }
 
-nav a:nth-child(6):hover ~ .animation {
+/* nav a:nth-child(6):hover ~ .animation {
     left: 77%;
-}
+} */
 
 html {
     font-size: 10px;

@@ -39,9 +39,9 @@ ob_start();
             </div>
         </div>
         <!-- BUTTON -->
-        <div class="box">
+        <!-- <div class="box">
             <a href="index.php?action=signUp" class="btn btn-white btn-animation-1">Sign Up</a> 
-        </div>
+        </div> -->
 
     </div>
     <div id="secondSection">
