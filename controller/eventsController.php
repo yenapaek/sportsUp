@@ -8,13 +8,23 @@
     }
 
     function eventsSearchInput($name) {
-        $eventsSelect = inputSearch($name);
+        $eventsSelect = inputSelectSearch($name, false);
         require("./view/eventList.php");
     }
 
     function eventsSearchSelect($sportName) {
-        $eventsSelect = selectSearch($sportName);
+        $eventsSelect = inputSelectSearch($sportName, true);
         require("./view/eventList.php");
     } 
+
+    function eventsSearchPopularity() {
+        $eventsSelect = searchPopularity();
+        require("./view/eventList.php");
+    }
+
+    function eventsSearchRecently() {
+        $eventsSelect = searchRecently();
+        require("./view/eventList.php");
+    }
 
     

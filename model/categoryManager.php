@@ -15,7 +15,7 @@ function defaultSearch()
 {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id"
@@ -25,30 +25,49 @@ function defaultSearch()
     return $infoArray;
 }
 
-function inputSearch($name)
+function inputSelectSearch($name, $isForSelect)
 {
+    $where = '';
+
+    $where = $isForSelect ? 'c.name' : 'e.name';
+
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
-            WHERE e.name = '$name'"
+            WHERE $where LIKE '%$name%'"
     );
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
     return $infoArray;
 }
 
-function selectSearch($sportName)
-{
+function searchPopularity() {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
-            WHERE c.name = '$sportName'"
+            WHERE e.playerNumber >= 10
+            ORDER BY playerNumber DESC"
+    );
+    $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
+    $rawResponse->closeCursor();
+    return $infoArray;
+}
+
+function searchRecently() {
+    $dataBase = dbConnect();
+    $rawResponse = $dataBase->query(
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+            FROM events e
+            JOIN categories c
+            ON e.categoryId = c.id
+            WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY
+            AND curdate()"
     );
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();

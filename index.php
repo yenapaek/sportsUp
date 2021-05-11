@@ -52,6 +52,10 @@ try {
                 eventsSearchInput($_REQUEST['searchEvent']);
             } elseif (isset($_REQUEST['sportCriteria'])) {
                 eventsSearchSelect($_REQUEST['sportCriteria']);
+            } elseif (isset($_REQUEST['searchPopularity'])) {
+                eventsSearchPopularity();
+            } elseif (isset($_REQUEST['searchRecently'])) {
+                eventsSearchRecently();
             }
             break;
 

@@ -5,13 +5,19 @@ let formCriteria = document.getElementById("formCriteria");
 let checker = false;
 sportSelect.hidden = true;
 
-function loadFile(sportName, isForInput) {
+function loadFile(searchName, sportName) {
     let xhr = new XMLHttpRequest();
-    if (isForInput) {
+    if (searchName == 'Sport') {
         xhr.open(`GET`, `index.php?action=searchSubmit&sportCriteria=${sportName}`);
     } 
-    if (!isForInput) {
+    if (searchName == 'Event') {
         xhr.open(`GET`, `index.php?action=searchSubmit&searchEvent=${sportName}`);
+    }
+    if (searchName == 'Popularity') {
+        xhr.open(`GET`, `index.php?action=searchSubmit&searchPopularity`);
+    }
+    if (searchName == 'Recently') {
+        xhr.open(`GET`, `index.php?action=searchSubmit&searchRecently`);
     }
 
     xhr.addEventListener("load", function () {
@@ -34,10 +40,16 @@ function loadFile(sportName, isForInput) {
             sportSelect.hidden = false;
             searchInput.setAttribute("type", "hidden");
             checker = true;
-        } else {
+        } if (e.target.value == "Event") {
             sportSelect.hidden = true;
             searchInput.setAttribute("type", "text");
             checker = false;
+        } if (e.target.value == "Popularity") {
+            searchInput.setAttribute("type", "hidden");
+            sportSelect.hidden = true;
+        } if (e.target.value == "Recently") {
+            searchInput.setAttribute("type", "hidden");
+            sportSelect.hidden = true;
         }
     });
 }
@@ -45,14 +57,24 @@ function loadFile(sportName, isForInput) {
 {
     formCriteria.addEventListener("submit", function (e) {
         e.preventDefault();
-        if(checker == true) {
+        let selectCriteria = document.getElementById("selectCriteria");
+        let selectCriteriaValue = selectCriteria.options[selectCriteria.selectedIndex].value;
+
+        if(selectCriteriaValue == 'Sport') {
             let criteria = document.querySelector("#sportsCriteria");
             let criteriaValue = criteria.options[criteria.selectedIndex].value;
-            loadFile(criteriaValue, true);
-        } else {
+            loadFile('Sport', criteriaValue);
+        }
+        if (selectCriteriaValue == 'Event') {
             let input = document.getElementById("searchInput");
             let inputValue = input.value;
-            loadFile(inputValue, false);
+            loadFile('Event', inputValue);
+        }
+        if (selectCriteriaValue == 'Popularity') {
+            loadFile('Popularity');
+        }
+        if (selectCriteriaValue == 'Recently') {
+            loadFile('Recently');
         }
     });
 }

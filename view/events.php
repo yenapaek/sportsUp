@@ -16,6 +16,8 @@ $style = '<link href="./public/css/events.css" rel="stylesheet" />';
                 <select name="selectCriteria" id="selectCriteria">
                     <option value="Event" selected>By Event</option>
                     <option value="Sport">By Sport</option>
+                    <option value="Popularity">By Popularity</option>
+                    <option value="Recently">Most Recent</option>
                 </select>
                 <div id="sportSelect">
                     <select name="sportsCriteria" id="sportsCriteria">
