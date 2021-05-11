@@ -13,6 +13,9 @@ try {
         case "aboutUs":
             aboutUs();
             break;
+        case "createEvent":
+            createEvent();
+            break;
         case "signIn":
         case "signUp":
             signInAndUpPage($_REQUEST['action']);

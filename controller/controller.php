@@ -12,3 +12,7 @@
   {
     require("./view/logout.php");
   }
+  function createEvent()
+  {
+    require("./view/createEvent.php");
+  }

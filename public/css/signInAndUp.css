@@ -76,10 +76,43 @@ input:checked + .slider:before {
     font-family: "Open Sans", sans-serif;
 }
 
+/* red line  */
+nav a,
+nav .start-home,
+a:hover ~ .animation {
+    width: 15%;
+}
+nav .start-home{
+    left: 71%;
+    width: 0px;
+}
+a:nth-child(1):hover ~ .animation {
+    left: 0%;
+}
+nav a:nth-child(2):hover ~ .animation {
+    left: 15%;
+}
+
+nav a:nth-child(3):hover ~ .animation {
+    left: 31%;
+}
+
+nav a:nth-child(4):hover ~ .animation {
+    left: 48%;
+    width: 12%;
+}
+nav a:nth-child(5):hover ~ .animation {
+    left: 71%;
+    width: 0px;
+}
+
 #signInFormSection,
 #signUpFormSection {
     display: flex;
     justify-content: space-around;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    /* padding-bottom: 50px; */
+    margin-bottom: 50px;
 }
 div h1 {
     text-align: center;
