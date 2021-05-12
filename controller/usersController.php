@@ -9,17 +9,22 @@ require_once("./model/profileManager.php");
  * @return array all the informations of the user's profile.
  * @return array $mySports all the sports the user is interested in.
  */
-function profile($userId)
-{
+function profile($userId){
     $infoProfile = myProfileModel($userId);
     $mySports = mySportsModel($userId);
     $myEvents = myEventsModel($userId);
     $attendingEvents = '';
-    $suggestionEvents = '';
+    $suggestionEvents = suggestionEventsModel($userId);
     $articles = myArticlesModel($userId);
     $suggestionArticles = '';
-
+    $categories = displaySportsCategories();
     require('./view/profile.php');
+}
+
+function addMySport($userId, $categoryId){
+    addMySportModel($userId, $categoryId);
+    // $mySports = mySportsModel($userId);
+    // header("Location: index.php?action=profile");
 }
 
 function signInAndUpPage($param)

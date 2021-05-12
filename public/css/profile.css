@@ -100,11 +100,21 @@ p {
     border: 1px solid #dadce0;
     border-radius: 8px;
     margin: 20px;
+    padding-bottom: 15px;
     width: 260px;
+    box-shadow: 0rem 0rem 1rem 0rem rgb(110 110 110 / 11%);
+    animation:comeFromBottom 1s ease-out .8s;
 }
 
-.event-card img {
-    width: 13rem;
+.event-card:hover{
+    transform: scale(1.05);
+}
+.card-img {
+    /* background-image: url("https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80"); */
+    background-size: cover;
+    height: 175px;
+    -webkit-clip-path: polygon (0 0, 100% 0, 100% 78%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
 }
 
 .event-card>div {
@@ -114,33 +124,36 @@ p {
 .event-card>div div{
     margin: 15px 0 15px 0;
 }
-.event-card p, span {
+.event-card span {
     font-family: 'Open Sans', sans-serif;
-    /* font-size: 0.75rem; */
 }
 
 .event-detail>div i {
-    margin-right: 2%;
+    margin-right: 4%;
+    color:rgba(237, 40, 40, 0.85);
 }
 
 .card-datetime span {
     font-size: 0.9rem;
     text-transform: uppercase;
-    /* font-weight: 600; */
 }
 
 /* #TODO fix font weight of card title  */
 .card-title{
-    font-size: 1.1rem;
-    /* font-weight: 600; */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
     color: black;
 }
+
 .card-description {
     font-size: 0.9rem;
-    color: #585858;
+    color: #706e6e;
 }
 
-.card-btn {
+.btn {
+    font-family: "Open Sans";
+    text-transform: capitalize;
     background-color: rgba(237, 40, 40, 0.85);
     color:rgb(255, 255, 255);
 	border-radius: 25px;
@@ -148,7 +161,31 @@ p {
     padding: 10px 0px 10px 0px;
 }
 
-#list-event-cards {
+.list-event-cards {
     display: flex;
     flex-wrap: wrap;
+}
+
+.divider {
+    border-bottom: 2px solid #dadce0;
+}
+
+#mySportsList{
+    padding: 0;
+}
+.category {
+    font-family: 'Open Sans';
+    color: black;
+    list-style-type: none;
+}
+
+.category:hover {
+    color: rgba(237, 40, 40, 0.85);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#avatar {
+    padding: 50px 0 30px 0;
+    padding-left: 26%;
 }

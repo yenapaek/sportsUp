@@ -20,6 +20,13 @@ try {
         case "profile":
             profile($_SESSION['userId']);
             break;
+        case "addMySport":
+            if (!empty($_POST['categoryId'])) {
+                addMySport($_SESSION['userId'], $_POST['categoryId']);
+            } else {
+                throw new Exception("Error with category.");
+            }
+            break;
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);
@@ -44,7 +51,6 @@ try {
         case "events":
             categoriesInfo();
             break;
-
         case "searchSubmit":
             if (isset($_REQUEST['searchEvent'])) {
                 eventsSearchInput($_REQUEST['searchEvent']);
