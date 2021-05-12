@@ -13,7 +13,7 @@ function profile($userId){
     $infoProfile = myProfileModel($userId);
     $mySports = mySportsModel($userId);
     $myEvents = myEventsModel($userId);
-    $attendingEvents = '';
+    $attendingEvents = attendingEventsModel($userId);
     $suggestionEvents = suggestionEventsModel($userId);
     $articles = myArticlesModel($userId);
     $suggestionArticles = '';

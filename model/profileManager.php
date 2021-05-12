@@ -101,13 +101,16 @@ function attendingEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT * FROM events WHERE organizerId=?");
+    $req = $db->prepare("SELECT *
+    FROM events
+    JOIN myEvents ON myEvents.eventId = events.id
+    WHERE myEvents.userid = ?");
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
-    $myEvents = $req->fetchAll(PDO::FETCH_ASSOC);
+    $attendingEvents = $req->fetchAll(PDO::FETCH_ASSOC);
     $req->closeCursor();
 
-    return $myEvents;
+    return $attendingEvents;
 }
 
 /**

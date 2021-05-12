@@ -10,7 +10,7 @@ if (!empty($eventsSelect)) {
                 <h1><?= $event["eventName"] ?></h1>
                 <p class="job-title"><?= $event["categoryName"] ?></p>
                 <p class="about"><?= $event["eventDate"] ?></p>
-                <a href="#" class="btn btn-white btn-animation-1">Want to join in?</a>
+                <a href="index.php?action=attendEvent" class="btn btn-white btn-animation-1">Want to join in?</a>
         </div>
     <?php endforeach;
 }

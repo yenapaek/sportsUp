@@ -51,6 +51,8 @@ try {
         case "events":
             categoriesInfo();
             break;
+        case "attendEvent":
+            
         case "searchSubmit":
             if (isset($_REQUEST['searchEvent'])) {
                 eventsSearchInput($_REQUEST['searchEvent']);
