@@ -99,3 +99,8 @@ function editProfile($firstName, $lastName, $email, $date, $city)
 {
     editUserModel($firstName, $lastName, $email, $date, $city);
 }
+
+function editProfileAvatar($avatar)
+{
+    editUserAvatarModel($avatar);
+}

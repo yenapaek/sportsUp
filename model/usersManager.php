@@ -202,17 +202,3 @@ function addNewKakaoUser($kakaoUserObj)
 //     curl_close($curl);
 // }
 
-function editUserModel($firstName, $lastName, $email, $date, $city)
-{
-    $db = dbConnect();
-
-    $req = $db->prepare("UPDATE users SET firstName=:firstName, lastName=:lastName,email=:email,birthDate=:birthDate,city=:city WHERE id =:id");
-    $req->bindparam('firstName', $firstName, PDO::PARAM_STR);
-    $req->bindparam('lastName', $lastName, PDO::PARAM_STR);
-    $req->bindparam('email', $email, PDO::PARAM_STR);
-    $req->bindparam('birthDate', $date, PDO::PARAM_STR);
-    $req->bindparam('city', $city, PDO::PARAM_STR);
-    $req->bindparam('id', $_SESSION['userId'], PDO::PARAM_STR);
-    $req->execute();
-    $req->closeCursor();
-}

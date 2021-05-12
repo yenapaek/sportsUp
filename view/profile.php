@@ -1,14 +1,16 @@
 <?php
 $title = !isset($title) ? "Profile" : $title;
 $style = '<link href="./public/css/profile.css" rel="stylesheet" />';
+$avatarPath = './public/images/profile/allUsersProfilePics/file/' . $_SESSION['userId'];
 ob_start();
 ?>
 <div id="main-body">
     <section id="personnalInfo">
+        <input hidden id="file" type="file" multiple>
         <div class="info-container" id="myInfos">
             <!-- #TODO user must be able to upload an avatar when creating a profile -->
-            <div>
-                <img src="<?= !empty($infoProfile['avatar']) ? $infoProfile['avatar'] : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image" class="profile-img">
+            <div id="avatarDiv">
+                <img class="profile-img" id="profile-img" src="<?= !empty($infoProfile['avatar']) ? "$avatarPath/{$infoProfile['avatar']}" : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image">
             </div>
             <div>
                 <h1>Hi, <?= !empty($infoProfile) ? $infoProfile['userName'] : '...'; ?></h1>
