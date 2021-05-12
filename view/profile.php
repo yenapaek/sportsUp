@@ -1,24 +1,28 @@
 <?php
-    $title = !isset($title) ? "Profile" : $title;
-    $style = '<link href="./public/css/profile.css" rel="stylesheet" />';
-    ob_start();
+$title = !isset($title) ? "Profile" : $title;
+$style = '<link href="./public/css/profile.css" rel="stylesheet" />';
+$avatarPath = './public/images/profile/allUsersProfilePics/file/' . $_SESSION['userId'];
+ob_start();
 ?>
 <div id="main-body">
     <section id="personnalInfo">
+        <input hidden id="file" type="file" multiple>
         <div class="info-container" id="myInfos">
             <!-- #TODO user must be able to upload an avatar when creating a profile -->
             <div id="avatar">
-                <img src="<?= !empty($infoProfile['avatar']) ? $infoProfile['avatar'] : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image" class="profile-img">
+                <img class="profile-img" id="profile-img" src="<?= !empty($infoProfile['avatar']) ? "$avatarPath/{$infoProfile['avatar']}" : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image">
             </div>
             <div>
                 <h1>Hi, <?= !empty($infoProfile) ? $infoProfile['userName'] : '...'; ?></h1>
             </div>
             <div>
-                <p>First Name: <?= !empty($infoProfile['firstName']) ? $infoProfile['firstName'] : '...'; ?></p>
-                <p>Last Name: <?= !empty($infoProfile['lastName']) ? $infoProfile['lastName'] : '...' ?></p>
-                <p>Birthday: <?= !empty($infoProfile['birthDate']) ? $infoProfile['birthDate'] : '...'; ?></p>
-                <p>Email: <?= !empty($infoProfile['email']) ? $infoProfile['email'] : '...' ?></p>
-                <p>City: <?= !empty($infoProfile['city']) ? $infoProfile['city'] : '...' ?></p>
+                <p>FirstName : <span><?= !empty($infoProfile['firstName']) ? $infoProfile['firstName'] : '...'; ?></span></p>
+                <p>LastName : <span><?= !empty($infoProfile['lastName']) ? $infoProfile['lastName'] : '...' ?></span></p>
+                <p>Birthday : <span><?= !empty($infoProfile['birthDate']) ? $infoProfile['birthDate'] : '...'; ?></span></p>
+                <p>Email : <span><?= !empty($infoProfile['email']) ? $infoProfile['email'] : '...' ?></span></p>
+                <p>City : <span><?= !empty($infoProfile['city']) ? $infoProfile['city'] : '...' ?></span></p>
+
+                <i id="editPersonnalInfos" class="far fa-edit fa-lg"></i>
             </div>
         </div>
         <div class="info-container" id="mySports">
@@ -30,11 +34,11 @@
                         foreach ($mySports as $sport) :
                     ?>
                             <li class="category">#<?= $sport['category_name']; ?></li><br>
-                    <?php
+                        <?php
                         endforeach;
                     else : ?>
                         <li class="category"> No sport added</li>
-                    <?php endif;?>
+                    <?php endif; ?>
                 </ul>
                 <div id="sportSelect">
                     <select name="sportsCategories" id="sportsCategories">
@@ -46,7 +50,7 @@
                     <input type="button" name="addSport" id="addSport" onclick="addMySport();" value="Add Sport">
                 </div>
             </div>
-            
+
         </div>
     </section>
     <div id="changedInfo">
@@ -59,7 +63,7 @@
                 <div class="divider"></div>
                 <h1>Attending Events</h1>
                 <div class="list-event-cards">
-                <!-- #TODO add attending events function -->
+                    <!-- #TODO add attending events function -->
                     <?php require('myAttendingEventsShort.php') ?>
                 </div>
             </div>
@@ -113,5 +117,6 @@
     </div>
 </div>
 <script src="./public/js/profileUpdate.js"></script>
+<script src="./public/js/profile.js"></script>
 <?php $content = ob_get_clean(); ?>
 <?php require("template.php"); ?>

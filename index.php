@@ -13,6 +13,9 @@ try {
         case "aboutUs":
             aboutUs();
             break;
+        case "createEvent":
+            createEvent();
+            break;
         case "signIn":
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
@@ -27,6 +30,15 @@ try {
                 throw new Exception("Error with category.");
             }
             break;
+
+        case "editProfileAvatar":
+            editProfileAvatar($_FILES['file']);
+            break;
+
+        case "editProfileInfo":
+            editProfile($_POST['first'], $_POST['last'], $_POST['email'], $_POST['date'], $_POST['city']);
+            break;
+
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);

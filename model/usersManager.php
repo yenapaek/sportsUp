@@ -2,7 +2,7 @@
 require('./model/manager.php');
 
 /**
- * newUserModel
+ * newUserModel allow you to create a new user manually.
  *
  * @param  mixed $user
  * @param  mixed $email
@@ -48,13 +48,13 @@ function newUserModel($user, $email, $pass, $conf)
         return $status;
     }
 }
-#TODO need to modify the information of the function
+
 /**
- * manualLoginModel
+ * manualLoginModel allow you to connect manually with email and password
  *
  * @param  mixed $email
  * @param  mixed $pass
- * @return void
+ * @return Boolean if u successfully login or not
  */
 function manualLoginModel($email, $pass)
 {
@@ -97,7 +97,7 @@ function getTokens($authCode)
     $url = 'https://kauth.kakao.com/oauth/token'; // API Link
 
     $grantType = 'authorization_code';
-    $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=http://127.0.0.1/sportsEvent/model/oauth.php&code='.$authCode;
+    $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=http://127.0.0.1/sportsEvent/model/oauth.php&code=' . $authCode;
 
     $curl = curl_init();
 
@@ -201,3 +201,4 @@ function addNewKakaoUser($kakaoUserObj)
 //     // $apiUserObj = json_decode($output);
 //     curl_close($curl);
 // }
+

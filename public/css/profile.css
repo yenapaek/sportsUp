@@ -40,10 +40,12 @@
 } */
 
 /* Additions */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
 
-h1, h2, h3 {
-    font-family: 'Varela Round', sans-serif;
+h1,
+h2,
+h3 {
+    font-family: "Varela Round", sans-serif;
 }
 h2 {
     font-size: 1.2rem;
@@ -53,7 +55,7 @@ h3 {
     color: rgba(237, 40, 40, 0.85);
 }
 p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 #main-body {
@@ -96,7 +98,7 @@ p {
     display: flex;
     flex-wrap: wrap;
 }
-.event-card{
+.event-card {
     border: 1px solid #dadce0;
     border-radius: 8px;
     margin: 20px;
@@ -117,11 +119,11 @@ p {
     clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
 }
 
-.event-card>div {
+.event-card > div {
     padding: 0 20px 0 20px;
 }
 
-.event-card>div div{
+.event-card > div div {
     margin: 15px 0 15px 0;
 }
 .event-card span {
@@ -155,8 +157,8 @@ p {
     font-family: "Open Sans";
     text-transform: capitalize;
     background-color: rgba(237, 40, 40, 0.85);
-    color:rgb(255, 255, 255);
-	border-radius: 25px;
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
     text-align: center;
     padding: 10px 0px 10px 0px;
 }
@@ -188,4 +190,32 @@ p {
 #avatar {
     padding: 50px 0 30px 0;
     padding-left: 26%;
+}
+nav a,
+nav .start-home,
+a:hover ~ .animation {
+    width: 15%;
+}
+nav .start-home,
+a:nth-child(1):hover ~ .animation {
+    left: 2.5%;
+    width: 10%;
+}
+nav a:nth-child(2):hover ~ .animation {
+    left: 16.5%;
+    width: 12%;
+}
+
+nav a:nth-child(3):hover ~ .animation {
+    left: 31%;
+}
+
+nav a:nth-child(4):hover ~ .animation {
+    left: 48.5%;
+    width: 10%;
+}
+
+nav a:nth-child(5):hover ~ .animation {
+    left: 72%;
+    width: 0px;
 }
