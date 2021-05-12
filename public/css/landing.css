@@ -210,137 +210,68 @@ nav a:nth-child(5):hover ~ .animation {
 }
 
 
-/* ---------------------------------style for secondSection & cards----------------------------*/
-#secondSection {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 650px;
-}
 
-.cards {
-    width: 100%;
-    height: 82vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 30px;
-}
-
-.cards> .card {
-    max-width: 300px;
-    height: 215px;
-    background: #ffffff;
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-}
-.cards> .card:hover {
-    height: 420px;
-}
-
-.cards> .card> .imgBx {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    top: -60px;
-    left: 20px;
-    z-index: 1;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-
-}
-.cards .card .imgBx h2 {
-    margin-top: 10px;
-    /* font-family: 'Varela Round', sans-serif; */
-    font-family: 'Righteous', cursive;
-
-    font-size: 30px;
-    text-align: center;
-    color: rgb(0, 0, 0);
-}
-.cards .card .imgBx a:visited{
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-}
-.cards .card .imgBx img {
-    max-width: 100%;
-    height: 200px;
-    border-radius: 4px;
-}
-
-.cards .card .cardText {
-    position: relative;
-    margin-top: -140px;
-    padding: 10px 15px;
-    text-align: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s ease-in-out;   
-    color: rgb(0, 0, 0);
-
-}
-a:visited{
-    text-decoration: none;
-}
-.cards .card:hover .cardText {
-    visibility: visible;
-    opacity: 1;
-    margin-top: -40px;
-    transition-delay: 0.3s;
-}
 
 
 /* ---------------------style for the third section----------------- */
 
 
-#thirdSection {
+#secondSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 70px;
     width: 97%;
-    margin: auto;
+    height: 77vh;
+    /* position: relative; */
     overflow: hidden;
+}
+.secondPhoto {
     position: relative;
-    padding-bottom: 70px;
-}
-.photo {
-    width: 100%;
-    margin: auto;
+    width: 65%;
+    height: 100%;
     overflow: hidden;
 }
-.photo img {
-    width: 100%;
-    z-index: 0;
-}
-
-.textInside {
+.secondPhoto img {
     position: absolute;
-    border: 2px solid red;
-    color: white;
-    z-index: 1;
-    bottom: 10px;
-    left: 50%;
+    top: -172px;
+    left: -57px;
+    width: 119%;
+} 
+.secondText {
+    background: #2a9d8f;
+    position: relative;
+    /* border: 2px solid black; */
+    width: 34%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.secondText p {
+    color: #fff;
+    font-family: 'Varela Round', sans-serif;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    margin-top: 0;
+    letter-spacing: 2px;
+    font-size: 25px;
+    text-align: center;
 }
 .boxContainer {
-    position: relative;
-    width: 100%;
-    height: 80px;
-    background: black;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
-.box1 {
-    transform: translate(-50%, -50%);
-}
 
-.boxContainer .box1 .btn:link,
-.btn:visited {
-    text-decoration: none;
-    text-transform: uppercase;
-    position: relative;
-    top: 0;
-    left: 84px;
-    padding: 20px 40px;
-    border-radius: 100px;
-    display: inline-block;
-    transition: all 0.5s;
+#thirdSection {
+    margin: auto;
+    margin-top: 70px;
+    width: 97%;
+    height: 77vh;
+    border: 2px solid black;
 }
 
 
@@ -354,20 +285,11 @@ a:visited{
         position: absolute;
         bottom: 0%;
     }
-    #firstSection, #thirdSection {
+    #firstSection, #secondSection{
         width: 92%;
         margin-left: 15px;
     }
-    #secondSection {
-        margin-top: 80px;
-        display: flex;
-        flex-direction: column;
-        height: 1500px;
-        /* display: flex;
-        flex-direction: column;
-        justify-content: space-evenly; */
-        /* display: none; */
-    }
+   
 
     #firstSection h1 {
         font-size: 25px;
@@ -375,11 +297,10 @@ a:visited{
     #firstSection span {
         font-size: 10px;
     }
-    .cards {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        
+    .secondText p {
+        font-family: 'Varela Round', sans-serif;
+        margin: 20px;
+        letter-spacing: 2px;
+        font-size: 15px;
     }
 }
