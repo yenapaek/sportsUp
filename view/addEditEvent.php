@@ -1,12 +1,12 @@
 <?php 
 $title = "Sports Up - Create Event";
-$style = '<link href="./public/css/createEvent.css" rel="stylesheet" />';
+$style = '<link href="./public/css/addEditEvent.css" rel="stylesheet" />';
 
 ob_start();
 ?>
 <div id="createEvent">
     <div class="eventForm">
-        <form action="./model/createEventManager.php" method="POST">
+        <form action="./model/addEditEventManager.php" method="POST">
             <label for="eventName">event Name</label>
             <input type="text" id="eventName" name="eventName">
         
