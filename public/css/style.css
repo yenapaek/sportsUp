@@ -1,259 +1,273 @@
 /* i am a generic css page */
- @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
- body{
-	 background: #ffffff;
- }
-#top {
-	display:flex;
-	justify-content: space-between;
-	padding: 0;
-	margin: 0;
-	background: rgb(255, 255, 255);
+body {
+    background: #ffffff;
 }
-.top-left {
-	width: 50%;
-	display: flex;
+#top {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    background: rgb(255, 255, 255);
+}
+.topLeft {
+    width: 50%;
+    display: flex;
 }
 .logo {
-	margin-left: 60px;
-	width: 190px;
+    margin-left: 60px;
+    width: 190px;
 }
 
-.logo> img {
-	width: 100%;
-	border-radius: 15px;
-}
-.sup {
-	width: 65%;
-	margin-left: 240px;
-	display: flex;
-	align-self: center;
-}
-/* .sup> h1{
-	color: #ffffff;
-	font-size: 3.5em;
-	font-family: 'Righteous', cursive;
-	position: relative;
-	bottom: 4px;
-	padding-bottom: 0;	 
-}	  */
-.sup> a h1{
-	font-family: 'Righteous', cursive;
-	font-size: 50px	;
-    font-weight: 500;
-	text-transform: uppercase;
-	color: #000000;
-	text-decoration: none;
-	line-height: 50px;
-	position: relative;
-	display: inline-block;
-	text-align: center;
+.logo > img {
+    width: 100%;
+    border-radius: 15px;
 }
 
 
-	/* ---------------------style for the MENU on top---------------------  */
+/* ---------------------style for the MENU on top---------------------  */
 
-
-.top-right {
-    /* right: 50px; */
+.topRight {
     background: rgb(255, 255, 255);
-    /* display: inline-block; */
-    font-family: 'Open Sans', sans-serif;
-    width: 50%;
+    font-family: "Open Sans", sans-serif;
+    width: 54%;
     height: 50px;
-	display: flex;
-	align-self: center;
+    display: flex;
+    align-self: center;
 }
 
 .rightBox {
-    margin:0px ;
+    margin: 0px;
+    right: -120px;
 }
-nav{
-	position: relative;
-	/* margin: 270px auto 0; */
-	width: 100%;
-	/* height: 50px; */
-	/* border-radius: 8px; */
-	/* font-size: 0; */
+nav {
+    position: relative;
+    width: 100%;
 }
-nav a{
-	font-size: 15px;
+nav a {
+    font-size: 15px;
     font-weight: 500;
-	text-transform: uppercase;
-	color: #000000;
-	text-decoration: none;
-	line-height: 50px;
-	position: relative;
-	display: inline-block;
-	text-align: center;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+    line-height: 50px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
 }
-nav .animation{
-	display: inline-block;
-	position: absolute;
-	height: 10%;
-	bottom: 0;
-	background: rgba(237, 40, 40, 0.85);
-	border-radius: 8px;
-	transition: all .5s ease 0s;
-}
-
-nav a, nav .start-home, a:hover~.animation{ 
-	width: 15%;
-}
-nav .start-home, a:nth-child(1):hover~.animation{
-	left: 0;
-}
-nav a:nth-child(2):hover~.animation{
-	left: 15%;
-}
-
-nav a:nth-child(3):hover~.animation{
-	left: 30%;
-}
-
-nav a:nth-child(4):hover~.animation{
-	left: 45%;
-}
-
-nav a:nth-child(5):hover~.animation{
-	left: 60%;
-}
-
-nav a:nth-child(6):hover~.animation{
-	left: 75%;
+nav .animation {
+    display: inline-block;
+    position: absolute;
+    height: 10%;
+    bottom: 0;
+    background: rgba(237, 40, 40, 0.85);
+    border-radius: 8px;
+    transition: all 0.5s ease 0s;
 }
 
 /* ------------------style for buttons ------------------*/
 
+.box {
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+    transform: translate(-50%, -50%);
+}
 
-.box{
-	position:absolute;
-	bottom:10%;
-	right:0;
-	transform : translate(-50% ,-50%);
-	
-  }
-.box1{
-	position:absolute;
-	bottom:1%;
-	right:40%;
-	transform : translate(-50% ,-50%);
-	
-  }
-  
+.box {
+    position: absolute;
+    bottom: 10%;
+    right: 20px;
+    transform: translate(-50%, -50%);
+}
+
+
+
 .btn:link,
-.btn:visited{
-	text-decoration: none;
-	text-transform:uppercase;
-	position:relative;
-	top:0;
-	left:0;
-	padding:20px 40px;
-	border-radius:100px;
-	display:inline-block;
-	transition: all .5s;
+.btn:visited {
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 20px 40px;
+    border-radius: 100px;
+    display: inline-block;
+    transition: all 0.5s;
 }
 
-.btn-white{
-	background-color: rgba(237, 40, 40, 0.85);
-	color:rgb(255, 255, 255);
-	font-size: 1.3em;
-	font-weight: 630;
+.btn-white {
+    background-color: rgba(237, 40, 40, 0.85);
+    color: rgb(255, 255, 255);
+    font-size: 1.3em;
+    font-weight: 630;
 }
 
-.btn:hover{
-	box-shadow:0px 10px 10px rgba(0,0,0,0.2);
-	transform : translateY(-3px);
+.btn:hover {
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
 }
 
-.btn:active{
-	box-shadow:0px 5px 10px rgba(0,0,0,0.2);
-	transform: translateY(-1px);
+.btn:active {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
 }
 
-.btn-bottom-animation-1{
-	animation:comeFromBottom 1s ease-out .8s;
+.btn-bottom-animation-1 {
+    animation: comeFromBottom 1s ease-out 0.8s;
 }
 
-.btn::after{
-	content:"";
-	text-decoration: none;
-	text-transform:uppercase;
-	position:absolute;
-	width:100%;
-	height:100%;
-	top:0;
-	left:0;
-	border-radius:100px;
-	display:inline-block;
-	z-index:-1;
-	transition: all .5s;
+.btn::after {
+    content: "";
+    text-decoration: none;
+    text-transform: uppercase;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 100px;
+    display: inline-block;
+    z-index: -1;
+    transition: all 0.5s;
 }
 
 .btn-white::after {
-	background: rgba(237, 40, 40, 0.85);
+    background: rgba(237, 40, 40, 0.85);
 }
 
 .btn-animation-1:hover::after {
-	transform: scaleX(1.4) scaleY(1.6);
-	opacity: 0;
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
 }
 
-@keyframes comeFromBottom{
-	0%{
-		opacity:0;
-		transform:translateY(40px);
-	} 
-	100%{
-		opacity:1;
-		transform:translateY(0);
-	}
+@keyframes comeFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+/*-------style for signup Button in NavBar---------  */
 
-
+#signUpBtn {
+    background-color: rgba(237, 40, 40, 0.85);
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+}
+#signUpBtn:hover {
+    color: rgb(0, 0, 0);
+}
 
 /*-------------------style for footer--------------  */
-
+footer {
+    margin-top: 100px;
+}
 .footerContent {
-	font-family: 'Varela Round', sans-serif;
-	background: rgb(255, 255, 255);
-	width: 100%;
-	height: 150px;
-	/* border: 2px solid green; */
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
+    font-family: "Varela Round", sans-serif;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    height: 150px;
+    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .footerContent h1 {
-	font-size: 25px;
+    font-size: 25px;
 }
 
-.footerContent h1, p {
-	color: rgb(0, 0, 0);
+.footerContent h1,
+p {
+    color: rgb(0, 0, 0);
 }
 .footerContent p {
-	font-size: 15px;
+    font-size: 15px;
 }
 
 .contactInfo {
-	margin-left: 20px;
+    margin-left: 20px;
 }
 .address {
-	margin-left: 20px;
+    margin-left: 20px;
 }
-.sns-icons {
-	display: flex;
-	justify-content: space-around;
-	flex-direction: row;
+.snsIcons{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
 }
-.sns-icon {
-	width: 32px;
-	height: 32px;
+.snsIcon {
+    width: 32px;
+    height: 32px;
 }
-.sns-icon  img {
-	width: 100%;
+.snsIcon img {
+    width: 100%;
+}
+
+
+
+.openMenu, .closeMenu {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .rightBox {
+        /* display: none;
+        right: 0; */
+        position: fixed;
+        top: 0;
+        right: -400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        z-index: 15;
+        width: 400px;
+        height: 100vh;
+        background: white;
+        transition: 1s;
+    }
+    .closeMenu {
+        cursor: pointer;
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+    }
+    .rightBox a{
+        width: 150px;
+    }
+    nav .start-home {
+        display: none;
+    }
+    .openMenu {
+        cursor: pointer;
+        display: block;
+        position: fixed;
+        top: 50px;
+        right: 10px;
+        z-index: 14;
+
+    }
+    .openMenu i {
+        font-size: 40px;
+    }
+    .closeMenu {
+        font-size: 40px;
+    }
+    .cards> .card:hover {
+        height: 215px;
+    }
+    .cards .card:hover .cardText {
+        visibility: hidden;
+    }
+    .cards .card .cardText {
+        visibility: hidden;
+    }
 }

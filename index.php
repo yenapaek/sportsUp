@@ -13,13 +13,16 @@ try {
         case "aboutUs":
             aboutUs();
             break;
+        case "createEvent":
+            createEvent();
+            break;
         case "signIn":
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
 
         case "profile":
-            profile(1); // #TODO Parameter should be replaced after we implement the loggin ID
+            profile($_SESSION['userId']);
             break;
 
         case "signInSubmit":
@@ -44,7 +47,11 @@ try {
             }
             break;
         case "events":
-            categoriesInfo();
+            if (isset($_SESSION['userId'])) {
+                categoriesInfo($_SESSION['userId']);
+            } else {
+                categoriesInfo();
+            }
             break;
 
         case "searchSubmit":
@@ -56,9 +63,22 @@ try {
                 eventsSearchPopularity();
             } elseif (isset($_REQUEST['searchRecently'])) {
                 eventsSearchRecently();
+            } elseif (isset($_REQUEST['searchFavorites'])) {
+                eventsSearchFavorites($_REQUEST['searchFavorites']);
+            }
+            break;
+        
+        case "favoriteCreation":
+            if (isset($_REQUEST['favoriteUser']) && (isset($_REQUEST['favoriteEvent']))) {
+                eventsFavorite($_REQUEST['favoriteUser'], $_REQUEST['favoriteEvent']);
+            } else {
+                throw new Exception("Error with favorites.");
             }
             break;
 
+        case "logout":
+            logout();
+            break;
         default:
             landing();
             break;

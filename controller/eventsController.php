@@ -1,9 +1,10 @@
 <?php
     require("./model/categoryManager.php");
 
-    function categoriesInfo() {
+    function categoriesInfo($userId) {
         $categories  = categoriesInfoModel();
-        $eventsSelect = defaultSearch(false);
+        $eventsSelectFavorites = eventsFavorites($userId);
+        $eventsSelect = defaultSearch($userId);
         require("./view/events.php");
     }
 
@@ -24,6 +25,15 @@
 
     function eventsSearchRecently() {
         $eventsSelect = searchRecently();
+        require("./view/eventList.php");
+    }
+
+    function eventsFavorite($userId, $eventId) {
+        favoriteAdd($userId, $eventId);
+    }
+
+    function eventsSearchFavorites($userId) {
+        $eventsSelectFavorites = eventsFavorites($userId);
         require("./view/eventList.php");
     }
 

@@ -13,11 +13,12 @@ $style = '<link href="./public/css/events.css" rel="stylesheet" />';
                 <label for="searchTitle">Choose your criteria</label>
             </div>
             <div id="searchBar">
-                <select name="selectCriteria" id="selectCriteria">
+                <select name="selectCriteria" id="selectCriteria" dataUserId="<?= $_SESSION['userId'] ?>">
                     <option value="Event" selected>By Event</option>
                     <option value="Sport">By Sport</option>
                     <option value="Popularity">By Popularity</option>
                     <option value="Recently">Most Recent</option>
+                    <?php  if(isset($_SESSION['userId'])) { ?> <option value="FavoritesEvents">Favorites Events</option> <?php } ?>
                 </select>
                 <div id="sportSelect">
                     <select name="sportsCriteria" id="sportsCriteria">

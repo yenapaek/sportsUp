@@ -2,26 +2,33 @@ let selectCriteria = document.getElementById("selectCriteria");
 let sportSelect = document.getElementById("sportSelect");
 let searchInput = document.getElementById("searchInput");
 let formCriteria = document.getElementById("formCriteria");
+
 let checker = false;
 sportSelect.hidden = true;
 
-function loadFile(searchName, sportName) {
+function loadFile(searchName, secondData, thirdData) {
     let xhr = new XMLHttpRequest();
-    if (searchName == 'Sport') {
-        xhr.open(`GET`, `index.php?action=searchSubmit&sportCriteria=${sportName}`);
-    } 
-    if (searchName == 'Event') {
-        xhr.open(`GET`, `index.php?action=searchSubmit&searchEvent=${sportName}`);
-    }
     if (searchName == 'Popularity') {
         xhr.open(`GET`, `index.php?action=searchSubmit&searchPopularity`);
     }
     if (searchName == 'Recently') {
         xhr.open(`GET`, `index.php?action=searchSubmit&searchRecently`);
     }
+    if (searchName == 'FavoritesEvents') {
+        xhr.open(`GET`, `index.php?action=searchSubmit&searchFavorites=${secondData}`);
+    }
+    if (searchName == 'Sport') {
+        xhr.open(`GET`, `index.php?action=searchSubmit&sportCriteria=${secondData}`);
+    } 
+    if (searchName == 'Event') {
+        xhr.open(`GET`, `index.php?action=searchSubmit&searchEvent=${secondData}`);
+    }
+    if (searchName == 'Favorite') {
+        xhr.open(`POST`, `index.php?action=favoriteCreation&favoriteUser=${secondData}&favoriteEvent=${thirdData}`);
+    }
 
     xhr.addEventListener("load", function () {
-        if (xhr.status === 200) {
+        if (xhr.status === 200 && searchName != 'Favorite') {
             let response = xhr.responseText;
             let sectionThree = document.querySelector('#mainContainer section:nth-child(3)');
             sectionThree.innerHTML = response;
@@ -76,8 +83,23 @@ function loadFile(searchName, sportName) {
         if (selectCriteriaValue == 'Recently') {
             loadFile('Recently');
         }
+        if (selectCriteriaValue == 'FavoritesEvents') {
+            loadFile('FavoritesEvents', selectCriteria.getAttribute('dataUserId'));
+        }
     });
 }
+
+{
+    let favorites = document.querySelectorAll(".favorites");
+    for( let i=0; i<favorites.length; i++) {
+        favorites[i].addEventListener("click", function (e) {
+            e.target.classList.remove("far");
+            e.target.classList.add("fas");
+            loadFile('Favorite', favorites[i].getAttribute('dataUserId'), favorites[i].getAttribute('dataUserId'));
+        })
+    }
+}
+
 
 
 

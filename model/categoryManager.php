@@ -5,17 +5,17 @@
 function categoriesInfoModel()
 {
     $dataBase = dbConnect();
-    $rawResponse = $dataBase->query("SELECT name FROM categories");
+    $rawResponse = $dataBase->query("SELECT name FROM categories ORDER BY name");
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
     return $infoArray;
 }
 
-function defaultSearch()
+function defaultSearch($userId)
 {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id"
@@ -25,6 +25,7 @@ function defaultSearch()
     return $infoArray;
 }
 
+
 function inputSelectSearch($name, $isForSelect)
 {
     $where = '';
@@ -33,7 +34,7 @@ function inputSelectSearch($name, $isForSelect)
 
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
@@ -47,7 +48,7 @@ function inputSelectSearch($name, $isForSelect)
 function searchPopularity() {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
@@ -62,12 +63,40 @@ function searchPopularity() {
 function searchRecently() {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
             WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY
             AND curdate()"
+    );
+    $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
+    $rawResponse->closeCursor();
+    return $infoArray;
+}
+
+function favoriteAdd($userId, $eventId) {
+    $dataBase = dbConnect();
+    $rawRequest = $dataBase->prepare(
+        "INSERT INTO favorites(userId, eventId) VALUES(:userID, :eventID)"
+    );
+    $rawRequest->execute(array(
+        'userID' => $userId,
+        'eventID' => $eventId
+    ));
+    $rawRequest->closeCursor();
+}
+
+function eventsFavorites($userId) {
+    $dataBase = dbConnect();
+    $rawResponse = $dataBase->query(
+        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
+            FROM events e
+            JOIN categories c
+            ON e.categoryId = c.id
+            JOIN favorites f
+            ON f.userId = e.id
+            WHERE f.userId = $userId"
     );
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
