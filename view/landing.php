@@ -44,63 +44,31 @@ ob_start();
         </div> -->
 
     </div>
-    <div id="secondSection">
-        <div class="cards">
-            <div class="card">
-                <div class="imgBx">
-                    <img src="./public/images/landing/card1.jpg" alt="card picture">
-                    <a href="#"><h2>Global Events</h2></a>
-                </div>
-                <div class="cardText">
-                    
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas possimus, 
-                    asperiores perspiciatis vero atque ratione distinctio soluta maiores facilis quis 
-                    consequatur itaque iure cumque repudiandae sapiente saepe ex pariatur consectetur!</p>
-                </div>
-            </div>  
-            <div class="card">
-                <div class="imgBx">
-                    <img src="./public/images/landing/card2.png" alt="card picture">
-                    <a href="#"><h2>Private Events</h2></a>
-                </div>
-                <div class="cardText">
-                    
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas possimus, 
-                    asperiores perspiciatis vero atque ratione distinctio soluta maiores facilis quis 
-                    consequatur itaque iure cumque repudiandae sapiente saepe ex pariatur consectetur!</p>
-                </div>
-            </div>  
-            <div class="card">
-                <div class="imgBx">
-                    <img src="./public/images/landing/card3.png" alt="card picture">
-                    <a href="#"><h2>Shop</h2></a>
-                </div>
-                <div class="cardText">
-                    
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas possimus, 
-                    asperiores perspiciatis vero atque ratione distinctio soluta maiores facilis quis 
-                    consequatur itaque iure cumque repudiandae sapiente saepe ex pariatur consectetur!</p>
-                </div>
-            </div>               
-        </div>
-        <div>
 
-        </div>
     </div>
-    <div id="thirdSection">
+    <div id="secondSection">
         
-        <div class="photo">
+        <div class="secondPhoto">
             <img src="./public/images/landing/photo1.jpg" alt="">
         </div>
-        <div class="boxContainer">
-            <div class="box1">
-                <a href="index.php?action=signUp" class="btn btn-white btn-animation-1">Sign Up</a> 
+        <div class="secondText">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sint ab quae sit enim! Error, expedita?
+                Doloribus ipsum cum ab sunt culpa nemo voluptate exercitationem.
+                Esse excepturi cum deleniti ea laudantium?
+            </p>
+            <div class="boxContainer">
+                <div class="box1">
+                    <a href="index.php?action=signUp" class="btn btn-white btn-animation-1">Join Us</a> 
+                </div>
             </div>
         </div>
-    </div>       
+        
+    </div>  
+    <div id="thirdSection">
+        
+    </div>     
 </div>
 
 
