@@ -13,8 +13,9 @@ try {
         case "aboutUs":
             aboutUs();
             break;
-        case "createEvent":
-            createEvent();
+        case "addEditEvent":
+            // addEditEvent();
+            categoriesInfo2();
             break;
         case "signIn":
         case "signUp":

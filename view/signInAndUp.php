@@ -99,18 +99,6 @@
     <?php
     }
     ?>
-<<<<<<< HEAD
-    <script src="./public/js/signInAndUpVerification.js"></script>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script>
-        Kakao.init('339cdea24a4c89c54473cb56876710ec');
-    </script>
-    <script src="./public/js/kakaoLogin.js"></script>
-    <?php $content = ob_get_clean(); ?>
-    <?php require("template.php"); ?>
-</div>
-</div>
-=======
 </div>
 <script src="./public/js/signInAndUpVerification.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -120,4 +108,3 @@
 <script src="./public/js/kakaoLogin.js"></script>
 <?php $content = ob_get_clean(); ?>
 <?php require("template.php"); ?>
->>>>>>> 2f893ffedcdd275294c41f1d196bdfdb5cdb895c

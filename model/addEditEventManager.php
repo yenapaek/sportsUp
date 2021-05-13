@@ -9,17 +9,15 @@ try {
 $name = $_POST['eventName'];
 $categoryID = $_POST['sportCategory'];
 $picture = $_POST['eventPicture'];
-$organizerId = $_POST['hostName'];
+$organizerId = $_SESSION['userId'];
 $playerNumber = $_POST['maxPlayers'];
 $eventDate = $_POST['eventDate'];
 $duration = $_POST['eventDuration'];
-$description = $_POST['eventDiscription'];
+$description = $_POST['eventDescription'];
 $fee = $_POST['eventFee'];
-// $latitude = $POST['']
-// $longtitude = $POST['']
 
-$req = $db->prepare("INSERT INTO events(name, categoryID, picture, organizerId, playerNumber, eventDate, duration, fee)
- VALUES(:name, :categoryID, :picture, :organizerId, :playerNumber, :eventDate, :duration, :fee)");
+$req = $db->prepare("INSERT INTO events(name, categoryId, picture, organizerId, playerNumber, eventDate, duration, description, fee)
+ VALUES(:name, :categoryId, :picture, :organizerId, :playerNumber, :eventDate, :duration, :description, :fee)");
 $req->execute(array(
     'name' => $name,
     'categoryId' => $categoryID,
@@ -28,6 +26,7 @@ $req->execute(array(
     'playerNumber' => $playerNumber,
     'eventDate' => $eventDate,
     'duration' => $duration,
+    'description' => $description,
     'fee' => $fee
     ));
 header('location:index.php'); 

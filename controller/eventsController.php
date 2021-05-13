@@ -17,4 +17,8 @@
         require("./view/eventList.php");
     } 
 
-    
+    function categoriesInfo2() {
+        $categories  = categoriesInfoModel();
+        $eventsSelect = defaultSearch(false);
+        require("./view/addEditEvent.php");
+    }
