@@ -21,9 +21,16 @@ try {
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
-
         case "profile":
             profile($_SESSION['userId']);
+            break;
+
+        case "editProfileAvatar":
+            editProfileAvatar($_FILES['file']);
+            break;
+
+        case "editProfileInfo":
+            editProfile($_POST['first'], $_POST['last'], $_POST['email'], $_POST['date'], $_POST['city']);
             break;
 
         case "signInSubmit":

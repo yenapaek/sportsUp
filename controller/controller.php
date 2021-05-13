@@ -8,7 +8,6 @@
   {
     require("./view/aboutUs.php");
   }
-
   function logout()
   {
     require("./view/logout.php");

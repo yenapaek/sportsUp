@@ -10,7 +10,7 @@
                 <h1>SPORTS UP</h1>
             </a>
         </div> -->
-    </div>  
+    </div>
 
     <div class="topRight">
         <div class="openMenu"><i class="fas fa-bars"></i></div>
@@ -21,7 +21,7 @@
             <a href="index.php"><strong>SHOP</strong></a>
             <?php if (isset($_SESSION['userId'])) {
             ?>
-                <a href="index.php?action=profile" id="profileNavBar"><img src="./public/images/landing/avatar.png" alt="Avatar" class="avatar"><strong>Profile</strong></a>
+                <a href="index.php?action=profile" id="profileNavBar"><strong>Profile</strong></a>
                 <a href="index.php?action=logout"><strong>Log Out</strong> </a>
             <?php
             } else {
@@ -34,8 +34,8 @@
             <div class="closeMenu"><i class="fas fa-times"></i></div>
         </nav>
     </div>
-    
-    
+
+
 </div>
 <!-- <div id="fixedBtn">
     <a href="#"><strong>+</strong> </a>
