@@ -1,7 +1,7 @@
 <?php 
 $title = "Sports Up - Create Event";
 $style = '<link href="./public/css/addEditEvent.css" rel="stylesheet" />';
-
+$avatarPath = './public/images/sports/' . $_SESSION['userId'];
 ob_start();
 ?>
 <div id="addEditEvent">
