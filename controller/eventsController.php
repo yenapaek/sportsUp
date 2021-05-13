@@ -1,5 +1,6 @@
 <?php
     require("./model/categoryManager.php");
+    require("./model/addEditEventManager.php");
 
     function categoriesInfo() {
         $categories  = categoriesInfoModel();
@@ -22,3 +23,7 @@
         $eventsSelect = defaultSearch(false);
         require("./view/addEditEvent.php");
     }
+
+    function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee) {
+        createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+    }   

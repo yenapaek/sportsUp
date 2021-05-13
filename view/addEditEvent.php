@@ -1,12 +1,13 @@
 <?php 
 $title = "Sports Up - Create Event";
 $style = '<link href="./public/css/addEditEvent.css" rel="stylesheet" />';
-$avatarPath = './public/images/sports/' . $_SESSION['userId'];
+// $avatarPath = './public/images/sports/' . $_SESSION['userId'];
 ob_start();
 ?>
 <div id="addEditEvent">
     <div class="eventForm">
-        <form action="./model/addEditEventManager.php" method="POST">
+        <form action="index.php" method="POST">
+            <input type="text" hidden name ="action" value ="createEvent">
             <label for="eventName">event Name</label>
             <input type="text" id="eventName" name="eventName">
         
@@ -21,8 +22,8 @@ ob_start();
             <label for="eventPicture">Select Image for you event</label>
             <input type="file" id="eventPicture" name="eventPicture" accept="image/png, image/jpeg">
 
-            <!-- <label for="hostName">Your name</label>
-            <input type="text" id="hostName" name="hostName"> -->
+            <label for="city">City</label>
+            <input type="text" id="city" name="city">
 
             <label for="maxPlayers">How many people can join your event?</label>
             <input type="number" id="maxPlayers" name="maxPlayers">
