@@ -1,13 +1,13 @@
-#personnalInfo,
-#eventInfo,
+/* #personnalInfo, */
+/* #eventInfo, */
 #articleInfo {
     display: flex;
     margin: 30px;
     color: black;
 }
 
-#personnalInfo div,
-#eventInfo div,
+/* #personnalInfo div, */
+/* #eventInfo div, */
 #articleInfo div {
     display: flex;
     border: 1px solid black;
@@ -15,26 +15,177 @@
     text-align: center;
 }
 
-#myEvents {
+/* #myEvents {
     display: flex;
     flex-direction: column;
-}
-
+} */
+/* 
 .titleEdit {
     display: flex;
     justify-content: space-around;
-}
+} */
 
-#myInfos,
+/* #myInfos, */
 #mySports,
-#myEventsSuggestion,
+/* #myEventsSuggestion, */
 #myArticles,
 #myArticlesSuggestion {
     display: flex;
     flex-direction: column;
 }
 
-#myInfos div:nth-child(2) {
+/* #myInfos div:nth-child(2) {
     display: flex;
     flex-direction: column;
+} */
+
+/* Additions */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+h1, h2, h3 {
+    font-family: 'Varela Round', sans-serif;
+}
+h2 {
+    font-size: 1.2rem;
+}
+h3 {
+    font-size: 1rem;
+    color: rgba(237, 40, 40, 0.85);
+}
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#main-body {
+    display: flex;
+    /* #TODO change spacing to responsive, + media query */
+    justify-content: space-evenly;
+    padding: 100px 100px 0 100px;
+    background-color: #f6f7f8;
+}
+#personnalInfo {
+    /* #TODO change width to fixed size, + media query */
+    width: 25%;
+}
+#changedInfo {
+    /* #TODO change width to fixed size, + media query */
+    width: 65%;
+}
+
+/* #TODO make floating profile info aside */
+/* #myInfos {
+    position: fixed;
+} */
+/* #TODO make img center */
+.profile-img {
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.info-container {
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 15px 50px 50px 50px;
+    margin-bottom: 50px;
+    background-color: #ffffff;
+}
+
+#list-event-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+.event-card{
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    margin: 20px;
+    padding-bottom: 15px;
+    width: 260px;
+    box-shadow: 0rem 0rem 1rem 0rem rgb(110 110 110 / 11%);
+    animation:comeFromBottom 1s ease-out .8s;
+}
+
+.event-card:hover{
+    transform: scale(1.05);
+}
+.card-img {
+    /* background-image: url("https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80"); */
+    background-size: cover;
+    height: 175px;
+    -webkit-clip-path: polygon (0 0, 100% 0, 100% 78%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
+}
+
+.event-card>div {
+    padding: 0 20px 0 20px;
+}
+
+.event-card>div div{
+    margin: 15px 0 15px 0;
+}
+.event-card span {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.event-detail>div i {
+    margin-right: 4%;
+    color:rgba(237, 40, 40, 0.85);
+}
+
+.card-datetime span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* #TODO fix font weight of card title  */
+.card-title{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: #706e6e;
+}
+
+.btn {
+    font-family: "Open Sans";
+    text-transform: capitalize;
+    background-color: rgba(237, 40, 40, 0.85);
+    color:rgb(255, 255, 255);
+	border-radius: 100px;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+.list-event-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.divider {
+    border-bottom: 2px solid #dadce0;
+}
+
+#mySportsList{
+    padding: 0;
+}
+.category {
+    font-family: 'Open Sans';
+    color: black;
+    list-style-type: none;
+}
+
+.category:hover {
+    color: rgba(237, 40, 40, 0.85);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#avatar {
+    padding: 50px 0 30px 0;
+    padding-left: 26%;
 }

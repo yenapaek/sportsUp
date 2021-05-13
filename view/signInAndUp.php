@@ -90,11 +90,12 @@
     <?php
     }
     ?>
-    <script src="./public/js/signInAndUpVerification.js"></script>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script>
-        Kakao.init('339cdea24a4c89c54473cb56876710ec');
-    </script>
-    <script src="./public/js/kakaoLogin.js"></script>
-    <?php $content = ob_get_clean(); ?>
-    <?php require("template.php"); ?>
+</div>
+<script src="./public/js/signInAndUpVerification.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+    Kakao.init('339cdea24a4c89c54473cb56876710ec');
+</script>
+<script src="./public/js/kakaoLogin.js"></script>
+<?php $content = ob_get_clean(); ?>
+<?php require("template.php"); ?>

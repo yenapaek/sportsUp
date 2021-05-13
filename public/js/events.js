@@ -57,7 +57,28 @@ function loadFile(sportName, isForInput) {
     });
 }
 
-
-
-
-
+{
+    let buttons = document.querySelectorAll("a[eventId]");    
+    const attendEvent = (button) => {
+        let eventId = button.getAttribute('eventId');
+        button.addEventListener("click", (e) => {
+            let currentButton = e.target;
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'index.php?action=attendEvent');
+            let form = new FormData();
+            form.append("eventId",eventId);
+            xhr.send(form);
+        
+            xhr.addEventListener("load", function () {
+                if (xhr.status === 200) {
+                    currentButton.innerHTML = "Attending";
+                    // #TODO add something to show that a user is attending an event
+                    alert("attending event added!");
+                } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status != 200) {
+                    alert('There is an error !\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText);
+                }
+            });
+        });
+    }
+    buttons.forEach(button => attendEvent(button));
+}

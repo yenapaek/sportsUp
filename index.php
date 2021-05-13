@@ -17,11 +17,16 @@ try {
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
-
         case "profile":
-            profile(1); // #TODO Parameter should be replaced after we implement the loggin ID
+            profile($_SESSION['userId']);
             break;
-
+        case "addMySport":
+            if (!empty($_POST['categoryId'])) {
+                addMySport($_SESSION['userId'], $_POST['categoryId']);
+            } else {
+                throw new Exception("Error with category.");
+            }
+            break;
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);
@@ -46,7 +51,13 @@ try {
         case "events":
             categoriesInfo();
             break;
-
+        case "attendEvent":
+            if (!empty($_POST['eventId'])) {
+                addAttendingEvent($_SESSION['userId'], $_POST['eventId']);
+            } else {
+                throw new Exception("Error with attending event.");
+            }
+            break;
         case "searchSubmit":
             if (isset($_REQUEST['searchEvent'])) {
                 eventsSearchInput($_REQUEST['searchEvent']);
@@ -55,6 +66,9 @@ try {
             }
             break;
 
+        case "logout":
+            logout();
+            break;
         default:
             landing();
             break;
