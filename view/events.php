@@ -32,11 +32,9 @@
             </div>
         </form>
     </header>
-
     <section>
         <div>List of events</div>
     </section>
-
     <section>
         <?php require('eventList.php') ?>
     </section>

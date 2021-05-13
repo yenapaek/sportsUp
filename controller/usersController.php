@@ -1,6 +1,7 @@
 <?php
 require_once("./model/usersManager.php");
 require_once("./model/profileManager.php");
+// require("./model/categoryManager.php");
 
 /**
  * profile
@@ -13,18 +14,20 @@ function profile($userId){
     $infoProfile = myProfileModel($userId);
     $mySports = mySportsModel($userId);
     $myEvents = myEventsModel($userId);
-    $attendingEvents = attendingEventsModel($userId);
+    $attendingEvents = displayAttendingEvents($userId);
     $suggestionEvents = suggestionEventsModel($userId);
     $articles = myArticlesModel($userId);
     $suggestionArticles = '';
-    $categories = displaySportsCategories();
+    $categories = displaySportsCategories($userId);
     require('./view/profile.php');
+}
+
+function addAttendingEvent($userId, $eventId){
+    addAttendingEventModel($userId, $eventId);
 }
 
 function addMySport($userId, $categoryId){
     addMySportModel($userId, $categoryId);
-    // $mySports = mySportsModel($userId);
-    // header("Location: index.php?action=profile");
 }
 
 function signInAndUpPage($param)

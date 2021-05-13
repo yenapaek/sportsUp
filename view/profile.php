@@ -43,7 +43,7 @@
                             <option id="<?= $category['id']; ?>"><?= $category["name"]; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <input type="button" name="addSport" id="addSport" onclick="addMySport();" value="Add Sport">
+                    <div id="addSport" class="btn" onclick="addMySport();">Add sport</div>
                 </div>
             </div>
             

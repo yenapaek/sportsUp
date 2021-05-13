@@ -47,10 +47,21 @@ function mySportsModel($userId)
  *
  * @return array all sports categories
  */
-function displaySportsCategories()
+
+ #TODO filter out categories existing for user
+function displaySportsCategories($userId)
 {
     $db = dbConnect();
-    $req = $db->query("SELECT * FROM categories");
+    $req = $db->prepare("SELECT *
+    FROM categories c
+    WHERE c.id
+    NOT IN (SELECT c.id
+            FROM categories c
+            JOIN mySports mS
+            ON c.id = mS.categoryId
+            WHERE mS.userId = ?)");
+    $req->bindParam(1, $userId, PDO::PARAM_INT);
+    $req->execute();
     $categories = $req->fetchAll(PDO::FETCH_ASSOC);
     $req->closeCursor();
     return $categories;
@@ -65,11 +76,20 @@ function displaySportsCategories()
 function addMySportModel($userId, $categoryId)
 {
     $db = dbConnect();
-    $req = $db->prepare("INSERT INTO mysports(null, :userId,:categoryId)");
-    $req->bindParam(':userId', $userId, PDO::PARAM_STR);
-    $req->bindParam(':categoryId', $categoryId, PDO::PARAM_STR);
+    $req = $db->prepare("SELECT COUNT(*) FROM mySports WHERE userId = ? AND categoryId = ?");
+    $req->bindParam(1, $userId, PDO::PARAM_INT);
+    $req->bindParam(2, $categoryId, PDO::PARAM_INT);
     $req->execute();
+    $mySportsCount = $req->fetchColumn();
     $req->closeCursor();
+
+    if ( $mySportsCount == 0){
+        $req = $db->prepare("INSERT INTO mySports(userId, categoryId) VALUES(?, ?)");
+        $req->bindParam(1, $userId, PDO::PARAM_INT);
+        $req->bindParam(2, $categoryId, PDO::PARAM_INT);
+        $req->execute();
+        $req->closeCursor();
+    }
 }
 
 /**
@@ -97,20 +117,46 @@ function myEventsModel($userId)
  * @param  mixed $userId
  * @return array all the events the user is attending.
  */
-function attendingEventsModel($userId)
+function displayAttendingEvents($userId)
 {
     $db = dbConnect();
 
     $req = $db->prepare("SELECT *
     FROM events
-    JOIN myEvents ON myEvents.eventId = events.id
-    WHERE myEvents.userid = ?");
+    JOIN attendingEvents ON attendingEvents.eventId = events.id
+    WHERE attendingEvents.userid = ?");
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
     $attendingEvents = $req->fetchAll(PDO::FETCH_ASSOC);
     $req->closeCursor();
 
     return $attendingEvents;
+}
+
+/**
+ * attendEventsModel
+ * checks if user is already attending an event before inserting
+ *
+ * @param  mixed $userId
+ * @return void
+ */
+function addAttendingEventModel($userId, $eventId)
+{
+    $db = dbConnect();
+    $req = $db->prepare("SELECT COUNT(*) FROM attendingEvents WHERE userId = ? AND eventId = ?");
+    $req->bindParam(1, $userId, PDO::PARAM_INT);
+    $req->bindParam(2, $eventId, PDO::PARAM_INT);
+    $req->execute();
+    $attendingEventsCount = $req->fetchColumn();
+    $req->closeCursor();
+
+    if ($attendingEventsCount ==  0){
+        $req = $db->prepare("INSERT INTO attendingEvents(id, userId, eventId) VALUES (null, ?, ?)");
+        $req->bindParam(1, $userId, PDO::PARAM_INT);
+        $req->bindParam(2, $eventId, PDO::PARAM_INT);
+        $req->execute();
+        $req->closeCursor();
+    }
 }
 
 /**
@@ -125,8 +171,8 @@ function suggestionEventsModel($userId)
 
     $req = $db->prepare("SELECT *
     FROM events
-    JOIN mysports ON mysports.categoryId=events.categoryId
-    WHERE mysports.userId = ?");
+    JOIN mySports ON mySports.categoryId=events.categoryId
+    WHERE mySports.userId = ?");
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
     $suggestionEvents = $req->fetchAll(PDO::FETCH_ASSOC);

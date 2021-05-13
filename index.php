@@ -52,7 +52,12 @@ try {
             categoriesInfo();
             break;
         case "attendEvent":
-            
+            if (!empty($_POST['eventId'])) {
+                addAttendingEvent($_SESSION['userId'], $_POST['eventId']);
+            } else {
+                throw new Exception("Error with attending event.");
+            }
+            break;
         case "searchSubmit":
             if (isset($_REQUEST['searchEvent'])) {
                 eventsSearchInput($_REQUEST['searchEvent']);

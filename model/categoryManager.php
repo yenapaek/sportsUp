@@ -13,7 +13,7 @@ function defaultSearch()
 {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.id AS eventId, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id"
@@ -23,11 +23,13 @@ function defaultSearch()
     return $infoArray;
 }
 
+// #TODO if there is a userid then change 
+
 function inputSearch($name)
 {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.id AS eventId, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
@@ -42,7 +44,7 @@ function selectSearch($sportName)
 {
     $dataBase = dbConnect();
     $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+        "SELECT c.name AS categoryName, e.id AS eventId, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c
             ON e.categoryId = c.id
