@@ -19,8 +19,7 @@ function loadFile(sportName, isForInput) {
             let response = xhr.responseText;
             let sectionThree = document.querySelector('#mainContainer section:nth-child(3)');
             sectionThree.innerHTML = response;
-            
-
+            console.log("test");
         } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status != 200) {
             alert('There is an error !\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText);
         }

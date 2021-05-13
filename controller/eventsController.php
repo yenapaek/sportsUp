@@ -15,6 +15,6 @@
     function eventsSearchSelect($sportName) {
         $eventsSelect = selectSearch($sportName);
         require("./view/eventList.php");
-    } 
+    }
 
     
