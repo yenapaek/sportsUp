@@ -1,4 +1,7 @@
-/* #personnalInfo, */
+#personnalInfo {
+    width: 30%;
+    margin-right: 10px;
+}
 /* #eventInfo, */
 #articleInfo {
     display: flex;
@@ -17,7 +20,7 @@
 
 /* #myEvents {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
 } */
 /* 
 .titleEdit {
@@ -62,7 +65,7 @@ p {
     display: flex;
     /* #TODO change spacing to responsive, + media query */
     justify-content: space-evenly;
-    padding: 100px 100px 0 100px;
+    padding: 100px 50px 0 50px;
     background-color: #f6f7f8;
 }
 #personnalInfo {
@@ -71,7 +74,7 @@ p {
 }
 #changedInfo {
     /* #TODO change width to fixed size, + media query */
-    width: 65%;
+    width: 72%;
 }
 
 /* #TODO make floating profile info aside */
@@ -105,14 +108,19 @@ p {
     padding-bottom: 15px;
     width: 260px;
     box-shadow: 0rem 0rem 1rem 0rem rgb(110 110 110 / 11%);
-    animation:comeFromBottom 1s ease-out .8s;
+    animation: comeFromBottom 1s ease-out 0.8s;
 }
 
-.event-card:hover{
+.event-card:hover {
     transform: scale(1.05);
 }
+
+.card {
+    margin: 10px 10px;
+}
+
 .card-img {
-    /* background-image: url("https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80"); */
+    width: 15rem;
     background-size: cover;
     height: 175px;
     -webkit-clip-path: polygon (0 0, 100% 0, 100% 78%, 0% 100%);
@@ -127,12 +135,12 @@ p {
     margin: 15px 0 15px 0;
 }
 .event-card span {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
-.event-detail>div i {
+.event-detail > div i {
     margin-right: 4%;
-    color:rgba(237, 40, 40, 0.85);
+    color: rgba(237, 40, 40, 0.85);
 }
 
 .card-datetime span {
@@ -141,8 +149,8 @@ p {
 }
 
 /* #TODO fix font weight of card title  */
-.card-title{
-    font-family: 'Open Sans', sans-serif;
+.card-title {
+    font-family: "Open Sans", sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: black;
@@ -172,11 +180,11 @@ p {
     border-bottom: 2px solid #dadce0;
 }
 
-#mySportsList{
+#mySportsList {
     padding: 0;
 }
 .category {
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     color: black;
     list-style-type: none;
 }

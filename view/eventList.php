@@ -1,16 +1,14 @@
 <?php
-// echo "<pre>";
-// print_r($events);
-// echo "<pre>";
-if (!empty($eventsSelect)) {
-    foreach ($eventsSelect as $event): ?>
+
+if (is_array($events) || is_object($events)) {
+    foreach ($events as $event) : ?>
         <div class="card">
-                <img src="<?= $event["categoryImage"] ?>" alt="card background" class="card-img">
-                
-                <h1><?= $event["eventName"] ?></h1>
-                <p class="job-title"><?= $event["categoryName"] ?></p>
-                <p class="about"><?= $event["eventDate"] ?></p>
-                <a href="#" class="btn btn-white btn-animation-1">Want to join in?</a>
+            <img src="<?= $event["categoryImage"] ?>" alt="card background" class="card-img">
+            <h2><?= $event["eventName"] ?></h2>
+            <p class="job-title"><?= $event["categoryName"] ?></p>
+            <p class="about"><?= $event["eventDate"] ?></p>
+            <p><?= $howManyPplJoin["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
+            <a href="#" class="btn btn-white btn-animation-1">See More</a>
         </div>
-    <?php endforeach;
+<?php endforeach;
 }

@@ -3,7 +3,6 @@
     padding: 0;
 }
 
-
 /* red line  */
 /* red line  */
 nav a,
@@ -11,7 +10,7 @@ nav .start-home,
 a:hover ~ .animation {
     width: 15%;
 }
-nav .start-home{
+nav .start-home {
     left: 15%;
 }
 a:nth-child(1):hover ~ .animation {
@@ -36,7 +35,6 @@ nav a:nth-child(5):hover ~ .animation {
 nav a:nth-child(6):hover ~ .animation {
     left: 77%;
 }
-
 
 /* Search section --------------------------------------------------------------------------------------- */
 #formCriteria {
@@ -76,22 +74,22 @@ nav a:nth-child(6):hover ~ .animation {
     width: 40%;
 }
 
-input[type=text] {
+input[type="text"] {
     border: none;
     width: 1rem;
-    padding: .7rem;
+    padding: 0.7rem;
     background-color: #292929;
     border-radius: 4px;
     color: white;
 }
 
-input[type=submit] {
-    background-color: #EC9A29;
+input[type="submit"] {
+    background-color: #ec9a29;
     width: 100%;
     border: none;
     border-radius: 4px;
     color: white;
-    padding: .6rem;
+    padding: 0.6rem;
     margin-top: 25px;
     font-size: 1rem;
 }
@@ -104,14 +102,13 @@ select {
     font-size: 1.2rem;
 }
 
-#sportsCriteria{
+#sportsCriteria {
     background-color: white;
     border: none;
     border-radius: 4px;
     color: #292929;
     font-size: 1.2rem;
     height: 100%;
-    
 }
 
 /* Section One ------------------------------------------------------------------------------------------ */
@@ -126,11 +123,10 @@ select {
 
 /* Section Two ------------------------------------------------------------------------------------------ */
 
-
 #mainContainer section:nth-child(3) {
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     margin-bottom: 50px;
     font-family: "Roboto", sans-serif;
 }
@@ -148,14 +144,14 @@ a {
 }
 
 .card {
-    width: 20rem;
+    width: 18rem;
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    box-shadow: .5rem 5rem 5rem 3rem rgba(110, 110, 110, 0.2);
+    box-shadow: 0.5rem 5rem 5rem 3rem rgba(110, 110, 110, 0.2);
 }
 
 .card .card-img {
@@ -172,7 +168,6 @@ a {
     margin: 1rem 0;
     padding: 15px;
     text-align: center;
-    
 }
 
 .job-title {
@@ -190,73 +185,73 @@ a {
 }
 
 .btn:link,
-.btn:visited{
-	text-decoration: none;
-	text-transform:uppercase;
-	position:relative;
-	top:0;
-	left:0;
-	padding:20px 40px;
-	border-radius:100px;
-	display:inline-block;
-	transition: all .5s;
+.btn:visited {
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 20px 40px;
+    border-radius: 100px;
+    display: inline-block;
+    transition: all 0.5s;
 }
 
-.btn-white{
-	background-color: rgba(237, 40, 40, 0.85);
-	color:rgb(255, 255, 255);
-	font-size: .9em;
-	font-weight: 630;
+.btn-white {
+    background-color: rgba(237, 40, 40, 0.85);
+    color: rgb(255, 255, 255);
+    font-size: 0.9em;
+    font-weight: 630;
     margin-bottom: 30px;
 }
 
-.btn:hover{
-	box-shadow:0px 10px 10px rgba(0,0,0,0.2);
-	transform : translateY(-3px);
+.btn:hover {
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
 }
 
-.btn:active{
-	box-shadow:0px 5px 10px rgba(0,0,0,0.2);
-	transform: translateY(-1px);
+.btn:active {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
 }
 
-.btn-bottom-animation-1{
-	animation:comeFromBottom 1s ease-out .8s;
+.btn-bottom-animation-1 {
+    animation: comeFromBottom 1s ease-out 0.8s;
 }
 
-.btn::after{
-	content:"";
-	text-decoration: none;
-	text-transform:uppercase;
-	position:absolute;
-	width:100%;
-	height:100%;
-	top:0;
-	left:0;
-	border-radius:100px;
-	display:inline-block;
-	z-index:-1;
-	transition: all .5s;
+.btn::after {
+    content: "";
+    text-decoration: none;
+    text-transform: uppercase;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 100px;
+    display: inline-block;
+    z-index: -1;
+    transition: all 0.5s;
 }
 
 .btn-white::after {
-	background: rgba(237, 40, 40, 0.85);
+    background: rgba(237, 40, 40, 0.85);
 }
 
 .btn-animation-1:hover::after {
-	transform: scaleX(1.4) scaleY(1.6);
-	opacity: 0;
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
 }
 
-@keyframes comeFromBottom{
-0%{
-	opacity:0;
-	transform:translateY(40px);
-} 
-100%{
-	opacity:1;
-	transform:translateY(0);
-}
+@keyframes comeFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media screen and (min-width: 720px) {
@@ -268,19 +263,18 @@ a {
     }
     .card {
         margin: 2rem;
-        transition: transform .5s;
+        transition: transform 0.5s;
     }
 
     @keyframes fadeIn {
-        from{
+        from {
             opacity: 0;
         }
-        to{
+        to {
             opacity: 1;
         }
     }
-        .card:hover{
-            transform: scale(1.05);
+    .card:hover {
+        transform: scale(1.05);
     }
 }
-

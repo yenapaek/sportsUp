@@ -82,7 +82,13 @@ function myEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT * FROM events WHERE organizerId=?");
+    $req = $db->prepare("SELECT e.*, c.*, e.name AS eventName, c.name AS categoryName, c.image AS categoryImage
+    FROM events e 
+    JOIN categories c ON e.categoryId = c.id
+    WHERE organizerId=?");
+
+
+
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
     $myEvents = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -120,9 +126,10 @@ function suggestionEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT *
+    $req = $db->prepare("SELECT events.*, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
     FROM events
     JOIN mysports ON mysports.categoryId=events.categoryId
+    JOIN categories ON mysports.categoryId= categories.id
     WHERE mysports.userId = ?");
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
@@ -133,7 +140,7 @@ function suggestionEventsModel($userId)
 }
 
 /**
- * myArticlesModel
+ * myArticlesModel allow you to retrieve all the infos from articles where the user created them.
  *
  * @param  mixed $userId
  * @return array all the articles the user posted.
@@ -203,5 +210,4 @@ function editUserAvatarModel($avatar)
     $req->bindparam('id', $_SESSION['userId'], PDO::PARAM_STR);
     $req->execute();
     $req->closeCursor();
-
 }

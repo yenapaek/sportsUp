@@ -58,59 +58,69 @@ ob_start();
             <div class="info-container" id="myEvents">
                 <h1>My Events</h1>
                 <div class="list-event-cards">
-                    <?php require('myEventsShort.php') ?>
+                    <?php
+                    if (!empty($eventsSelect)) {
+                        $events = $eventsSelect;
+                        require('eventList.php');
+                    } else {
+                        echo '<div> No Event created</div>';
+                    }
+                    ?>
+
                 </div>
                 <div class="divider"></div>
                 <h1>Attending Events</h1>
                 <div class="list-event-cards">
                     <!-- #TODO add attending events function -->
-                    <?php require('myAttendingEventsShort.php') ?>
+                    <?php
+                    if (!empty($attendingEvents)) {
+                        $events = $attendingEvents;
+                        require('eventList.php');
+                    } else {
+                        echo '<div> No attending events</div>';
+                    }
+                    ?>
                 </div>
             </div>
             <div class="info-container" id="myEventSuggestions">
                 <h1>Event Suggestions</h1>
                 <div class="list-event-cards">
-                    <?php require('mySuggestionEventsShort.php') ?>
+                    <?php
+                    if (!empty($suggestionEvents)) {
+                        $events = $suggestionEvents;
+                        require('eventList.php');
+                    } else {
+                        echo '<div>No Suggestion</div>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
         <section id="productInfo">
             <div class="info-container" id="myProducts">
                 <h1>My Products</h1>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($products)) {
-                            foreach ($products as $product) {
-                        ?>
-                                <li><?= $product['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<div> No products</div>';
-                        }
-                        ?>
-                    </ul>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($articles)) {
+                        $events = $articles;
+                        require('eventList.php');
+                    } else {
+                        echo '<div>No articles added</div>';
+                    }
+                    ?>
                 </div>
             </div>
             <div class="info-container" id="myProductSuggestions">
                 <h1>Product Suggestions</h1>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($suggestionProducts)) {
-                            foreach ($suggestionProducts as $suggestionProduct) {
-                        ?>
-                                <li><?= $suggestionProduct['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<div> No products</div>';
-                        }
-                        ?>
-                    </ul>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($suggestionArticles)) {
+                        $events = $suggestionArticles;
+                        require('eventList.php');
+                    } else {
+                        echo '<div>No Suggestion</div>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>

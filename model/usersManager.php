@@ -201,4 +201,3 @@ function addNewKakaoUser($kakaoUserObj)
 //     // $apiUserObj = json_decode($output);
 //     curl_close($curl);
 // }
-
