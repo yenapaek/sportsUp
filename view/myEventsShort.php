@@ -23,9 +23,10 @@
                     <div class="card-description">
                         <span><?= !empty($event['description']) ? $event['description'] : '...'; ?></span>
                     </div>
-                    <!-- <div class="btn">
-                        <span>View Details</span>
-                    </div> -->
+                    <div>
+                        <i class="far fa-edit"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
                 </div>
             </div>
         <?php endforeach;

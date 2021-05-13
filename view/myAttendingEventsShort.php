@@ -23,9 +23,6 @@
                     <div class="card-description">
                         <span><?= !empty($attendingEvent['description']) ? $attendingEvent['description'] : '...'; ?></span>
                     </div>
-                    <!-- <div class="btn">
-                        <span>View Details</span>
-                    </div> -->
                 </div>
             </div>
         <?php endforeach;

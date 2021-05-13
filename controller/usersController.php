@@ -67,9 +67,6 @@ function manualLogin($email, $pass)
 {
     $userInfo = manualLoginModel($email, $pass);
     if ($userInfo) {
-        $title = "You get in";
-        #TODO need to implement what to do if u logged IN
-        
         $_SESSION['userId'] = $userInfo['id'];
         header("Location: index.php?action=profile");
     } else {
@@ -84,7 +81,8 @@ function manualLogin($email, $pass)
  * @param  mixed $authCode
  * @return 
  */
-function kakaoAPICall($authCode){
+function kakaoAPICall($authCode)
+{
     $kakaoUserId = kakaoAPICallModel($authCode);
     if ($kakaoUserId) {
         $title = "You get in";
@@ -96,4 +94,21 @@ function kakaoAPICall($authCode){
         $title = 'signIn';
         header("Location: index.php?action=signIn");
     }
+}
+
+
+/**
+ * editProfile allow you to update you profile informations
+ *
+ * @param  mixed $newInfos
+ * @return void
+ */
+function editProfile($firstName, $lastName, $email, $date, $city)
+{
+    editUserModel($firstName, $lastName, $email, $date, $city);
+}
+
+function editProfileAvatar($avatar)
+{
+    editUserAvatarModel($avatar);
 }

@@ -2,23 +2,32 @@
 <?php ob_start(); ?>
 
 <div id="bothForm">
+    <div id="toggleForm">
+        <p>SIGN UP</p>
+        <label class="switch">
+            <input type="checkbox" id="checkboxSlider">
+            <span class="slider round"></span>
+        </label>
+        <p>LOG IN</p>
+    </div>
 
     <?php if ($title === 'signIn') { ?>
         <h1>LOG IN</h1>
+
 
         <section id="signInFormSection">
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
 
-                    <div class="form-control">
+                    <div class="formControl">
                         <label for="emailSignIn">Email</label>
                         <input type="email" placeholder="yourMail@provider.com" id="emailSignIn" name="emailSignIn" />
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
                     </div>
-                    <div class="form-control">
+                    <div class="formControl">
                         <label for="passwordSignIn">Password</label>
                         <input type="password" placeholder="Password" id="passwordSignIn" name="passwordSignIn" />
                         <i class="fas fa-check-circle"></i>
@@ -54,28 +63,28 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
-                    <div class="form-control">
+                    <div class="formControl">
                         <label for="userNameSignUp">Username</label>
                         <input type="text" placeholder="username" id="userNameSignUp" name="userNameSignUp" />
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
                     </div>
-                    <div class="form-control">
+                    <div class="formControl">
                         <label for="emailSignUp">Email</label>
                         <input type="email" placeholder="yourMail@provider.com" id="emailSignUp" name="emailSignUp" />
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
                     </div>
-                    <div class="form-control">
+                    <div class="formControl">
                         <label for="passwordSignUp">Password</label>
                         <input type="password" placeholder="Password" id="passwordSignUp" name="passwordSignUp" />
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
                     </div>
-                    <div class="form-control">
+                    <div class="formControl">
                         <label for="passwordConfSignUp">Password check</label>
                         <input type="password" placeholder="Password two" id="passwordConfSignUp" name="passwordConfSignUp" />
                         <i class="fas fa-check-circle"></i>
