@@ -1,13 +1,9 @@
-/* #personnalInfo, */
-/* #eventInfo, */
 #articleInfo {
     display: flex;
     margin: 30px;
     color: black;
 }
 
-/* #personnalInfo div, */
-/* #eventInfo div, */
 #articleInfo div {
     display: flex;
     border: 1px solid black;
@@ -15,30 +11,12 @@
     text-align: center;
 }
 
-/* #myEvents {
-    display: flex;
-    flex-direction: column;
-} */
-/* 
-.titleEdit {
-    display: flex;
-    justify-content: space-around;
-} */
-
-/* #myInfos, */
 #mySports,
-/* #myEventsSuggestion, */
 #myArticles,
 #myArticlesSuggestion {
     display: flex;
     flex-direction: column;
 }
-
-/* #myInfos div:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-} */
-
 /* Additions */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
 
@@ -48,30 +26,29 @@ h3 {
     font-family: "Varela Round", sans-serif;
 }
 h2 {
-    font-size: 1.2rem;
-}
-h3 {
     font-size: 1rem;
-    color: rgba(237, 40, 40, 0.85);
 }
+
 p {
     font-family: "Open Sans", sans-serif;
+    font-size: 0.75rem;
 }
 
 #main-body {
     display: flex;
     /* #TODO change spacing to responsive, + media query */
     justify-content: space-evenly;
-    padding: 100px 100px 0 100px;
+    padding: 100px 50px 0 50px;
     background-color: #f6f7f8;
 }
 #personnalInfo {
     /* #TODO change width to fixed size, + media query */
-    width: 25%;
+    width: 23%;
+    margin-right: 15px;
 }
 #changedInfo {
     /* #TODO change width to fixed size, + media query */
-    width: 65%;
+    width: 73%;
 }
 
 /* #TODO make floating profile info aside */
@@ -94,68 +71,37 @@ p {
     background-color: #ffffff;
 }
 
-#list-event-cards {
-    display: flex;
-    flex-wrap: wrap;
-}
-.event-card {
+.card {
     border: 1px solid #dadce0;
-    border-radius: 8px;
     margin: 20px;
     padding-bottom: 15px;
-    width: 260px;
+    width: 240px;
     box-shadow: 0rem 0rem 1rem 0rem rgb(110 110 110 / 11%);
-    animation:comeFromBottom 1s ease-out .8s;
+    animation: comeFromBottom 1s ease-out 0.8s;
 }
 
-.event-card:hover{
+.card:hover {
     transform: scale(1.05);
 }
+
 .card-img {
-    /* background-image: url("https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80"); */
-    background-size: cover;
-    height: 175px;
+    width: 12rem;
     -webkit-clip-path: polygon (0 0, 100% 0, 100% 78%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
 }
 
-.event-card > div {
+.card-text {
     padding: 0 20px 0 20px;
 }
 
-.event-card > div div {
-    margin: 15px 0 15px 0;
-}
-.event-card p,
-span {
-    font-family: "Open Sans", sans-serif;
-    /* font-size: 0.75rem; */
-}
-
-.event-detail > div i {
-    margin-right: 2%;
-    color:rgba(237, 40, 40, 0.85);
-
-}
-
-.card-datetime span {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-}
-
 /* #TODO fix font weight of card title  */
-.card-title{
+.category-name{
     font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
-    color: black;
+    font-size: 0.8rem;
+    color: rgba(237, 40, 40, 0.85);
 }
 
-.card-description {
-    font-size: 0.9rem;
-    color: #706e6e;
-}
-
-.btn {
+/* .btn {
     font-family: "Open Sans";
     text-transform: capitalize;
     background-color: rgba(237, 40, 40, 0.85);
@@ -163,7 +109,13 @@ span {
 	border-radius: 100px;
     text-align: center;
     padding: 10px 0px 10px 0px;
-}
+} */
+
+/* .btn {
+    background-color: rgba(237, 40, 40, 0.85);
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+} */
 
 .list-event-cards {
     display: flex;
@@ -179,6 +131,7 @@ span {
 }
 .category {
     font-family: 'Open Sans';
+    font-size: 0.8rem;
     color: black;
     list-style-type: none;
 }
@@ -186,13 +139,15 @@ span {
 .category:hover {
     color: rgba(237, 40, 40, 0.85);
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 #avatar {
     padding: 50px 0 30px 0;
     padding-left: 26%;
 }
+
+/********************* menu red line **********************/
 nav a,
 nav .start-home,
 a:hover ~ .animation {

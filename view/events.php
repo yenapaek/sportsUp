@@ -1,6 +1,6 @@
-<?php 
-    $title = "Events"; 
-    $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
+<?php
+$title = "Events";
+$style = '<link href="./public/css/events.css" rel="stylesheet"/>';
 ?>
 <?php ob_start(); ?>
 
@@ -36,7 +36,10 @@
         <div>List of events</div>
     </section>
     <section>
-        <?php require('eventList.php') ?>
+        <?php
+        if (!empty($events)) {
+            require('eventList.php');
+        } ?>
     </section>
 </div>
 <script src="./public/js/events.js"></script>

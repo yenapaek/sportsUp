@@ -58,7 +58,7 @@ try {
             }
             break;
         case "events":
-            categoriesInfo();
+            eventsInfo("default",true);
             break;
         case "attendEvent":
             if (!empty($_POST['eventId'])) {
@@ -69,9 +69,9 @@ try {
             break;
         case "searchSubmit":
             if (isset($_REQUEST['searchEvent'])) {
-                eventsSearchInput($_REQUEST['searchEvent']);
+                eventsInfo("input", $_REQUEST['searchEvent']);
             } elseif (isset($_REQUEST['sportCriteria'])) {
-                eventsSearchSelect($_REQUEST['sportCriteria']);
+                eventsInfo("select", $_REQUEST['sportCriteria']);
             }
             break;
 

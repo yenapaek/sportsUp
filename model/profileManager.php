@@ -31,7 +31,7 @@ function mySportsModel($userId)
 
     $req = $db->prepare("SELECT c.name AS category_name
     FROM categories c
-    JOIN mySports mS 
+    JOIN mysports mS 
     ON c.id = mS.categoryId
     WHERE userId=?");
 
@@ -57,7 +57,7 @@ function displaySportsCategories($userId)
     WHERE c.id
     NOT IN (SELECT c.id
             FROM categories c
-            JOIN mySports mS
+            JOIN mysports mS
             ON c.id = mS.categoryId
             WHERE mS.userId = ?)");
     $req->bindParam(1, $userId, PDO::PARAM_INT);
@@ -76,7 +76,7 @@ function displaySportsCategories($userId)
 function addMySportModel($userId, $categoryId)
 {
     $db = dbConnect();
-    $req = $db->prepare("SELECT COUNT(*) FROM mySports WHERE userId = ? AND categoryId = ?");
+    $req = $db->prepare("SELECT COUNT(*) FROM mysports WHERE userId = ? AND categoryId = ?");
     $req->bindParam(1, $userId, PDO::PARAM_INT);
     $req->bindParam(2, $categoryId, PDO::PARAM_INT);
     $req->execute();
@@ -84,7 +84,7 @@ function addMySportModel($userId, $categoryId)
     $req->closeCursor();
 
     if ( $mySportsCount == 0){
-        $req = $db->prepare("INSERT INTO mySports(userId, categoryId) VALUES(?, ?)");
+        $req = $db->prepare("INSERT INTO mysports(userId, categoryId) VALUES(?, ?)");
         $req->bindParam(1, $userId, PDO::PARAM_INT);
         $req->bindParam(2, $categoryId, PDO::PARAM_INT);
         $req->execute();
@@ -102,7 +102,13 @@ function myEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT * FROM events WHERE organizerId=?");
+    $req = $db->prepare("SELECT e.*, c.*, e.id AS eventId, e.name AS eventName, c.name AS categoryName, c.image AS categoryImage
+    FROM events e 
+    JOIN categories c ON e.categoryId = c.id
+    WHERE organizerId=?");
+
+
+
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
     $myEvents = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -121,10 +127,11 @@ function displayAttendingEvents($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT *
+    $req = $db->prepare("SELECT events.*, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
     FROM events
-    JOIN attendingEvents ON attendingEvents.eventId = events.id
-    WHERE attendingEvents.userid = ?");
+    JOIN attendingevents ON attendingevents.eventId = events.id
+    JOIN categories ON events.categoryId=categories.id
+    WHERE attendingevents.userid = ?");
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
     $attendingEvents = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -143,7 +150,7 @@ function displayAttendingEvents($userId)
 function addAttendingEventModel($userId, $eventId)
 {
     $db = dbConnect();
-    $req = $db->prepare("SELECT COUNT(*) FROM attendingEvents WHERE userId = ? AND eventId = ?");
+    $req = $db->prepare("SELECT COUNT(*) FROM attendingevents WHERE userId = ? AND eventId = ?");
     $req->bindParam(1, $userId, PDO::PARAM_INT);
     $req->bindParam(2, $eventId, PDO::PARAM_INT);
     $req->execute();
@@ -151,7 +158,7 @@ function addAttendingEventModel($userId, $eventId)
     $req->closeCursor();
 
     if ($attendingEventsCount ==  0){
-        $req = $db->prepare("INSERT INTO attendingEvents(id, userId, eventId) VALUES (null, ?, ?)");
+        $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
         $req->bindParam(1, $userId, PDO::PARAM_INT);
         $req->bindParam(2, $eventId, PDO::PARAM_INT);
         $req->execute();
@@ -169,10 +176,11 @@ function suggestionEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT *
+    $req = $db->prepare("SELECT events.*, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
     FROM events
-    JOIN mySports ON mySports.categoryId=events.categoryId
-    WHERE mySports.userId = ?");
+    JOIN mysports ON mysports.categoryId=events.categoryId
+    JOIN categories ON mysports.categoryId=categories.id
+    WHERE mysports.userId = ?");
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
     $suggestionEvents = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -182,7 +190,7 @@ function suggestionEventsModel($userId)
 }
 
 /**
- * myArticlesModel
+ * myArticlesModel allow you to retrieve all the infos from articles where the user created them.
  *
  * @param  mixed $userId
  * @return array all the articles the user posted.
@@ -252,5 +260,4 @@ function editUserAvatarModel($avatar)
     $req->bindparam('id', $_SESSION['userId'], PDO::PARAM_STR);
     $req->execute();
     $req->closeCursor();
-
 }

@@ -10,15 +10,17 @@ require_once("./model/profileManager.php");
  * @return array all the informations of the user's profile.
  * @return array $mySports all the sports the user is interested in.
  */
-function profile($userId){
+function profile($userId)
+{
     $infoProfile = myProfileModel($userId);
     $mySports = mySportsModel($userId);
-    $myEvents = myEventsModel($userId);
+    $eventsSelect = myEventsModel($userId);
     $attendingEvents = displayAttendingEvents($userId);
     $suggestionEvents = suggestionEventsModel($userId);
     $articles = myArticlesModel($userId);
     $suggestionArticles = '';
     $categories = displaySportsCategories($userId);
+    $howManyPplJoin = howManyPplJoin(2);
     require('./view/profile.php');
 }
 
@@ -38,7 +40,7 @@ function signInAndUpPage($param)
 
 
 /**
- * newUser
+ * newUser allow you to create a new user
  *
  * @param  mixed $user
  * @param  mixed $email
@@ -57,7 +59,7 @@ function newUser($user, $email, $pass, $conf)
 }
 
 /**
- * manualLogin
+ * manualLogin allow you to connect with your email and password the user created his account with
  *
  * @param  mixed $email
  * @param  mixed $pass
@@ -108,6 +110,12 @@ function editProfile($firstName, $lastName, $email, $date, $city)
     editUserModel($firstName, $lastName, $email, $date, $city);
 }
 
+/**
+ * editProfileAvatar allow you to update picture
+ *
+ * @param  mixed $avatar
+ * @return void
+ */
 function editProfileAvatar($avatar)
 {
     editUserAvatarModel($avatar);

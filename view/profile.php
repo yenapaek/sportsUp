@@ -9,7 +9,7 @@ ob_start();
         <input hidden id="file" type="file" multiple>
         <div class="info-container" id="myInfos">
             <!-- #TODO user must be able to upload an avatar when creating a profile -->
-            <div id="avatarDiv">
+            <div id="avatar">
                 <img class="profile-img" id="profile-img" src="<?= !empty($infoProfile['avatar']) ? "$avatarPath/{$infoProfile['avatar']}" : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image">
             </div>
             <div>
@@ -34,11 +34,11 @@ ob_start();
                         foreach ($mySports as $sport) :
                     ?>
                             <li class="category">#<?= $sport['category_name']; ?></li><br>
-                    <?php
+                        <?php
                         endforeach;
                     else : ?>
                         <li class="category"> No sport added</li>
-                    <?php endif;?>
+                    <?php endif; ?>
                 </ul>
                 <div id="sportSelect">
                     <select name="sportsCategories" id="sportsCategories">
@@ -50,7 +50,7 @@ ob_start();
                     <div id="addSport" class="btn" onclick="addMySport();">Add sport</div>
                 </div>
             </div>
-            
+
         </div>
     </section>
     <div id="changedInfo">
@@ -58,59 +58,68 @@ ob_start();
             <div class="info-container" id="myEvents">
                 <h1>My Events</h1>
                 <div class="list-event-cards">
-                    <?php require('myEventsShort.php') ?>
+                    <?php
+                    if (!empty($eventsSelect)) {
+                        $events = $eventsSelect;
+                        require('eventList.php');
+                    } else {
+                        echo '<div> No Event created</div>';
+                    }
+                    ?>
                 </div>
                 <div class="divider"></div>
                 <h1>Attending Events</h1>
                 <div class="list-event-cards">
-                <!-- #TODO add attending events function -->
-                    <?php require('myAttendingEventsShort.php') ?>
+                    <!-- #TODO add attending events function -->
+                    <?php
+                    if (!empty($attendingEvents)) {
+                        $events = $attendingEvents;
+                        require('eventList.php');
+                    } else {
+                        echo '<div> No attending events</div>';
+                    }
+                    ?>
                 </div>
             </div>
             <div class="info-container" id="myEventSuggestions">
                 <h1>Event Suggestions</h1>
                 <div class="list-event-cards">
-                    <?php require('mySuggestionEventsShort.php') ?>
+                    <?php
+                    if (!empty($suggestionEvents)) {
+                        $events = $suggestionEvents;
+                        require('eventList.php');
+                    } else {
+                        echo '<div>No Suggestion</div>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
         <section id="productInfo">
             <div class="info-container" id="myProducts">
                 <h1>My Products</h1>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($products)) {
-                            foreach ($products as $product) {
-                        ?>
-                                <li><?= $product['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<div> No products</div>';
-                        }
-                        ?>
-                    </ul>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($articles)) {
+                        $events = $articles;
+                        require('eventList.php');
+                    } else {
+                        echo '<div>No articles added</div>';
+                    }
+                    ?>
                 </div>
             </div>
             <div class="info-container" id="myProductSuggestions">
                 <h1>Product Suggestions</h1>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($suggestionProducts)) {
-                            foreach ($suggestionProducts as $suggestionProduct) {
-                        ?>
-                                <li><?= $suggestionProduct['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<div> No products</div>';
-                        }
-                        ?>
-                    </ul>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($suggestionArticles)) {
+                        $events = $suggestionArticles;
+                        require('eventList.php');
+                    } else {
+                        echo '<div>No Suggestion</div>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
