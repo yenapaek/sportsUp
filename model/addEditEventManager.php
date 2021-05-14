@@ -45,7 +45,8 @@ function createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, 
         $req->bindParam(1, $name, PDO::PARAM_STR);
         $req->bindParam(2, $categoryId, PDO::PARAM_INT);
 
-        $eventId = $req->execute();
+        $req->execute();
+        $eventId = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
         return $eventId;
@@ -64,6 +65,7 @@ function selectEvent($idEvent)
 
     $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate FROM events WHERE id=? ");
     $req->bindParam(1, $idEvent, PDO::PARAM_INT);
+
     $req->execute();
     $event  = $req->fetchAll(PDO::FETCH_ASSOC);
     $req->closeCursor();

@@ -42,7 +42,7 @@ function categoriesInfo2()
 function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
 {
     $eventId = createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
-    eventDetail($eventId);
+    eventDetail($eventId['id']);
 }
 
 /**
