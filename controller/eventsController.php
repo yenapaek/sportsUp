@@ -1,5 +1,6 @@
 <?php
 require("./model/categoryManager.php");
+require("./model/addEditEventManager.php");
 
 function eventsInfo($search, $name)
 {
@@ -12,4 +13,16 @@ function eventsInfo($search, $name)
     } else {
         require("./view/eventList.php");
     }
+}
+
+function categoriesInfo2()
+{
+    $categories  = categoriesInfoModel();
+    // $eventsSelect = defaultSearch(false);
+    require("./view/addEditEvent.php");
+}
+
+function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+{
+    createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
 }

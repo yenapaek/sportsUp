@@ -3,7 +3,7 @@
 function categoriesInfoModel()
 {
     $dataBase = dbConnect();
-    $rawResponse = $dataBase->query("SELECT name FROM categories order by name");
+    $rawResponse = $dataBase->query("SELECT * FROM categories order by name");
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
     return $infoArray;

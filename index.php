@@ -13,8 +13,12 @@ try {
         case "aboutUs":
             aboutUs();
             break;
+        case "addEditEvent":
+            categoriesInfo2();
+            break;
         case "createEvent":
-            createEvent();
+            createEvent($_POST['eventName'],$_POST['sportCategory'],$_POST['city'], $_POST['maxPlayers'],
+            $_POST['eventDate'], $_POST['eventDuration'], $_POST['eventDescription'],$_POST['eventFee']);
             break;
         case "signIn":
         case "signUp":
