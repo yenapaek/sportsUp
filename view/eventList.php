@@ -7,19 +7,23 @@ if (is_array($events) || is_object($events)) {
                 <h2><?= $event["eventName"] ?></h2>
                 <p class="category-name"><?= $event["categoryName"] ?></p>
                 <p class="event-date"><?= $event["eventDate"] ?></p>
-                <p><?= $howManyPplJoin["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
-                <?php 
-                #TODO check if user is attending event if true, change content of button?
-                    #TODO add attendEventAction msg - check in db
+                <p><?= $event["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
+                <?php
+                #TODO clean up changing action
+                    if(!empty($_SESSION['userId'])){
+                        $btnAction = "eventDetail&eventId=".$event['eventId']; 
+                    } else {
+                        $btnAction = "signInAndSignUp"; 
+                    }
                 ?>
-                <a href="#" class="card-btn" eventId="<?php if(!empty($_SESSION['userId'])) { echo $event['eventId']; } ?>">Attend Event</a>
+                <a href="index.php?action=<?= $btnAction; ?>" class="card-btn" target="_blank">View Event</a>
                 <?php
                     if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']):
                 ?>
-                        <div>
-                            <i class="far fa-edit"></i>
-                            <i class="far fa-trash-alt"></i>
-                        </div>
+                    <div>
+                        <a href=""><i class="far fa-edit"></i></a>
+                        <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId'] ?>"><i class="far fa-trash-alt"></i></a>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

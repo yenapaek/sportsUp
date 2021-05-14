@@ -3,7 +3,7 @@
 function categoriesInfoModel()
 {
     $dataBase = dbConnect();
-    $rawResponse = $dataBase->query("SELECT name FROM categories order by name");
+    $rawResponse = $dataBase->query("SELECT * FROM categories order by name");
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
     return $infoArray;
@@ -12,7 +12,8 @@ function categoriesInfoModel()
 function eventSearch($search, $name)
 {
     $dataBase = dbConnect();
-    $query = "SELECT e.id AS eventId, e.organizerId AS organizerId, c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+    $query = "SELECT e.id AS eventId, e.organizerId AS organizerId, c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage,
+             (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany
             FROM events e
             JOIN categories c ON e.categoryId = c.id";
     switch ($search) {
@@ -32,17 +33,4 @@ function eventSearch($search, $name)
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
     return $infoArray;
-}
-
-function howManyPplJoin($userId)
-{
-    $db = dbConnect();
-
-    $req = $db->prepare("SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=?");
-    $req->bindParam(1, $userId, PDO::PARAM_INT);
-    $req->execute();
-    $howManyPplJoin = $req->fetch(PDO::FETCH_ASSOC);
-    $req->closeCursor();
-
-    return $howManyPplJoin;
 }

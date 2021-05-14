@@ -12,11 +12,6 @@
                 <img src="./public/images/logo.png" alt="">
             </div>
         </a>
-        <!-- <div class="sup">
-            <a href="index.php?action=landing">
-                <h1>SPORTS UP</h1>
-            </a>
-        </div> -->
     </div>
 
     <div class="topRight">
