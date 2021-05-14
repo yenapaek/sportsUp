@@ -2,7 +2,6 @@
 require_once("./model/usersManager.php");
 require_once("./model/profileManager.php");
 
-
 /**
  * profile
  *
@@ -26,7 +25,7 @@ function profile($userId)
 function addAttendingEvent($userId, $eventId)
 {
     addAttendingEventModel($userId, $eventId);
-    header("Location: index.php?action=eventDetail&eventId=".$eventId);
+    header("Location: index.php?action=eventDetail&eventId=" . $eventId);
 }
 
 function addMySport($userId, $categoryId)
@@ -120,4 +119,13 @@ function editProfile($firstName, $lastName, $email, $date, $city)
 function editProfileAvatar($avatar)
 {
     editUserAvatarModel($avatar);
+}
+
+function logout()
+{
+    if ($_SESSION["access_token"]) {
+        kakaoLogout();
+    }
+    session_destroy();
+    header("Location: index.php?action=landing");
 }
