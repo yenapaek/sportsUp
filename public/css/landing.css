@@ -270,8 +270,8 @@ nav a:nth-child(5):hover ~ .animation {
     margin: auto;
     margin-top: 70px;
     width: 97%;
-    height: 77vh;
-    border: 2px solid black;
+    /* height: 77vh; */
+    /* border: 2px solid black; */
 }
 
 
