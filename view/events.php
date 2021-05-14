@@ -13,8 +13,8 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
             </div>
             <div id="searchBar">
                 <select name="selectCriteria" id="selectCriteria">
-                    <option value="Event" selected>By Event</option>
-                    <option value="Sport">By Sport</option>
+                    <option value="Event" selected>By Event Name</option>
+                    <option value="Sport">By Sports Category</option>
                 </select>
                 <div id="sportSelect">
                     <select name="sportsCriteria" id="sportsCriteria">
@@ -27,7 +27,7 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
                 <input type="text" name="searchEvent" id="searchInput" placeholder="Type Here">
             </div>
             <div>
-                <input type="submit" value="search" id="submitButton" class="card-btn">
+                <input type="submit" value="search" id="submitButton">
             </div>
         </form>
     </header>

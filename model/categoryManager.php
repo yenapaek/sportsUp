@@ -16,9 +16,10 @@ function eventSearch($search, $name)
              (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany
             FROM events e
             JOIN categories c ON e.categoryId = c.id";
+
     switch ($search) {
         case "input":
-            $add = " WHERE e.name = '$name'";
+            $add = " WHERE e.name LIKE '%$name%'";
             break;
 
         case "select":

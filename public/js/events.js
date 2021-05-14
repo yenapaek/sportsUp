@@ -1,7 +1,14 @@
-let selectCriteria = document.getElementById("selectCriteria");
-let sportSelect = document.getElementById("sportSelect");
-let searchInput = document.getElementById("searchInput");
 let formCriteria = document.getElementById("formCriteria");
+
+// by sport or event
+let selectCriteria = document.getElementById("selectCriteria");
+
+// div for sports categories
+let sportSelect = document.getElementById("sportSelect");
+
+// search input text
+let searchInput = document.getElementById("searchInput");
+
 let checker = false;
 sportSelect.hidden = true;
 
@@ -47,16 +54,18 @@ function loadFile(sportName, isForInput) {
         if(checker == true) {
             let criteria = document.querySelector("#sportsCriteria");
             let criteriaValue = criteria.options[criteria.selectedIndex].value;
+            console.log(criteriaValue);
             loadFile(criteriaValue, true);
         } else {
             let input = document.getElementById("searchInput");
             let inputValue = input.value;
+            console.log(inputValue);
             loadFile(inputValue, false);
         }
     });
 }
 
-{
+// {
     // let buttons = document.querySelectorAll("a[eventId]");    
     // const attendEvent = (button) => {
     //     let eventId = button.getAttribute('eventId');
@@ -82,6 +91,6 @@ function loadFile(sportName, isForInput) {
         // } else {
         //     button.href = "index.php?action=signInAndSignUp";
         // }
-    }
-    // buttons.forEach(button => attendEvent(button));
-}
+//     }
+//     buttons.forEach(button => attendEvent(button));
+// }
