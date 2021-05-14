@@ -126,7 +126,8 @@ function displayAttendingEvents($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
+    $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage,
+        (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=events.id) as howMany
     FROM events
     JOIN attendingevents ON attendingevents.eventId = events.id
     JOIN categories ON events.categoryId=categories.id
@@ -175,7 +176,8 @@ function suggestionEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
+    $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage,
+            (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=events.id) as howMany
     FROM events
     JOIN mysports ON mysports.categoryId=events.categoryId
     JOIN categories ON mysports.categoryId=categories.id
