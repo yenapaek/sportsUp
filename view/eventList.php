@@ -13,7 +13,7 @@ if (is_array($events) || is_object($events)) {
                     if(!empty($_SESSION['userId'])){
                         $btnAction = "eventDetail&eventId=".$event['eventId']; 
                     } else {
-                        $btnAction = "signInAndSignUp"; 
+                        $btnAction = "signUp"; 
                     }
                 ?>
                 <a href="index.php?action=<?= $btnAction; ?>" class="card-btn" target="_blank">View Event</a>
