@@ -62,7 +62,7 @@ function selectEvent($idEvent)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT * FROM events WHERE id=? ");
+    $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate FROM events WHERE id=? ");
     $req->bindParam(1, $idEvent, PDO::PARAM_INT);
     $req->execute();
     $event  = $req->fetchAll(PDO::FETCH_ASSOC);

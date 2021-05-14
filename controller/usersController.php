@@ -26,6 +26,7 @@ function profile($userId)
 function addAttendingEvent($userId, $eventId)
 {
     addAttendingEventModel($userId, $eventId);
+    header("Location: index.php?action=eventDetail&eventId=".$eventId);
 }
 
 function addMySport($userId, $categoryId)

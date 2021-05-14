@@ -79,8 +79,8 @@ try {
             deleteEvent($_REQUEST['deleteEventId']);
             break;
         case "attendEvent":
-            if (!empty($_POST['eventId'])) {
-                addAttendingEvent($_SESSION['userId'], $_POST['eventId']);
+            if (!empty($_REQUEST['eventId'])) {
+                addAttendingEvent($_SESSION['userId'], $_REQUEST['eventId']);
             } else {
                 throw new Exception("Error with attending event.");
             }
@@ -92,7 +92,6 @@ try {
                 eventsInfo("select", $_REQUEST['sportCriteria']);
             }
             break;
-
         case "logout":
             logout();
             break;
