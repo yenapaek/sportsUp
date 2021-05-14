@@ -39,7 +39,7 @@ body {
 
 .rightBox {
     margin: 0px;
-    right: -120px;
+    /* right: -120px; */
 }
 nav {
     position: relative;
