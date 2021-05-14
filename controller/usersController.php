@@ -121,3 +121,12 @@ function editProfileAvatar($avatar)
 {
     editUserAvatarModel($avatar);
 }
+
+function logout()
+{
+    if($_SESSION["access_token"]){
+        kakaoLogout();
+    }
+    session_destroy();
+    header("Location: index.php?action=landing");
+}
