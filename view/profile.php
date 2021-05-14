@@ -37,7 +37,7 @@ ob_start();
                         <?php
                         endforeach;
                     else : ?>
-                        <li class="category"> No sport added</li>
+                        <!-- <p> No sport added</p> -->
                     <?php endif; ?>
                 </ul>
                 <div id="sportSelect">
@@ -47,7 +47,7 @@ ob_start();
                             <option id="<?= $category['id']; ?>"><?= $category["name"]; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <div id="addSport" class="btn" onclick="addMySport();">Add sport</div>
+                    <a id="addSport" class="card-btn" onclick="addMySport();">Add sport</a>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@ ob_start();
                         $events = $eventsSelect;
                         require('eventList.php');
                     } else {
-                        echo '<div> No Event created</div>';
+                        echo '<p>No events added</p>';
                     }
                     ?>
                 </div>
@@ -76,7 +76,7 @@ ob_start();
                         $events = $attendingEvents;
                         require('eventList.php');
                     } else {
-                        echo '<div> No attending events</div>';
+                        echo '<p> No attending events</p>';
                     }
                     ?>
                 </div>
@@ -89,7 +89,7 @@ ob_start();
                         $events = $suggestionEvents;
                         require('eventList.php');
                     } else {
-                        echo '<div>No Suggestion</div>';
+                        echo '<p>No event suggestions. Please select some sports to fill the event suggestions.</p>';
                     }
                     ?>
                 </div>
@@ -104,7 +104,7 @@ ob_start();
                         $events = $articles;
                         require('eventList.php');
                     } else {
-                        echo '<div>No articles added</div>';
+                        echo '<p>No products added</p>';
                     }
                     ?>
                 </div>
@@ -117,7 +117,7 @@ ob_start();
                         $events = $suggestionArticles;
                         require('eventList.php');
                     } else {
-                        echo '<div>No Suggestion</div>';
+                        echo '<p>No product suggestions</p>';
                     }
                     ?>
                 </div>

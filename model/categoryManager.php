@@ -12,7 +12,7 @@ function categoriesInfoModel()
 function eventSearch($search, $name)
 {
     $dataBase = dbConnect();
-    $query = "SELECT e.id AS eventId, e.organizerId AS organizerId, c.name AS categoryName, e.name AS eventName, e.eventDate as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
+    $query = "SELECT e.id AS eventId, e.organizerId AS organizerId, c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage 
             FROM events e
             JOIN categories c ON e.categoryId = c.id";
     switch ($search) {

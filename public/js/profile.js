@@ -26,8 +26,9 @@ myFile.addEventListener("change", function () {
 
     var form = new FormData();
     form.append("file", myFile.files[0]);
-
     xhr.send(form);
+
+    console.log(myFile.files[0]);
 
     let files = this.files,
         filesLen = files.length,
@@ -36,6 +37,7 @@ myFile.addEventListener("change", function () {
     for (let i = 0; i < filesLen; i++) {
         imgType = files[i].name.split(".");
         imgType = imgType[imgType.length - 1].toLowerCase();
+        console.log(imgType);
 
         if (allowType.indexOf(imgType) != 1) {
             var reader = new FileReader();
@@ -49,7 +51,6 @@ myFile.addEventListener("change", function () {
         }
     }
 });
-
 
 editPersonnalInfos.addEventListener("click", function () {
     const myInfo = document.querySelector("#myInfos");

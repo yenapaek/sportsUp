@@ -38,8 +38,8 @@ nav a:nth-child(6):hover ~ .animation {
 
 /* Search section --------------------------------------------------------------------------------------- */
 #formCriteria {
-    background-color: black;
-    color: white;
+    background-color: #f6f7f8;
+    color: black;
     font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -75,19 +75,19 @@ nav a:nth-child(6):hover ~ .animation {
 }
 
 input[type="text"] {
-    border: none;
+    border: 1px solid #dadce0;
     width: 1rem;
     padding: 0.7rem;
-    background-color: #292929;
-    border-radius: 4px;
-    color: white;
+    /* background-color: #292929; */
+    border-radius: 100px;
+    color: black;
 }
 
 input[type="submit"] {
-    background-color: #ec9a29;
-    width: 100%;
+    background-color: rgba(237, 40, 40, 0.85);
+    width: 30%;
     border: none;
-    border-radius: 4px;
+    border-radius: 100px;
     color: white;
     padding: 0.6rem;
     margin-top: 25px;
@@ -115,7 +115,7 @@ select {
 #mainContainer section:nth-child(2) {
     color: #292929;
     font-size: 2rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Varela Round", sans-serif;
     text-align: center;
     padding-top: 50px;
     padding-bottom: 60px;
@@ -131,115 +131,63 @@ select {
     font-family: "Open Sans", sans-serif;
 }
 
-a {
-    text-decoration: none;
-    color: rgb(139, 139, 139);
-}
-
-.card-wrapper {
-    display: flex;
-    align-items: start;
-    align-content: center;
-    flex-direction: column;
-}
-
 .card {
-    width: 17rem;
+    width: 15rem;
     background-color: #f0f0f0;
     border: 1px solid #dadce0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem 0;
+    align-items: flex-start;
     box-shadow: 0.5rem 5rem 5rem 3rem rgba(110, 110, 110, 0.2);
 }
-.card h2 {
-    font-size: 1.3rem;
-}
-.card p {
-    color: black;
-    font-size: 1rem;
+
+.card-text {
+    margin: 1rem 2rem 1rem 2rem;
 }
 
-.card .card-img {
+.card-text h2 {
+    font-size: 1.1rem;
+}
+
+.card-text p {
+    color: black;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.card-text>.category-name {
+    color: rgba(237, 40, 40, 0.85);
+}
+
+.card-img {
     width: 100%;
-    height: 12rem;
+    height: 9rem;
     object-fit: cover;
     -webkit-clip-path: polygon (0 0, 100% 0, 100% 78%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
 }
 
 /************************* Buttons **********************/
-/* .btn:link,
-.btn:visited {
+
+.card-btn {
     text-decoration: none;
     text-transform: uppercase;
-    position: relative;
-    top: 0;
-    left: 0;
-    padding: 20px 40px;
-    border-radius: 100px;
-    display: inline-block;
-    transition: all 0.5s;
-}
-
-.btn-white {
+    font-size: 0.85rem;
     background-color: rgba(237, 40, 40, 0.85);
     color: rgb(255, 255, 255);
-    font-size: 0.9em;
-    font-weight: 630;
-    margin-bottom: 30px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0 1rem 0;
+    border-radius: 100px;
+    display: inline-block;
 }
 
-.btn:hover {
+a.card-btn:hover {
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
 }
 
-.btn:active {
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px);
-}
+/*********************** Media Queries **********************/
 
-.btn-bottom-animation-1 {
-    animation: comeFromBottom 1s ease-out 0.8s;
-}
-
-.btn::after {
-    content: "";
-    text-decoration: none;
-    text-transform: uppercase;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 100px;
-    display: inline-block;
-    z-index: -1;
-    transition: all 0.5s;
-}
-
-.btn-white::after {
-    background: rgba(237, 40, 40, 0.85);
-}
-
-.btn-animation-1:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
-
-@keyframes comeFromBottom {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-} */
 
 @media screen and (min-width: 720px) {
     .card-wrapper {

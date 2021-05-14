@@ -12,9 +12,9 @@ if (is_array($events) || is_object($events)) {
                 #TODO check if user is attending event if true, change content of button?
                     #TODO add attendEventAction msg - check in db
                 ?>
-                <a href="#" class="card-btn" eventId="<?= $event['eventId'] ?>">Attend Event</a>
+                <a href="#" class="card-btn" eventId="<?php if(!empty($_SESSION['userId'])) { echo $event['eventId']; } ?>">Attend Event</a>
                 <?php
-                    if ($event['organizerId'] == $_SESSION['userId']):
+                    if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']):
                 ?>
                         <div>
                             <i class="far fa-edit"></i>

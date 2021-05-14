@@ -5,7 +5,6 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
 <?php ob_start(); ?>
 
 <div id="mainContainer">
-
     <header>
         <form action="" id="formCriteria" method="POST">
             <input type="hidden" name="action" value="searchSubmit">
@@ -28,7 +27,7 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
                 <input type="text" name="searchEvent" id="searchInput" placeholder="Type Here">
             </div>
             <div>
-                <input type="submit" value="search" id="submitButton">
+                <input type="submit" value="search" id="submitButton" class="card-btn">
             </div>
         </form>
     </header>

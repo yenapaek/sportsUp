@@ -102,7 +102,7 @@ function myEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT e.*, c.*, e.id AS eventId, e.name AS eventName, c.name AS categoryName, c.image AS categoryImage
+    $req = $db->prepare("SELECT e.*, c.*, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.id AS eventId, e.name AS eventName, c.name AS categoryName, c.image AS categoryImage
     FROM events e 
     JOIN categories c ON e.categoryId = c.id
     WHERE organizerId=?");
@@ -127,7 +127,7 @@ function displayAttendingEvents($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT events.*, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
+    $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
     FROM events
     JOIN attendingevents ON attendingevents.eventId = events.id
     JOIN categories ON events.categoryId=categories.id
@@ -176,7 +176,7 @@ function suggestionEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT events.*, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
+    $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage
     FROM events
     JOIN mysports ON mysports.categoryId=events.categoryId
     JOIN categories ON mysports.categoryId=categories.id
@@ -185,7 +185,6 @@ function suggestionEventsModel($userId)
     $req->execute();
     $suggestionEvents = $req->fetchAll(PDO::FETCH_ASSOC);
     $req->closeCursor();
-
     return $suggestionEvents;
 }
 
@@ -260,4 +259,5 @@ function editUserAvatarModel($avatar)
     $req->bindparam('id', $_SESSION['userId'], PDO::PARAM_STR);
     $req->execute();
     $req->closeCursor();
+
 }
