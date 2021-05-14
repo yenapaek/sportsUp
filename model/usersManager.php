@@ -183,7 +183,9 @@ function addNewKakaoUser($kakaoUserObj)
     $req->execute();
     $req->closeCursor();
 }
-function kakaoUnLink(){
+
+function kakaoUnLink()
+{
     $token = $_SESSION["access_token"];
     $url = 'https://kapi.kakao.com/v1/user/unlink';
 
@@ -201,7 +203,8 @@ function kakaoUnLink(){
 
 // Belongs as a second parameter to the url in kakaoLogout, it doesn't do anything:  &logout_redirect_uri=http://127.0.0.1/sportsEvent/index.php
 
-function kakaoLogout(){
+function kakaoLogout()
+{
     kakaoUnLink();
     $url = 'https://kapi.kakao.com/oauth/logout?client_id=37fea6edf3b24bab4469275577842ba5 HTTP/1.1';
     $curl = curl_init();

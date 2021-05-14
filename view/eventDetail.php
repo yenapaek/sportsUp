@@ -31,7 +31,7 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
             <?php endif; ?>
         </section>
 <?php endforeach;
-}
+} 
 
 $content = ob_get_clean();
 require("template.php");

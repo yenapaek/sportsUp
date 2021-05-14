@@ -260,5 +260,4 @@ function editUserAvatarModel($avatar)
     $req->bindparam('id', $_SESSION['userId'], PDO::PARAM_STR);
     $req->execute();
     $req->closeCursor();
-
 }
