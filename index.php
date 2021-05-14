@@ -17,8 +17,16 @@ try {
             categoriesInfo2();
             break;
         case "createEvent":
-            createEvent($_POST['eventName'],$_POST['sportCategory'],$_POST['city'], $_POST['maxPlayers'],
-            $_POST['eventDate'], $_POST['eventDuration'], $_POST['eventDescription'],$_POST['eventFee']);
+            createEvent(
+                $_POST['eventName'],
+                $_POST['sportCategory'],
+                $_POST['city'],
+                $_POST['maxPlayers'],
+                $_POST['eventDate'],
+                $_POST['eventDuration'],
+                $_POST['eventDescription'],
+                $_POST['eventFee']
+            );
             break;
         case "signIn":
         case "signUp":
@@ -62,7 +70,13 @@ try {
             }
             break;
         case "events":
-            eventsInfo("default",true);
+            eventsInfo("default", true);
+            break;
+        case "eventDetail":
+            eventDetail($_REQUEST['eventId']);
+            break;
+        case "deleteEvent":
+            deleteEvent($_REQUEST['deleteEventId']);
             break;
         case "attendEvent":
             if (!empty($_POST['eventId'])) {

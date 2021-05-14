@@ -48,7 +48,7 @@ function mySportsModel($userId)
  * @return array all sports categories
  */
 
- #TODO filter out categories existing for user
+#TODO filter out categories existing for user
 function displaySportsCategories($userId)
 {
     $db = dbConnect();
@@ -83,7 +83,7 @@ function addMySportModel($userId, $categoryId)
     $mySportsCount = $req->fetchColumn();
     $req->closeCursor();
 
-    if ( $mySportsCount == 0){
+    if ($mySportsCount == 0) {
         $req = $db->prepare("INSERT INTO mysports(userId, categoryId) VALUES(?, ?)");
         $req->bindParam(1, $userId, PDO::PARAM_INT);
         $req->bindParam(2, $categoryId, PDO::PARAM_INT);
@@ -102,12 +102,11 @@ function myEventsModel($userId)
 {
     $db = dbConnect();
 
-    $req = $db->prepare("SELECT e.*, c.*, e.id AS eventId, e.name AS eventName, c.name AS categoryName, c.image AS categoryImage
+    $req = $db->prepare("SELECT e.*, c.*, e.id AS eventId, e.name AS eventName, c.name AS categoryName, c.image AS categoryImage,
+    (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany
     FROM events e 
     JOIN categories c ON e.categoryId = c.id
     WHERE organizerId=?");
-
-
 
     $req->bindParam(1, $userId, PDO::PARAM_STR);
     $req->execute();
@@ -157,7 +156,7 @@ function addAttendingEventModel($userId, $eventId)
     $attendingEventsCount = $req->fetchColumn();
     $req->closeCursor();
 
-    if ($attendingEventsCount ==  0){
+    if ($attendingEventsCount ==  0) {
         $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
         $req->bindParam(1, $userId, PDO::PARAM_INT);
         $req->bindParam(2, $eventId, PDO::PARAM_INT);

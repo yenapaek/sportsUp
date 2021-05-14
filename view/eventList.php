@@ -7,19 +7,19 @@ if (is_array($events) || is_object($events)) {
                 <h2><?= $event["eventName"] ?></h2>
                 <p class="category-name"><?= $event["categoryName"] ?></p>
                 <p class="event-date"><?= $event["eventDate"] ?></p>
-                <p><?= $howManyPplJoin["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
-                <?php 
-                #TODO check if user is attending event if true, change content of button?
-                    #TODO add attendEventAction msg - check in db
-                ?>
-                <a href="#" class="card-btn" eventId="<?= $event['eventId'] ?>">Attend Event</a>
+                <p><?= $event["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
                 <?php
-                    if ($event['organizerId'] == $_SESSION['userId']):
+                #TODO check if user is attending event if true, change content of button?
+                #TODO add attendEventAction msg - check in db
                 ?>
-                        <div>
-                            <i class="far fa-edit"></i>
-                            <i class="far fa-trash-alt"></i>
-                        </div>
+                <a href="index.php?action=eventDetail&eventId=<?= $event['eventId'] ?>" class="card-btn" eventId="<?= $event['eventId'] ?>">Attend Event</a>
+                <?php
+                if ($event['organizerId'] == $_SESSION['userId']) :
+                ?>
+                    <div>
+                        <a href=""><i class="far fa-edit"></i></a>
+                        <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId'] ?>"><i class="far fa-trash-alt"></i></a>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

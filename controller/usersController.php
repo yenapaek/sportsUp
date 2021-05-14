@@ -1,7 +1,7 @@
 <?php
 require_once("./model/usersManager.php");
 require_once("./model/profileManager.php");
-// require("./model/categoryManager.php");
+
 
 /**
  * profile
@@ -20,15 +20,16 @@ function profile($userId)
     $articles = myArticlesModel($userId);
     $suggestionArticles = '';
     $categories = displaySportsCategories($userId);
-    $howManyPplJoin = howManyPplJoin(2);
     require('./view/profile.php');
 }
 
-function addAttendingEvent($userId, $eventId){
+function addAttendingEvent($userId, $eventId)
+{
     addAttendingEventModel($userId, $eventId);
 }
 
-function addMySport($userId, $categoryId){
+function addMySport($userId, $categoryId)
+{
     addMySportModel($userId, $categoryId);
 }
 
@@ -97,7 +98,6 @@ function kakaoAPICall($authCode)
         header("Location: index.php?action=signIn");
     }
 }
-
 
 /**
  * editProfile allow you to update you profile informations
