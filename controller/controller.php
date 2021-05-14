@@ -1,4 +1,4 @@
- <?php
+<?php
 
   function landing()
   {
@@ -7,9 +7,4 @@
   function aboutUs()
   {
     require("./view/aboutUs.php");
-  }
-
-  function logout()
-  {
-    require("./view/logout.php");
   }
