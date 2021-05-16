@@ -74,7 +74,7 @@ function selectEvent($idEvent)
 }
 
 /**
- * deleteEventModel allow you to delete an event 
+ * deleteEventModel allow you to delete an event
  *
  * @param  mixed $eventId
  * @return void
@@ -84,6 +84,11 @@ function deleteEventModel($eventId)
     $db = dbConnect();
 
     $req = $db->prepare("DELETE FROM events WHERE id=? ");
+    $req->bindParam(1, $eventId, PDO::PARAM_INT);
+    $req->execute();
+    $req->closeCursor();
+
+    $req = $db->prepare("DELETE FROM attendingevents WHERE eventId=?");
     $req->bindParam(1, $eventId, PDO::PARAM_INT);
     $req->execute();
     $req->closeCursor();
