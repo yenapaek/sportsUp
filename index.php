@@ -13,16 +13,27 @@ try {
         case "aboutUs":
             aboutUs();
             break;
+        case "addEditEvent":
+            categoriesInfo2();
+            break;
         case "createEvent":
-            createEvent();
+            createEvent($_POST['eventName'],$_POST['sportCategory'],$_POST['city'], $_POST['maxPlayers'],
+            $_POST['eventDate'], $_POST['eventDuration'], $_POST['eventDescription'],$_POST['eventFee']);
             break;
         case "signIn":
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
             break;
-
         case "profile":
             profile($_SESSION['userId']);
+            break;
+
+        case "editProfileAvatar":
+            editProfileAvatar($_FILES['file']);
+            break;
+
+        case "editProfileInfo":
+            editProfile($_POST['first'], $_POST['last'], $_POST['email'], $_POST['date'], $_POST['city']);
             break;
 
         case "signInSubmit":

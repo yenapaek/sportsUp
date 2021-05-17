@@ -1,40 +1,20 @@
 <?php
     require("./model/categoryManager.php");
 
-    function categoriesInfo($userId) {
+    function categoriesInfo() {
         $categories  = categoriesInfoModel();
-        $eventsSelectFavorites = eventsFavorites($userId);
-        $eventsSelect = defaultSearch($userId);
+        $eventsSelect = defaultSearch(false);
         require("./view/events.php");
     }
 
     function eventsSearchInput($name) {
-        $eventsSelect = inputSelectSearch($name, false);
+        $eventsSelect = inputSearch($name, false);
         require("./view/eventList.php");
     }
 
-    function eventsSearchSelect($sportName) {
-        $eventsSelect = inputSelectSearch($sportName, true);
+    function eventsSearchSelect($sportName, true) {
+        $eventsSelect = inputSearch($sportName);
         require("./view/eventList.php");
     } 
-
-    function eventsSearchPopularity() {
-        $eventsSelect = searchPopularity();
-        require("./view/eventList.php");
-    }
-
-    function eventsSearchRecently() {
-        $eventsSelect = searchRecently();
-        require("./view/eventList.php");
-    }
-
-    function eventsFavorite($userId, $eventId) {
-        favoriteAdd($userId, $eventId);
-    }
-
-    function eventsSearchFavorites($userId) {
-        $eventsSelectFavorites = eventsFavorites($userId);
-        require("./view/eventList.php");
-    }
 
     

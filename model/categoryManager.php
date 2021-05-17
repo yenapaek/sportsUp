@@ -1,103 +1,35 @@
 <?php
 
-// require("manager.php");
-
 function categoriesInfoModel()
 {
     $dataBase = dbConnect();
-    $rawResponse = $dataBase->query("SELECT name FROM categories ORDER BY name");
+    $rawResponse = $dataBase->query("SELECT * FROM categories order by name");
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
     return $infoArray;
 }
 
-function defaultSearch($userId)
+function eventSearch($search, $name)
 {
     $dataBase = dbConnect();
-    $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
+    $query = "SELECT e.id AS eventId, e.organizerId AS organizerId, c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage,
+            (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany
             FROM events e
-            JOIN categories c
-            ON e.categoryId = c.id"
-    );
-    $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
-    $rawResponse->closeCursor();
-    return $infoArray;
-}
+            JOIN categories c ON e.categoryId = c.id";
+    switch ($search) {
+        case "input":
+            $add = " WHERE e.name = '$name'";
+            break;
 
+        case "select":
+            $add = " WHERE c.name = '$name'";
+            break;
 
-function inputSelectSearch($name, $isForSelect)
-{
-    $where = '';
-
-    $where = $isForSelect ? 'c.name' : 'e.name';
-
-    $dataBase = dbConnect();
-    $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
-            FROM events e
-            JOIN categories c
-            ON e.categoryId = c.id
-            WHERE $where LIKE '%$name%'"
-    );
-    $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
-    $rawResponse->closeCursor();
-    return $infoArray;
-}
-
-function searchPopularity() {
-    $dataBase = dbConnect();
-    $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
-            FROM events e
-            JOIN categories c
-            ON e.categoryId = c.id
-            WHERE e.playerNumber >= 10
-            ORDER BY playerNumber DESC"
-    );
-    $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
-    $rawResponse->closeCursor();
-    return $infoArray;
-}
-
-function searchRecently() {
-    $dataBase = dbConnect();
-    $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId
-            FROM events e
-            JOIN categories c
-            ON e.categoryId = c.id
-            WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY
-            AND curdate()"
-    );
-    $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
-    $rawResponse->closeCursor();
-    return $infoArray;
-}
-
-function favoriteAdd($userId, $eventId) {
-    $dataBase = dbConnect();
-    $rawRequest = $dataBase->prepare(
-        "INSERT INTO favorites(userId, eventId) VALUES(:userID, :eventID)"
-    );
-    $rawRequest->execute(array(
-        'userID' => $userId,
-        'eventID' => $eventId
-    ));
-    $rawRequest->closeCursor();
-}
-
-function eventsFavorites($userId) {
-    $dataBase = dbConnect();
-    $rawResponse = $dataBase->query(
-        "SELECT c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%b %d %Y %Hh %imin') as eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage, e.id as eventId 
-            FROM events e
-            JOIN categories c
-            ON e.categoryId = c.id
-            JOIN favorites f
-            ON f.userId = e.id
-            WHERE f.userId = $userId"
-    );
+        default:
+            $add = "";
+            break;
+    }
+    $rawResponse = $dataBase->query($query . $add);
     $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
     $rawResponse->closeCursor();
     return $infoArray;
