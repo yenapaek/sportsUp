@@ -13,13 +13,24 @@ function profile($userId)
 {
     $infoProfile = myProfileModel($userId);
     $mySports = mySportsModel($userId);
-    $myEvents = myEventsModel($userId);
-    $attendingEvents = '';
-    $suggestionEvents = '';
+    $eventsSelect = myEventsModel($userId);
+    $attendingEvents = displayAttendingEvents($userId);
+    $suggestionEvents = suggestionEventsModel($userId);
     $articles = myArticlesModel($userId);
     $suggestionArticles = '';
-
+    $categories = displaySportsCategories($userId);
     require('./view/profile.php');
+}
+
+function addAttendingEvent($userId, $eventId)
+{
+    addAttendingEventModel($userId, $eventId);
+    header("Location: index.php?action=eventDetail&eventId=" . $eventId);
+}
+
+function addMySport($userId, $categoryId)
+{
+    addMySportModel($userId, $categoryId);
 }
 
 function signInAndUpPage($param)
@@ -30,7 +41,7 @@ function signInAndUpPage($param)
 
 
 /**
- * newUser
+ * newUser allow you to create a new user
  *
  * @param  mixed $user
  * @param  mixed $email
@@ -49,7 +60,7 @@ function newUser($user, $email, $pass, $conf)
 }
 
 /**
- * manualLogin
+ * manualLogin allow you to connect with your email and password the user created his account with
  *
  * @param  mixed $email
  * @param  mixed $pass
@@ -88,7 +99,6 @@ function kakaoAPICall($authCode)
     }
 }
 
-
 /**
  * editProfile allow you to update you profile informations
  *
@@ -100,7 +110,22 @@ function editProfile($firstName, $lastName, $email, $date, $city)
     editUserModel($firstName, $lastName, $email, $date, $city);
 }
 
+/**
+ * editProfileAvatar allow you to update picture
+ *
+ * @param  mixed $avatar
+ * @return void
+ */
 function editProfileAvatar($avatar)
 {
     editUserAvatarModel($avatar);
+}
+
+function logout()
+{
+    if ($_SESSION["access_token"]) {
+        kakaoLogout();
+    }
+    session_destroy();
+    header("Location: index.php?action=landing");
 }

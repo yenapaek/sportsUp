@@ -9,7 +9,7 @@ ob_start();
         <input hidden id="file" type="file" multiple>
         <div class="info-container" id="myInfos">
             <!-- #TODO user must be able to upload an avatar when creating a profile -->
-            <div id="avatarDiv">
+            <div id="avatar">
                 <img class="profile-img" id="profile-img" src="<?= !empty($infoProfile['avatar']) ? "$avatarPath/{$infoProfile['avatar']}" : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image">
             </div>
             <div>
@@ -25,223 +25,101 @@ ob_start();
                 <i id="editPersonnalInfos" class="far fa-edit fa-lg"></i>
             </div>
         </div>
-
         <div class="info-container" id="mySports">
-            <div class="titleEdit">
-                <h1>My Interests</h1>
-                <button>Add Sport</button>
-            </div>
+            <h1>My Sports</h1>
             <div>
-                <ul>
+                <ul id="mySportsList">
                     <?php
                     if (!empty($mySports)) :
                         foreach ($mySports as $sport) :
                     ?>
-                            <li><?= $sport['category_name']; ?></li><br>
+                            <li class="category">#<?= $sport['category_name']; ?></li><br>
                         <?php
                         endforeach;
                     else : ?>
-                        <li> No sport added</li>
+                        <!-- <p> No sport added</p> -->
                     <?php endif; ?>
                 </ul>
+                <div id="sportSelect">
+                    <select name="sportsCategories" id="sportsCategories">
+                        <option value="default" selected disabled>Select Your Sport</option>
+                        <?php foreach ($categories as $category) : ?>
+                            <option id="<?= $category['id']; ?>"><?= $category["name"]; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <a id="addSport" class="card-btn" onclick="addMySport();">Add sport</a>
+                </div>
             </div>
+
         </div>
     </section>
     <div id="changedInfo">
         <section id="eventInfo">
             <div class="info-container" id="myEvents">
-                <h1>Events</h1>
-                <div class="titleEdit">
-                    <h2>My Events</h2>
-                    <button>Create Event</button>
-                    <!-- INFO FROM DATABASE -->
+                <h1>My Events</h1>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($eventsSelect)) {
+                        $events = $eventsSelect;
+                        require('eventList.php');
+                    } else {
+                        echo '<p>No events added</p>';
+                    }
+                    ?>
                 </div>
-                <div id="list-event-cards">
-                    <div class="event-card">
-                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
-                        <div>
-                            <div class="card-datetime">
-                                <i class="far fa-clock"></i>
-                                <span>Tues, May 11 @17:00</span>
-                            </div>
-                            <div class="card-title"><span>Football Game in the Park</span></div>
-                            <div class="card-description"><span>Fun football game for all levels</span></div>
-                            <div>
-                                <i class="far fa-edit"></i>
-                                <i class="far fa-trash-alt"></i>
-                            </div>
-                            <!-- <div class="card-location">                            
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Seoul</span>
-                            </div> -->
-                            <!-- <div class="card-btn"><span>View Details</span></div> -->
-                        </div>
-                    </div>
-                    <div class="event-card">
-                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
-                        <div class="event-detail">
-                            <div class="card-datetime">
-                                <i class="far fa-clock"></i>
-                                <span>Tues, May 11 @17:00</span>
-                            </div>
-                            <div>
-                                <i class="far fa-calendar"></i>
-                                <span class="card-title">Football Game in the Park</span>
-                            </div>
-                            <div class="card-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Seoul</span>
-                            </div>
-                            <div>
-                                <i class="far fa-edit"></i>
-                                <i class="far fa-trash-alt"></i>
-                            </div>
-                            <!-- <div class="card-description"><span>Fun football game for all levels</span></div> -->
-                            <!-- <div class="card-btn"><span>View Details</span></div> -->
-                        </div>
-                    </div>
-                    <div class="event-card">
-                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
-                        <div>
-                            <div class="card-datetime">
-                                <i class="far fa-clock"></i>
-                                <span>Tues, May 11 @17:00</span>
-                            </div>
-                            <div class="card-title"><span>Football Game in the Park</span></div>
-                            <div class="card-description"><span>Fun football game for all levels</span></div>
-                            <div>
-                                <i class="far fa-edit"></i>
-                                <i class="far fa-trash-alt"></i>
-                            </div>
-                            <!-- <div class="card-location">                            
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Seoul</span>
-                            </div> -->
-                            <!-- <div class="card-btn"><span>View Details</span></div> -->
-                        </div>
-                    </div>
-                    <div class="event-card">
-                        <img src="https://images.unsplash.com/photo-1607417307790-5f3efc48ced3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="">
-                        <div>
-                            <div class="card-datetime">
-                                <i class="far fa-clock"></i>
-                                <span>Tues, May 11 @17:00</span>
-                            </div>
-                            <div class="card-title"><span>Football Game in the Park</span></div>
-                            <div class="card-description"><span>Fun football game for all levels</span></div>
-                            <div>
-                                <i class="far fa-edit"></i>
-                                <i class="far fa-trash-alt"></i>
-                            </div>
-                            <!-- <div class="card-location">                            
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Seoul</span>
-                            </div> -->
-                            <!-- <div class="card-btn"><span>View Details</span></div> -->
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($myEvents)) {
-                            foreach ($myEvents as $event) {
-                        ?>
-                                <?php
-                                #TODO create an event creater function that saves db data into an array
-                                // print_r($event);
-                                // echo $event['name'];
-                                // echo $event['picture'];
-                                // echo $event['eventDate'];
-
-                                ?>
-                        <?php
-                            }
-                        } else {
-                            echo '<li> No events</li>';
-                        }
-                        ?>
-                    </ul>
-                </div>
-                <div class="titleEdit">
-                    <h2>Attending</h2>
-                </div>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($attendingEvents)) {
-                            foreach ($attendingEvents as $attendingEvent) {
-                        ?>
-                                <li><?= $attendingEvent['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<li> No events</li>';
-                        }
-                        ?>
-                    </ul>
+                <div class="divider"></div>
+                <h1>Attending Events</h1>
+                <div class="list-event-cards">
+                    <!-- #TODO add attending events function -->
+                    <?php
+                    if (!empty($attendingEvents)) {
+                        $events = $attendingEvents;
+                        require('eventList.php');
+                    } else {
+                        echo '<p> No attending events</p>';
+                    }
+                    ?>
                 </div>
             </div>
-
             <div class="info-container" id="myEventSuggestions">
                 <h1>Event Suggestions</h1>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($suggestionEvents)) {
-                            foreach ($suggestionEvents as $suggestionEvent) {
-                        ?>
-                                <li><?= $suggestionEvent['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<li> No events</li>';
-                        }
-                        ?>
-                    </ul>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($suggestionEvents)) {
+                        $events = $suggestionEvents;
+                        require('eventList.php');
+                    } else {
+                        echo '<p>No event suggestions. Please select some sports to fill the event suggestions.</p>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
-
         <section id="productInfo">
             <div class="info-container" id="myProducts">
                 <h1>My Products</h1>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($products)) {
-                            foreach ($products as $product) {
-                        ?>
-                                <li><?= $product['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<li> No products</li>';
-                        }
-                        ?>
-                    </ul>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($articles)) {
+                        $events = $articles;
+                        require('eventList.php');
+                    } else {
+                        echo '<p>No products added</p>';
+                    }
+                    ?>
                 </div>
             </div>
             <div class="info-container" id="myProductSuggestions">
                 <h1>Product Suggestions</h1>
-                <!-- INFO FROM DATABASE -->
-                <div>
-                    <ul>
-                        <?php
-                        if (!empty($suggestionProducts)) {
-                            foreach ($suggestionProducts as $suggestionProduct) {
-                        ?>
-                                <li><?= $suggestionProduct['FillMeUp']; ?></li><br>
-                        <?php
-                            }
-                        } else {
-                            echo '<li> No products</li>';
-                        }
-                        ?>
-                    </ul>
+                <div class="list-event-cards">
+                    <?php
+                    if (!empty($suggestionArticles)) {
+                        $events = $suggestionArticles;
+                        require('eventList.php');
+                    } else {
+                        echo '<p>No product suggestions</p>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>

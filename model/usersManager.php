@@ -78,6 +78,7 @@ function manualLoginModel($email, $pass)
 function kakaoAPICallModel($authCode)
 {
     $tokens = getTokens($authCode);
+    $_SESSION["access_token"] = $tokens['access_token'];
     $kakaoUserObj = requestKakaoAPIUserData($tokens['access_token']);
     $kakaoId = $kakaoUserObj['kakaoId'];
 
@@ -94,6 +95,7 @@ function kakaoAPICallModel($authCode)
 
 function getTokens($authCode)
 {
+    echo $authCode;
     $url = 'https://kauth.kakao.com/oauth/token'; // API Link
 
     $grantType = 'authorization_code';
@@ -182,6 +184,36 @@ function addNewKakaoUser($kakaoUserObj)
     $req->closeCursor();
 }
 
+function kakaoUnLink()
+{
+    $token = $_SESSION["access_token"];
+    $url = 'https://kapi.kakao.com/v1/user/unlink';
+
+    $headers = array(
+        'Authorization: Bearer ' . $token,
+    );
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_exec($curl);
+    curl_close($curl);
+}
+
+// Belongs as a second parameter to the url in kakaoLogout, it doesn't do anything:  &logout_redirect_uri=http://127.0.0.1/sportsEvent/index.php
+
+function kakaoLogout()
+{
+    kakaoUnLink();
+    $url = 'https://kapi.kakao.com/oauth/logout?client_id=37fea6edf3b24bab4469275577842ba5 HTTP/1.1';
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_exec($curl);
+    curl_close($curl);
+}
+
+
 #TODO: switch authcode request from JS to REST API
 // function requestAuthCode() {
 //     $url = 'https://kauth.kakao.com/oauth/authorize'; // API Link
@@ -201,4 +233,3 @@ function addNewKakaoUser($kakaoUserObj)
 //     // $apiUserObj = json_decode($output);
 //     curl_close($curl);
 // }
-

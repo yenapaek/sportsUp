@@ -1,5 +1,12 @@
+let formCriteria = document.getElementById("formCriteria");
+
+// by sport or event
 let selectCriteria = document.getElementById("selectCriteria");
+
+// div for sports categories
 let sportSelect = document.getElementById("sportSelect");
+
+// search input text
 let searchInput = document.getElementById("searchInput");
 let formCriteria = document.getElementById("formCriteria");
 
@@ -32,8 +39,7 @@ function loadFile(searchName, secondData, thirdData) {
             let response = xhr.responseText;
             let sectionThree = document.querySelector('#mainContainer section:nth-child(3)');
             sectionThree.innerHTML = response;
-            
-
+            console.log("test");
         } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status != 200) {
             alert('There is an error !\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText);
         }
@@ -85,6 +91,13 @@ function loadFile(searchName, secondData, thirdData) {
         }
         if (selectCriteriaValue == 'FavoritesEvents') {
             loadFile('FavoritesEvents', selectCriteria.getAttribute('dataUserId'));
+            console.log(criteriaValue);
+            loadFile(criteriaValue, true);
+        } else {
+            let input = document.getElementById("searchInput");
+            let inputValue = input.value;
+            console.log(inputValue);
+            loadFile(inputValue, false);
         }
     });
 }
@@ -105,3 +118,32 @@ function loadFile(searchName, secondData, thirdData) {
 
 
 
+// {
+    // let buttons = document.querySelectorAll("a[eventId]");    
+    // const attendEvent = (button) => {
+    //     let eventId = button.getAttribute('eventId');
+    //     // if (eventId){
+    //         button.addEventListener("click", (e) => {
+    //             let currentButton = e.target;
+    //             let xhr = new XMLHttpRequest();
+    //             xhr.open('POST', 'index.php?action=attendEvent');
+    //             let form = new FormData();
+    //             form.append("eventId",eventId);
+    //             xhr.send(form);
+            
+    //             xhr.addEventListener("load", function() {
+    //                 if (xhr.status === 200) {
+    //                     currentButton.innerHTML = "Attending";
+    //                     // #TODO add something to show that a user is attending an event
+    //                     alert("attending event added!");
+    //                 } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status != 200) {
+    //                     alert('There is an error !\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText);
+    //                 }
+    //             });
+    //         });
+        // } else {
+        //     button.href = "index.php?action=signInAndSignUp";
+        // }
+//     }
+//     buttons.forEach(button => attendEvent(button));
+// }

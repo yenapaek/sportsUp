@@ -1,11 +1,10 @@
-<?php 
-    $title = "Events"; 
-    $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
+<?php
+$title = "Events";
+$style = '<link href="./public/css/events.css" rel="stylesheet"/>';
 ?>
 <?php ob_start(); ?>
 
 <div id="mainContainer">
-
     <header>
         <form action="" id="formCriteria" method="POST">
             <input type="hidden" name="action" value="searchSubmit">
@@ -22,7 +21,7 @@
                 </select>
                 <div id="sportSelect">
                     <select name="sportsCriteria" id="sportsCriteria">
-                        <option value="default" selected disbled>Select Your Sport</option>
+                        <option value="default" selected disabled>Select Your Sport</option>
                         <?php foreach ($categories as $category) : ?>
                             <option value="<?= $category["name"]; ?>"><?= $category["name"]; ?></option>
                         <?php endforeach; ?>
@@ -35,13 +34,14 @@
             </div>
         </form>
     </header>
-
     <section>
         <div>List of events</div>
     </section>
-
     <section>
-        <?php require('eventList.php') ?>
+        <?php
+        if (!empty($events)) {
+            require('eventList.php');
+        } ?>
     </section>
 </div>
 <script src="./public/js/events.js"></script>

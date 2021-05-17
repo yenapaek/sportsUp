@@ -7,7 +7,7 @@ profileAvatar.addEventListener("mouseover", function () {
     profileAvatar.src = "./public/images/profile/edit-round.png";
 });
 
-profileAvatar.addEventListener("mouseout", function (e) {
+profileAvatar.addEventListener("mouseout", function () {
     profileAvatar.src = imgFirst;
 });
 
@@ -26,8 +26,9 @@ myFile.addEventListener("change", function () {
 
     var form = new FormData();
     form.append("file", myFile.files[0]);
-
     xhr.send(form);
+
+    console.log(myFile.files[0]);
 
     let files = this.files,
         filesLen = files.length,
@@ -36,12 +37,13 @@ myFile.addEventListener("change", function () {
     for (let i = 0; i < filesLen; i++) {
         imgType = files[i].name.split(".");
         imgType = imgType[imgType.length - 1].toLowerCase();
+        console.log(imgType);
 
         if (allowType.indexOf(imgType) != 1) {
             var reader = new FileReader();
 
             reader.addEventListener("load", function () {
-                // const c = document.querySelector("#avatarDiv");
+                // const c = document.querySelector("#avatar");
                 const img = document.querySelector("#profile-img");
                 img.src = this.result;
             });
@@ -49,44 +51,6 @@ myFile.addEventListener("change", function () {
         }
     }
 });
-
-//
-// console.log(myFile.files[0]);
-// var xhr = new XMLHttpRequest();
-// xhr.open("FILE", "index.php?action=editProfileAvatar");
-// var form = new FormData();
-// form.append("file", myFile.files[0]);
-
-// xhr.send(form);
-
-// PERMET DE RECUPERER UNE IMAGE ET DE L"AFFICHER
-//
-// myFile.addEventListener("change", function () {
-//     let files = this.files,
-//         filesLen = files.length,
-//         imgType;
-
-//     for (let i = 0; i < filesLen; i++) {
-//         imgType = files[i].name.split(".");
-//         imgType = imgType[imgType.length - 1].toLowerCase();
-
-//         if (allowType.indexOf(imgType) != 1) {
-//             var reader = new FileReader();
-
-//             reader.addEventListener("load", function () {
-//                 let body = document.querySelector("body");
-//                 let img = document.createElement("img");
-//                 img.style.maxWidth = "150px";
-//                 img.style.maxHeigth = "150px";
-//                 img.src = this.result;
-//                 body.appendChild(img);
-//             });
-//             reader.readAsDataURL(myFile.files[0]);
-//         }
-//     }
-// });
-
-////////////////////////////////////////////////////////
 
 editPersonnalInfos.addEventListener("click", function () {
     const myInfo = document.querySelector("#myInfos");
@@ -128,3 +92,22 @@ editPersonnalInfos.addEventListener("click", function () {
         editPersonnalInfos.classList.replace("fa-edit", "fa-check");
     }
 });
+
+const addMySport = () => {
+    let mySportsList = document.getElementById("mySportsList");
+    let sportsCategories = document.getElementById("sportsCategories");
+    let newCategory = sportsCategories.selectedOptions[0];
+    let newSport = document.createElement("li");
+    let categoryId = newCategory.id;
+    let categoryName = newCategory.innerHTML;
+    newSport.classList.add('category');
+    newSport.appendChild(document.createTextNode('#'+categoryName));
+    mySportsList.appendChild(newSport);
+    mySportsList.appendChild(document.createElement("br"));
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'index.php?action=addMySport');
+    let form = new FormData();
+    form.append("categoryId",categoryId);
+    xhr.send(form);
+}

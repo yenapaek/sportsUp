@@ -32,14 +32,14 @@ if (document.getElementById("signInForm")) {
     formSignUp.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        let submittable = checkInputs();
+        let submittable = checkInputs(username, email, password, password2);
         if (submittable) {
             formSignUp.submit();
         }
     });
 }
 
-function checkInputs() {
+function checkInputs(username, email, password, password2) {
     const usernameValue = username.value.trim();
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();

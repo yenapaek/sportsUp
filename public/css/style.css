@@ -26,7 +26,6 @@ body {
     border-radius: 15px;
 }
 
-
 /* ---------------------style for the MENU on top---------------------  */
 
 .topRight {
@@ -40,7 +39,7 @@ body {
 
 .rightBox {
     margin: 0px;
-    right: -120px;
+    /* right: -120px; */
 }
 nav {
     position: relative;
@@ -82,8 +81,6 @@ nav .animation {
     right: 20px;
     transform: translate(-50%, -50%);
 }
-
-
 
 .btn:link,
 .btn:visited {
@@ -197,7 +194,7 @@ p {
 .address {
     margin-left: 20px;
 }
-.snsIcons{
+.snsIcons {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
@@ -210,9 +207,8 @@ p {
     width: 100%;
 }
 
-
-
-.openMenu, .closeMenu {
+.openMenu,
+.closeMenu {
     display: none;
 }
 
@@ -240,7 +236,7 @@ p {
         top: 50px;
         right: 10px;
     }
-    .rightBox a{
+    .rightBox a {
         width: 150px;
     }
     nav .start-home {
@@ -253,7 +249,6 @@ p {
         top: 50px;
         right: 10px;
         z-index: 14;
-
     }
     .openMenu i {
         font-size: 40px;
@@ -261,7 +256,8 @@ p {
     .closeMenu {
         font-size: 40px;
     }
-    .cards> .card:hover {
+
+    .cards > .card:hover {
         height: 215px;
     }
     .cards .card:hover .cardText {

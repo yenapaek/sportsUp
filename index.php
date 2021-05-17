@@ -17,8 +17,16 @@ try {
             categoriesInfo2();
             break;
         case "createEvent":
-            createEvent($_POST['eventName'],$_POST['sportCategory'],$_POST['city'], $_POST['maxPlayers'],
-            $_POST['eventDate'], $_POST['eventDuration'], $_POST['eventDescription'],$_POST['eventFee']);
+            createEvent(
+                $_POST['eventName'],
+                $_POST['sportCategory'],
+                $_POST['city'],
+                $_POST['maxPlayers'],
+                $_POST['eventDate'],
+                $_POST['eventDuration'],
+                $_POST['eventDescription'],
+                $_POST['eventFee']
+            );
             break;
         case "signIn":
         case "signUp":
@@ -27,15 +35,19 @@ try {
         case "profile":
             profile($_SESSION['userId']);
             break;
-
+        case "addMySport":
+            if (!empty($_POST['categoryId'])) {
+                addMySport($_SESSION['userId'], $_POST['categoryId']);
+            } else {
+                throw new Exception("Error with category.");
+            }
+            break;
         case "editProfileAvatar":
             editProfileAvatar($_FILES['file']);
             break;
-
         case "editProfileInfo":
             editProfile($_POST['first'], $_POST['last'], $_POST['email'], $_POST['date'], $_POST['city']);
             break;
-
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
                 manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);
@@ -58,24 +70,26 @@ try {
             }
             break;
         case "events":
-            if (isset($_SESSION['userId'])) {
-                categoriesInfo($_SESSION['userId']);
+            eventsInfo("default", true);
+            break;
+        case "eventDetail":
+            eventDetail($_REQUEST['eventId']);
+            break;
+        case "deleteEvent":
+            deleteEvent($_REQUEST['deleteEventId']);
+            break;
+        case "attendEvent":
+            if (!empty($_REQUEST['eventId'])) {
+                addAttendingEvent($_SESSION['userId'], $_REQUEST['eventId']);
             } else {
-                categoriesInfo();
+                throw new Exception("Error with attending event.");
             }
             break;
-
         case "searchSubmit":
             if (isset($_REQUEST['searchEvent'])) {
-                eventsSearchInput($_REQUEST['searchEvent']);
+                eventsInfo("input", $_REQUEST['searchEvent']);
             } elseif (isset($_REQUEST['sportCriteria'])) {
-                eventsSearchSelect($_REQUEST['sportCriteria']);
-            } elseif (isset($_REQUEST['searchPopularity'])) {
-                eventsSearchPopularity();
-            } elseif (isset($_REQUEST['searchRecently'])) {
-                eventsSearchRecently();
-            } elseif (isset($_REQUEST['searchFavorites'])) {
-                eventsSearchFavorites($_REQUEST['searchFavorites']);
+                eventsInfo("select", $_REQUEST['sportCriteria']);
             }
             break;
         
@@ -84,9 +98,9 @@ try {
                 eventsFavorite($_REQUEST['favoriteUser'], $_REQUEST['favoriteEvent']);
             } else {
                 throw new Exception("Error with favorites.");
+                eventsInfo("select", $_REQUEST['sportCriteria']);
             }
             break;
-
         case "logout":
             logout();
             break;

@@ -1,27 +1,37 @@
 <div id="top">
     <div class="topLeft">
-        <a href="index.php?action=landing">
+        <?php
+        if (!isset($_SESSION['userId'])){
+            $logoLink = "index.php?action=landing";
+        } else {
+            $logoLink = "";
+        }
+        ?>
+        <a href=<?= $logoLink ?>>
             <div class="logo">
                 <img src="./public/images/logo.png" alt="">
             </div>
         </a>
-        <!-- <div class="sup">
-            <a href="index.php?action=landing">
-                <h1>SPORTS UP</h1>
-            </a>
-        </div> -->
     </div>
 
     <div class="topRight">
         <div class="openMenu"><i class="fas fa-bars"></i></div>
         <nav class="rightBox">
-            <a href="index.php?action=landing"><strong>Home</strong> </a>
+            <?php if (!isset($_SESSION['userId'])){
+            ?>
+                <a href="index.php?action=landing"><strong>Home</strong> </a>
+            <?php
+            } else {
+            ?>
+                <a href="index.php?action=profile" id="profileNavBar"><strong>Profile</strong></a>
+            <?php 
+            }
+            ?>
             <a href="index.php?action=events"><strong>Events</strong> </a>
             <a href="index.php?action=aboutUs"><strong>About Us</strong></a>
             <a href="index.php"><strong>SHOP</strong></a>
             <?php if (isset($_SESSION['userId'])) {
             ?>
-                <a href="index.php?action=profile" id="profileNavBar"><strong>Profile</strong></a>
                 <a href="index.php?action=logout"><strong>Log Out</strong> </a>
             <?php
             } else {
