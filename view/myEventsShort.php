@@ -24,7 +24,7 @@
                         <span><?= !empty($event['description']) ? $event['description'] : '...'; ?></span>
                     </div>
                     <div>
-                        <i class="far fa-edit"></i>
+                    <a href="index.php?action=editEvent"><i class="far fa-edit"></i></a>
                         <i class="far fa-trash-alt"></i>
                     </div>
                 </div>

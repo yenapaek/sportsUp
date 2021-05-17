@@ -45,6 +45,17 @@ function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $dura
     eventDetail($eventId['id']);
 }
 
+function editEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+{
+    $eventId = editEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+    eventDetail($eventId['id']);
+}
+
+// function editEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+// {
+//     editEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+// }
+
 /**
  * eventDetail call the database to get the information of one event
  *
@@ -63,7 +74,7 @@ function eventDetail($eventId)
  * @param  mixed $eventId
  * @return void
  */
-function deleteEvent($eventId, )
+function deleteEvent($eventId)
 {
     deleteEventModel($eventId);
     header("Location: index.php?action=events");

@@ -110,6 +110,8 @@ function editProfile($firstName, $lastName, $email, $date, $city)
     editUserModel($firstName, $lastName, $email, $date, $city);
 }
 
+
+
 /**
  * editProfileAvatar allow you to update picture
  *

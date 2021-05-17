@@ -25,7 +25,7 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
             if ($event['organizerId'] == $_SESSION['userId']) :
             ?>
                 <div>
-                    <a href=""><i class="far fa-edit"></i></a>
+                    <a href="index.php?action=editEvent =<?= $event['id'] ?>"><i class="far fa-edit"></i></a>
                     <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['id'] ?>"><i class='far fa-trash-alt'></i></a>
                 </div>
             <?php endif; ?>
