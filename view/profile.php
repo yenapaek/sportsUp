@@ -99,14 +99,7 @@ ob_start();
             <div class="info-container" id="myProducts">
                 <h1>My Products</h1>
                 <div class="list-event-cards">
-                    <?php
-                    if (!empty($articles)) {
-                        $events = $articles;
-                        require('eventList.php');
-                    } else {
-                        echo '<p>No products added</p>';
-                    }
-                    ?>
+                    <!-- #TODO change this section for something else -->
                 </div>
             </div>
             <div class="info-container" id="myProductSuggestions">
