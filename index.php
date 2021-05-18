@@ -90,6 +90,10 @@ try {
                 eventsInfo("input", $_REQUEST['searchEvent']);
             } elseif (isset($_REQUEST['sportCriteria'])) {
                 eventsInfo("select", $_REQUEST['sportCriteria']);
+            } elseif (isset($_REQUEST['searchPopularity'])) {
+                eventsInfo("popularity", $_REQUEST['searchPopularity']);
+            } elseif (isset($_REQUEST['myEvents'])) {
+                eventsInfo("myEvents", $_REQUEST['myEvents']);
             }
             break;
         
@@ -101,6 +105,13 @@ try {
                 eventsInfo("select", $_REQUEST['sportCriteria']);
             }
             break;
+        case "favoriteElimination":
+            if (isset($_REQUEST['favoriteUser']) && (isset($_REQUEST['favoriteEvent']))) {
+                eventsFavoriteElimination($_REQUEST['favoriteUser'], $_REQUEST['favoriteEvent']);
+            } else {
+                throw new Exception("Error with favorites.");
+                eventsInfo("select", $_REQUEST['sportCriteria']);
+            }
         case "logout":
             logout();
             break;

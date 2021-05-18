@@ -16,8 +16,8 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
                     <option value="Event" selected>By Event</option>
                     <option value="Sport">By Sport</option>
                     <option value="Popularity">By Popularity</option>
-                    <option value="Recently">Most Recent</option>
-                    <?php  if(isset($_SESSION['userId'])) { ?> <option value="FavoritesEvents">Favorites Events</option> <?php } ?>
+                    <?php  if(isset($_SESSION['userId'])) { ?> <option value="MyEvents">My Chose Events</option> <?php } ?>
+                    
                 </select>
                 <div id="sportSelect">
                     <select name="sportsCriteria" id="sportsCriteria">

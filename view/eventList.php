@@ -2,6 +2,16 @@
 if (is_array($events) || is_object($events)) {
     foreach ($events as $event) : ?>
         <div class="card">
+        <?php 
+        if(isset($_SESSION['userId'])) { if ($event['isHeart']) { ?>
+            <div class="favorite">
+                <span class="favorites" dataUserId="<?= $_SESSION['userId'] ?>" dataEventId="<?= $event['eventId'] ?>"><i class="fas fa-heart"></i></span>
+            </div>
+            <?php } elseif (!$event['isHeart']) { ?>
+            <div class="favoriteTwo">
+                <span class="favorites" dataUserId="<?= $_SESSION['userId'] ?>" dataEventId="<?= $event['eventId'] ?>"><i class="far fa-heart"></i></span>
+            </div>
+            <?php }} ?>
             <img src="<?= $event["categoryImage"] ?>" alt="card background" class="card-img">
             <div class="card-text">
                 <h2><?= $event["eventName"] ?></h2>

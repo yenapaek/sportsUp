@@ -26,6 +26,14 @@ function categoriesInfo2()
     require("./view/addEditEvent.php");
 }
 
+function eventsFavorite($userId, $eventId) {
+    favoriteAdd($userId, $eventId);
+}
+
+function eventsFavoriteElimination($userId, $eventId) {
+    favoriteElimination($userId, $eventId);
+}
+
 /**
  * createEvent allow you to create a new event and then redirect you to this event
  *
