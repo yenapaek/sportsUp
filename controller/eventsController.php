@@ -21,11 +21,13 @@ function eventsInfo($search, $name)
 }
 
 function categoriesInfo2($eventId)
-{
-    if ($eventId){
-       $infos = selectEvent($eventId);
-    }
+{   
     $eventManager =  new EventManager();
+
+    if ($eventId){
+       $infos = $eventManager->selectEvent($eventId);
+    }
+    
     $categories  =  $eventManager->categoriesInfoModel(false);
     require("./view/addEditEvent.php");
 }
