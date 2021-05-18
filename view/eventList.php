@@ -20,8 +20,8 @@ if (is_array($events) || is_object($events)) {
                 <?php
                     if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']):
                 ?>
-                    <div>
-                        <a href=""><i class="far fa-edit"></i></a>
+                    <div class="InsideIconEventCard">
+                        <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId']?>&editMode=true"><i class="far fa-edit"></i></a>
                         <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId'] ?>"><i class="far fa-trash-alt"></i></a>
                     </div>
                 <?php endif; ?>

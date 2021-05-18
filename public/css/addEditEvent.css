@@ -30,19 +30,63 @@ nav a:nth-child(5):hover ~ .animation {
 #addEditEvent {
     margin-top: 0;
     margin: auto;
-    width: 97%;
-    height: 77vh;
-    border: 2px solid black;
+    width: 100%;
+    height: 87vh;
     display: flex;
     flex-direction: column;
+    font-family: "Varela Round", sans-serif;
+    font-size: 20px;
 }
-*{
-    margin-bottom: 10px;
-    margin-left: 10px;
-}
-form {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
 
+
+#addEditEvent h1 {
+    align-self: center;
+    height: 60px;
+    /* padding-left: 40px; */
+    /* margin: auto; */
+    
+}
+
+.eventForm {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    /* align-items: center; */
+}
+
+.formFirstPart, .formSecondPart {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom: 30px; */
+}
+input, select  {
+    width: 100%;
+    height: 30px;
+    /* border-radius: 5px; */
+    margin-top: 10px; 
+    /* margin-bottom: 10px; */
+}
+
+.btnFrom {
+    width: 100%;
+    height: 40px;
+}
+.eventDescription {
+    height: 150px;
+}
+
+#btn {
+    width: 100%;
+    cursor: pointer;
+    height: 50px;
+    border: none;
 }

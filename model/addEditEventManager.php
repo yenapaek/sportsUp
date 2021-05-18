@@ -94,42 +94,25 @@ function deleteEventModel($eventId)
     $req->closeCursor();
 }
 
+
+
+
+
 function editEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
 {
     $db = dbConnect();
-    $submittable = true;
-    try {
 
-        $picture = null;
-        $req = $db->prepare("SELECT * FROM events(name, categoryId, picture, organizerId, playerNumber, duration, description, eventDate, fee, city)
-                        VALUES(:name, :categoryId, :picture, :organizerId, :playerNumber, :eventDuration, :eventDescription, :eventDate, :eventFee, :city)");
-
-        $req->bindparam('name', $name, PDO::PARAM_STR);
-        $req->bindparam('organizerId', $_SESSION['userId'], PDO::PARAM_INT);
-        $req->bindparam('categoryId', $categoryId, PDO::PARAM_INT);
-        $req->bindparam('picture', $picture, PDO::PARAM_STR);
-        $req->bindparam('city', $city, PDO::PARAM_STR);
-        $req->bindparam('playerNumber', $playerNumber, PDO::PARAM_INT);
-        $req->bindparam('eventDuration', $duration, PDO::PARAM_STR);
-        $req->bindparam('eventDescription', $description, PDO::PARAM_STR);
-        $req->bindparam('eventDate', $eventDate, PDO::PARAM_STR);
-        $req->bindparam('eventFee', $fee, PDO::PARAM_STR);
-
-        $req->execute();
-        $req->closeCursor();
-    } catch (Exception $e) {
-        $submittable = false;
-    }
-
-    if ($submittable) {
-        $req = $db->prepare("SELECT id FROM events WHERE name=? AND categoryId=? ");
-        $req->bindParam(1, $name, PDO::PARAM_STR);
-        $req->bindParam(2, $categoryId, PDO::PARAM_INT);
-
-        $req->execute();
-        $eventId = $req->fetch(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-
-        return $eventId;
-    }
+    $req = $db->prepare("UPDATE events SET name, categoryId, picture, organizerId, playerNumber, duration, description, eventDate, fee, city WHERE id =:id");
+    $req->bindparam('name', $name, PDO::PARAM_STR);
+    $req->bindparam('organizerId', $_SESSION['userId'], PDO::PARAM_INT);
+    $req->bindparam('categoryId', $categoryId, PDO::PARAM_INT);
+    $req->bindparam('picture', $picture, PDO::PARAM_STR);
+    $req->bindparam('city', $city, PDO::PARAM_STR);
+    $req->bindparam('playerNumber', $playerNumber, PDO::PARAM_INT);
+    $req->bindparam('eventDuration', $duration, PDO::PARAM_STR);
+    $req->bindparam('eventDescription', $description, PDO::PARAM_STR);
+    $req->bindparam('eventDate', $eventDate, PDO::PARAM_STR);
+    $req->bindparam('eventFee', $fee, PDO::PARAM_STR);
+    $req->execute();
+    $req->closeCursor();
 }

@@ -20,9 +20,12 @@ function eventsInfo($search, $name)
     }
 }
 
-function categoriesInfo2()
+function categoriesInfo2($eventId)
 {
     $categories = categoriesInfoModel();
+    if ($eventId){
+       $infos = selectEvent($eventId);
+    }
     require("./view/addEditEvent.php");
 }
 
@@ -45,16 +48,12 @@ function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $dura
     eventDetail($eventId['id']);
 }
 
-function editEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+function editEvent($eventId)
 {
-    $eventId = editEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+    $eventId = editEventModel($eventId);
     eventDetail($eventId['id']);
 }
 
-// function editEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
-// {
-//     editEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
-// }
 
 /**
  * eventDetail call the database to get the information of one event

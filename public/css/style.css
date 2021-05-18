@@ -4,6 +4,7 @@
 
 body {
     background: #ffffff;
+    width: 99%;
 }
 #top {
     display: flex;
@@ -11,6 +12,8 @@ body {
     padding: 0;
     margin: 0;
     background: rgb(255, 255, 255);
+    width: 100%;
+    overflow: hidden;
 }
 .topLeft {
     width: 50%;
@@ -31,16 +34,16 @@ body {
 .topRight {
     background: rgb(255, 255, 255);
     font-family: "Open Sans", sans-serif;
-    width: 54%;
+    width: 50%;
     height: 50px;
     display: flex;
     align-self: center;
+    /* overflow: hidden; */
 }
 
 .rightBox {
-    margin: 0px;
-    /* display: flex;
-    justify-content: space-around; */
+    /* margin: 0px; */
+    right: -120px;
 }
 nav {
     position: relative;
@@ -56,6 +59,14 @@ nav a {
     position: relative;
     display: inline-block;
     text-align: center;
+}
+.fa-crown {
+    position: absolute;
+    left: -2px;
+    top: -10px;
+    transform: rotate(333deg);
+    color: rgba(255, 174, 0, 0.85);
+    font-size: 29px;
 }
 nav .animation {
     display: inline-block;
@@ -196,6 +207,7 @@ p {
     margin-left: 20px;
 }
 .snsIcons {
+    margin-top: 20px;
     display: flex;
     justify-content: space-around;
     flex-direction: row;

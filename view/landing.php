@@ -9,9 +9,9 @@ ob_start();
         <div id="banner1" class="banner">
             <img src="./public/images/landing/banner1.jpeg" alt="banner image 1">
             <div class="text-box text-box1">
-                <h1>Big events</h1>
+                <h1>Discover global events</h1>
                 <span></span>
-                <p>Find upcoming Global sport Events </p>
+                <p>Find new friends to attend  Global sport Events </p>
             </div>
         </div>
         <div id="banner2" class="banner">
@@ -31,11 +31,12 @@ ob_start();
             </div>
         </div>
         <div id="banner4" class="banner">
-            <img src="./public//images/landing/banner4.jpg" alt="banner image 4">
+            <img src="./public//images/landing/banner4-2.jpeg" alt="banner image 4">
             <div class="text-box text-box4">
-                <h1>Shop</h1>
+                <h1>PREMIUM members</h1>
                 <span></span>
-                <p>Buy, sell or exchange sport inventory with other SportsUp members!</p>
+                <p>Become a PREMIUM member and create 
+                    your own sport events!</p>
             </div>
         </div>
         <!-- BUTTON -->

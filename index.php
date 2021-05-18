@@ -13,12 +13,14 @@ try {
         case "aboutUs":
             aboutUs();
             break;
-        case "addEvent":
-        case "editEvent":
-            categoriesInfo2();
+        case "addEditEvent":
+            if ($_REQUEST['editMode']=='true'){
+                categoriesInfo2($_REQUEST['eventId']);               
+            } else{
+            categoriesInfo2(false);
+            }
             break;
-        case "addEvent":
-        case "editEvent":
+        case "createEvent":
             createEvent(
                 $_POST['eventName'],
                 $_POST['sportCategory'],
@@ -30,6 +32,9 @@ try {
                 $_POST['eventFee']
             );
             break;
+        case "editEvent":
+            editEvent($_REQUEST['eventId']);           
+            break; 
         case "signIn":
         case "signUp":
             signInAndUpPage($_REQUEST['action']);
