@@ -10,6 +10,13 @@ try {
         case "landing":
             landing();
             break;
+        case "premium":
+            if (!empty($_REQUEST['q'])) {
+                premium($_REQUEST['q']);
+            } else {
+                premium(false);
+            }
+            break;
         case "aboutUs":
             aboutUs();
             break;

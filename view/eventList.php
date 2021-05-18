@@ -18,7 +18,6 @@ if (is_array($events) || is_object($events)) {
                 ?>
                 <a href="index.php?action=<?= $btnAction; ?>" class="card-btn" target="_blank">View Event</a>
                 <?php
-                echo $_SERVER['REQUEST_URI'];
                 if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']) :
                 ?>
                     <div>
