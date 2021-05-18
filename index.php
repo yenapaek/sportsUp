@@ -1,6 +1,5 @@
 <?php
 session_start();
-require("./controller/controller.php");
 require("./controller/usersController.php");
 require("./controller/eventsController.php");
 
@@ -8,10 +7,10 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
         case "landing":
-            landing();
+            require("./view/landing.php");
             break;
         case "aboutUs":
-            aboutUs();
+            require("./view/aboutUs.php");
             break;
         case "addEditEvent":
             categoriesInfo2();
@@ -96,7 +95,7 @@ try {
             logout();
             break;
         default:
-            landing();
+            require("./view/landing.php");
             break;
     }
 } catch (Exception $e) {
