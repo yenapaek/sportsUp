@@ -10,15 +10,16 @@ if (is_array($events) || is_object($events)) {
                 <p><?= $event["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
                 <?php
                 #TODO clean up changing action
-                    if(!empty($_SESSION['userId'])){
-                        $btnAction = "eventDetail&eventId=".$event['eventId']; 
-                    } else {
-                        $btnAction = "signUp"; 
-                    }
+                if (!empty($_SESSION['userId'])) {
+                    $btnAction = "eventDetail&eventId=" . $event['eventId'];
+                } else {
+                    $btnAction = "signUp";
+                }
                 ?>
                 <a href="index.php?action=<?= $btnAction; ?>" class="card-btn" target="_blank">View Event</a>
                 <?php
-                    if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']):
+                echo $_SERVER['REQUEST_URI'];
+                if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']) :
                 ?>
                     <div>
                         <a href=""><i class="far fa-edit"></i></a>
