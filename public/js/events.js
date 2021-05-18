@@ -40,7 +40,6 @@ function loadFile(searchName, secondData, thirdData) {
             let response = xhr.responseText;
             let sectionThree = document.querySelector('#mainContainer section:nth-child(3)');
             sectionThree.innerHTML = response;
-    
         } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status != 200) {
             alert('There is an error !\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText);
         }
@@ -97,7 +96,6 @@ function loadFile(searchName, secondData, thirdData) {
         else {
             let input = document.getElementById("searchInput");
             let inputValue = input.value;
-            console.log(inputValue);
             loadFile(inputValue, false);
         } 
     });
