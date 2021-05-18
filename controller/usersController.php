@@ -137,3 +137,20 @@ function logout()
     session_destroy();
     header("Location: index.php?action=landing");
 }
+
+function premium($whichPlan)
+{
+    if ($whichPlan === 'month') {
+        $link = 'premiumCheckOut.php';
+    } else if ($whichPlan === 'year') {
+        $link = 'premiumCheckOut.php';
+    }
+
+    $link = $whichPlan ? 'premiumCheckOut.php' : 'premium.php';
+    $plan = $whichPlan;
+    $pricing = $whichPlan === 'month' ? '9.99' : '99';
+    $expirationDate = new \DateTime('1 ' . $plan);
+
+
+    require("./view/" . $link);
+}
