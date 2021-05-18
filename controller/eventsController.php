@@ -63,7 +63,7 @@ function eventDetail($eventId)
  * @param  mixed $eventId
  * @return void
  */
-function deleteEvent($eventId, )
+function deleteEvent($eventId)
 {
     deleteEventModel($eventId);
     header("Location: index.php?action=events");
