@@ -140,6 +140,25 @@ function displayAttendingEvents($userId)
     return $attendingEvents;
 }
 
+#TODO : needed in events to check if event is an attended event by user
+/**
+ * userAttendingEvent
+ *
+ * @param  mixed $userId
+ * @param  mixed $eventId
+ * @return Boolean true or false depending on whether a user is attending an event
+ */
+// function userAttendingEvent($userId, $eventId){
+//     $db = dbConnect();
+//     $req = $db->prepare("SELECT COUNT(*) FROM attendingevents WHERE userId = ? AND eventId = ?");
+//     $req->bindParam(1, $userId, PDO::PARAM_INT);
+//     $req->bindParam(2, $eventId, PDO::PARAM_INT);
+//     $req->execute();
+//     $attendingEventsCount = $req->fetchColumn();
+//     $req->closeCursor();
+//     return $attendingEventsCount > 0 ? true : false;
+// }
+
 /**
  * attendEventsModel
  * checks if user is already attending an event before inserting
@@ -157,7 +176,8 @@ function addAttendingEventModel($userId, $eventId)
     $attendingEventsCount = $req->fetchColumn();
     $req->closeCursor();
 
-    if ($attendingEventsCount ==  0) {
+    // if (!userAttendingEvent()) {
+    if ($attendingEventsCount > 0){
         $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
         $req->bindParam(1, $userId, PDO::PARAM_INT);
         $req->bindParam(2, $eventId, PDO::PARAM_INT);

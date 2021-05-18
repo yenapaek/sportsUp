@@ -51,9 +51,11 @@ function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $dura
  * @param  mixed $eventId
  * @return void
  */
-function eventDetail($eventId)
+function eventDetail($userId, $eventId)
 {
     $eventDetail = selectEvent($eventId);
+    // $userAttendingEvent = userAttendingEvent($userId, $eventId);
+
     require("./view/eventDetail.php");
 }
 
