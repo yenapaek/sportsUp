@@ -95,7 +95,6 @@ function kakaoAPICallModel($authCode)
 
 function getTokens($authCode)
 {
-    echo $authCode;
     $url = 'https://kauth.kakao.com/oauth/token'; // API Link
 
     $grantType = 'authorization_code';

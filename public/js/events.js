@@ -26,7 +26,6 @@ function loadFile(sportName, isForInput) {
             let response = xhr.responseText;
             let sectionThree = document.querySelector('#mainContainer section:nth-child(3)');
             sectionThree.innerHTML = response;
-            console.log("test");
         } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status != 200) {
             alert('There is an error !\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText);
         }
@@ -54,12 +53,10 @@ function loadFile(sportName, isForInput) {
         if(checker == true) {
             let criteria = document.querySelector("#sportsCriteria");
             let criteriaValue = criteria.options[criteria.selectedIndex].value;
-            console.log(criteriaValue);
             loadFile(criteriaValue, true);
         } else {
             let input = document.getElementById("searchInput");
             let inputValue = input.value;
-            console.log(inputValue);
             loadFile(inputValue, false);
         }
     });
