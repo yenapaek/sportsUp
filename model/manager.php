@@ -2,7 +2,7 @@
 class Manager {
     protected function dbConnect()
     {
-        $host = 'localhost';
+        $host = '127.0.0.1';
         $dbName = 'sportsevent';
         $login = 'root';
         $pwd = ''; // MAC USER SHOULD PUT A PWD PROBABLY 'root'
@@ -27,7 +27,6 @@ class Manager {
             $query .= " WHERE c.id NOT IN (SELECT c.id FROM categories c JOIN mysports mS ON c.id = mS.categoryId WHERE mS.userId = ?)";
         }
         $query.= " order by name";
-        echo $query;
         $rawResponse = $dataBase->prepare($query);
         if($fromUser) {
             $rawResponse->bindParam(1, $userId, PDO::PARAM_INT);

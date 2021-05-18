@@ -4,3 +4,4 @@
         $_SESSION['code'] = $_GET['code'];
         header("Location:http://127.0.0.1/sportsEvent/index.php?action=kakaoAPICall");
     }
+ 
