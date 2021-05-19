@@ -49,13 +49,16 @@ function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $dura
 {
     $eventManager =  new EventManager();
     $eventId = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
-    // eventDetail($eventId['id']);
+    eventDetail($eventId['id']);
 }
 
-function editEvent($eventId)
+function editEvent($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
 {
-    $eventId = editEventModel($eventId);
+    $eventManager =  new EventManager();
+    $eventId = $eventManager->editEventModel($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
     eventDetail($eventId['id']);
+    
+    
 }
 
 

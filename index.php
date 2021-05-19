@@ -12,14 +12,15 @@ try {
         case "aboutUs":
             require("./view/aboutUs.php");
             break;
-        case "addEditEvent":
-            if ($_REQUEST['editMode']=='true'){
-                categoriesInfo2($_REQUEST['eventId']);               
-            } else{
+        // case "addEditEvent":
+        //     if ($_REQUEST['editMode']=='true'){
+        //         categoriesInfo2($_REQUEST['eventId']);               
+        //     } else{
+        //     categoriesInfo2(false);
+        //     }
+            // break;
+        case "addEvent":
             categoriesInfo2(false);
-            }
-            break;
-        case "createEvent":
             createEvent(
                 $_POST['eventName'],
                 $_POST['sportCategory'],
@@ -32,7 +33,16 @@ try {
             );
             break;
         case "editEvent":
-            editEvent($_REQUEST['eventId']);           
+            editEvent($_REQUEST['eventId'],
+                $_POST['eventName'],
+                $_POST['sportCategory'],
+                $_POST['city'],
+                $_POST['maxPlayers'],
+                $_POST['eventDate'],
+                $_POST['eventDuration'],
+                $_POST['eventDescription'],
+                $_POST['eventFee']
+        );           
             break; 
         case "signIn":
         case "signUp":

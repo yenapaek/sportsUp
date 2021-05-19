@@ -164,22 +164,26 @@ class EventManager extends Manager {
         $req->closeCursor();
     }
     
-    function editEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+    function editEventModel($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare("UPDATE events SET name, categoryId, picture, organizerId, playerNumber, duration, description, eventDate, fee, city WHERE id =:id");
+
+        $req = $db->prepare("UPDATE events SET name=:name, categoryId=:categoryId, playerNumber=:playerNumber, eventDate=:eventDate, duration=:duration, description=:description, fee=:fee, city=:city WHERE id=:id");
+        $req->bindparam('id', $eventId, PDO::PARAM_INT);
         $req->bindparam('name', $name, PDO::PARAM_STR);
-        $req->bindparam('organizerId', $_SESSION['userId'], PDO::PARAM_INT);
+        // $req->bindparam('organizerId', $_SESSION['userId'], PDO::PARAM_INT);
         $req->bindparam('categoryId', $categoryId, PDO::PARAM_INT);
-        $req->bindparam('picture', $picture, PDO::PARAM_STR);
+        // $req->bindparam('picture', $picture, PDO::PARAM_STR);
         $req->bindparam('city', $city, PDO::PARAM_STR);
         $req->bindparam('playerNumber', $playerNumber, PDO::PARAM_INT);
-        $req->bindparam('eventDuration', $duration, PDO::PARAM_STR);
-        $req->bindparam('eventDescription', $description, PDO::PARAM_STR);
+        $req->bindparam('duration', $duration, PDO::PARAM_STR);
+        $req->bindparam('description', $description, PDO::PARAM_STR);
         $req->bindparam('eventDate', $eventDate, PDO::PARAM_STR);
-        $req->bindparam('eventFee', $fee, PDO::PARAM_STR);
+        $req->bindparam('fee', $fee, PDO::PARAM_STR);
         $req->execute();
         $req->closeCursor();
+
+        return $eventId;
     }
 }
