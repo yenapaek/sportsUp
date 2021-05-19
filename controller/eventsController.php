@@ -57,6 +57,7 @@ function eventDetail($eventId)
 {
     $eventManager =  new EventManager();
     $eventDetail = $eventManager->selectEvent($eventId);
+
     require("./view/eventDetail.php");
 }
 

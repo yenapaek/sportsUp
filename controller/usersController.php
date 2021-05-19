@@ -22,11 +22,11 @@ function profile($userId)
     require('./view/profile.php');
 }
 
-function addAttendingEvent($userId, $eventId)
+function attendEvent($eventId)
 {
     $userManager = new UserManager();
-    $userManager->addAttendingEventModel($userId, $eventId);
-    header("Location: index.php?action=eventDetail&eventId=" . $eventId);
+    $userManager->addAttendingEvent($eventId);
+    header("Location: index.php?action=profile");
 }
 
 function addMySport($userId, $categoryId)

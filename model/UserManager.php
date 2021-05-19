@@ -94,7 +94,7 @@ class UserManager extends Manager {
     private function getTokens($authCode)
     {
         $url = 'https://kauth.kakao.com/oauth/token';
-        $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=http://127.0.0.1/sportsEvent/model/oauth.php&code=' . $authCode;
+        $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=http://127.0.0.1/sportsEvent/index.php?action=oauth&code=' . $authCode;
 
         $curl = curl_init();
 
@@ -295,15 +295,16 @@ class UserManager extends Manager {
     }
 
     /**
-     * attendEventsModel
+     * addAttendingEvent
      * checks if user is already attending an event before inserting
      *
      * @param  mixed $userId
      * @return void
      */
-    function addAttendingEventModel($userId, $eventId)
+    function addAttendingEvent($eventId)
     {
         $db = $this->dbConnect();
+        $userId = $_SESSION['userId'];
         $req = $db->prepare("SELECT COUNT(*) FROM attendingevents WHERE userId = ? AND eventId = ?");
         $req->bindParam(1, $userId, PDO::PARAM_INT);
         $req->bindParam(2, $eventId, PDO::PARAM_INT);
@@ -311,7 +312,7 @@ class UserManager extends Manager {
         $attendingEventsCount = $req->fetchColumn();
         $req->closeCursor();
 
-        if ($attendingEventsCount > 0){
+        if ($attendingEventsCount == 0){
             $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
             $req->bindParam(1, $userId, PDO::PARAM_INT);
             $req->bindParam(2, $eventId, PDO::PARAM_INT);
