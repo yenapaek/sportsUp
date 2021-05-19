@@ -18,8 +18,8 @@ function premium($whichPlan)
   $link = $whichPlan ? 'premiumCheckOut.php' : 'premium.php';
   $plan = $whichPlan;
   $pricing = $whichPlan === 'month' ? '9.99' : '99';
-  $expirationDate = new \DateTime('1 ' . $plan);
-  
+  $expirationDate = $plan ? new \DateTime('1 ' . $plan) : '';
+
 
   require("./view/" . $link);
 }

@@ -1,5 +1,13 @@
 <?php $style = '<link href="./public/css/signInAndUp.css" rel="stylesheet" />'; ?>
-<?php ob_start(); ?>
+<?php ob_start();
+
+// if (isset($goPrem)) {
+//     $plan = isset($plan) === 'month' ? "month" : "year";
+// }
+echo $goPrem;
+echo '<br>';
+echo $plan . "yeahhs";
+?>
 
 <div id="bothForm">
     <div id="toggleForm">
@@ -19,6 +27,8 @@
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">
                         <label for="emailSignIn">Email</label>
@@ -63,6 +73,9 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
+
                     <div class="formControl">
                         <label for="userNameSignUp">Username</label>
                         <input type="text" placeholder="username" id="userNameSignUp" name="userNameSignUp" />

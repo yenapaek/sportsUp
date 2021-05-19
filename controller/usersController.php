@@ -33,9 +33,14 @@ function addMySport($userId, $categoryId)
     addMySportModel($userId, $categoryId);
 }
 
-function signInAndUpPage($param)
+function signInAndUpPage($param, $goPrem, $plan)
 {
     $title = $param;
+    if ($param && $goPrem) {
+        $goPrem = $goPrem;
+        $plan = $plan;
+    }
+
     require("./view/signInAndUp.php");
 }
 
@@ -49,14 +54,29 @@ function signInAndUpPage($param)
  * @param  mixed $conf
  * @return void
  */
-function newUser($user, $email, $pass, $conf)
+function newUser($user, $email, $pass, $conf, $goPrem, $plan)
 {
     $newUser = newUserModel($user, $email, $pass, $conf);
-    if ($newUser) {
-        header("Location: index.php?action=signIn");
-    } else {
-        header("Location: index.php?action=signUp");
+
+    $title = $newUser ? 'signIn' : 'signUp';
+
+    if ($newUser && $goPrem) {
+        $goPrem;
+        $plan;
     }
+
+    require("./view/signInAndUp.php");
+
+    // if ($newUser) {
+    //     if ($goPrem) {
+    //         $goPrem = $goPrem;
+    //         $plan = $plan;
+    //         header("Location: index.php?action=signIn&goPrem=" . $goPrem . "&q=" . $plan);
+    //     }
+    //     header("Location: index.php?action=signIn");
+    // } else {
+    //     header("Location: index.php?action=signUp");
+    // }
 }
 
 /**
@@ -66,10 +86,13 @@ function newUser($user, $email, $pass, $conf)
  * @param  mixed $pass
  * @return void
  */
-function manualLogin($email, $pass)
+function manualLogin($email, $pass, $goPrem, $plan)
 {
     $userInfo = manualLoginModel($email, $pass);
-    if ($userInfo) {
+    if ($userInfo && $goPrem) {
+        $_SESSION['userId'] = $userInfo['id'];
+        header("Location: index.php?action=premium&q=$plan");
+    } elseif ($userInfo) {
         $_SESSION['userId'] = $userInfo['id'];
         header("Location: index.php?action=profile");
     } else {
