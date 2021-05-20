@@ -13,6 +13,7 @@ function eventsInfo($search, $name)
     $eventManager =  new EventManager();
     $categories  =  $eventManager->categoriesInfoModel(false);
     $events =  $eventManager->eventSearch($search, $name);
+
     if ($search ==  "default") {
         require("./view/events.php");
     } else {
@@ -56,7 +57,8 @@ function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $dura
 function eventDetail($eventId)
 {
     $eventManager =  new EventManager();
-    $eventDetail = $eventManager->selectEvent($eventId);
+    // $eventDetail = $eventManager->selectEvent($eventId);
+    $eventDetail = $eventManager->eventSearch('eventDetail',$eventId);
 
     require("./view/eventDetail.php");
 }

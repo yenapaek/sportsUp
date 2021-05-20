@@ -80,6 +80,13 @@ try {
                 throw new Exception("Error with attending event.");
             }
             break;
+        case "cancelAttendingEvent":
+            if (!empty($_REQUEST['eventId'])) {
+                cancelAttendingEvent($_REQUEST['eventId']);
+            } else {
+                throw new Exception("Error with attending event.");
+            }
+            break;
         case "searchSubmit":
             if (isset($_REQUEST['searchEvent'])) {
                 eventsInfo("input", $_REQUEST['searchEvent']);
