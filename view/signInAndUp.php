@@ -19,6 +19,8 @@
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">
                         <label for="emailSignIn">Email</label>
@@ -63,6 +65,9 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
+
                     <div class="formControl">
                         <label for="userNameSignUp">Username</label>
                         <input type="text" placeholder="username" id="userNameSignUp" name="userNameSignUp" />

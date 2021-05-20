@@ -36,7 +36,7 @@
             <?php
             } else {
             ?>
-                <a href="index.php?action=signUp" id="signUpBtn"><strong>Sign Up</strong> </a>
+                <a href="index.php?action=signUp" class="signUpBtn"><strong>Sign Up</strong> </a>
             <?php
             }
             ?>

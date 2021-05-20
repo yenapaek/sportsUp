@@ -35,9 +35,14 @@ function addMySport($userId, $categoryId)
     $userManager->addMySportModel($userId, $categoryId);
 }
 
-function signInAndUpPage($param)
+function signInAndUpPage($param, $goPrem, $plan)
 {
     $title = $param;
+    if ($param && $goPrem) {
+        $goPrem;
+        $plan;
+    }
+
     require("./view/signInAndUp.php");
 }
 
@@ -51,15 +56,18 @@ function signInAndUpPage($param)
  * @param  mixed $conf
  * @return void
  */
-function newUser($user, $email, $pass, $conf)
+function newUser($user, $email, $pass, $conf, $goPrem, $plan)
 {
     $userManager = new UserManager();
     $newUser = $userManager->newUserModel($user, $email, $pass, $conf);
-    if ($newUser) {
-        header("Location: index.php?action=signIn");
-    } else {
-        header("Location: index.php?action=signUp");
+
+    $title = $newUser ? 'signIn' : 'signUp';
+    if ($newUser && $goPrem) {
+        $goPrem;
+        $plan;
     }
+
+    require("./view/signInAndUp.php");
 }
 
 /**
@@ -69,11 +77,14 @@ function newUser($user, $email, $pass, $conf)
  * @param  mixed $pass
  * @return void
  */
-function manualLogin($email, $pass)
+function manualLogin($email, $pass, $goPrem, $plan)
 {
     $userManager = new UserManager();
     $userInfo = $userManager->manualLoginModel($email, $pass);
-    if ($userInfo) {
+    if ($userInfo && $goPrem && $plan) {
+        $_SESSION['userId'] = $userInfo['id'];
+        header("Location: index.php?action=premium&q=$plan");
+    } elseif ($userInfo) {
         $_SESSION['userId'] = $userInfo['id'];
         header("Location: index.php?action=profile");
     } else {
@@ -140,17 +151,9 @@ function logout()
 
 function premium($whichPlan)
 {
-    if ($whichPlan === 'month') {
-        $link = 'premiumCheckOut.php';
-    } else if ($whichPlan === 'year') {
-        $link = 'premiumCheckOut.php';
-    }
-
     $link = $whichPlan ? 'premiumCheckOut.php' : 'premium.php';
-    $plan = $whichPlan;
     $pricing = $whichPlan === 'month' ? '9.99' : '99';
-    $expirationDate = new \DateTime('1 ' . $plan);
-
+    $expirationDate = $whichPlan ? new \DateTime('1 ' . $whichPlan) : '';
 
     require("./view/" . $link);
 }

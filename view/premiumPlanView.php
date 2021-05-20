@@ -1,3 +1,9 @@
+<?php
+$month = !empty($_SESSION['userId']) ? "premium&q=month" : "signUp&goPrem=true&q=month";
+$year = !empty($_SESSION['userId']) ? "premium&q=year" : "signUp&goPrem=true&q=year";
+
+?>
+
 <div class="background">
     <div class="container">
         <div class="panel pricing-table">
@@ -21,7 +27,7 @@
                     <li class="pricing-features-item">Create paid Event</li>
                 </ul>
                 <span class="pricing-price">$9.99</span>
-                <a href="index.php?action=premium&q=month" class="pricing-button is-featured">Go Premium</a>
+                <a href="index.php?action=<?= $month ?>" class="pricing-button is-featured">Go Premium</a>
             </div>
 
             <div class="pricing-plan">
@@ -32,7 +38,7 @@
                     <li class="pricing-features-item">Create paid Event</li>
                 </ul>
                 <span class="pricing-price">$99</span>
-                <a href="index.php?action=premium&q=year" class="pricing-button">Go Premium</a>
+                <a href="index.php?action=<?= $year ?>" class="pricing-button">Go Premium</a>
             </div>
 
         </div>
