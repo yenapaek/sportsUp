@@ -1,6 +1,5 @@
 <?php
 require_once("./model/EventManager.php");
-
 /**
  * eventsInfo allow you to populate the select in the create event page
  *
@@ -27,13 +26,6 @@ function categoriesInfo2()
     require("./view/addEditEvent.php");
 }
 
-function eventsFavorite($userId, $eventId) {
-    favoriteAdd($userId, $eventId);
-}
-
-function eventsFavoriteElimination($userId, $eventId) {
-    favoriteElimination($userId, $eventId);
-}
 
 /**
  * createEvent allow you to create a new event and then redirect you to this event
@@ -74,7 +66,7 @@ function eventDetail($eventId)
  * @param  mixed $eventId
  * @return void
  */
-function deleteEvent($eventId)
+function deleteEvent($eventId, $userId)
 {
     $eventManager =  new EventManager();
     $eventManager->deleteEventModel($eventId);

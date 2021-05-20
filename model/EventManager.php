@@ -28,9 +28,11 @@ class EventManager extends Manager {
 
     function eventSearch($search, $name)
     {
+
         $dataBase = $this->dbConnect();
         $query = "SELECT e.id AS eventId, e.organizerId AS organizerId, c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage,
-                (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany
+                (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany,
+                (SELECT heart from attendingEvents WHERE eventId=e.id) AS isHeart
                 FROM events e
                 JOIN categories c ON e.categoryId = c.id";
 
@@ -43,8 +45,20 @@ class EventManager extends Manager {
                 $add = " WHERE c.name = '$name'";
                 break;
 
+            case "popularity":
+                $add = " ORDER BY howMany DESC";
+                break;
+
+            case "myEvents":
+                $add = " JOIN attendingEvents a ON a.eventId = e.id WHERE a.userId = $name";
+                break;
+
+            case "myHostingEvents":
+                $add = " WHERE e.organizerId = $name";
+                break;
+
             default:
-                $add = "";
+                $add = " ORDER BY eventDate DESC";
                 break;
         }
         $rawResponse = $dataBase->query($query . $add);

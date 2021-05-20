@@ -69,7 +69,7 @@ try {
             }
             break;
         case "events":
-            eventsInfo("default", true);
+            eventsInfo('default', true);
             break;
         case "eventDetail":
             eventDetail($_REQUEST['eventId']);
@@ -90,9 +90,11 @@ try {
             } elseif (isset($_REQUEST['sportCriteria'])) {
                 eventsInfo("select", $_REQUEST['sportCriteria']);
             } elseif (isset($_REQUEST['searchPopularity'])) {
-                eventsInfo("popularity", $_REQUEST['searchPopularity']);
+                eventsInfo("popularity", null);
             } elseif (isset($_REQUEST['myEvents'])) {
                 eventsInfo("myEvents", $_REQUEST['myEvents']);
+            } elseif (isset($_REQUEST['myHostingEvents'])) {
+                eventsInfo("myHostingEvents", $_REQUEST['myHostingEvents']);
             }
             break;
         
@@ -111,6 +113,7 @@ try {
                 throw new Exception("Error with favorites.");
                 eventsInfo("select", $_REQUEST['sportCriteria']);
             }
+            break;
         case "logout":
             logout();
             break;
@@ -125,3 +128,38 @@ try {
     $line = $e->getLine();
     require('./view/error.php');
 }
+
+
+// switch (e.target.classList.value) {
+//     case 'far fa-heart':    e.target.classList.value = 'fas fa-heart';
+//                             loadFile('Favorite', favorites[i].getAttribute('dataUserId'), favorites[i].getAttribute('dataEventId'));
+//                             break;
+
+//     case 'fas fa-heart' :   e.target.classList.value = 'far fa-heart';
+//                             loadFile('FavoriteEliminate', favorites[i].getAttribute('dataUserId'), favorites[i].getAttribute('dataEventId'));
+//                             break;
+
+//     default: return;
+// }
+
+
+// switch (true) {
+//     case e.target.value == 'Sport' && !checker: sportSelect.hidden = false;
+//                                                 searchInput.setAttribute("type", "hidden");
+//                                                 checker = true;
+//                                                 break;
+
+//     case e.target.value == 'Event': sportSelect.hidden = true;
+//                                     searchInput.setAttribute("type", "text");
+//                                     checker = false;
+//                                     break;
+
+//     case e.target.value == 'Popularity':    searchInput.setAttribute("type", "hidden");
+//                                             sportSelect.hidden = true;
+//                                             break;
+
+//     case e.target.value == 'MyEvents':  searchInput.setAttribute("type", "hidden")
+//                                         break;
+
+//     default: return;
+// }

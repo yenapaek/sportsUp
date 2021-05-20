@@ -137,3 +137,13 @@ function logout()
     session_destroy();
     header("Location: index.php?action=landing");
 }
+
+function eventsFavorite($userId, $eventId) {
+    $userManager = new UserManager();
+    $userManager->favoriteAdd($userId, $eventId);
+}
+
+function eventsFavoriteElimination($userId, $eventId) {
+    $userManager = new UserManager();
+    $userManager->favoriteElimination($userId, $eventId);
+}
