@@ -61,12 +61,8 @@ try {
                 throw new Exception("Please fill again the form");
             }
             break;
-        case "kakaoAPICall":
-            if (isset($_SESSION['code'])) {
-                kakaoAPICall($_SESSION['code']);
-            } else {
-                throw new Exception("Error with Kakao Login.");
-            }
+        case "oauth":
+            kakaoAPICall($_REQUEST['code']);
             break;
         case "events":
             eventsInfo('default', true);
@@ -79,7 +75,14 @@ try {
             break;
         case "attendEvent":
             if (!empty($_REQUEST['eventId'])) {
-                addAttendingEvent($_SESSION['userId'], $_REQUEST['eventId']);
+                attendEvent($_REQUEST['eventId']);
+            } else {
+                throw new Exception("Error with attending event.");
+            }
+            break;
+        case "cancelAttendingEvent":
+            if (!empty($_REQUEST['eventId'])) {
+                cancelAttendingEvent($_REQUEST['eventId']);
             } else {
                 throw new Exception("Error with attending event.");
             }
@@ -91,10 +94,10 @@ try {
                 eventsInfo("select", $_REQUEST['sportCriteria']);
             } elseif (isset($_REQUEST['searchPopularity'])) {
                 eventsInfo("popularity", null);
-            } elseif (isset($_REQUEST['myEvents'])) {
-                eventsInfo("myEvents", $_REQUEST['myEvents']);
-            } elseif (isset($_REQUEST['myHostingEvents'])) {
-                eventsInfo("myHostingEvents", $_REQUEST['myHostingEvents']);
+            } elseif (isset($_REQUEST['attendingEvents'])) {
+                eventsInfo("attendingEvents", null);
+            } elseif (isset($_REQUEST['hostingEvents'])) {
+                eventsInfo("hostingEvents", null);
             }
             break;
         

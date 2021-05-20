@@ -18,8 +18,8 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
                     <option value="Popularity">By Popularity</option>
                     <?php  
                         if(isset($_SESSION['userId'])) { ?> 
-                            <option value="MyEvents">My Attending Events</option>
-                            <option value="MyHostingEvents">My Hosting Events</option> 
+                            <option value="attendingEvents">My Attending Events</option>
+                            <option value="hostingEvents">My Hosting Events</option> 
                                 <?php } 
                     ?>
                     

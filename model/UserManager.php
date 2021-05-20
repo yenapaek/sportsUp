@@ -75,7 +75,13 @@ class UserManager extends Manager {
         }
         return false;
     }
-
+    
+    /**
+     * kakaoAPICallModel allows user to login and sign-up using Kakao
+     *
+     * @param  mixed $authCode
+     * @return Integer user Id
+     */
     function kakaoAPICallModel($authCode)
     {
         $tokens = $this->getTokens($authCode);
@@ -90,11 +96,17 @@ class UserManager extends Manager {
         $kakaoUserId = $kakaoUserInfo->id;
         return $kakaoUserId;
     }
-
+    
+    /**
+     * getTokens
+     *
+     * @param String $authCode
+     * @return Array $tokens stores 'access_token' and 'refresh_token'
+     */
     private function getTokens($authCode)
     {
         $url = 'https://kauth.kakao.com/oauth/token';
-        $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=http://127.0.0.1/sportsEvent/model/oauth.php&code=' . $authCode;
+        $param = 'grant_type=authorization_code&client_id=37fea6edf3b24bab4469275577842ba5&redirect_uri=http://127.0.0.1/sportsEvent/index.php?action=oauth&code=' . $authCode;
 
         $curl = curl_init();
 
@@ -113,7 +125,13 @@ class UserManager extends Manager {
         curl_close($curl);
         return $tokens;
     }
-
+    
+    /**
+     * requestKakaoAPIUserData uses access token to request user info to create user
+     *
+     * @param String $accessToken
+     * @return Object $kakaoUserObj  - 
+     */
     private function requestKakaoAPIUserData($accessToken)
     {
         $url = 'https://kapi.kakao.com/v2/user/me';
@@ -270,40 +288,18 @@ class UserManager extends Manager {
             $req->closeCursor();
         }
     }
-    /**
-     * attendingEventsModel
-     *
-     * @param  mixed $userId
-     * @return array all the events the user is attending.
-     */
-    function displayAttendingEvents($userId)
-    {
-        $db = $this->dbConnect();
-
-        $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage,
-            (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=events.id) as howMany
-        FROM events
-        JOIN attendingevents ON attendingevents.eventId = events.id
-        JOIN categories ON events.categoryId=categories.id
-        WHERE attendingevents.userid = ?");
-        $req->bindParam(1, $userId, PDO::PARAM_STR);
-        $req->execute();
-        $attendingEvents = $req->fetchAll(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-
-        return $attendingEvents;
-    }
 
     /**
-     * attendEventsModel
+     * addAttendingEvent
      * checks if user is already attending an event before inserting
      *
      * @param  mixed $userId
      * @return void
      */
-    function addAttendingEventModel($userId, $eventId)
+    function addAttendingEvent($eventId)
     {
         $db = $this->dbConnect();
+        $userId = $_SESSION['userId'];
         $req = $db->prepare("SELECT COUNT(*) FROM attendingevents WHERE userId = ? AND eventId = ?");
         $req->bindParam(1, $userId, PDO::PARAM_INT);
         $req->bindParam(2, $eventId, PDO::PARAM_INT);
@@ -311,7 +307,7 @@ class UserManager extends Manager {
         $attendingEventsCount = $req->fetchColumn();
         $req->closeCursor();
 
-        if ($attendingEventsCount > 0){
+        if ($attendingEventsCount == 0){
             $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
             $req->bindParam(1, $userId, PDO::PARAM_INT);
             $req->bindParam(2, $eventId, PDO::PARAM_INT);
@@ -319,6 +315,25 @@ class UserManager extends Manager {
             $req->closeCursor();
         }
     }
+
+    /**
+     * cancelAttendingEvent
+     * removes an event from a user's attending event list
+     *
+     * @param  Integer $eventId
+     * @return void
+     */
+    function removeAttendingEvent($eventId)
+    {
+        $db = $this->dbConnect();
+        $userId = $_SESSION['userId'];
+        $req = $db->prepare("DELETE FROM attendingevents WHERE userId = ? AND eventId = ?");
+        $req->bindParam(1, $userId, PDO::PARAM_INT);
+        $req->bindParam(2, $eventId, PDO::PARAM_INT);
+        $req->execute();
+        $req->closeCursor();
+    }
+
 
     /**
      * editUserModel allow you to update the profile information

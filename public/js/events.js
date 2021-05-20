@@ -12,7 +12,7 @@ function loadFile(searchName, secondData, thirdData) {
         case 'Event':   xhr.open(`GET`, `index.php?action=searchSubmit&searchEvent=${secondData}`);
                         break;
 
-        case 'MyEvents':    xhr.open(`POST`, `index.php?action=searchSubmit&myEvents=${secondData}`);
+        case 'attendingEvents':    xhr.open(`POST`, `index.php?action=searchSubmit&attendingEvents`);
                             break;
 
         case 'Favorite':    xhr.open(`POST`, `index.php?action=favoriteCreation&favoriteUser=${secondData}&favoriteEvent=${thirdData}`);
@@ -21,7 +21,7 @@ function loadFile(searchName, secondData, thirdData) {
         case 'FavoriteEliminate':   xhr.open(`POST`, `index.php?action=favoriteElimination&favoriteUser=${secondData}&favoriteEvent=${thirdData}`);
                                     break;
 
-        case 'MyHostingEvents' :    xhr.open(`GET`, `index.php?action=searchSubmit&myHostingEvents=${secondData}`);
+        case 'hostingEvents' :    xhr.open(`GET`, `index.php?action=searchSubmit&hostingEvents`);
                                     break;
         default: return;
     }
@@ -97,12 +97,12 @@ sportSelect.hidden = true;
                                                         checker = false;
                                                         break;
             
-                case e.target.value == 'MyEvents':  searchInput.setAttribute("type", "hidden");
+                case e.target.value == 'attendingEvents':  searchInput.setAttribute("type", "hidden");
                                                     sportSelect.hidden = true;
                                                     checker = false;
                                                     break;
 
-                case e.target.value == 'MyHostingEvents' :  searchInput.setAttribute("type", "hidden");
+                case e.target.value == 'hostingEvents' :  searchInput.setAttribute("type", "hidden");
                                                             sportSelect.hidden = true;
                                                             checker = false;
                                                             break;
@@ -132,10 +132,10 @@ sportSelect.hidden = true;
 
             case 'Popularity':  loadFile('Popularity', null, null);
                                 break;
-            case 'MyEvents':    loadFile('MyEvents', selectCriteria.getAttribute('dataUserId'), null);
+            case 'attendingEvents':    loadFile('attendingEvents', selectCriteria.getAttribute('dataUserId'), null);
                                 break;
 
-            case 'MyHostingEvents' :    loadFile('MyHostingEvents', selectCriteria.getAttribute('dataUserId'), null);
+            case 'hostingEvents' :    loadFile('hostingEvents', selectCriteria.getAttribute('dataUserId'), null);
                                         break;
 
             default: return;

@@ -59,8 +59,8 @@ ob_start();
                 <h1>My Events</h1>
                 <div class="list-event-cards">
                     <?php
-                    if (!empty($eventsSelect)) {
-                        $events = $eventsSelect;
+                    if (!empty($hostingEvents)) {
+                        $events = $hostingEvents;
                         require('eventList.php');
                     } else {
                         echo '<p>No events added</p>';
@@ -74,6 +74,7 @@ ob_start();
                     <?php
                     if (!empty($attendingEvents)) {
                         $events = $attendingEvents;
+                        $attending = true;
                         require('eventList.php');
                     } else {
                         echo '<p> No attending events</p>';

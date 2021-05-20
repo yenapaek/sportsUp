@@ -3,87 +3,98 @@ require_once("Manager.php");
 class EventManager extends Manager {
 
     /**
-     * myEventsModel
+     * eventSearch
      *
-     * @param  mixed $userId
-     * @return array all the events the user created.
+     * @param  mixed $search
+     * @param  mixed $name
+     * @return Array event info including whether a user is attending the event or not
      */
-    function myEventsModel($userId)
-    {
-        $db = $this->dbConnect();
-
-        $req = $db->prepare("SELECT e.*, c.*, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.id AS eventId, e.name AS eventName, c.name AS categoryName, c.image AS categoryImage,
-        (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany
-        FROM events e 
-        JOIN categories c ON e.categoryId = c.id
-        WHERE organizerId=?");
-
-        $req->bindParam(1, $userId, PDO::PARAM_STR);
-        $req->execute();
-        $myEvents = $req->fetchAll(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-
-        return $myEvents;
-    }
-
     function eventSearch($search, $name)
     {
+        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : "";
 
-        $dataBase = $this->dbConnect();
-        $query = "SELECT e.id AS eventId, e.organizerId AS organizerId, c.name AS categoryName, e.name AS eventName, DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, e.playerNumber as playerNumber, e.duration as duration, c.image as categoryImage,
-                (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) as howMany,
-                (SELECT heart from attendingEvents WHERE eventId=e.id) AS isHeart
+        $db = $this->dbConnect();
+        $query = "SELECT DISTINCT e.id AS eventId,
+                    e.name AS eventName,
+                    e.organizerId AS organizerId,
+                    c.name AS categoryName,
+                    DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate,
+                    e.playerNumber AS playerNumber,
+                    e.duration AS duration,
+                    e.description AS eventDescription,
+                    e.fee AS fee,
+                    e.city AS city,
+                    c.image AS categoryImage,
+                (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
+                (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus 
                 FROM events e
                 JOIN categories c ON e.categoryId = c.id";
-
         switch ($search) {
             case "input":
                 $add = " WHERE e.name LIKE '%$name%'";
                 break;
-
             case "select":
                 $add = " WHERE c.name = '$name'";
                 break;
-
+            
             case "popularity":
                 $add = " ORDER BY howMany DESC";
                 break;
 
-            case "myEvents":
-                $add = " JOIN attendingEvents a ON a.eventId = e.id WHERE a.userId = $name";
+            case "hostingEvents":
+                $add = " WHERE organizerId=:userId";
+                break;
+            case "attendingEvents":
+                $add = " JOIN attendingevents a ON a.eventId = e.id WHERE a.userId =:userId HAVING attendingStatus = 1";
                 break;
 
-            case "myHostingEvents":
-                $add = " WHERE e.organizerId = $name";
+            case "eventDetail":
+                $add = " WHERE e.id = '$name'";
                 break;
-
+                
             default:
                 $add = " ORDER BY eventDate DESC";
                 break;
         }
-        $rawResponse = $dataBase->query($query . $add);
-        $infoArray = $rawResponse->fetchAll(PDO::FETCH_ASSOC);
-        $rawResponse->closeCursor();
-        return $infoArray;
-    }
+        $req = $db->prepare($query . $add);
+        $req->bindParam(":userId", $userId, PDO::PARAM_INT);
 
+        $req->execute();
+        $events = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $events;
+    }
     /**
-     * suggestionEventsModel
+     * suggestEvents
      *
      * @param  mixed $userId
      * @return array event suggestions for user based on mySports.
      */
-    function suggestionEventsModel($userId)
+    function suggestEvents($userId)
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate, events.id AS eventId, categories.name AS categoryName, events.name AS eventName, categories.image AS categoryImage,
-                (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=events.id) as howMany
-        FROM events
-        JOIN mysports ON mysports.categoryId=events.categoryId
-        JOIN categories ON mysports.categoryId=categories.id
-        WHERE mysports.userId = ?");
-        $req->bindParam(1, $userId, PDO::PARAM_STR);
+        #TODO check for attending count = 0;
+        $query = "SELECT DISTINCT e.id AS eventId,
+                    e.name AS eventName,
+                    e.organizerId AS organizerId,
+                    c.name AS categoryName,
+                    DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate,
+                    e.playerNumber AS playerNumber,
+                    e.duration AS duration,
+                    e.description AS eventDescription,
+                    e.fee AS fee,
+                    e.city AS city,
+                    c.image AS categoryImage,
+                (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
+                (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus 
+                FROM events e
+                JOIN mysports mS ON mS.categoryId=e.categoryId
+                JOIN categories c ON mS.categoryId=c.id
+                WHERE mS.userId = :userId AND organizerId != :userId
+                HAVING attendingStatus = 0";
+        $req = $db->prepare($query);            
+        $req->bindParam(":userId", $userId, PDO::PARAM_STR);
         $req->execute();
         $suggestionEvents = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
@@ -134,26 +145,6 @@ class EventManager extends Manager {
 
             return $eventId;
         }
-    }
-
-    /**
-     * selectEvent allow you to select all the information of a specific event
-     *
-     * @param  mixed $idEvent
-     * @return array of all the information of a specific event
-     */
-    function selectEvent($idEvent)
-    {
-        $db = $this->dbConnect();
-
-        $req = $db->prepare("SELECT events.*, DATE_FORMAT(events.eventDate, '%a, %b %e, %l:%i %p') AS eventDate FROM events WHERE id=? ");
-        $req->bindParam(1, $idEvent, PDO::PARAM_INT);
-
-        $req->execute();
-        $event  = $req->fetchAll(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-
-        return $event;
     }
 
     /**

@@ -14,19 +14,25 @@ function profile($userId)
     $eventManager = new EventManager();
     $infoProfile = $userManager->myProfileModel($userId);
     $mySports = $userManager->mySportsModel($userId);
-    $eventsSelect = $eventManager->myEventsModel($userId);
-    $attendingEvents = $userManager->displayAttendingEvents($userId);
-    $suggestionEvents = $eventManager->suggestionEventsModel($userId);
-    $suggestionArticles = '';
+    $hostingEvents= $eventManager->eventSearch('hostingEvents','');
+    $attendingEvents = $eventManager->eventSearch('attendingEvents','');
+    $suggestionEvents = $eventManager->suggestEvents($userId);
     $categories = $userManager->categoriesInfoModel(true);
     require('./view/profile.php');
 }
 
-function addAttendingEvent($userId, $eventId)
+function attendEvent($eventId)
 {
     $userManager = new UserManager();
-    $userManager->addAttendingEventModel($userId, $eventId);
-    header("Location: index.php?action=eventDetail&eventId=" . $eventId);
+    $userManager->addAttendingEvent($eventId);
+    header("Location: index.php?action=profile");
+}
+
+function cancelAttendingEvent($eventId)
+{
+    $userManager = new UserManager();
+    $userManager->removeAttendingEvent($eventId);
+    header("Location: index.php?action=profile");
 }
 
 function addMySport($userId, $categoryId)
