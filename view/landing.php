@@ -12,7 +12,7 @@ ob_start();
             <div class="text-box text-box1">
                 <h1>Global events</h1>
                 <span></span>
-                <p>Create and join paid events </p>
+                <p>Enjoy with friends global events as a Ligue Football match! </p>
             </div>
         </div>
         <div id="banner2" class="banner">
@@ -20,7 +20,8 @@ ob_start();
             <div class="text-box text-box2">
                 <h1>Users events</h1>
                 <span></span>
-                <p>Join public events of SportsUp community</p>
+                <p>Want to have friends to workout together ? </p>
+                <p>Create a public event to find your teammates !</p>
             </div>
         </div>
         <div id="banner3" class="banner">
@@ -28,15 +29,16 @@ ob_start();
             <div id="text-box3" class="text-box text-box3">
                 <h1>Join our community!</h1>
                 <span></span>
-                <p>Meet and make new friends with simmilar interests</p>
+                <p>Meet and make new friends with similar interests</p>
             </div>
         </div>
         <div id="banner4" class="banner">
             <img src="./public//images/landing/banner4.jpg" alt="banner image 4">
             <div class="text-box text-box4">
-                <h1>Premium</h1>
+                <h1>Premium Feature </h1>
                 <span></span>
-                <p>Become Premium member ! Create and secure the transactions through our global events!</p>
+                <p>Become Premium member !</p>
+                <p>Create and secure the transactions through our global events!</p>
             </div>
         </div>
         <!-- BUTTON -->
@@ -55,9 +57,15 @@ ob_start();
     <div class="secondText">
         <p>
             SportsUp is a community of sports lovers.
-            Join us to enjoy sports activites and make new friends !
+            Join us to enjoy activities and make new friends !
+        </p>
+        <p>
             You want to propose an event like seeing a professional baseball team match ?
-            Then become premium in order to propose global events including a participation fee.
+        </p>
+        <p>
+            You can become premium member in order to propose global events including a participation fee.
+        </p>
+        <p>
             Being premium member will insure that your transactions will be secured through our Website!
         </p>
         <div class="boxContainer">
