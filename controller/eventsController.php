@@ -20,14 +20,15 @@ function eventsInfo($search, $name)
     }
 }
 
-function categoriesInfo2($eventId)
+function categoriesInfo2($eventId=false)
 {   
     $eventManager =  new EventManager();
 
     if ($eventId){
        $infos = $eventManager->selectEvent($eventId);
     }
-    
+    $form = $eventId ? 'editEvent' : 'addEvent';
+    $formTitle = $eventId ? 'Update' : 'Create';
     $categories  =  $eventManager->categoriesInfoModel(false);
     require("./view/addEditEvent.php");
 }
@@ -48,17 +49,15 @@ function categoriesInfo2($eventId)
 function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
 {
     $eventManager =  new EventManager();
-    $eventId = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
-    eventDetail($eventId['id']);
+    $event = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+    eventDetail($event['id']);
 }
 
 function editEvent($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
 {
     $eventManager =  new EventManager();
     $eventId = $eventManager->editEventModel($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
-    eventDetail($eventId['id']);
-    
-    
+    eventDetail($eventId);
 }
 
 
@@ -73,6 +72,7 @@ function eventDetail($eventId)
     $eventManager =  new EventManager();
     $eventDetail = $eventManager->selectEvent($eventId);
     require("./view/eventDetail.php");
+    // header("Location: index.php?action=eventDetail&eventId={$eventDetail['id']}");
 }
 
 /**

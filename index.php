@@ -12,15 +12,14 @@ try {
         case "aboutUs":
             require("./view/aboutUs.php");
             break;
-        // case "addEditEvent":
-        //     if ($_REQUEST['editMode']=='true'){
-        //         categoriesInfo2($_REQUEST['eventId']);               
-        //     } else{
-        //     categoriesInfo2(false);
-        //     }
-            // break;
+        case "addEditEvent":
+           if(!empty($_REQUEST['eventId'])){
+               categoriesInfo2($_REQUEST['eventId']);
+            }else{ 
+                categoriesInfo2();
+           }
+            break;
         case "addEvent":
-            categoriesInfo2(false);
             createEvent(
                 $_POST['eventName'],
                 $_POST['sportCategory'],

@@ -123,6 +123,7 @@ select {
 }
 
 .card {
+    position: relative;
     width: 15rem;
     background-color: #f0f0f0;
     border: 1px solid #dadce0;
@@ -131,9 +132,57 @@ select {
     align-items: flex-start;
     box-shadow: 0.5rem 5rem 5rem 3rem rgba(110, 110, 110, 0.2);
 }
+.insideIconEventCard {
+    /* position: absolute;
+    top: -22px;
+    right: 3px; */
+    /* margin-right: 5px; */
+    /* visibility: hidden; */
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+}
+
+
+.insideIconEventCard i {
+    /* color:red; */
+    visibility: hidden;
+    font-size: 20px;
+    margin-right: 5px;
+}
+.card:hover .insideIconEventCard i{
+    visibility: visible;
+}
+
+.hostIconText {
+    /* width: 210px; */
+    position: absolute;
+    top: -22px;
+    left: 3px;
+    display: flex;
+    flex-direction: row;
+
+}
+.hostIconText i {
+    cursor: pointer;
+    font-size: 20px;
+    color: green;
+}
+.hostIconTextText {
+    visibility: hidden;
+    /* width: 0; */
+    transition: 1s;
+}
+
+.hostIconText:hover .hostIconTextText {
+    visibility: visible;
+    width: 210px;
+    
+}
 
 .card-text {
-    margin: 1rem 2rem 1rem 2rem;
+    margin: auto;
+    text-align: center;
 }
 
 .card-text h2 {

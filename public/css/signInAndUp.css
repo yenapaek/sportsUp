@@ -73,10 +73,8 @@ input:checked + .slider:before {
     margin: auto;
     height: 77vh;
     padding-top: 20px;
-    /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); */
     margin-bottom: 50px;
     font-family: "Open Sans", sans-serif;
-    /* margin-top: 15px; */
 }
 
 /* red line  */
@@ -111,11 +109,8 @@ nav a:nth-child(5):hover ~ .animation {
 
 #signInFormSection,
 #signUpFormSection {
-    /* margin-top: 30px; */
     display: flex;
     justify-content: space-around;
-    /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); */
-    /* padding-bottom: 50px; */
     margin-bottom: 50px;
 }
 div h1 {

@@ -17,9 +17,9 @@ ob_start();
         <div id="banner2" class="banner">
             <img src="./public/images/landing/banner2.jpeg" alt="banner image 2">
             <div class="text-box text-box2">
-                <h1>Users events</h1>
+                <h1>Join outdoors events everyday!</h1>
                 <span></span>
-                <p>Join events of SportsUp community</p>
+                <p>Make new friends with simmilar interests</p>
             </div>
         </div>
         <div id="banner3" class="banner">
@@ -27,7 +27,7 @@ ob_start();
             <div id="text-box3" class="text-box text-box3">
                 <h1>Join our community!</h1>
                 <span></span>
-                <p>Meet and make new friends with simmilar interests</p>
+                <p>Face new challenges, exchange experience!</p>
             </div>
         </div>
         <div id="banner4" class="banner">
@@ -54,10 +54,7 @@ ob_start();
     </div>
     <div class="secondText">
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Sint ab quae sit enim! Error, expedita?
-            Doloribus ipsum cum ab sunt culpa nemo voluptate exercitationem.
-            Esse excepturi cum deleniti ea laudantium?
+            Are you ready for to meet and make new friends, face new challanges and expirience?
         </p>
         <div class="boxContainer">
             <div class="box1">
@@ -91,7 +88,7 @@ ob_start();
                         <li class="pricing-features-item">Create paid Event</li>
                     </ul>
                     <span class="pricing-price">$9.99</span>
-                    <a href="#/" class="pricing-button is-featured">Free trial</a>
+                    <a href="#/" class="pricing-button is-featured">Try now</a>
                 </div>
 
                 <div class="pricing-plan">
@@ -102,7 +99,7 @@ ob_start();
                         <li class="pricing-features-item">Create paid Event</li>
                     </ul>
                     <span class="pricing-price">$99</span>
-                    <a href="#/" class="pricing-button">Free trial</a>
+                    <a href="#/" class="pricing-button">Try now</a>
                 </div>
 
             </div>
