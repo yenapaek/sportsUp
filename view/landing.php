@@ -33,7 +33,7 @@ ob_start();
             </div>
         </div>
         <div id="banner4" class="banner">
-            <img src="./public//images/landing/banner4.jpg" alt="banner image 4">
+            <img src="./public//images/landing/climbing.jpg" alt="banner image 4">
             <div class="text-box text-box4">
                 <h1>Premium Feature </h1>
                 <span></span>
