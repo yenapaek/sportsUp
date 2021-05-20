@@ -10,9 +10,9 @@ ob_start();
         <div id="banner1" class="banner">
             <img src="./public/images/landing/banner1.jpeg" alt="banner image 1">
             <div class="text-box text-box1">
-                <h1>Big events</h1>
+                <h1>Global events</h1>
                 <span></span>
-                <p>Find upcoming Global sport Events </p>
+                <p>Create and join paid events </p>
             </div>
         </div>
         <div id="banner2" class="banner">
@@ -20,7 +20,7 @@ ob_start();
             <div class="text-box text-box2">
                 <h1>Users events</h1>
                 <span></span>
-                <p>Join events of SportsUp community</p>
+                <p>Join public events of SportsUp community</p>
             </div>
         </div>
         <div id="banner3" class="banner">
@@ -34,9 +34,9 @@ ob_start();
         <div id="banner4" class="banner">
             <img src="./public//images/landing/banner4.jpg" alt="banner image 4">
             <div class="text-box text-box4">
-                <h1>Shop</h1>
+                <h1>Premium</h1>
                 <span></span>
-                <p>Buy, sell or exchange sport inventory with other SportsUp members!</p>
+                <p>Become Premium member ! Create and secure the transactions through our global events!</p>
             </div>
         </div>
         <!-- BUTTON -->
@@ -54,10 +54,11 @@ ob_start();
     </div>
     <div class="secondText">
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Sint ab quae sit enim! Error, expedita?
-            Doloribus ipsum cum ab sunt culpa nemo voluptate exercitationem.
-            Esse excepturi cum deleniti ea laudantium?
+            SportsUp is a community of sports lovers.
+            Join us to enjoy sports activites and make new friends !
+            You want to propose an event like seeing a professional baseball team match ?
+            Then become premium in order to propose global events including a participation fee.
+            Being premium member will insure that your transactions will be secured through our Website!
         </p>
         <div class="boxContainer">
             <div class="box1">
