@@ -10,9 +10,9 @@ ob_start();
         <div id="banner1" class="banner">
             <img src="./public/images/landing/banner1.jpeg" alt="banner image 1">
             <div class="text-box text-box1">
-                <h1>Big events</h1>
+                <h1>Global events</h1>
                 <span></span>
-                <p>Find upcoming Global sport Events </p>
+                <p>Enjoy with friends global events as a Ligue Football match! </p>
             </div>
         </div>
         <div id="banner2" class="banner">
@@ -20,7 +20,8 @@ ob_start();
             <div class="text-box text-box2">
                 <h1>Users events</h1>
                 <span></span>
-                <p>Join events of SportsUp community</p>
+                <p>Want to have friends to workout together ? </p>
+                <p>Create a public event to find your teammates !</p>
             </div>
         </div>
         <div id="banner3" class="banner">
@@ -28,15 +29,16 @@ ob_start();
             <div id="text-box3" class="text-box text-box3">
                 <h1>Join our community!</h1>
                 <span></span>
-                <p>Meet and make new friends with simmilar interests</p>
+                <p>Meet and make new friends with similar interests</p>
             </div>
         </div>
         <div id="banner4" class="banner">
-            <img src="./public//images/landing/banner4.jpg" alt="banner image 4">
+            <img src="./public//images/landing/climbing.jpg" alt="banner image 4">
             <div class="text-box text-box4">
-                <h1>Shop</h1>
+                <h1>Premium Feature </h1>
                 <span></span>
-                <p>Buy, sell or exchange sport inventory with other SportsUp members!</p>
+                <p>Become Premium member !</p>
+                <p>Create and secure the transactions through our global events!</p>
             </div>
         </div>
         <!-- BUTTON -->
@@ -54,10 +56,17 @@ ob_start();
     </div>
     <div class="secondText">
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Sint ab quae sit enim! Error, expedita?
-            Doloribus ipsum cum ab sunt culpa nemo voluptate exercitationem.
-            Esse excepturi cum deleniti ea laudantium?
+            SportsUp is a community of sports lovers.
+            Join us to enjoy activities and make new friends !
+        </p>
+        <p>
+            You want to propose an event like seeing a professional baseball team match ?
+        </p>
+        <p>
+            You can become premium member in order to propose global events including a participation fee.
+        </p>
+        <p>
+            Being premium member will insure that your transactions will be secured through our Website!
         </p>
         <div class="boxContainer">
             <div class="box1">

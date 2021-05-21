@@ -223,7 +223,7 @@ nav a:nth-child(5):hover ~ .animation {
     margin: auto;
     margin-top: 70px;
     width: 97%;
-    height: 77vh;
+    height: 100vh;
     /* position: relative; */
     overflow: hidden;
 }
@@ -240,25 +240,27 @@ nav a:nth-child(5):hover ~ .animation {
     width: 119%;
 } 
 .secondText {
-    background: #2a9d8f;
-    position: relative;
+    padding-top: 10px;
+    /* background: #2a9d8f; */
+    /* position: relative; */
     /* border: 2px solid black; */
     width: 34%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    height: 150%;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
 }
 .secondText p {
-    color: #fff;
+    color: #000;
     font-family: 'Varela Round', sans-serif;
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 40px;
     margin-top: 0;
     letter-spacing: 2px;
-    font-size: 25px;
+    font-size: 1.3em;
     text-align: center;
+    padding: 5px;
 }
 .boxContainer {
     display: flex;
