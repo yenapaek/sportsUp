@@ -1,26 +1,45 @@
 <?php
 $title = "Event Detail";
-$style = '<link href="./public/css/events.css" rel="stylesheet" />';
+$style = '<link href="./public/css/events.css" rel="stylesheet" /> <link href="./public/css/eventDetail.css" rel="stylesheet" />';
 
 ob_start();
-
+// print_r($eventDetail);
 if (is_array($eventDetail) || is_object($eventDetail)) {
     foreach ($eventDetail as $event) : ?>
-        <section>
-            <p>Name : <?= $event['name'] ?></p>
-            <p>User ID : <?= $event['organizerId'] ?></p>
-            <p>Picture :<?= $event['picture'] ?></p>
-            <p>PlayerMax : <?= $event['playerNumber'] ?></p>
-            <p>EventDate <?= $event['eventDate'] ?></p>
-            <p>Duration :<?= $event['duration'] ?></p>
-            <p>Description : <?= $event['description'] ?></p>
-
-            <?php if(!is_null($event['fee'])){ ?>
-                <p>Fee : <?= $event['fee'] ?></p>
-            <?php
-            }
-            ?>
-            <p>City : <?= $event['city'] ?></p>
+        <section id="eventDetail">
+            <div class="eventName">
+                <p><?= $event['name'] ?></p>
+                <div class="dividerRed"></div>
+            </div>
+            
+            <div class="eventMainBox">
+                <div class="eventPicture">
+                    <!-- <p>Picture :<?= $event['picture'] ?></p> -->
+                    <img src="./public/images/sports/acro-sports.jpeg" alt="">
+                </div>
+                
+                <div class="eventRightBox">
+                    <p>Host : <?= $event['organizerId'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>How many can attend? : <?= $event['playerNumber'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>When? <?= $event['eventDate'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>Duration :<?= $event['duration'] ?></p>
+                    <div class="dividerGrey"></div>
+                    
+                
+                    <?php if(!is_null($event['fee'])){ ?>
+                        <p>Fee : <?= $event['fee'] ?></p>
+                        <div class="dividerGrey"></div>
+                    <?php
+                    }
+                    ?>
+                    <p>City : <?= $event['city'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>Description : <?= $event['description'] ?></p>
+                </div>
+            </div>
         </section>
         <div>
             <a href="index.php?action=attendEvent&eventId=<?= $event['id'] ?>" class="card-btn">Attend Event</a>
