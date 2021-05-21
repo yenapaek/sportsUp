@@ -87,12 +87,6 @@ nav .animation {
     transform: translate(-50%, -50%);
 }
 
-.box {
-    position: absolute;
-    bottom: 10%;
-    right: 20px;
-    transform: translate(-50%, -50%);
-}
 
 .btn:link,
 .btn:visited {

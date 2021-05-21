@@ -2,7 +2,7 @@
 $title = "Sports Up - Create Event";
 $style = '<link href="./public/css/addEditEvent.css" rel="stylesheet" />';
 ob_start();
-
+print_r($infos);
 ?>  
 <div id="addEditEvent">
 
@@ -26,19 +26,19 @@ ob_start();
             <label for="eventPicture">Select Image for you event</label>
             <input type="file" id="eventPicture" name="eventPicture" accept="image/png, image/jpeg">
 
-            <label for="city">City</label>
+            <label for="city">City + address</label>
             <input type="text" id="city" name="city" value="<?= isset($infos[0]["city"])?$infos[0]["city"] :'' ; ?>">
 
             <label for="maxPlayers">How many people can join your event?</label>
-            <input type="number" id="maxPlayers" name="maxPlayers" value="<?= isset($infos[0]["playerNumber"])?$infos[0]["playerNumber"]:''; ?>">
+            <input type="number" min="1" id="maxPlayers" name="maxPlayers" value="<?= isset($infos[0]["playerNumber"])?$infos[0]["playerNumber"]:''; ?>">
 
             <label for="eventDate">When </label>
-            <input type="date" id="eventDate" name="eventDate" value ="<?= isset($infos[0]["eventDate"])?$infos[0]["eventDate"]:''; ?>">        
+            <input type="datetime-local" id="eventDate" placeholder="Date" name="eventDate" value ="<?= isset($infos[0]["eventDate"])?$infos[0]["eventDate"]:''; ?>">        
         </div>            
         <div class="formSecondPart">            
 
             <label for="eventDuration">Duration</label>
-            <input type="number" id="eventDuration" name="eventDuration" value="<?= isset($infos[0]["duration"])?$infos[0]["duration"]:'';?>">
+            <input type="number" min="1" id="eventDuration" name="eventDuration" value="<?= isset($infos[0]["duration"])?$infos[0]["duration"]:'';?>">
             
             <?php 
                 if(isset($infos[0]["premium"])){
