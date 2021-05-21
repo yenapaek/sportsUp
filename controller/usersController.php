@@ -12,6 +12,7 @@ function profile($userId)
 {
     $userManager = new UserManager();
     $eventManager = new EventManager();
+
     $infoProfile = $userManager->myProfileModel($userId);
     $mySports = $userManager->mySportsModel($userId);
     $eventsSelect = $eventManager->myEventsModel($userId);
@@ -35,6 +36,14 @@ function addMySport($userId, $categoryId)
     $userManager->addMySportModel($userId, $categoryId);
 }
 
+/**
+ * signInAndUpPage is here to redirect you to the right form to sign in or Up, 
+ *
+ * @param  mixed $param can be 'signIn' or 'signUp'
+ * @param  mixed $goPrem check if the when we go to those page we clicked on premium first
+ * @param  mixed $plan can be 'false' or 'month' or 'year'
+ * @return void
+ */
 function signInAndUpPage($param, $goPrem, $plan)
 {
     $title = $param;
@@ -149,11 +158,33 @@ function logout()
     header("Location: index.php?action=landing");
 }
 
+/**
+ * premium redirect you to the right page and prefilled information according if it's monthly or yearly plan
+ *
+ * @param  mixed $whichPlan
+ * @return void
+ */
 function premium($whichPlan)
 {
+    $userManager = new UserManager();
+    $userInfo = isset($_SESSION['userId']) ? $userManager->myProfileModel($_SESSION['userId']) : '';
     $link = $whichPlan ? 'premiumCheckOut.php' : 'premium.php';
     $pricing = $whichPlan === 'month' ? '9.99' : '99';
     $expirationDate = $whichPlan ? new \DateTime('1 ' . $whichPlan) : '';
 
     require("./view/" . $link);
+}
+
+/**
+ * premiumSubscription allow you to update the table when the user subscribe to premium
+ * the id of the user, the date of the moment the user subscribe and also the expiration date
+ *
+ * @param  mixed $expDate
+ * @return void
+ */
+function premiumSubscription($expDate)
+{
+    $userManager = new UserManager();
+    $premiumUser = $userManager->becomePremium($expDate, $_SESSION['userId']);
+    header("Location: index.php?action=profile");
 }

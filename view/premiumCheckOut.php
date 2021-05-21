@@ -4,9 +4,6 @@ $style = '<link href="./public/css/premium.css" rel="stylesheet" />
 <link href="./public/css/profile.css" rel="stylesheet" />
 <link href="./public/css/bottomLanding.css" rel="stylesheet" />';
 ob_start();
-
-
-
 ?>
 
 <section>
@@ -22,6 +19,8 @@ ob_start();
 
     <form id="premiumForm" action="index.php" method="post">
         <input hidden name="action" value="submitPremium">
+        <input hidden name="expDate" value="<?= $expirationDate->format('Y-m-d'); ?>">
+
         <div>
             <input type="text" name="cardHolder" id="cardHolder" placeholder="Your Name">
             <input type="text" name="cardNumber" id="cardNumber" placeholder="Card Number">

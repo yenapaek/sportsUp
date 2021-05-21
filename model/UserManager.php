@@ -1,7 +1,7 @@
 <?php
 require_once('./model/Manager.php');
-class UserManager extends Manager {
-
+class UserManager extends Manager
+{
 
     /**
      * newUserModel allow you to create a new user manually.
@@ -48,7 +48,7 @@ class UserManager extends Manager {
             $status = $req->execute();
             $req->closeCursor();
             return $status;
-        } 
+        }
     }
 
     /**
@@ -205,6 +205,7 @@ class UserManager extends Manager {
         curl_exec($curl);
         curl_close($curl);
     }
+
     /**
      * myProfileModel
      *
@@ -215,7 +216,7 @@ class UserManager extends Manager {
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare("SELECT * FROM users WHERE id=?");
+        $req = $db->prepare("SELECT * FROM users  WHERE users.id=?");
         $req->bindParam(1, $userId, PDO::PARAM_STR);
         $req->execute();
         $infoProfile = $req->fetch(PDO::FETCH_ASSOC);
@@ -223,6 +224,7 @@ class UserManager extends Manager {
 
         return $infoProfile;
     }
+
     /**
      * mySportsModel
      *
@@ -311,7 +313,7 @@ class UserManager extends Manager {
         $attendingEventsCount = $req->fetchColumn();
         $req->closeCursor();
 
-        if ($attendingEventsCount > 0){
+        if ($attendingEventsCount > 0) {
             $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
             $req->bindParam(1, $userId, PDO::PARAM_INT);
             $req->bindParam(2, $eventId, PDO::PARAM_INT);
@@ -372,5 +374,36 @@ class UserManager extends Manager {
         $req->bindparam('id', $_SESSION['userId'], PDO::PARAM_STR);
         $req->execute();
         $req->closeCursor();
+    }
+
+    function becomePremium($expDate, $userId)
+    {
+        $db = $this->dbConnect();
+        $startDate = new \DateTime();
+        $startDate = $startDate->format('Y-m-d');
+        $req = $db->prepare("INSERT INTO premium(userId, startDate, endDate) VALUES (?, ?, ?)");
+        $req->bindParam(1, $userId, PDO::PARAM_INT);
+        $req->bindParam(2, $startDate, PDO::PARAM_STR);
+        $req->bindParam(3, $expDate, PDO::PARAM_STR);
+        $submittable = $req->execute();
+        $req->closeCursor();
+
+
+        if ($submittable) {
+            $req = $db->prepare("SELECT id FROM premium WHERE userId=? ");
+            $req->bindParam(1, $userId, PDO::PARAM_STR);
+
+            $req->execute();
+            $premiumUser = $req->fetch(PDO::FETCH_ASSOC);
+            $req->closeCursor();
+
+            $req = $db->prepare("UPDATE users SET premiumid=? WHERE id=?");
+            $req->bindparam(1, $premiumUser['id'], PDO::PARAM_INT);
+            $req->bindparam(2, $userId, PDO::PARAM_INT);
+
+            $req->execute();
+            $req->closeCursor();
+            return $premiumUser;
+        }
     }
 }

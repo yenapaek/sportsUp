@@ -23,11 +23,12 @@ p {
     height: 200px;
 }
 
-#premiumForm div:nth-child(3) {
+#premiumForm div:nth-child(4) {
     display: flex;
 }
 
-#cardHolder,#cardNumber {
+#cardHolder,
+#cardNumber {
     height: 35px;
     width: 400px;
 }
@@ -46,4 +47,9 @@ input[type="submit"] {
     cursor: pointer;
     border: none;
     height: 35px;
+}
+
+
+#alreadyPremium {
+    height: 300px;
 }

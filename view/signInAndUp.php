@@ -48,10 +48,21 @@
                 </p>
             </div>
         </section>
-    <?php
+        <?php
     } else {
-    ?>
-        <h1>SIGN UP</h1>
+
+        if (!empty($goPrem)) {
+        ?>
+            <h1>SIGN UP</h1>
+            <h2>You must create an account before going premium</h2>
+        <?php
+        } else {
+        ?>
+            <h1>SIGN UP</h1>
+        <?php
+        }
+        ?>
+
         <section id="signUpFormSection">
             <div class="kakaoDiv">
                 <h1>Or</h1>

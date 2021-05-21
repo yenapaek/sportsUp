@@ -140,7 +140,9 @@ try {
             }
             break;
         case "submitPremium":
-
+            if (!empty($_POST['cardHolder']) && !empty($_POST['cardNumber']) && !empty($_POST['expirationCard']) && !empty($_POST['cvc'])) {
+                premiumSubscription($_POST['expDate']);
+            }
             break;
         case "logout":
             logout();
