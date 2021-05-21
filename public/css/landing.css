@@ -1,6 +1,6 @@
 /*  i am the css page for the landing page */
 * {
-    font-family: 'Varela Round', sans-serif;
+    font-family: "Varela Round", sans-serif;
 }
 
 body {
@@ -47,7 +47,7 @@ nav a:nth-child(5):hover ~ .animation {
     display: flex;
     flex-direction: column;
 }
-    #firstSection {
+#firstSection {
     top: 10px;
     overflow: hidden;
     padding: 0;
@@ -62,21 +62,20 @@ nav a:nth-child(5):hover ~ .animation {
     width: 100%;
 }
 
- .banner> img {
+.banner > img {
     width: 120%;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     overflow: hidden;
     animation: zoom-out 3s linear infinite;
 }
 
-@keyframes zoom-out{
-    100%{
+@keyframes zoom-out {
+    100% {
         width: 100%;
     }
-
 }
 .text-box {
     width: 100%;
@@ -100,7 +99,7 @@ nav a:nth-child(5):hover ~ .animation {
     animation-delay: 9s;
 }
 @keyframes textup {
-    10%{
+    10% {
         transform: translateY(0px);
     }
     100% {
@@ -122,7 +121,7 @@ nav a:nth-child(5):hover ~ .animation {
 }
 .text-box span {
     margin-left: 40px;
-    background:rgb(237, 40, 40);
+    background: rgb(237, 40, 40);
     height: 3px;
     width: 100px;
     position: absolute;
@@ -140,8 +139,8 @@ nav a:nth-child(5):hover ~ .animation {
     animation: slide4 12s linear infinite;
 }
 
-@keyframes slide1{
-    0%{
+@keyframes slide1 {
+    0% {
         visibility: 0%;
     }
     25% {
@@ -157,8 +156,8 @@ nav a:nth-child(5):hover ~ .animation {
         visibility: visible;
     }
 }
-@keyframes slide2{
-    0%{
+@keyframes slide2 {
+    0% {
         visibility: hidden;
     }
     25% {
@@ -174,8 +173,8 @@ nav a:nth-child(5):hover ~ .animation {
         visibility: hidden;
     }
 }
-@keyframes slide3{
-    0%{
+@keyframes slide3 {
+    0% {
         visibility: hidden;
     }
     25% {
@@ -191,8 +190,8 @@ nav a:nth-child(5):hover ~ .animation {
         visibility: hidden;
     }
 }
-@keyframes slide4{
-    0%{
+@keyframes slide4 {
+    0% {
         visibility: hidden;
     }
     25% {
@@ -208,13 +207,8 @@ nav a:nth-child(5):hover ~ .animation {
         visibility: visible;
     }
 }
-
-
-
-
 
 /* ---------------------style for the third section----------------- */
-
 
 #secondSection {
     display: flex;
@@ -223,7 +217,7 @@ nav a:nth-child(5):hover ~ .animation {
     margin: auto;
     margin-top: 70px;
     width: 97%;
-    height: 100vh;
+    height: 80vh;
     /* position: relative; */
     overflow: hidden;
 }
@@ -238,7 +232,7 @@ nav a:nth-child(5):hover ~ .animation {
     top: -172px;
     left: -57px;
     width: 119%;
-} 
+}
 .secondText {
     padding-top: 10px;
     /* background: #2a9d8f; */
@@ -252,15 +246,15 @@ nav a:nth-child(5):hover ~ .animation {
 }
 .secondText p {
     color: #000;
-    font-family: 'Varela Round', sans-serif;
+    font-family: "Varela Round", sans-serif;
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 40px;
     margin-top: 0;
     letter-spacing: 2px;
-    font-size: 1.3em;
+    font-size: 1em;
     text-align: center;
-    padding: 5px;
+    /* padding: 5px; */
 }
 .boxContainer {
     display: flex;
@@ -276,7 +270,6 @@ nav a:nth-child(5):hover ~ .animation {
     /* border: 2px solid black; */
 }
 
-
 @media screen and (max-width: 1100px) {
     #mainContent {
         display: flex;
@@ -287,11 +280,11 @@ nav a:nth-child(5):hover ~ .animation {
         position: absolute;
         bottom: 0%;
     }
-    #firstSection, #secondSection{
+    #firstSection,
+    #secondSection {
         width: 92%;
         margin-left: 15px;
     }
-   
 
     #firstSection h1 {
         font-size: 25px;
@@ -300,7 +293,7 @@ nav a:nth-child(5):hover ~ .animation {
         font-size: 10px;
     }
     .secondText p {
-        font-family: 'Varela Round', sans-serif;
+        font-family: "Varela Round", sans-serif;
         margin: 20px;
         letter-spacing: 2px;
         font-size: 15px;

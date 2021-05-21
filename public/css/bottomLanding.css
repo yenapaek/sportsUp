@@ -127,13 +127,13 @@ html {
 .pricing-features-item {
     border-top: 1px solid #e1f1ff;
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 3.5;
     padding: 15px 0;
 }
 
-.pricing-features-item:last-child {
+/* .pricing-features-item:last-child {
     border-bottom: 1px solid #e1f1ff;
-}
+} */
 .fa-check {
     font-size: 1.5em;
     color: rgba(237, 40, 40, 0.85);
@@ -158,7 +158,8 @@ html {
 
 .pricing-button:hover,
 .pricing-button:focus {
-    background-color: #ededed;
+    background-color: rgba(237, 40, 40, 0.85);
+    color: #fff;
 }
 
 .pricing-button.is-featured {

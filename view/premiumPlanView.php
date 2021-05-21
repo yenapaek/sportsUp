@@ -10,18 +10,18 @@ $year = !empty($_SESSION['userId']) ? "premium&q=year" : "signUp&goPrem=true&q=y
             <table>
                 <tr>
                     <td>
-                        <img src="./public/images/premium/ball.jfif" alt="" class="pricing-img">
+                        <img src="./public/images/premium/ball.png" alt="a ball" class="pricing-img">
                     </td>
-                    <td><img src="./public/images/premium/walker.jfif" alt="" class="pricing-img"></td>
-                    <td><img src="./public/images/premium/bike.jfif" alt="" class="pricing-img"></td>
-                    <td><img src="./public/images/premium/bob.jfif" alt="" class="pricing-img"></td>
+                    <td><img src="./public/images/premium/trekking-man.png" alt="a walker" class="pricing-img"></td>
+                    <td><img src="./public/images/premium/bicyclist.png" alt="a bike" class="pricing-img"></td>
+                    <td><img src="./public/images/premium/basejump.png" alt="a bob" class="pricing-img"></td>
                 </tr>
                 <tr>
                     <td>
                         <h2 class="pricing-header">Features</h2>
                     </td>
                     <td>
-                        <h2 class="pricing-header">Free</h2>
+                        <h2 class="pricing-header">Basic</h2>
                     </td>
                     <td>
                         <h2 class="pricing-header">1 Month</h2>
@@ -32,65 +32,116 @@ $year = !empty($_SESSION['userId']) ? "premium&q=year" : "signUp&goPrem=true&q=y
                 </tr>
                 <tr>
                     <td class="pricing-features">
-                        <span class="pricing-features-item">Access private Event</span>
+                        <span class="pricing-features-item">Join Community</span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="pricing-features">
-                        <span class="pricing-features-item">Access global Event</span>
-                    </td>
-                    <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
-                    </td>
-                    <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
-                    </td>
-                    <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
                     </td>
                 </tr>
                 <tr>
                     <td class="pricing-features">
-                        <span class="pricing-features-item">Creation private Event</span>
+                        <span class="pricing-features-item">Attend events</span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
                     </td>
                 </tr>
                 <tr>
                     <td class="pricing-features">
-                        <span class="pricing-features-item">Creation global Event</span>
+                        <span class="pricing-features-item">Host free events</span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">Host Premium events</span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">-</span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item"><i class="fas fa-check"></i></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">Prioritized visibility of events</span>
+
                     </td>
                     <td class="pricing-features">
                         <span class="pricing-features-item"> - </span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item">(Upcoming)</span>
                     </td>
                     <td class="pricing-features">
-                        <span class="pricing-features-item"><i class="fas fa-check"></i><br>(Unlimited)</span>
+                        <span class="pricing-features-item">(Upcoming)</span>
                     </td>
                 </tr>
                 <tr>
-                    <td>Price</td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">Location - based suggestions</span>
+
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item"> - </span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">(Upcoming)</span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">(Upcoming)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">Create your own crew</span>
+
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item"> - </span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">(Upcoming)</span>
+                    </td>
+                    <td class="pricing-features">
+                        <span class="pricing-features-item">(Upcoming)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
                     <td><span class="pricing-price">Free</span></td>
                     <td><span class="pricing-price">$9.99</span></td>
-                    <td><span class="pricing-price">$99</span><br><span>(save ~$20)</span></td>
+                    <td><span class="pricing-price">$99</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span>(save ~$20)</span></td>
                 </tr>
                 <tr>
                     <td></td>
