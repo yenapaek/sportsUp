@@ -395,7 +395,7 @@ class UserManager extends Manager {
     function favoriteAdd($userId, $eventId) {
         $dataBase = $this->dbConnect();
         $rawRequest = $dataBase->prepare(
-            "INSERT INTO attendingEvents(userId, eventId, heart) VALUES(:userID, :eventID, true)"
+            "INSERT INTO wishlist(userId, eventId, heart) VALUES(:userID, :eventID, true)"
         );
         $rawRequest->execute(array(
             'userID' => $userId,
@@ -407,7 +407,7 @@ class UserManager extends Manager {
     function favoriteElimination($userId, $eventId) {
         $dataBase = $this->dbConnect();
         $rawRequest = $dataBase->query(
-            "DELETE FROM attendingEvents WHERE userId = $userId AND eventId = $eventId"
+            "DELETE FROM wishlist WHERE userId = $userId AND eventId = $eventId"
         );
         // $rawRequest->execute(array(
         //     'userID' => $userId,

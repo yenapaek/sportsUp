@@ -98,6 +98,8 @@ try {
                 eventsInfo("attendingEvents", null);
             } elseif (isset($_REQUEST['hostingEvents'])) {
                 eventsInfo("hostingEvents", null);
+            } elseif (isset($_REQUEST['wishlist'])) {
+                eventsInfo("wishlist", null);
             }
             break;
         

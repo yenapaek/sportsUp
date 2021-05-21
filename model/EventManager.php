@@ -26,7 +26,8 @@ class EventManager extends Manager {
                     e.city AS city,
                     c.image AS categoryImage,
                 (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
-                (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus 
+                (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus,
+                (SELECT heart from wishlist WHERE eventId=e.id) AS isHeart
                 FROM events e
                 JOIN categories c ON e.categoryId = c.id";
         switch ($search) {
@@ -46,6 +47,10 @@ class EventManager extends Manager {
                 break;
             case "attendingEvents":
                 $add = " JOIN attendingevents a ON a.eventId = e.id WHERE a.userId =:userId HAVING attendingStatus = 1";
+                break;
+
+            case "wishlist":
+                $add = " JOIN wishlist a ON a.eventId = e.id WHERE a.userId =:userId";
                 break;
 
             case "eventDetail":

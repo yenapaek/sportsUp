@@ -1,5 +1,5 @@
 function loadFile(searchName, secondData, thirdData) {
-    console.log(searchName);
+
     let xhr = new XMLHttpRequest();
     
     switch (searchName) {
@@ -23,6 +23,9 @@ function loadFile(searchName, secondData, thirdData) {
 
         case 'hostingEvents' :    xhr.open(`GET`, `index.php?action=searchSubmit&hostingEvents`);
                                     break;
+
+        case 'wishlist' :    xhr.open(`GET`, `index.php?action=searchSubmit&wishlist`);
+                                    break;
         default: return;
     }
     
@@ -39,11 +42,10 @@ function loadFile(searchName, secondData, thirdData) {
             }
         });
     }
-    console.log(xhr.readyState)
     xhr.send(null);
 }
 
-function initFavorites (){
+function initFavorites () {
     let favorites = document.querySelectorAll(".favorites");
     for( let i=0; i<favorites.length; i++) {
         favorites[i].addEventListener("click", function (e) {
@@ -97,15 +99,20 @@ sportSelect.hidden = true;
                                                         checker = false;
                                                         break;
             
-                case e.target.value == 'attendingEvents':  searchInput.setAttribute("type", "hidden");
-                                                    sportSelect.hidden = true;
-                                                    checker = false;
-                                                    break;
-
-                case e.target.value == 'hostingEvents' :  searchInput.setAttribute("type", "hidden");
+                case e.target.value == 'attendingEvents':   searchInput.setAttribute("type", "hidden");
                                                             sportSelect.hidden = true;
                                                             checker = false;
                                                             break;
+
+                case e.target.value == 'hostingEvents' :    searchInput.setAttribute("type", "hidden");
+                                                            sportSelect.hidden = true;
+                                                            checker = false;
+                                                            break;
+
+                case e.target.value == 'wishlist' :     searchInput.setAttribute("type", "hidden");
+                                                        sportSelect.hidden = true;
+                                                        checker = false;
+                                                        break;
             
                 default: return;
             }
@@ -132,11 +139,14 @@ sportSelect.hidden = true;
 
             case 'Popularity':  loadFile('Popularity', null, null);
                                 break;
-            case 'attendingEvents':    loadFile('attendingEvents', selectCriteria.getAttribute('dataUserId'), null);
-                                break;
-
-            case 'hostingEvents' :    loadFile('hostingEvents', selectCriteria.getAttribute('dataUserId'), null);
+            case 'attendingEvents':     loadFile('attendingEvents', null, null);
                                         break;
+
+            case 'hostingEvents' :  loadFile('hostingEvents', null, null);
+                                    break;
+
+            case 'wishlist' :  loadFile('wishlist', null, null);
+                                    break;
 
             default: return;
         }

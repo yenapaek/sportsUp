@@ -12,7 +12,7 @@ function eventsInfo($search, $name)
     $eventManager =  new EventManager();
     $categories  =  $eventManager->categoriesInfoModel(false);
     $events =  $eventManager->eventSearch($search, $name);
-
+    $eventPageChecker = true;
     if ($search ==  "default") {
         require("./view/events.php");
     } else {
