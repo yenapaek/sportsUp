@@ -100,8 +100,8 @@ p {
     justify-content: space-evenly;
 }
 /* #TODO fix font weight of card title  */
-.category-name{
-    font-family: 'Open Sans', sans-serif;
+.category-name {
+    font-family: "Open Sans", sans-serif;
     font-size: 0.8rem;
     color: rgba(237, 40, 40, 0.85);
 }
@@ -134,11 +134,11 @@ a.card-btn:hover {
     border-bottom: 2px solid #dadce0;
 }
 
-#mySportsList{
+#mySportsList {
     padding: 0;
 }
 .category {
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     font-size: 0.8rem;
     color: black;
     list-style-type: none;
@@ -180,4 +180,17 @@ nav a:nth-child(4):hover ~ .animation {
 nav a:nth-child(5):hover ~ .animation {
     left: 62%;
     /* width: 0px; */
+}
+
+/********************* Premium Text **********************/
+
+#premiumMessage {
+    font-weight: bold;
+    font-size: 20px;
+    height: 25px;
+    color: orange;
+}
+
+#premiumMessage i {
+    color: orange;
 }

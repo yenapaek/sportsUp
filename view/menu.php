@@ -29,14 +29,14 @@
             ?>
             <a href="index.php?action=events"><strong>Events</strong> </a>
             <a href="index.php?action=aboutUs"><strong>About Us</strong></a>
-            <a href="index.php"><strong>PREMIUM<i class="fas fa-crown"></i></strong></a>
+            <a href="index.php?action=premium"><strong>PREMIUM<i class="fas fa-crown"></i></strong></a>
             <?php if (isset($_SESSION['userId'])) {
             ?>
                 <a href="index.php?action=logout"><strong>Log Out</strong> </a>
             <?php
             } else {
             ?>
-                <a href="index.php?action=signUp" id="signUpBtn"><strong>Sign Up</strong> </a>
+                <a href="index.php?action=signUp" class="signUpBtn"><strong>Sign Up</strong> </a>
             <?php
             }
             ?>

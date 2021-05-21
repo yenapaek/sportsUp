@@ -1,0 +1,55 @@
+section {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 100%;
+    padding: 20px 17%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 1rem !important;
+}
+
+#premiumForm {
+    width: 400px;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    height: 200px;
+}
+
+#premiumForm div:nth-child(4) {
+    display: flex;
+}
+
+#cardHolder,
+#cardNumber {
+    height: 35px;
+    width: 400px;
+}
+
+#cvc,
+#expirationCard {
+    height: 35px;
+    width: 200px;
+}
+
+#premiumForm div {
+    margin: 5px 0;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    border: none;
+    height: 35px;
+}
+
+
+#alreadyPremium {
+    height: 300px;
+}

@@ -159,12 +159,12 @@ nav .animation {
 
 /*-------style for signup Button in NavBar---------  */
 
-#signUpBtn {
+.signUpBtn {
     background-color: rgba(237, 40, 40, 0.85);
     color: rgb(255, 255, 255);
     border-radius: 25px;
 }
-#signUpBtn:hover {
+.signUpBtn:hover {
     color: rgb(0, 0, 0);
 }
 

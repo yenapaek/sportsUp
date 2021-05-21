@@ -19,6 +19,8 @@
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">
                         <label for="emailSignIn">Email</label>
@@ -46,10 +48,21 @@
                 </p>
             </div>
         </section>
-    <?php
+        <?php
     } else {
-    ?>
-        <h1>SIGN UP</h1>
+
+        if (!empty($goPrem)) {
+        ?>
+            <h1>SIGN UP</h1>
+            <h2>You must create an account before going premium</h2>
+        <?php
+        } else {
+        ?>
+            <h1>SIGN UP</h1>
+        <?php
+        }
+        ?>
+
         <section id="signUpFormSection">
             <div class="kakaoDiv">
                 <h1>Or</h1>
@@ -63,6 +76,9 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
+
                     <div class="formControl">
                         <label for="userNameSignUp">Username</label>
                         <input type="text" placeholder="username" id="userNameSignUp" name="userNameSignUp" />
