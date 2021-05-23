@@ -30,7 +30,8 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>"><i class="far fa-trash-alt"></i></a>
                 </div>
             <?php
-                elseif (!empty($event['attendingStatus']) && $event['attendingStatus']>0):
+                endif; 
+                if (!empty($event['attendingStatus']) && $event['attendingStatus']>0):
             ?>
                 <div>
                     <a href="index.php?action=cancelAttendingEvent&eventId=<?= $event['eventId']; ?>"><i class="far fa-calendar-times"></i></a>
