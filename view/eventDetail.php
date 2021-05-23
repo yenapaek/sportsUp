@@ -19,7 +19,16 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
             <p>City : <?= $event['city'] ?></p>
         </section>
         <div>
-            <a href="index.php?action=attendEvent&eventId=<?= $event['eventId'] ?>" class="card-btn">Attend Event</a>
+            <?php
+                if (!empty($event['attendingStatus']) && $event['attendingStatus']>0){
+                    $attendingAction = "cancelAttendingEvent";
+                    $attendingBtnMsg = "Cancel Attending";
+                } else {
+                    $attendingAction = "attendEvent";
+                    $attendingBtnMsg = "Attend Event";
+                }
+            ?>
+            <a href="index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
         </div>
         <section>
             <?php
@@ -28,13 +37,6 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                 <div>
                     <a href=""><i class="far fa-edit"></i></a>
                     <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?= $_GET['action']; ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
-                </div>
-            <?php
-                endif; 
-                if (!empty($event['attendingStatus']) && $event['attendingStatus']>0):
-            ?>
-                <div>
-                    <a href="index.php?action=cancelAttendingEvent&eventId=<?= $event['eventId']; ?>"><i class="far fa-calendar-times"></i></a>
                 </div>
             <?php
                 endif; 

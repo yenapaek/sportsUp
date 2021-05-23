@@ -25,14 +25,14 @@ function attendEvent($eventId)
 {
     $userManager = new UserManager();
     $userManager->addAttendingEvent($eventId);
-    header("Location: index.php?action=profile");
+    header("Location: index.php?action=eventDetail&eventId={$eventId}");
 }
 
 function cancelAttendingEvent($eventId)
 {
     $userManager = new UserManager();
     $userManager->removeAttendingEvent($eventId);
-    header("Location: index.php?action=profile");
+    header("Location: index.php?action=eventDetail&eventId={$eventId}");
 }
 
 function addMySport($userId, $categoryId)
