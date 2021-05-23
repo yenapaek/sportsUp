@@ -27,7 +27,7 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
             ?>
                 <div>
                     <a href=""><i class="far fa-edit"></i></a>
-                    <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>"><i class="far fa-trash-alt"></i></a>
+                    <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?= $_GET['action']; ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
                 </div>
             <?php
                 endif; 

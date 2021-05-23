@@ -69,9 +69,12 @@ function eventDetail($eventId)
  * @param  mixed $eventId
  * @return void
  */
-function deleteEvent($eventId)
+function deleteEvent($eventId, $source)
 {
     $eventManager =  new EventManager();
     $eventManager->deleteEventModel($eventId);
-    header("Location: index.php?action=events");
+    if ($source == "eventDetail"){
+        $source = "profile";
+    }
+    header("Location: index.php?action={$source}");
 }

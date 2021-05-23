@@ -71,7 +71,7 @@ try {
             eventDetail($_REQUEST['eventId']);
             break;
         case "deleteEvent":
-            deleteEvent($_REQUEST['deleteEventId']);
+            deleteEvent($_REQUEST['deleteEventId'], $_REQUEST['source']);
             break;
         case "attendEvent":
             if (!empty($_REQUEST['eventId'])) {
