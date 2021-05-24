@@ -186,13 +186,32 @@ class UserManager extends Manager {
     {
         $db = $this->dbConnect();
         $kakaoId = $kakaoUserObj['kakaoId'];
-        $req = $db->prepare("INSERT INTO users(id, userName, firstName, lastName, email, avatar, password, dateSignUp, birthDate, nationality, city, kakaoId, eventAttended)
-                            VALUES(null, :userName, null, null, :email, :avatar, null, NOW(), null, null, null, :kakaoId, null)");
-        $req->bindParam("userName", $kakaoUserObj['userName'], PDO::PARAM_STR);
-        $req->bindParam("email", $kakaoUserObj['email'], PDO::PARAM_STR);
-        $req->bindParam("avatar", $kakaoUserObj['avatar'], PDO::PARAM_STR);
-        $req->bindParam("kakaoId", $kakaoId, PDO::PARAM_STR);
 
+        $req = $db->prepare("INSERT INTO users(id, userName, firstName, lastName, email, avatar, password, dateSignUp, birthDate, nationality, city, kakaoId, eventAttended)
+                            VALUES(null, :userName, null, null, :email, null, null, NOW(), null, null, null, :kakaoId, null)");
+        $req->bindParam(":userName", $kakaoUserObj['userName'], PDO::PARAM_STR);
+        $req->bindParam(":email", $kakaoUserObj['email'], PDO::PARAM_STR);
+        $req->bindParam(":kakaoId", $kakaoId, PDO::PARAM_STR);
+        $req->execute();
+        $req->closeCursor();
+
+        $req = $db->prepare("SELECT id FROM users WHERE kakaoId = :kakaoId");
+        $req->bindParam(":kakaoId", $kakaoId, PDO::PARAM_STR);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_OBJ);
+        $userId = $data->id;
+        $req->closeCursor();
+
+        $imgURL = "{$kakaoUserObj['avatar']}";
+        $upload_extension = pathinfo(parse_url($imgURL, PHP_URL_PATH), PATHINFO_EXTENSION);
+        $imgFileName = "{$userId}.{$upload_extension}";
+        $imgFileLocation = "./public/images/profile/allUsersProfilePics/file/{$userId}/";
+        mkdir($imgFileLocation, 0777, true);
+        move_uploaded_file($imgURL, "{$imgFileLocation}/{$imgFileName}");
+
+        $req = $db->prepare("UPDATE users SET avatar = :avatar WHERE kakaoId =:kakaoId");
+        $req->bindParam(":avatar", $imgFileName, PDO::PARAM_STR);
+        $req->bindParam(":kakaoId", $kakaoId, PDO::PARAM_STR);
         $req->execute();
         $req->closeCursor();
     }
