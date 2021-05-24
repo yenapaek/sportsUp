@@ -1,6 +1,5 @@
 <?php
-require("./model/categoryManager.php");
-require("./model/addEditEventManager.php");
+require_once("./model/EventManager.php");
 
 /**
  * eventsInfo allow you to populate the select in the create event page
@@ -11,8 +10,10 @@ require("./model/addEditEventManager.php");
  */
 function eventsInfo($search, $name)
 {
-    $categories  = categoriesInfoModel();
-    $events = eventSearch($search, $name);
+    $eventManager =  new EventManager();
+    $categories  =  $eventManager->categoriesInfoModel(false);
+    $events =  $eventManager->eventSearch($search, $name);
+
     if ($search ==  "default") {
         require("./view/events.php");
     } else {
@@ -22,7 +23,8 @@ function eventsInfo($search, $name)
 
 function categoriesInfo2()
 {
-    $categories = categoriesInfoModel();
+    $eventManager =  new EventManager();
+    $categories  =  $eventManager->categoriesInfoModel(false);
     require("./view/addEditEvent.php");
 }
 
@@ -41,8 +43,9 @@ function categoriesInfo2()
  */
 function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
 {
-    $eventId = createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
-    eventDetail($eventId['id']);
+    $eventManager =  new EventManager();
+    $eventId = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+    // eventDetail($eventId['id']);
 }
 
 /**
@@ -53,7 +56,10 @@ function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $dura
  */
 function eventDetail($eventId)
 {
-    $eventDetail = selectEvent($eventId);
+    $eventManager =  new EventManager();
+    // $eventDetail = $eventManager->selectEvent($eventId);
+    $eventDetail = $eventManager->eventSearch('eventDetail',$eventId);
+
     require("./view/eventDetail.php");
 }
 
@@ -63,8 +69,12 @@ function eventDetail($eventId)
  * @param  mixed $eventId
  * @return void
  */
-function deleteEvent($eventId)
+function deleteEvent($eventId, $source)
 {
-    deleteEventModel($eventId);
-    header("Location: index.php?action=events");
+    $eventManager =  new EventManager();
+    $eventManager->deleteEventModel($eventId);
+    if ($source === "eventDetail"){
+        $source = "profile";
+    }
+    header("Location: index.php?action={$source}");
 }

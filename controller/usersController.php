@@ -1,7 +1,6 @@
 <?php
-require_once("./model/usersManager.php");
-require_once("./model/profileManager.php");
-
+require_once("./model/UserManager.php");
+require_once("./model/EventManager.php");
 /**
  * profile
  *
@@ -11,26 +10,38 @@ require_once("./model/profileManager.php");
  */
 function profile($userId)
 {
-    $infoProfile = myProfileModel($userId);
-    $mySports = mySportsModel($userId);
-    $eventsSelect = myEventsModel($userId);
-    $attendingEvents = displayAttendingEvents($userId);
-    $suggestionEvents = suggestionEventsModel($userId);
-    $articles = myArticlesModel($userId);
-    $suggestionArticles = '';
-    $categories = displaySportsCategories($userId);
+    $userManager = new UserManager();
+    $eventManager = new EventManager();
+    $infoProfile = $userManager->myProfileModel($userId);
+    $mySports = $userManager->mySportsModel($userId);
+    $hostingEvents= $eventManager->eventSearch('hostingEvents','');
+    $attendingEvents = $eventManager->eventSearch('attendingEvents','');
+    $suggestionEvents = $eventManager->suggestEvents($userId);
+    $categories = $userManager->categoriesInfoModel(true);
     require('./view/profile.php');
 }
 
-function addAttendingEvent($userId, $eventId)
+function attendEvent($eventId)
 {
-    addAttendingEventModel($userId, $eventId);
-    header("Location: index.php?action=eventDetail&eventId=" . $eventId);
+    $userManager = new UserManager();
+    $userManager->addAttendingEvent($eventId);
+    header("Location: index.php?action=eventDetail&eventId={$eventId}");
+}
+
+function cancelAttendingEvent($eventId, $source)
+{
+    $userManager = new UserManager();
+    $userManager->removeAttendingEvent($eventId);
+    if ($source === "eventDetail"){
+        $source = "eventDetail&eventId={$eventId}";
+    }
+    header("Location: index.php?action={$source}");
 }
 
 function addMySport($userId, $categoryId)
 {
-    addMySportModel($userId, $categoryId);
+    $userManager = new UserManager();
+    $userManager->addMySportModel($userId, $categoryId);
 }
 
 function signInAndUpPage($param)
@@ -51,7 +62,8 @@ function signInAndUpPage($param)
  */
 function newUser($user, $email, $pass, $conf)
 {
-    $newUser = newUserModel($user, $email, $pass, $conf);
+    $userManager = new UserManager();
+    $newUser = $userManager->newUserModel($user, $email, $pass, $conf);
     if ($newUser) {
         header("Location: index.php?action=signIn");
     } else {
@@ -68,7 +80,8 @@ function newUser($user, $email, $pass, $conf)
  */
 function manualLogin($email, $pass)
 {
-    $userInfo = manualLoginModel($email, $pass);
+    $userManager = new UserManager();
+    $userInfo = $userManager->manualLoginModel($email, $pass);
     if ($userInfo) {
         $_SESSION['userId'] = $userInfo['id'];
         header("Location: index.php?action=profile");
@@ -86,7 +99,8 @@ function manualLogin($email, $pass)
  */
 function kakaoAPICall($authCode)
 {
-    $kakaoUserId = kakaoAPICallModel($authCode);
+    $userManager = new UserManager();
+    $kakaoUserId = $userManager->kakaoAPICallModel($authCode);
     if ($kakaoUserId) {
         $title = "You get in";
         #TODO need to implement what to do if u logged IN
@@ -107,7 +121,8 @@ function kakaoAPICall($authCode)
  */
 function editProfile($firstName, $lastName, $email, $date, $city)
 {
-    editUserModel($firstName, $lastName, $email, $date, $city);
+    $userManager = new UserManager();
+    $userManager->editUserModel($firstName, $lastName, $email, $date, $city);
 }
 
 /**
@@ -118,13 +133,15 @@ function editProfile($firstName, $lastName, $email, $date, $city)
  */
 function editProfileAvatar($avatar)
 {
-    editUserAvatarModel($avatar);
+    $userManager = new UserManager();
+    $userManager->editUserAvatarModel($avatar);
 }
 
 function logout()
 {
     if ($_SESSION["access_token"]) {
-        kakaoLogout();
+        $userManager = new UserManager();
+        $userManager->kakaoLogout();
     }
     session_destroy();
     header("Location: index.php?action=landing");

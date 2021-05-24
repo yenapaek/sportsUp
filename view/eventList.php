@@ -11,20 +11,29 @@ if (is_array($events) || is_object($events)) {
                 <?php
                 #TODO clean up changing action
                     if(!empty($_SESSION['userId'])){
-                        $btnAction = "eventDetail&eventId=".$event['eventId']; 
+                        $btnAction = "eventDetail&eventId=".$event['eventId'];
                     } else {
                         $btnAction = "signUp"; 
                     }
                 ?>
                 <a href="index.php?action=<?= $btnAction; ?>" class="card-btn" target="_blank">View Event</a>
                 <?php
-                    if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']):
+                    if (!empty($_SESSION['userId']) && !isset($attending) && $event['organizerId'] == $_SESSION['userId']):
                 ?>
                     <div>
                         <a href=""><i class="far fa-edit"></i></a>
-                        <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId'] ?>"><i class="far fa-trash-alt"></i></a>
+                        <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?= $_GET['action']; ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
                     </div>
-                <?php endif; ?>
+                <?php
+                    endif; 
+                    if (!empty($event['attendingStatus']) && $event['attendingStatus']>0):
+                ?>
+                    <div>
+                        <a href="index.php?action=cancelAttendingEvent&eventId=<?= $event['eventId']; ?>&source=<?= $_GET['action']; ?>"><i class="far fa-calendar-times"></i></a>
+                    </div>
+                <?php
+                    endif; 
+                ?>
             </div>
         </div>
 <?php endforeach;
