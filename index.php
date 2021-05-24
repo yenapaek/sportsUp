@@ -7,7 +7,11 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
         case "landing":
-            require("./view/landing.php");
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
         case "aboutUs":
             require("./view/aboutUs.php");
@@ -106,7 +110,11 @@ try {
             logout();
             break;
         default:
-            require("./view/landing.php");
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
     }
 } catch (Exception $e) {
