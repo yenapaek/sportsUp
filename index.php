@@ -38,7 +38,7 @@ try {
         case "signUp":
             $goPrem = false;
             $plan = false;
-            if (isset($_REQUEST['goPrem'])) {
+            if (!empty($_REQUEST['goPrem'])) {
                 $goPrem = true;
                 $plan = $_REQUEST['q'];
             }

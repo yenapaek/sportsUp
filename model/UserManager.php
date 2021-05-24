@@ -334,6 +334,13 @@ class UserManager extends Manager
      */
     function editUserModel($firstName, $lastName, $email, $date, $city)
     {
+
+        $firstName = addslashes(htmlspecialchars(htmlentities(trim($firstName))));
+        $lastName = addslashes(htmlspecialchars(htmlentities(trim($lastName))));
+        $email = addslashes(htmlspecialchars(htmlentities(trim($email))));
+        $city = addslashes(htmlspecialchars(htmlentities(trim($city))));
+
+
         $db = $this->dbConnect();
 
         $req = $db->prepare("UPDATE users SET firstName=:firstName, lastName=:lastName,email=:email,birthDate=:birthDate,city=:city WHERE id =:id");

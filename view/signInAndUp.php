@@ -51,7 +51,8 @@
         <?php
     } else {
 
-        if (!empty($goPrem)) {
+        if ($goPrem  != null) {
+
         ?>
             <h1>SIGN UP</h1>
             <h2>You must create an account before going premium</h2>
@@ -76,7 +77,7 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
-                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ? isset($goPrem) : null ?>">
                     <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">

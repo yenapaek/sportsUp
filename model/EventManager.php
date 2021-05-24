@@ -1,6 +1,7 @@
 <?php
 require_once("Manager.php");
-class EventManager extends Manager {
+class EventManager extends Manager
+{
 
     /**
      * myEventsModel
@@ -76,7 +77,7 @@ class EventManager extends Manager {
         return $suggestionEvents;
     }
 
-        /**
+    /**
      * createEventModel allow us to create a new event
      *
      * @param  mixed $name
@@ -91,6 +92,11 @@ class EventManager extends Manager {
      */
     function createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
     {
+
+        $name = addslashes(htmlspecialchars(htmlentities(trim($name))));
+        $city = addslashes(htmlspecialchars(htmlentities(trim($city))));
+        $description = addslashes(htmlspecialchars(htmlentities(trim($description))));
+
         $db = $this->dbConnect();
         $req = $db->prepare("INSERT INTO events(name, categoryId, picture, organizerId, playerNumber, duration, description, eventDate, fee, city)
                         VALUES(:name, :categoryId, :picture, :organizerId, :playerNumber, :eventDuration, :eventDescription, :eventDate, :eventFee, :city)");
