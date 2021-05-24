@@ -16,16 +16,17 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                 <div class="eventPicture">
                     <!-- <p>Picture :<?= $event['picture'] ?></p> -->
                     <img src="./public/images/sports/acro-sports.jpeg" alt="">
+                    <p class="descriptionBox">Description : <?= $event['description'] ?></p>
                 </div>
                 
                 <div class="eventRightBox">
                     <p>Host : <?= $event['organizerId'] ?></p>
                     <div class="dividerGrey"></div>
-                    <p>How many can attend? : <?= $event['playerNumber'] ?></p>
+                    <p>Up to <?= $event['playerNumber'] ?> people</p>
                     <div class="dividerGrey"></div>
-                    <p>When? <?= $event['eventDate'] ?></p>
+                    <p><?= $event['eventDate'] ?></p>
                     <div class="dividerGrey"></div>
-                    <p>Duration :<?= $event['duration'] ?></p>
+                    <p>Duration : <?= $event['duration'] ?> hours</p>
                     <div class="dividerGrey"></div>
                     
                 
@@ -36,24 +37,23 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     }
                     ?>
                     <p>City : <?= $event['city'] ?></p>
-                    <div class="dividerGrey"></div>
-                    <p>Description : <?= $event['description'] ?></p>
+                    <div class="attendBtn">
+                        <a href="index.php?action=attendEvent&eventId=<?= $event['id'] ?>" class="card-btn">Attend Event</a>
+                    </div>
+                    <section class="editDeleteBtns">
+                        <?php
+                        if ($event['organizerId'] == $_SESSION['userId']) :
+                        ?>
+                            <div>
+                                <a href="index.php?action=addEditEvent&eventId=<?= $event['id'] ?>"><i class="far fa-edit"></i></a>
+                                <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['id'] ?>"><i class='far fa-trash-alt'></i></a>
+                            </div>
+                        <?php endif; ?>
+                    </section>                 
                 </div>
             </div>
         </section>
-        <div>
-            <a href="index.php?action=attendEvent&eventId=<?= $event['id'] ?>" class="card-btn">Attend Event</a>
-        </div>
-        <section>
-            <?php
-            if ($event['organizerId'] == $_SESSION['userId']) :
-            ?>
-                <div>
-                    <a href="index.php?action=addEditEvent&eventId=<?= $event['id'] ?>"><i class="far fa-edit"></i></a>
-                    <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['id'] ?>"><i class='far fa-trash-alt'></i></a>
-                </div>
-            <?php endif; ?>
-        </section>
+        
 <?php endforeach;
 } 
 

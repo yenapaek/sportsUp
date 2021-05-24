@@ -2,6 +2,7 @@
 if (is_array($events) || is_object($events)) {
     foreach ($events as $event) : ?>
         <div class="card">
+            
             <img src="<?= $event["categoryImage"] ?>" alt="card background" class="card-img">
             <div class="card-text">
                 <h2><?= $event["eventName"] ?></h2>

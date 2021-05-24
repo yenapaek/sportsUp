@@ -189,8 +189,13 @@ nav a:nth-child(5):hover ~ .animation {
     font-size: 20px;
     height: 25px;
     color: orange;
+    position: relative;
 }
 
 #premiumMessage i {
     color: orange;
+    position: relative;
+    transform: none;
+    left: 0;
+    top: 0;
 }
