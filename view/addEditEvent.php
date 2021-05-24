@@ -2,7 +2,7 @@
 $title = "Sports Up - Create Event";
 $style = '<link href="./public/css/addEditEvent.css" rel="stylesheet" />';
 ob_start();
-print_r($infos);
+// print_r($infos);
 ?>  
 <div id="addEditEvent">
 
