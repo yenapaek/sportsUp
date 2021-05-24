@@ -20,16 +20,18 @@ function eventsInfo($search, $name)
     }
 }
 
+// show information about event to set up for adding/editing event
 function categoriesInfo2($eventId=false)
 {   
     $eventManager =  new EventManager();
-
+    $categories  =  $eventManager->categoriesInfoModel(false);
     if ($eventId){
-       $infos = $eventManager->selectEvent($eventId);
+       $eventDetail =  $eventManager->eventSearch('eventDetail', $eventId);
+    } else {
+        $eventDetail =  $eventManager->eventSearch('addEditEventDetail', '');
     }
     $form = $eventId ? 'editEvent' : 'addEvent';
     $formTitle = $eventId ? 'Update' : 'Create';
-    $categories  =  $eventManager->categoriesInfoModel(false);
     require("./view/addEditEvent.php");
 }
 
@@ -46,17 +48,17 @@ function categoriesInfo2($eventId=false)
  * @param  mixed $fee
  * @return void 
  */
-function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description)
 {
     $eventManager =  new EventManager();
-    $event = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+    $event = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description);
     eventDetail($event['id']);
 }
 
-function editEvent($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+function editEvent($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description)
 {
     $eventManager =  new EventManager();
-    $eventId = $eventManager->editEventModel($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
+    $eventId = $eventManager->editEventModel($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description);
     eventDetail($eventId);
 }
 
@@ -70,9 +72,8 @@ function editEvent($eventId, $name, $categoryId, $city, $playerNumber, $eventDat
 function eventDetail($eventId)
 {
     $eventManager =  new EventManager();
-    $eventDetail = $eventManager->selectEvent($eventId);
+    $eventDetail = $eventManager->eventSearch('eventDetail',$eventId);
     require("./view/eventDetail.php");
-    // header("Location: index.php?action=eventDetail&eventId={$eventDetail['id']}");
 }
 
 /**
@@ -81,9 +82,12 @@ function eventDetail($eventId)
  * @param  mixed $eventId
  * @return void
  */
-function deleteEvent($eventId)
+function deleteEvent($eventId, $source)
 {
     $eventManager =  new EventManager();
     $eventManager->deleteEventModel($eventId);
-    header("Location: index.php?action=events");
+    if ($source === "eventDetail"){
+        $source = "profile";
+    }
+    header("Location: index.php?action={$source}");
 }

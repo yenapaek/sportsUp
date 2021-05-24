@@ -8,15 +8,16 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
     foreach ($eventDetail as $event) : ?>
         <section id="eventDetail">
             <div class="eventName">
-                <p><?= $event['name'] ?></p>
+                <p><?= $event['eventName'] ?></p>
                 <div class="dividerRed"></div>
             </div>
             
             <div class="eventMainBox">
                 <div class="eventPicture">
+                    <!-- #TODO categoryImg -->
                     <!-- <p>Picture :<?= $event['picture'] ?></p> -->
                     <img src="./public/images/sports/acro-sports.jpeg" alt="">
-                    <p class="descriptionBox">Description : <?= $event['description'] ?></p>
+                    <p class="descriptionBox">Description : <?= $eventDetail['0']['eventDescription'] ?></p>
                 </div>
                 
                 <div class="eventRightBox">
@@ -37,22 +38,35 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     }
                     ?>
                     <p>City : <?= $event['city'] ?></p>
-                    <div class="attendBtn">
-                        <a href="index.php?action=attendEvent&eventId=<?= $event['id'] ?>" class="card-btn">Attend Event</a>
-                    </div>
+
                     <section class="editDeleteBtns">
                         <?php
-                        if ($event['organizerId'] == $_SESSION['userId']) :
+                            if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']):
                         ?>
                             <div>
-                                <a href="index.php?action=addEditEvent&eventId=<?= $event['id'] ?>"><i class="far fa-edit"></i></a>
-                                <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['id'] ?>"><i class='far fa-trash-alt'></i></a>
+                                <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId'] ?>"><i class="far fa-edit"></i></a>
+                                <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?php if(!isset($_GET['action'])){ echo "eventDetail";}else {echo $_GET['action'];} ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
                             </div>
-                        <?php endif; ?>
-                    </section>                 
+                        <?php
+                            endif; 
+                        ?>
+                    </section>
+                    <div class="attendBtn">
+                        <?php
+                            if (!empty($event['attendingStatus']) && $event['attendingStatus']>0){
+                                $attendingAction = "cancelAttendingEvent";
+                                $attendingBtnMsg = "Cancel Attending";
+                            } else {
+                                $attendingAction = "attendEvent";
+                                $attendingBtnMsg = "Attend Event";
+                            }
+                        ?>
+                        <a href="index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>&source=<?php if(!isset($_GET['action'])){ echo "eventDetail";}else {echo $_GET['action'];} ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
+                    </div>
                 </div>
             </div>
         </section>
+        
         
 <?php endforeach;
 } 

@@ -7,7 +7,11 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
         case "landing":
-            require("./view/landing.php");
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
         case "premium":
             if (!empty($_REQUEST['q'])) {
@@ -34,8 +38,8 @@ try {
                 $_POST['maxPlayers'],
                 $_POST['eventDate'],
                 $_POST['eventDuration'],
-                $_POST['eventDescription'],
-                $_POST['eventFee']
+                $_POST['eventFee'],
+                $_POST['eventDescription']
             );
             break;
         case "editEvent":
@@ -46,9 +50,9 @@ try {
                 $_POST['maxPlayers'],
                 $_POST['eventDate'],
                 $_POST['eventDuration'],
-                $_POST['eventDescription'],
-                $_POST['eventFee']
-        );           
+                $_POST['eventFee'],
+                $_POST['eventDescription']
+            );           
             break; 
         case "signIn":
         case "signUp":
@@ -65,7 +69,11 @@ try {
             );
             break;
         case "profile":
-            profile($_SESSION['userId']);
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
         case "addMySport":
             if (!empty($_POST['categoryId'])) {
@@ -125,25 +133,32 @@ try {
                 throw new Exception("Please fill again the form");
             }
             break;
-        case "kakaoAPICall":
-            if (isset($_SESSION['code'])) {
-                kakaoAPICall($_SESSION['code']);
-            } else {
-                throw new Exception("Error with Kakao Login.");
-            }
+        case "oauth":
+            kakaoAPICall($_REQUEST['code']);
             break;
         case "events":
             eventsInfo("default", true);
             break;
         case "eventDetail":
-            eventDetail($_REQUEST['eventId']);
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                eventDetail($_REQUEST['eventId']);
+            }
             break;
         case "deleteEvent":
-            deleteEvent($_REQUEST['deleteEventId']);
+            deleteEvent($_REQUEST['deleteEventId'], $_REQUEST['source']);
             break;
         case "attendEvent":
             if (!empty($_REQUEST['eventId'])) {
-                addAttendingEvent($_SESSION['userId'], $_REQUEST['eventId']);
+                attendEvent($_REQUEST['eventId']);
+            } else {
+                throw new Exception("Error with attending event.");
+            }
+            break;
+        case "cancelAttendingEvent":
+            if (!empty($_REQUEST['eventId'])) {
+                cancelAttendingEvent($_REQUEST['eventId'], $_REQUEST['source']);
             } else {
                 throw new Exception("Error with attending event.");
             }
@@ -164,7 +179,11 @@ try {
             logout();
             break;
         default:
-            require("./view/landing.php");
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
     }
 } catch (Exception $e) {
