@@ -7,7 +7,11 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
         case "landing":
-            require("./view/landing.php");
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
         case "aboutUs":
             require("./view/aboutUs.php");
@@ -32,7 +36,11 @@ try {
             signInAndUpPage($_REQUEST['action']);
             break;
         case "profile":
-            profile($_SESSION['userId']);
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
         case "addMySport":
             if (!empty($_POST['categoryId'])) {
@@ -68,7 +76,11 @@ try {
             eventsInfo("default", true);
             break;
         case "eventDetail":
-            eventDetail($_REQUEST['eventId']);
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                eventDetail($_REQUEST['eventId']);
+            }
             break;
         case "deleteEvent":
             deleteEvent($_REQUEST['deleteEventId'], $_REQUEST['source']);
@@ -98,7 +110,11 @@ try {
             logout();
             break;
         default:
-            require("./view/landing.php");
+            if (!isset($_SESSION['userId'])){
+                require("./view/landing.php");
+            } else {
+                profile($_SESSION['userId']);
+            }
             break;
     }
 } catch (Exception $e) {
