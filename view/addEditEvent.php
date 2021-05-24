@@ -32,7 +32,7 @@ ob_start();
             <input type="number" min="1" id="maxPlayers" name="maxPlayers" value="<?= isset($eventDetail[0]["playerNumber"])?$eventDetail[0]["playerNumber"]:''; ?>">
 
             <label for="eventDate">When </label>
-            <input type="datetime-local" id="eventDate" placeholder="Date" name="eventDate" value ="<?= isset($eventDetail[0]["eventDate"])?$eventDetail[0]["eventDate"]:''; ?>">        
+            <input type="datetime-local" id="eventDate" placeholder="Date" name="eventDate" value ="<?= $date = isset($eventDetail[0]["eventDate"])?date("Y-m-d\TH:i:s", strtotime($eventDetail[0]["eventDate"])):''; ?>">        
         </div>            
         <div class="formSecondPart">            
 
