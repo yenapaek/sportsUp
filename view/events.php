@@ -30,14 +30,16 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
                 <input type="submit" value="Apply" id="submitButton">
             </div>
         </form>
-
+        <!-- <h3 class="or">Or create your own</h3> -->
         <?php 
-        if (isset($_SESSION['userId'])){?>
-
-            <div id="createEventBox">
-                <a href="http://localhost/sportsEvent/index.php?action=addEditEvent" class="createEventBtn">Create Event</a> 
-            </div>
-        <?php } ?>
+            if (isset($_SESSION['userId'])):
+        ?>
+                <div id="createEventBox">
+                    <a href="index.php?action=addEditEvent" class="createEventBtn">Create Event</a> 
+                </div>
+        <?php
+            endif;
+        ?>
     </header>
     <section>
         <div>List of events</div>

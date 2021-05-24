@@ -20,7 +20,7 @@ class EventManager extends Manager {
                     e.organizerId AS organizerId,
                     c.name AS categoryName,
                     c.id AS categoryId,
-                    DATE_FORMAT(e.eventDate, '%a, %b %e, %l:%i %p') AS eventDate,
+                    e.eventDate AS eventDate,
                     e.playerNumber AS playerNumber,
                     e.duration AS duration,
                     e.description AS eventDescription,
