@@ -16,6 +16,7 @@ function profile($userId)
     $mySports = $userManager->mySportsModel($userId);
     $hostingEvents= $eventManager->eventSearch('hostingEvents','');
     $attendingEvents = $eventManager->eventSearch('attendingEvents','');
+    $wishlist = $eventManager->eventSearch('wishlist','');
     $suggestionEvents = $eventManager->suggestEvents($userId);
     $categories = $userManager->categoriesInfoModel(true);
     require('./view/profile.php');
