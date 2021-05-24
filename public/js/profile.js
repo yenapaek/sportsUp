@@ -1,3 +1,4 @@
+const listOfMySport = document.querySelectorAll("#mySportsList li");
 const editPersonnalInfos = document.querySelector("#editPersonnalInfos");
 const profileAvatar = document.querySelector(".profile-img");
 const imgFirst = document.querySelector(".profile-img").src;
@@ -10,8 +11,6 @@ profileAvatar.addEventListener("mouseover", function () {
 profileAvatar.addEventListener("mouseout", function () {
     profileAvatar.src = imgFirst;
 });
-
-///////////////////////////////////////////////////////
 
 const myFile = document.querySelector("#file");
 let allowType = ["png", "jpg", "jpeg"];
@@ -28,28 +27,13 @@ myFile.addEventListener("change", function () {
     form.append("file", myFile.files[0]);
     xhr.send(form);
 
-    console.log(myFile.files[0]);
-
-    let files = this.files,
-        filesLen = files.length,
-        imgType;
-
-    for (let i = 0; i < filesLen; i++) {
-        imgType = files[i].name.split(".");
-        imgType = imgType[imgType.length - 1].toLowerCase();
-        console.log(imgType);
-
-        if (allowType.indexOf(imgType) != 1) {
-            var reader = new FileReader();
-
-            reader.addEventListener("load", function () {
-                // const c = document.querySelector("#avatar");
-                const img = document.querySelector("#profile-img");
-                img.src = this.result;
-            });
-            reader.readAsDataURL(myFile.files[0]);
+    xhr.onload = function () {
+        if (xhr.status != 200) {
+            alert(`Error ${xhr.status}: ${xhr.statusText}`);
+        } else {
+            location.reload();
         }
-    }
+    };
 });
 
 editPersonnalInfos.addEventListener("click", function () {
@@ -100,14 +84,29 @@ const addMySport = () => {
     let newSport = document.createElement("li");
     let categoryId = newCategory.id;
     let categoryName = newCategory.innerHTML;
-    newSport.classList.add('category');
-    newSport.appendChild(document.createTextNode('#'+categoryName));
+    newSport.classList.add("category");
+    newSport.appendChild(document.createTextNode("#" + categoryName));
     mySportsList.appendChild(newSport);
     mySportsList.appendChild(document.createElement("br"));
-    
+
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'index.php?action=addMySport');
+    xhr.open("POST", "index.php?action=addMySport");
     let form = new FormData();
-    form.append("categoryId",categoryId);
+    form.append("categoryId", categoryId);
     xhr.send(form);
-}
+};
+
+listOfMySport.forEach((list) => {
+    list.addEventListener("click", () => {
+        let categoryTrimed = list.textContent.replace(/^\#/gi, "");
+        console.log(categoryTrimed);
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "index.php?action=searchSubmit");
+        let form = new FormData();
+        form.append("sportCriteria", categoryTrimed);
+        xhr.send(form);
+
+        window.location.href = `index.php?action=events`;
+    });
+});

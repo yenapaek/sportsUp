@@ -69,9 +69,10 @@ input:checked + .slider:before {
 /* ~~~~~~~~~~~~~ Related to the forms ~~~~~~~~~~~~~ */
 
 #bothForm {
-    width: 100%;
+    width: 97%;
+    margin: auto;
+    height: 77vh;
     padding-top: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     margin-bottom: 50px;
     font-family: "Open Sans", sans-serif;
 }
@@ -82,7 +83,7 @@ nav .start-home,
 a:hover ~ .animation {
     width: 15%;
 }
-nav .start-home{
+nav .start-home {
     left: 71%;
     width: 0px;
 }
@@ -110,11 +111,10 @@ nav a:nth-child(5):hover ~ .animation {
 #signUpFormSection {
     display: flex;
     justify-content: space-around;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    /* padding-bottom: 50px; */
     margin-bottom: 50px;
 }
-div h1 {
+div h1,
+div h2 {
     text-align: center;
 }
 

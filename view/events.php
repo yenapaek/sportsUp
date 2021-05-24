@@ -9,7 +9,7 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
         <form action="" id="formCriteria" method="POST">
             <input type="hidden" name="action" value="searchSubmit">
             <div id="searchWrapper">
-                <label for="searchTitle">Choose your criteria</label>
+                <label for="searchTitle">Search</label>
             </div>
             <div id="searchBar">
                 <select name="selectCriteria" id="selectCriteria">
@@ -27,9 +27,13 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
                 <input type="text" name="searchEvent" id="searchInput" placeholder="Type Here">
             </div>
             <div>
-                <input type="submit" value="search" id="submitButton">
+                <input type="submit" value="Apply" id="submitButton">
             </div>
         </form>
+        <!-- <h3 class="or">Or create your own</h3> -->
+        <div id="createEventBox">
+            <a href="http://localhost/sportsEvent/index.php?action=addEditEvent" class="createEventBtn">Create Event</a> 
+        </div>
     </header>
     <section>
         <div>List of events</div>
@@ -41,6 +45,7 @@ $style = '<link href="./public/css/events.css" rel="stylesheet"/>';
         } ?>
     </section>
 </div>
+
 <script src="./public/js/events.js"></script>
 <?php $content = ob_get_clean(); ?>
 <?php require("template.php"); ?>

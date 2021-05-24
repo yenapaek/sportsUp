@@ -1,22 +1,45 @@
 <?php
 $title = "Event Detail";
-$style = '<link href="./public/css/events.css" rel="stylesheet" />';
+$style = '<link href="./public/css/events.css" rel="stylesheet" /> <link href="./public/css/eventDetail.css" rel="stylesheet" />';
 
 ob_start();
-
 if (is_array($eventDetail) || is_object($eventDetail)) {
     foreach ($eventDetail as $event) : ?>
-        <section>
-            <p>Name : <?= $event['eventName'] ?></p>
-            <p>Event Id : <?= $event['eventId'] ?></p>
-            <p>Host Id : <?= $event['organizerId'] ?></p>
-            <p>Picture :<? if(!isset($event['picture'])){ echo $event['categoryImage']; } ?></p>
-            <p>PlayerMax : <?= $event['playerNumber'] ?></p>
-            <p>EventDate <?= $event['eventDate'] ?></p>
-            <p>Duration :<?= $event['duration'] ?></p>
-            <p>Description : <?= $event['eventDescription'] ?></p>
-            <p>Fee : <?= $event['fee'] ?></p>
-            <p>City : <?= $event['city'] ?></p>
+        <section id="eventDetail">
+            <div class="eventName">
+                <p><?= $event['eventName'] ?></p>
+                <div class="dividerRed"></div>
+            </div>
+            
+            <div class="eventMainBox">
+                <div class="eventPicture">
+                    <!-- #TODO categoryImg -->
+                    <!-- <p>Picture :<?= $event['picture'] ?></p> -->
+                    <img src="./public/images/sports/acro-sports.jpeg" alt="">
+                </div>
+                
+                <div class="eventRightBox">
+                    <p>Host : <?= $event['organizerId'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>How many can attend? : <?= $event['playerNumber'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>When? <?= $event['eventDate'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>Duration :<?= $event['duration'] ?></p>
+                    <div class="dividerGrey"></div>
+                    
+                
+                    <?php if(!is_null($event['fee'])){ ?>
+                        <p>Fee : <?= $event['fee'] ?></p>
+                        <div class="dividerGrey"></div>
+                    <?php
+                    }
+                    ?>
+                    <p>City : <?= $event['city'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>Description : <?= $event['eventDescription'] ?></p>
+                </div>
+            </div>
         </section>
         <div>
             <?php
@@ -28,15 +51,15 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     $attendingBtnMsg = "Attend Event";
                 }
             ?>
-            <a href="index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>&source=<?= $_GET['action']; ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
+            <a href="index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>&source=<?php if(!isset($_GET['action'])){ echo "eventDetail";}else {echo $_GET['action'];} ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
         </div>
         <section>
             <?php
                 if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']):
             ?>
                 <div>
-                    <a href=""><i class="far fa-edit"></i></a>
-                    <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?= $_GET['action']; ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
+                    <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId'] ?>"><i class="far fa-edit"></i></a>
+                    <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?php if(!isset($_GET['action'])){ echo "eventDetail";}else {echo $_GET['action'];} ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
                 </div>
             <?php
                 endif; 

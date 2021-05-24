@@ -13,13 +13,24 @@ try {
                 profile($_SESSION['userId']);
             }
             break;
+        case "premium":
+            if (!empty($_REQUEST['q'])) {
+                premium($_REQUEST['q']);
+            } else {
+                premium(false);
+            }
+            break;
         case "aboutUs":
             require("./view/aboutUs.php");
             break;
         case "addEditEvent":
-            categoriesInfo2();
+           if(!empty($_REQUEST['eventId'])){
+               categoriesInfo2($_REQUEST['eventId']);
+            }else{ 
+                categoriesInfo2();
+           }
             break;
-        case "createEvent":
+        case "addEvent":
             createEvent(
                 $_POST['eventName'],
                 $_POST['sportCategory'],
@@ -27,13 +38,35 @@ try {
                 $_POST['maxPlayers'],
                 $_POST['eventDate'],
                 $_POST['eventDuration'],
-                $_POST['eventDescription'],
-                $_POST['eventFee']
+                $_POST['eventFee'],
+                $_POST['eventDescription']
             );
             break;
+        case "editEvent":
+            editEvent($_REQUEST['eventId'],
+                $_POST['eventName'],
+                $_POST['sportCategory'],
+                $_POST['city'],
+                $_POST['maxPlayers'],
+                $_POST['eventDate'],
+                $_POST['eventDuration'],
+                $_POST['eventFee'],
+                $_POST['eventDescription']
+            );           
+            break; 
         case "signIn":
         case "signUp":
-            signInAndUpPage($_REQUEST['action']);
+            $goPrem = false;
+            $plan = false;
+            if (isset($_REQUEST['goPrem'])) {
+                $goPrem = true;
+                $plan = $_REQUEST['q'];
+            }
+            signInAndUpPage(
+                $_REQUEST['action'],
+                $goPrem,
+                $plan
+            );
             break;
         case "profile":
             if (!isset($_SESSION['userId'])){
@@ -53,18 +86,49 @@ try {
             editProfileAvatar($_FILES['file']);
             break;
         case "editProfileInfo":
-            editProfile($_POST['first'], $_POST['last'], $_POST['email'], $_POST['date'], $_POST['city']);
+            editProfile(
+                $_POST['first'],
+                $_POST['last'],
+                $_POST['email'],
+                $_POST['date'],
+                $_POST['city']
+            );
             break;
         case "signInSubmit":
             if (!empty($_POST['emailSignIn']) && !empty($_POST['passwordSignIn'])) {
-                manualLogin($_POST['emailSignIn'], $_POST['passwordSignIn']);
+                $goPrem = false;
+                $plan = false;
+                if (isset($_REQUEST['goPrem'])) {
+                    $goPrem = true;
+                    $plan = $_REQUEST['q'];
+                }
+                manualLogin(
+                    $_POST['emailSignIn'],
+                    $_POST['passwordSignIn'],
+                    $goPrem,
+                    $plan
+                );
             } else {
                 throw new Exception("Please fill again the form");
             }
             break;
         case "signUpSubmit":
             if (!empty($_POST['userNameSignUp']) && !empty($_POST['emailSignUp']) && !empty($_POST['passwordSignUp']) && !empty($_POST['passwordConfSignUp'])) {
-                newUser($_POST['userNameSignUp'], $_POST['emailSignUp'], $_POST['passwordSignUp'], $_POST['passwordConfSignUp']);
+                $goPrem = false;
+                $plan = false;
+
+                if (!empty($_POST['goPrem'])) {
+                    $goPrem = true;
+                    $plan = $_POST['q'];
+                }
+                newUser(
+                    $_POST['userNameSignUp'],
+                    $_POST['emailSignUp'],
+                    $_POST['passwordSignUp'],
+                    $_POST['passwordConfSignUp'],
+                    $goPrem,
+                    $plan
+                );
             } else {
                 throw new Exception("Please fill again the form");
             }
@@ -104,6 +168,11 @@ try {
                 eventsInfo("input", $_REQUEST['searchEvent']);
             } elseif (isset($_REQUEST['sportCriteria'])) {
                 eventsInfo("select", $_REQUEST['sportCriteria']);
+            }
+            break;
+        case "submitPremium":
+            if (!empty($_POST['cardHolder']) && !empty($_POST['cardNumber']) && !empty($_POST['expirationCard']) && !empty($_POST['cvc'])) {
+                premiumSubscription($_POST['expDate']);
             }
             break;
         case "logout":

@@ -13,7 +13,6 @@ function eventsInfo($search, $name)
     $eventManager =  new EventManager();
     $categories  =  $eventManager->categoriesInfoModel(false);
     $events =  $eventManager->eventSearch($search, $name);
-
     if ($search ==  "default") {
         require("./view/events.php");
     } else {
@@ -21,10 +20,18 @@ function eventsInfo($search, $name)
     }
 }
 
-function categoriesInfo2()
-{
+// show information about event to set up for adding/editing event
+function categoriesInfo2($eventId=false)
+{   
     $eventManager =  new EventManager();
     $categories  =  $eventManager->categoriesInfoModel(false);
+    if ($eventId){
+       $eventDetail =  $eventManager->eventSearch('eventDetail', $eventId);
+    } else {
+        $eventDetail =  $eventManager->eventSearch('addEditEventDetail', '');
+    }
+    $form = $eventId ? 'editEvent' : 'addEvent';
+    $formTitle = $eventId ? 'Update' : 'Create';
     require("./view/addEditEvent.php");
 }
 
@@ -41,12 +48,20 @@ function categoriesInfo2()
  * @param  mixed $fee
  * @return void 
  */
-function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee)
+function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description)
 {
     $eventManager =  new EventManager();
-    $eventId = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $description, $fee);
-    // eventDetail($eventId['id']);
+    $event = $eventManager->createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description);
+    eventDetail($event['id']);
 }
+
+function editEvent($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description)
+{
+    $eventManager =  new EventManager();
+    $eventId = $eventManager->editEventModel($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description);
+    eventDetail($eventId);
+}
+
 
 /**
  * eventDetail call the database to get the information of one event
@@ -57,9 +72,7 @@ function createEvent($name, $categoryId, $city, $playerNumber, $eventDate, $dura
 function eventDetail($eventId)
 {
     $eventManager =  new EventManager();
-    // $eventDetail = $eventManager->selectEvent($eventId);
     $eventDetail = $eventManager->eventSearch('eventDetail',$eventId);
-
     require("./view/eventDetail.php");
 }
 

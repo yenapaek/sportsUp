@@ -8,12 +8,21 @@ ob_start();
     <section id="personnalInfo">
         <input hidden id="file" type="file" multiple>
         <div class="info-container" id="myInfos">
-            <!-- #TODO user must be able to upload an avatar when creating a profile -->
+            <?php if (empty($infoProfile['premiumId'])) { ?>
+                <a href="index.php?action=premium" class="card-btn">Go Premium</a>
+            <?php
+            }
+            ?>
             <div id="avatar">
                 <img class="profile-img" id="profile-img" src="<?= !empty($infoProfile['avatar']) ? "$avatarPath/{$infoProfile['avatar']}" : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image">
             </div>
             <div>
                 <h1>Hi, <?= !empty($infoProfile) ? $infoProfile['userName'] : '...'; ?></h1>
+                <?php if (!empty($infoProfile['premiumId'])) { ?>
+                    <p id="premiumMessage">PREMIUM <strong><i class="fas fa-crown"></i></strong></p>
+                <?php
+                }
+                ?>
             </div>
             <div>
                 <p>FirstName : <span><?= !empty($infoProfile['firstName']) ? $infoProfile['firstName'] : '...'; ?></span></p>
