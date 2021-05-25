@@ -2,12 +2,7 @@
 $title = "Event Detail";
 $style = '<link href="./public/css/events.css" rel="stylesheet" /> <link href="./public/css/eventDetail.css" rel="stylesheet" />';
 ob_start();
-?>
-
-<pre>
-
-</pre>
-<?php
+// print_r($eventDetail);
 if (is_array($eventDetail) || is_object($eventDetail)) {
     foreach ($eventDetail as $event) : ?>
         <section id="eventDetail">
@@ -20,17 +15,18 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                 <div class="eventPicture">
                     <!-- #TODO categoryImg -->
                     <!-- <p>Picture :<?= $event['picture'] ?></p> -->
-                    <img src="./public/images/sports/acro-sports.jpeg" alt="">
+                    <img src="<?= $event['categoryImage'] ?>" alt="">
+                    <p class="descriptionBox">Description : <?= $eventDetail['0']['eventDescription'] ?></p>
                 </div>
 
                 <div class="eventRightBox">
                     <p>Host : <?= $event['organizerId']; ?></p>
                     <div class="dividerGrey"></div>
-                    <p>How many can attend? : <?= $event['playerNumber']; ?></p>
+                    <p>Up to <?= $event['playerNumber'] ?> people</p>
                     <div class="dividerGrey"></div>
-                    <p>When? <?= $event['eventDate']; ?></p>
+                    <p><?= $event['eventDate'] ?></p>
                     <div class="dividerGrey"></div>
-                    <p>Duration :<?= $event['duration']; ?></p>
+                    <p>Duration : <?= $event['duration'] ?> hours</p>
                     <div class="dividerGrey"></div>
 
 
@@ -41,10 +37,43 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     }
                     ?>
                     <p>City : <?= $event['city'] ?></p>
-                    <div class="dividerGrey"></div>
-                    <p>Description : <?= $event['eventDescription']; ?></p>
+                    <section class="editDeleteBtns">
+                        <?php
+                        if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']) :
+                        ?>
+                            <div>
+                                <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId'] ?>"><i class="far fa-edit"></i></a>
+                                <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?php if (!isset($_GET['action'])) {
+                                                                                                                            echo "eventDetail";
+                                                                                                                        } else {
+                                                                                                                            echo $_GET['action'];
+                                                                                                                        } ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
+                            </div>
+                        <?php
+                        endif;
+                        ?>
+                    </section>
+                    <div class="attendBtn">
+                        <?php
+                        if (!empty($event['attendingStatus']) && $event['attendingStatus'] > 0) {
+                            $attendingAction = "cancelAttendingEvent";
+                            $attendingBtnMsg = "Cancel Attending";
+                        } else {
+                            $attendingAction = "attendEvent";
+                            $attendingBtnMsg = "Attend Event";
+                        }
+                        ?>
+                        <a href="index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>&source=<?php if (!isset($_GET['action'])) {
+                                                                                                                        echo "eventDetail";
+                                                                                                                    } else {
+                                                                                                                        echo $_GET['action'];
+                                                                                                                    } ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
+                    </div>
                 </div>
             </div>
+        </section>
+        </div>
+        </div>
         </section>
         <section>
             <form id="formComment" method="post" onsubmit="return false">
@@ -59,39 +88,12 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
         <section id="allMessage">
             <?php include("eventDetailListMessage.php"); ?>
         </section>
-        <div>
-            <?php
-            if (!empty($event['attendingStatus']) && $event['attendingStatus'] > 0) {
-                $attendingAction = "cancelAttendingEvent";
-                $attendingBtnMsg = "Cancel Attending";
-            } else {
-                $attendingAction = "attendEvent";
-                $attendingBtnMsg = "Attend Event";
-            }
-            ?>
-            <a href=" index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>&source=<?php if (!isset($_GET['action'])) {
-                                                                                                            echo "eventDetail";
-                                                                                                        } else {
-                                                                                                            echo $_GET['action'];
-                                                                                                        } ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
-        </div>
-        <section>
-            <?php
-            if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']) :
-            ?>
-                <div>
-                    <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId'] ?>"><i class="far fa-edit"></i></a>
 
-                    <a href="index.php?action=deleteEvent&deleteEventId=<?= $event['eventId']; ?>&source=<?php if (!isset($_GET['action'])) {
-                                                                                                                echo "eventDetail";
-                                                                                                            } else {
-                                                                                                                echo $_GET['action'];
-                                                                                                            } ?>" class='deleteEventBtn'><i class="far fa-trash-alt"></i></a>
-                </div>
-            <?php
-            endif;
-            ?>
-        </section>
+
+
+
+
+
 <?php endforeach;
 }
 ?>

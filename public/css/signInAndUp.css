@@ -213,3 +213,31 @@ div h2 {
     height: 4rem;
     margin-left: 7%;
 }
+
+@media screen and (max-width: 1100px) {
+    #bothForm {
+        width: 90%;
+        height: 100%;
+    }
+    #signUpFormSection,
+    #signInFormSection {
+    display: flex;
+    justify-content:space-around;
+    flex-direction: column;
+    margin-bottom: 50px;
+    }
+    #signUpFormSection img {
+        display: none;
+    }
+    #signUpForm,
+    #signInForm {
+        margin: auto;
+    }
+    .kakaoDiv {
+        margin: auto;
+        order: 2;
+    }
+    nav a {
+        width: 100%;
+    }
+}

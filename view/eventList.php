@@ -2,6 +2,7 @@
 if (is_array($events) || is_object($events)) {
     foreach ($events as $event) : ?>
         <div class="card">
+            
             <img src="<?= $event["categoryImage"] ?>" alt="card background" class="card-img">
             <div class="card-text">
                 <h2><?= $event["eventName"] ?></h2>
@@ -23,9 +24,7 @@ if (is_array($events) || is_object($events)) {
                             <div class="hotsIcon">
                                 <i class="fas fa-user-tag"></i> 
                             </div>
-                            <div class="hostText">
-                                You are hosting this event
-                            </div>
+                        
                         </div>
                         <div class="insideIconEventCard">
                             <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId']?>"><i class="far fa-edit"></i></a>

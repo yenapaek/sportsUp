@@ -16,7 +16,7 @@ class UserManager extends Manager
     {
         $submittable = true;
 
-        $user = addslashes(htmlspecialchars(htmlentities(trim($user))));
+        $user = addslashes(h6tmlspecialchars(htmlentities(trim($user))));
         $email = addslashes(htmlspecialchars(htmlentities(trim($email))));
 
         if (strlen($user) < 6) {
