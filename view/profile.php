@@ -107,20 +107,14 @@ ob_start();
         </section>
         <section id="productInfo">
             <div class="info-container" id="myProducts">
-                <h1>My Products</h1>
+                <h1>Wishlist Events</h1>
                 <div class="list-event-cards">
-                    <!-- #TODO change this section for something else -->
-                </div>
-            </div>
-            <div class="info-container" id="myProductSuggestions">
-                <h1>Product Suggestions</h1>
-                <div class="list-event-cards">
-                    <?php
-                    if (!empty($suggestionArticles)) {
-                        $events = $suggestionArticles;
+                <?php
+                    if (!empty($wishlist)) {
+                        $events = $wishlist;
                         require('eventList.php');
                     } else {
-                        echo '<p>No product suggestions</p>';
+                        echo '<p>No event suggestions. Please select some sports to fill the event suggestions.</p>';
                     }
                     ?>
                 </div>

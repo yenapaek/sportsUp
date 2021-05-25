@@ -148,7 +148,7 @@ try {
             kakaoAPICall($_REQUEST['code']);
             break;
         case "events":
-            eventsInfo("default", true);
+            eventsInfo('default', true);
             break;
         case "eventDetail":
             if (!isset($_SESSION['userId'])) {
@@ -179,6 +179,31 @@ try {
                 eventsInfo("input", $_REQUEST['searchEvent']);
             } elseif (isset($_REQUEST['sportCriteria'])) {
                 eventsInfo("select", $_REQUEST['sportCriteria']);
+            } elseif (isset($_REQUEST['searchPopularity'])) {
+                eventsInfo("popularity", null);
+            } elseif (isset($_REQUEST['attendingEvents'])) {
+                eventsInfo("attendingEvents", null);
+            } elseif (isset($_REQUEST['hostingEvents'])) {
+                eventsInfo("hostingEvents", null);
+            } elseif (isset($_REQUEST['wishlist'])) {
+                eventsInfo("wishlist", null);
+            }
+            break;
+        
+        case "favoriteCreation":
+            if (isset($_REQUEST['favoriteUser']) && (isset($_REQUEST['favoriteEvent']))) {
+                eventsFavorite($_REQUEST['favoriteUser'], $_REQUEST['favoriteEvent']);
+            } else {
+                throw new Exception("Error with favorites.");
+                eventsInfo("select", $_REQUEST['sportCriteria']);
+            }
+            break;
+        case "favoriteElimination":
+            if (isset($_REQUEST['favoriteUser']) && (isset($_REQUEST['favoriteEvent']))) {
+                eventsFavoriteElimination($_REQUEST['favoriteUser'], $_REQUEST['favoriteEvent']);
+            } else {
+                throw new Exception("Error with favorites.");
+                eventsInfo("select", $_REQUEST['sportCriteria']);
             }
             break;
         case "submitPremium":
@@ -204,3 +229,38 @@ try {
     $line = $e->getLine();
     require('./view/error.php');
 }
+
+
+// switch (e.target.classList.value) {
+//     case 'far fa-heart':    e.target.classList.value = 'fas fa-heart';
+//                             loadFile('Favorite', favorites[i].getAttribute('dataUserId'), favorites[i].getAttribute('dataEventId'));
+//                             break;
+
+//     case 'fas fa-heart' :   e.target.classList.value = 'far fa-heart';
+//                             loadFile('FavoriteEliminate', favorites[i].getAttribute('dataUserId'), favorites[i].getAttribute('dataEventId'));
+//                             break;
+
+//     default: return;
+// }
+
+
+// switch (true) {
+//     case e.target.value == 'Sport' && !checker: sportSelect.hidden = false;
+//                                                 searchInput.setAttribute("type", "hidden");
+//                                                 checker = true;
+//                                                 break;
+
+//     case e.target.value == 'Event': sportSelect.hidden = true;
+//                                     searchInput.setAttribute("type", "text");
+//                                     checker = false;
+//                                     break;
+
+//     case e.target.value == 'Popularity':    searchInput.setAttribute("type", "hidden");
+//                                             sportSelect.hidden = true;
+//                                             break;
+
+//     case e.target.value == 'MyEvents':  searchInput.setAttribute("type", "hidden")
+//                                         break;
+
+//     default: return;
+// }

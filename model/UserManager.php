@@ -434,7 +434,6 @@ class UserManager extends Manager
         $req->execute();
         $req->closeCursor();
     }
-
     function becomePremium($expDate, $userId)
     {
         $db = $this->dbConnect();
@@ -464,5 +463,31 @@ class UserManager extends Manager
             $req->closeCursor();
             return $premiumUser;
         }
+    }
+
+    // Getting the last 7 days items from the events list - WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY AND curdate()
+
+    function favoriteAdd($userId, $eventId) {
+        $dataBase = $this->dbConnect();
+        $rawRequest = $dataBase->prepare(
+            "INSERT INTO wishlist(userId, eventId, heart) VALUES(:userID, :eventID, true)"
+        );
+        $rawRequest->execute(array(
+            'userID' => $userId,
+            'eventID' => $eventId
+        ));
+        $rawRequest->closeCursor();
+    }
+
+    function favoriteElimination($userId, $eventId) {
+        $dataBase = $this->dbConnect();
+        $rawRequest = $dataBase->query(
+            "DELETE FROM wishlist WHERE userId = $userId AND eventId = $eventId"
+        );
+        // $rawRequest->execute(array(
+        //     'userID' => $userId,
+        //     'eventID' => $eventId
+        // ));
+        $rawRequest->closeCursor();
     }
 }

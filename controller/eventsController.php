@@ -1,6 +1,5 @@
 <?php
 require_once("./model/EventManager.php");
-
 /**
  * eventsInfo allow you to populate the select in the create event page
  *
@@ -13,6 +12,7 @@ function eventsInfo($search, $name)
     $eventManager =  new EventManager();
     $categories  =  $eventManager->categoriesInfoModel(false);
     $events =  $eventManager->eventSearch($search, $name);
+    $eventPageChecker = true;
     if ($search ==  "default") {
         require("./view/events.php");
     } else {
@@ -34,6 +34,7 @@ function categoriesInfo2($eventId = false)
     $formTitle = $eventId ? 'Update' : 'Create';
     require("./view/addEditEvent.php");
 }
+
 
 /**
  * createEvent allow you to create a new event and then redirect you to this event

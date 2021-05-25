@@ -14,6 +14,11 @@ class EventManager extends Manager
     {
         $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : "";
 
+        // $expiredChecker = "";
+        // if ($search != "attendingEvents" && $search != "wishlist") {
+        //     $expiredChecker = " WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+1 DAY AND curdate() + INTERVAL DAYOFWEEK(curdate())+12 MONTH";
+        // }
+
         $db = $this->dbConnect();
         $add = "";
         $query = "SELECT DISTINCT e.id AS eventId,
@@ -29,27 +34,38 @@ class EventManager extends Manager
                     e.city AS city,
                     c.image AS categoryImage,
                     u.premiumId AS premiumId,
-
                 (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
-                (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus 
+                (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus,
+                (SELECT heart from wishlist WHERE eventId=e.id) AS isHeart
                 FROM events e 
                 JOIN categories c ON e.categoryId = c.id
                 JOIN users u ON u.id = e.organizerId";
+                // $expiredChecker
         switch ($search) {
             case "input":
-                $add = " WHERE e.name LIKE '%$name%'";
+                $add = " AND e.name LIKE '%$name%'";
                 break;
             case "select":
-                $add = " WHERE c.name = '$name'";
+                $add = " AND c.name = '$name'";
                 break;
+            
+            case "popularity":
+                $add = " ORDER BY howMany DESC";
+                break;
+
             case "hostingEvents":
-                $add = " WHERE organizerId=:userId";
+                $add = " AND organizerId=:userId";
                 break;
             case "attendingEvents":
-                $add = " JOIN attendingevents a ON a.eventId = e.id WHERE a.userId =:userId HAVING attendingStatus = 1";
+                $add = " JOIN attendingevents a ON a.eventId = e.id WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+1 DAY AND curdate() + INTERVAL DAYOFWEEK(curdate())+12 MONTH AND a.userId =:userId HAVING attendingStatus = 1";
                 break;
+
+            case "wishlist":
+                $add = " JOIN wishlist w ON w.eventId = e.id WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+1 DAY AND curdate() + INTERVAL DAYOFWEEK(curdate())+12 MONTH AND w.userId =:userId";
+                break;
+
             case "eventDetail":
-                $add = " WHERE e.id = '$name'";
+                $add = " AND e.id = '$name'";
                 break;
             case "addEditEventDetail":
                 $query = "SELECT u.premiumId AS premiumId FROM users u JOIN premium p ON u.id = p.userId WHERE u.id = :userId";
@@ -58,7 +74,7 @@ class EventManager extends Manager
                 $add = " WHERE e.id = '$name'";
                 break;
             default:
-                $add = "";
+                $add = " ORDER BY eventDate DESC";
                 break;
         }
         $req = $db->prepare($query . $add);
@@ -67,6 +83,7 @@ class EventManager extends Manager
         $req->execute();
         $events = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
+
         return $events;
     }
     /**
