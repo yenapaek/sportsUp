@@ -29,9 +29,10 @@ class EventManager extends Manager
                     e.city AS city,
                     c.image AS categoryImage,
                     u.premiumId AS premiumId,
+
                 (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
                 (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus 
-                FROM events e
+                FROM events e 
                 JOIN categories c ON e.categoryId = c.id
                 JOIN users u ON u.id = e.organizerId";
         switch ($search) {
