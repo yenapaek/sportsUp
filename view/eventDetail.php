@@ -2,8 +2,6 @@
 $title = "Event Detail";
 $style = '<link href="./public/css/events.css" rel="stylesheet" /> <link href="./public/css/eventDetail.css" rel="stylesheet" />';
 ob_start();
-// print_r($eventDetail);
-// print_r($usersAttending);
 if (is_array($eventDetail) || is_object($eventDetail)) {
     foreach ($eventDetail as $event) : ?>
         <section id="eventDetail">
@@ -106,12 +104,6 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                 ?>
             </div>
         </section>
-
-
-
-
-
-
 <?php endforeach;
 }
 ?>

@@ -1,5 +1,5 @@
 const addComment = (eventId) => {
-    const allBox = document.querySelector("#allMessage");
+    const allBox = document.querySelector("#comment");
     const form = document.querySelector("#formComment");
     const input = document.querySelector("#commentAdd");
   
@@ -42,3 +42,11 @@ function deleteCommentEventInit() {
 }
 
 deleteCommentEventInit();
+
+{
+    let attendBtn = document.querySelector(".attendBtn>a");
+    if(attendBtn.classList[1] === "eventFull"){
+        attendBtn.href="";
+        attendBtn.style.backgroundColor = "grey";
+    }
+}

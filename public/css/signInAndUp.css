@@ -118,6 +118,11 @@ div h2 {
     text-align: center;
 }
 
+div .userSubmissionFeedback {
+    text-align: center;
+}
+
+
 #signInFormSection img,
 #signUpFormSection img {
     height: 400px;
