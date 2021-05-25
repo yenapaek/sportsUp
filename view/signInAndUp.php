@@ -11,10 +11,11 @@
         <p>LOG IN</p>
     </div>
 
-    <?php if ($title === 'signIn') { ?>
+    <?php 
+        echo "New user is created: ".$newUser;
+        if ($title === 'signIn') { 
+    ?>
         <h1>LOG IN</h1>
-
-
         <section id="signInFormSection">
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
@@ -50,8 +51,10 @@
         </section>
         <?php
     } else {
-
+        echo "go prem: ".$goPrem;
+        // if (!$goPrem) {
         if (!empty($goPrem)) {
+
         ?>
             <h1>SIGN UP</h1>
             <h2>You must create an account before going premium</h2>
