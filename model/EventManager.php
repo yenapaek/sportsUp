@@ -1,6 +1,7 @@
 <?php
 require_once("Manager.php");
-class EventManager extends Manager {
+class EventManager extends Manager
+{
 
     /**
      * eventSearch
@@ -28,9 +29,10 @@ class EventManager extends Manager {
                     e.city AS city,
                     c.image AS categoryImage,
                     u.premiumId AS premiumId,
+                    u.userName AS organizerName,
                 (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
                 (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus 
-                FROM events e
+                FROM events e 
                 JOIN categories c ON e.categoryId = c.id
                 JOIN users u ON u.id = e.organizerId";
         switch ($search) {
@@ -97,7 +99,7 @@ class EventManager extends Manager {
                 JOIN categories c ON mS.categoryId=c.id
                 WHERE mS.userId = :userId AND organizerId != :userId
                 HAVING attendingStatus = 0";
-        $req = $db->prepare($query);            
+        $req = $db->prepare($query);
         $req->bindParam(":userId", $userId, PDO::PARAM_STR);
         $req->execute();
         $suggestionEvents = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -105,7 +107,7 @@ class EventManager extends Manager {
         return $suggestionEvents;
     }
 
-        /**
+    /**
      * createEventModel allow us to create a new event
      *
      * @param  mixed $name
@@ -120,15 +122,19 @@ class EventManager extends Manager {
      */
     function createEventModel($name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description)
     {
+
+        $name = addslashes(htmlspecialchars(htmlentities(trim($name))));
+        $city = addslashes(htmlspecialchars(htmlentities(trim($city))));
+        $description = addslashes(htmlspecialchars(htmlentities(trim($description))));
+
         $db = $this->dbConnect();
-        $userId = $_SESSION['userId']; 
-        $req = $db->prepare("INSERT INTO events(name, categoryId, picture, organizerId, playerNumber, duration, description, eventDate, fee, city)
-                        VALUES(:name, :categoryId, :picture, :organizerId, :playerNumber, :eventDuration, :eventDescription, :eventDate, :eventFee, :city)");
+        $userId = $_SESSION['userId'];
+        $req = $db->prepare("INSERT INTO events(name, categoryId, organizerId, playerNumber, duration, description, eventDate, fee, city)
+                        VALUES(:name, :categoryId, :organizerId, :playerNumber, :eventDuration, :eventDescription, :eventDate, :eventFee, :city)");
 
         $req->bindparam(':name', $name, PDO::PARAM_STR);
         $req->bindparam(':organizerId', $userId, PDO::PARAM_INT);
         $req->bindparam(':categoryId', $categoryId, PDO::PARAM_INT);
-        $req->bindValue(':picture', null, PDO::PARAM_STR);
         $req->bindparam(':city', $city, PDO::PARAM_STR);
         $req->bindparam(':playerNumber', $playerNumber, PDO::PARAM_INT);
         $req->bindparam(':eventDuration', $duration, PDO::PARAM_INT);
@@ -173,7 +179,7 @@ class EventManager extends Manager {
         $req->execute();
         $req->closeCursor();
     }
-    
+
     function editEventModel($eventId, $name, $categoryId, $city, $playerNumber, $eventDate, $duration, $fee, $description)
     {
         $db = $this->dbConnect();
@@ -190,10 +196,108 @@ class EventManager extends Manager {
         $req->bindparam(':description', $description, PDO::PARAM_STR);
         $req->bindparam(':eventDate', $eventDate, PDO::PARAM_STR);
         $req->bindparam(':fee', $fee, PDO::PARAM_STR);
-        
+
         $req->execute();
         $req->closeCursor();
 
         return $eventId;
+    }
+
+    /**
+     * postComment allow you post a comment on the eventdetail page
+     *
+     * @param  mixed $userId
+     * @param  mixed $eventId
+     * @param  mixed $comment
+     * @return array of the message of this event
+     */
+    function postComment($userId, $eventId, $comment)
+    {
+        $db = $this->dbConnect();
+
+        $messageDate = date("Y-m-d H:i");
+
+        $req = $db->prepare("INSERT INTO minichats(eventId, userId, messageDate, message)
+                        VALUES(:eventId, :userId, :messageDate, :message)");
+
+        $req->bindparam(':eventId', $eventId, PDO::PARAM_INT);
+        $req->bindparam(':userId', $userId, PDO::PARAM_INT);
+        $req->bindparam(':messageDate', $messageDate, PDO::PARAM_STR);
+        $req->bindparam(':message', $comment, PDO::PARAM_STR);
+
+        $submittable = $req->execute();
+        $req->closeCursor();
+
+        if ($submittable) {
+            return $this->selectComment($eventId);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * selectComment allow you to get all the comments from a specific event
+     *
+     * @param  mixed $eventId
+     * @return array of the message of this event
+     */
+    function selectComment($eventId)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT users.*, minichats.id as id, minichats.*
+        FROM minichats 
+        JOIN users ON users.id = minichats.userId
+        WHERE eventId=?
+        ORDER BY minichats.id DESC");
+        $req->bindParam(1, $eventId, PDO::PARAM_INT);
+
+        $req->execute();
+        $eventMessage = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $eventMessage;
+    }
+
+    /**
+     * deleteComment allow you to delete a comment from a specific event
+     *
+     * @param  mixed $commentId
+     * @param  mixed $eventId
+     * @return void
+     */
+    function deleteComment($commentId, $eventId)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("DELETE FROM minichats WHERE id=? ");
+        $req->bindParam(1, $commentId, PDO::PARAM_INT);
+        $req->execute();
+        $req->closeCursor();
+
+        return $this->selectComment($eventId);
+    }
+
+    /**
+     * usersAttending returns all the usernames who attend an event
+     *
+     * @param  mixed $eventId
+     * @return array of returns all the usernames who attend an event
+     */
+    function usersAttending($eventId)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT u.userName as userNameAtt
+        FROM users u
+        JOIN attendingevents a ON u.id = a.userId
+        WHERE eventId=?");
+        $req->bindParam(1, $eventId, PDO::PARAM_INT);
+
+        $req->execute();
+        $usersAttending = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $usersAttending;
     }
 }

@@ -20,14 +20,14 @@
     margin-bottom: 5px;
 }
 
-.eventMainBox{
+.eventMainBox {
     font-size: 20px;
     font-family: "Open Sans", sans-serif;
     width: 90%;
     height: 80%;
     margin: auto;
     /* border: 1px solid black; */
-    display:  flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
@@ -37,11 +37,9 @@
     height: 80%;
     /* border: 1px solid black; */
     overflow: hidden;
-    
 }
 .eventPicture img {
     width: 100%;
-    
 }
 
 .eventRightBox {
@@ -60,7 +58,6 @@
     padding: 15px;
     margin-bottom: 50px;
     background-color: #fff;
-
 }
 .dividerRed {
     margin: auto;
@@ -75,6 +72,57 @@
     border-bottom: 2px solid #dadce0;
 }
 
+/* ~~~~~~~~~~~~~~~~~~ COMMENT SECTION ~~~~~~~~~~~~~~~~~~~~ */
+
+/* #formSection,
+#allMessage {
+    margin-left: 11%;
+} */
+
+#allMessage {
+    display: flex;
+    justify-content: center;
+}
+
+#comment {
+    width: 40%;
+     display: flex;
+
+    flex-direction: column;
+}
+
+#whosComing {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formComment input[type="text"] {
+    width: 320px;
+}
+
+#formComment > input[type="submit"] {
+    cursor: pointer;
+}
+
+.messageBox {
+    border: 1px solid #dadce0;
+    border-radius: 20px;
+    /* width: 43%; */
+    padding: 0 10px;
+    margin: 5px 0;
+}
+
+.messageBox div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteComment {
+    cursor: pointer;
+}
 
 .editDeleteBtns {
     position: absolute;

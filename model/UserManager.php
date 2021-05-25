@@ -10,7 +10,7 @@ class UserManager extends Manager
      * @param  mixed $email
      * @param  mixed $pass
      * @param  mixed $conf
-     * @return Boolean according if it success to insert or not
+     * @return String submission status and message if error exists
      */
     function newUserModel($user, $email, $pass, $conf)
     {
@@ -30,15 +30,8 @@ class UserManager extends Manager
         }
 
         $db = $this->dbConnect();
-
-        $req = $db->prepare("SELECT * FROM users WHERE userName=? OR email=?");
-        $req->bindParam(1, $user, PDO::PARAM_STR);
-        $req->bindParam(2, $email, PDO::PARAM_STR);
-        $req->execute();
-        $userExist = $req->fetch(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-
-        if (!$userExist and $submittable) {
+        $userExistStatus = $this->userExists($user, $email);
+        if (!$userExistStatus and $submittable) {
 
             $hash = password_hash($pass, PASSWORD_DEFAULT);
             $req = $db->prepare("INSERT INTO  users (userName,email,password, dateSignUp) VALUES(:userName, :email, :hash, NOW())");
@@ -47,8 +40,33 @@ class UserManager extends Manager
             $req->bindParam(":hash", $hash, \PDO::PARAM_STR);
             $status = $req->execute();
             $req->closeCursor();
-            return $status;
+            return $status ? "submitted" : "submission error";
+        } else if ($userExistStatus and $submittable) {
+            return "user exists";
+        } else if (!$submittable) {
+            return "submission error";
         }
+    }
+    
+    /**
+     * userExists
+     * checks if a user exists based on username and email
+     * 
+     * @param  String $user
+     * @param  String $email
+     * @return Boolean true or false whether user exists
+     */
+    function userExists($user, $email){
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT * FROM users WHERE userName=? OR email=?");
+        $req->bindParam(1, $user, PDO::PARAM_STR);
+        $req->bindParam(2, $email, PDO::PARAM_STR);
+        $req->execute();
+        $userArr = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return !empty($userArr) ? true : false;
     }
 
     /**
@@ -75,7 +93,7 @@ class UserManager extends Manager
         }
         return false;
     }
-    
+
     /**
      * kakaoAPICallModel allows user to login and sign-up using Kakao
      *
@@ -96,7 +114,7 @@ class UserManager extends Manager
         $kakaoUserId = $kakaoUserInfo->id;
         return $kakaoUserId;
     }
-    
+
     /**
      * getTokens
      *
@@ -125,7 +143,7 @@ class UserManager extends Manager
         curl_close($curl);
         return $tokens;
     }
-    
+
     /**
      * requestKakaoAPIUserData uses access token to request user info to create user
      *
@@ -328,7 +346,7 @@ class UserManager extends Manager
         $attendingEventsCount = $req->fetchColumn();
         $req->closeCursor();
 
-        if ($attendingEventsCount == 0){
+        if ($attendingEventsCount == 0) {
             $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
             $req->bindParam(1, $userId, PDO::PARAM_INT);
             $req->bindParam(2, $eventId, PDO::PARAM_INT);
@@ -368,6 +386,13 @@ class UserManager extends Manager
      */
     function editUserModel($firstName, $lastName, $email, $date, $city)
     {
+
+        $firstName = addslashes(htmlspecialchars(htmlentities(trim($firstName))));
+        $lastName = addslashes(htmlspecialchars(htmlentities(trim($lastName))));
+        $email = addslashes(htmlspecialchars(htmlentities(trim($email))));
+        $city = addslashes(htmlspecialchars(htmlentities(trim($city))));
+
+
         $db = $this->dbConnect();
 
         $req = $db->prepare("UPDATE users SET firstName=:firstName, lastName=:lastName,email=:email,birthDate=:birthDate,city=:city WHERE id =:id");

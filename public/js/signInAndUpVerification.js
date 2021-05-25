@@ -44,7 +44,7 @@ function checkInputs(username, email, password, password2) {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
-    let submittableUser = (submittableEmail = submittablePass = false);
+    let submittableUser = (submittableEmail = submittablePass = submittablePass2 = false);
 
     if (usernameValue === "") {
         setErrorFor(username, "Username cannot be blank");
@@ -77,10 +77,10 @@ function checkInputs(username, email, password, password2) {
         setErrorFor(password2, "Passwords does not match");
     } else {
         setSuccessFor(password2);
-        submittablePass = true;
+        submittablePass2 = true;
     }
 
-    return submittableUser && submittableEmail && submittablePass
+    return submittableUser && submittableEmail && submittablePass && submittablePass2
         ? true
         : false;
 }
