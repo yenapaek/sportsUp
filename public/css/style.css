@@ -77,6 +77,34 @@ nav .animation {
     border-radius: 8px;
     transition: all 0.5s ease 0s;
 }
+#responsiveMenu {
+    display: none;
+}
+
+/* ```````````````style for the cards on event and profile pages```````````````````` */
+.insideIconEventCard {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+    transition: 1s;
+}
+
+.insideIconEventCard i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.hostIconText {
+    width: 25px;
+    position: absolute;
+    top: -25px;
+    left: 3px;
+}
+
+.hostIconText i {
+    font-size: 20px;
+    color: green;
+}
 
 /* ------------------style for buttons ------------------*/
 
@@ -176,9 +204,7 @@ footer {
     font-family: "Varela Round", sans-serif;
     background: rgb(255, 255, 255);
     width: 100%;
-    height: 150px;
-    /* border: 2px solid green; */
-    display: flex;
+    height: 150px;    display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
@@ -220,48 +246,42 @@ p {
 }
 
 @media screen and (max-width: 1100px) {
-    .rightBox {
-        /* display: none;
-        right: 0; */
-        position: fixed;
+    #responsiveMenu {
+        display: block;
+    }
+    .fa-crown {
+        position: relative;
+        left: 0;
+        transform:none;
         top: 0;
-        right: -400px;
+    }
+
+    .rightBox {
+        position: fixed;
+        top: 20px;
+        right: 0px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
         z-index: 15;
-        width: 400px;
-        height: 100vh;
+        width: 55px;
+        height: 85vh;
+        border: 1px solid #dadce0;
+        border-radius: 8px;
         background: white;
-        transition: 1s;
     }
-    .closeMenu {
-        cursor: pointer;
+    .rightBox i {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .topRight strong {
         display: none;
-        position: absolute;
-        top: 50px;
-        right: 10px;
     }
-    .rightBox a {
-        width: 150px;
-    }
+
     nav .start-home {
         display: none;
-    }
-    .openMenu {
-        cursor: pointer;
-        display: block;
-        position: fixed;
-        top: 50px;
-        right: 10px;
-        z-index: 14;
-    }
-    .openMenu i {
-        font-size: 40px;
-    }
-    .closeMenu {
-        font-size: 40px;
     }
 
     .cards > .card:hover {
@@ -273,4 +293,28 @@ p {
     .cards .card .cardText {
         visibility: hidden;
     }
-}
+    
+    .footerContent {
+        font-family: "Varela Round", sans-serif;
+        background: rgb(255, 255, 255);
+        width: 100%;
+        height: 150px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .footerContent h1 {
+        font-size: 15px;
+    }
+    
+    .footerContent h1,
+    p {
+        color: rgb(0, 0, 0);
+    }
+    .footerContent p {
+        font-size: 10px;
+    }
+    
+    nav a {
+        width: 100%;
+    }

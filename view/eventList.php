@@ -24,9 +24,7 @@ if (is_array($events) || is_object($events)) {
                             <div class="hotsIcon">
                                 <i class="fas fa-user-tag"></i> 
                             </div>
-                            <div class="hostText">
-                                You are hosting this event
-                            </div>
+                        
                         </div>
                         <div class="insideIconEventCard">
                             <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId']?>"><i class="far fa-edit"></i></a>

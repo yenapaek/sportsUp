@@ -171,3 +171,12 @@ html {
 .pricing-button.is-featured:active {
     background-color: rgba(237, 40, 40, 0.85);
 }
+@media screen and (max-width: 1100px) {
+    nav a {
+        width: 100%;
+    }
+    .background {
+        width: 100%;
+        left: 15px;
+    }
+}
