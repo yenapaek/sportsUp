@@ -42,3 +42,11 @@ function deleteCommentEventInit() {
 }
 
 deleteCommentEventInit();
+
+{
+    let attendBtn = document.querySelector(".attendBtn>a");
+    if(attendBtn.classList[1] === "eventFull"){
+        attendBtn.href="";
+        attendBtn.style.backgroundColor = "grey";
+    }
+}

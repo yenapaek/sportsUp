@@ -21,7 +21,8 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                 <div class="eventRightBox">
                     <p>Host : <?= $event['organizerId']; ?></p>
                     <div class="dividerGrey"></div>
-                    <p>Up to <?= $event['playerNumber'] ?> people</p>
+                    <p>Max Number <?= $event['playerNumber'] ?> people</p>
+                    <p>Number: <?= $event['howMany'] ?>currently attending</p>
                     <div class="dividerGrey"></div>
                     <p ><?= date('D, M d, g:i a', strtotime($event["eventDate"])); ?></p>
                     <div class="dividerGrey"></div>
@@ -61,12 +62,17 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                             $attendingAction = "attendEvent";
                             $attendingBtnMsg = "Attend Event";
                         }
+                        if (!empty($event['howMany']) && !empty($event['playerNumber']) && $event['howMany'] >= $event['playerNumber']){
+                            $attendingAction = "";
+                            $eventFull = true;
+                            $attendingBtnMsg = "Event Full";
+                        }
                         ?>
                         <a href="index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>&source=<?php if (!isset($_GET['action'])) {
                                                                                                                         echo "eventDetail";
                                                                                                                     } else {
                                                                                                                         echo $_GET['action'];
-                                                                                                                    } ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
+                                                                                                                    } ?>" class="card-btn <?php if(isset($eventFull)){ echo "eventFull"; } ?>"><?= $attendingBtnMsg ?></a>
                     </div>
                 </div>
             </div>
