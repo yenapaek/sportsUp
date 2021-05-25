@@ -141,11 +141,12 @@ a.card-btn:hover {
     list-style-type: none;
 }
 
-.category:hover {
+/* #TODO add hover effect on interested sports and link to filter search for the sport */
+/* .category:hover {
     color: rgba(237, 40, 40, 0.85);
     font-weight: 600;
     font-size: 0.9rem;
-}
+} */
 
 #avatar {
     padding: 50px 0 30px 0;
