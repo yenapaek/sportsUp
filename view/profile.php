@@ -16,7 +16,7 @@ ob_start();
             <div id="avatar">
                 <img class="profile-img" id="profile-img" src="<?= !empty($infoProfile['avatar']) ? "$avatarPath/{$infoProfile['avatar']}" : 'http://cdn.onlinewebfonts.com/svg/img_258083.png'; ?>" alt="profile image">
             </div>
-            <div>
+            <div class = "boxUnderAvatar">
                 <h1>Hi, <?= !empty($infoProfile) ? $infoProfile['userName'] : '...'; ?></h1>
                 <?php if (!empty($infoProfile['premiumId'])) { ?>
                     <p id="premiumMessage">PREMIUM <strong><i class="fas fa-crown"></i></strong></p>

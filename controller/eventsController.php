@@ -21,12 +21,12 @@ function eventsInfo($search, $name)
 }
 
 // show information about event to set up for adding/editing event
-function categoriesInfo2($eventId=false)
-{   
+function categoriesInfo2($eventId = false)
+{
     $eventManager =  new EventManager();
     $categories  =  $eventManager->categoriesInfoModel(false);
-    if ($eventId){
-       $eventDetail =  $eventManager->eventSearch('eventDetail', $eventId);
+    if ($eventId) {
+        $eventDetail =  $eventManager->eventSearch('eventDetail', $eventId);
     } else {
         $eventDetail =  $eventManager->eventSearch('addEditEventDetail', '');
     }
@@ -72,7 +72,8 @@ function editEvent($eventId, $name, $categoryId, $city, $playerNumber, $eventDat
 function eventDetail($eventId)
 {
     $eventManager =  new EventManager();
-    $eventDetail = $eventManager->eventSearch('eventDetail',$eventId);
+    $eventDetail = $eventManager->eventSearch('eventDetail', $eventId);
+    $eventMessage = $eventManager->selectComment($eventId);
     require("./view/eventDetail.php");
 }
 
@@ -86,8 +87,39 @@ function deleteEvent($eventId, $source)
 {
     $eventManager =  new EventManager();
     $eventManager->deleteEventModel($eventId);
-    if ($source === "eventDetail"){
+    if ($source === "eventDetail") {
         $source = "profile";
     }
     header("Location: index.php?action={$source}");
+}
+
+/**
+ * postComment allow you to post a comment on a specific event
+ *
+ * @param  mixed $userId
+ * @param  mixed $eventId
+ * @param  mixed $comment
+ * @return array of all the coment of this event
+ */
+function postComment($userId, $eventId, $comment)
+{
+    $eventManager = new EventManager();
+    $eventMessage = $eventManager->postComment($userId, $eventId, $comment);
+    // $eventDetail = $eventManager->eventSearch('eventDetail', $eventId);
+    require("./view/eventDetailListMessage.php");
+}
+
+/**
+ * deleteComment allow you to delete a comment of a specific event
+ *
+ * @param  mixed $commentId
+ * @return array all the comment of this event
+ */
+function deleteComment($commentId, $eventId)
+{
+    $eventManager = new EventManager();
+    $eventManager->deleteComment($commentId, $eventId);
+    $eventDetail = $eventManager->eventSearch('eventDetail', $eventId);
+    // header("Location: index.php?action=eventDetail&eventId={$eventId}");
+    // require("./view/eventDetail.php");
 }

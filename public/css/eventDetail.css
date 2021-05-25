@@ -13,20 +13,21 @@
     text-align: center;
     font-family: "Varela Round", sans-serif;
     font-size: 30px;
+    margin-bottom: 40px;
 }
 
 .eventName p {
     margin-bottom: 5px;
 }
 
-.eventMainBox{
+.eventMainBox {
     font-size: 20px;
     font-family: "Open Sans", sans-serif;
     width: 90%;
     height: 80%;
     margin: auto;
     /* border: 1px solid black; */
-    display:  flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
@@ -36,14 +37,13 @@
     height: 80%;
     /* border: 1px solid black; */
     overflow: hidden;
-    
 }
 .eventPicture img {
     width: 100%;
-    
 }
 
 .eventRightBox {
+    position: relative;
     padding-left: 10px;
     width: 30%;
     border: 1px solid #dadce0;
@@ -52,7 +52,14 @@
     margin-bottom: 50px;
     background-color: #fff;
 }
+.descriptionBox {
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 50px;
+    background-color: #fff;
 
+}
 .dividerRed {
     margin: auto;
     margin-bottom: 20px;
@@ -66,3 +73,40 @@
     border-bottom: 2px solid #dadce0;
 }
 
+/* ~~~~~~~~~~~~~~~~~~ COMMENT SECTION ~~~~~~~~~~~~~~~~~~~~ */
+
+#formComment input[type="text"] {
+    width: 500px;
+}
+
+#formComment > input[type="submit"] {
+    cursor: pointer;
+}
+
+.messageBox {
+    border: 1px solid #dadce0;
+    width: 50%;
+    padding: 0 10px;
+    margin: 5px 0;
+}
+
+.messageBox div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteComment {
+    cursor: pointer;
+}
+
+.editDeleteBtns {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+.attendBtn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

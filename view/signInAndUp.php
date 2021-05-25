@@ -10,6 +10,7 @@
         </label>
         <p>LOG IN</p>
     </div>
+
     <?php 
         if ($title === 'signIn') {
     ?>
@@ -26,7 +27,7 @@
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
-                    <input type="hidden" name="goPrem" value="<?= $goPrem; ?>">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
                     <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">
@@ -70,6 +71,7 @@
         <?php
         }
         ?>
+
         <section id="signUpFormSection">
             <div class="kakaoDiv">
                 <h1>Or</h1>
@@ -83,7 +85,7 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
-                    <input type="hidden" name="goPrem" value="<?= $goPrem; ?>">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ? isset($goPrem) : null;  ?>">
                     <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">

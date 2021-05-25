@@ -2,12 +2,11 @@
 session_start();
 require("./controller/usersController.php");
 require("./controller/eventsController.php");
-
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
     switch ($action) {
         case "landing":
-            if (!isset($_SESSION['userId'])){
+            if (!isset($_SESSION['userId'])) {
                 require("./view/landing.php");
             } else {
                 profile($_SESSION['userId']);
@@ -24,11 +23,11 @@ try {
             require("./view/aboutUs.php");
             break;
         case "addEditEvent":
-           if(!empty($_REQUEST['eventId'])){
-               categoriesInfo2($_REQUEST['eventId']);
-            }else{ 
+            if (!empty($_REQUEST['eventId'])) {
+                categoriesInfo2($_REQUEST['eventId']);
+            } else {
                 categoriesInfo2();
-           }
+            }
             break;
         case "addEvent":
             createEvent(
@@ -43,7 +42,8 @@ try {
             );
             break;
         case "editEvent":
-            editEvent($_REQUEST['eventId'],
+            editEvent(
+                $_REQUEST['eventId'],
                 $_POST['eventName'],
                 $_POST['sportCategory'],
                 $_POST['city'],
@@ -52,13 +52,24 @@ try {
                 $_POST['eventDuration'],
                 $_POST['eventFee'],
                 $_POST['eventDescription']
-            );           
-            break; 
+            );
+            break;
+
+        case "postComment":
+            if (!empty($_SESSION['userId']) && !empty($_POST['eventIdAdd']) && !empty($_POST['commentAdd'])) {
+                postComment($_SESSION['userId'], $_POST['eventIdAdd'], $_POST['commentAdd']);
+            }
+            break;
+        case "deleteComment":
+            if (!empty($_REQUEST['commentIdDel'])) {
+                deleteComment($_REQUEST['commentIdDel'], $_REQUEST['eventIdDel']);
+            }
+            break;
         case "signIn":
         case "signUp":
             $goPrem = false;
             $plan = false;
-            if (isset($_REQUEST['goPrem'])) {
+            if (!empty($_REQUEST['goPrem'])) {
                 $goPrem = true;
                 $plan = $_REQUEST['q'];
             }
@@ -69,7 +80,7 @@ try {
             );
             break;
         case "profile":
-            if (!isset($_SESSION['userId'])){
+            if (!isset($_SESSION['userId'])) {
                 require("./view/landing.php");
             } else {
                 profile($_SESSION['userId']);
@@ -140,7 +151,7 @@ try {
             eventsInfo("default", true);
             break;
         case "eventDetail":
-            if (!isset($_SESSION['userId'])){
+            if (!isset($_SESSION['userId'])) {
                 require("./view/landing.php");
             } else {
                 eventDetail($_REQUEST['eventId']);
@@ -179,7 +190,7 @@ try {
             logout();
             break;
         default:
-            if (!isset($_SESSION['userId'])){
+            if (!isset($_SESSION['userId'])) {
                 require("./view/landing.php");
             } else {
                 profile($_SESSION['userId']);

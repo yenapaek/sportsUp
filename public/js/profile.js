@@ -64,10 +64,14 @@ editPersonnalInfos.addEventListener("click", function () {
     } else {
         allSpan.forEach((element, index) => {
             let input = document.createElement("input");
+
+            input.setAttribute("onClick", "select()");
+
             index === 2
                 ? input.setAttribute("type", "date")
                 : input.setAttribute("type", "text");
 
+            index === 3 ? (input.disabled = true) : false;
             input.value = element.textContent;
             element.appendChild(input);
         });

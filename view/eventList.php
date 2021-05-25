@@ -2,11 +2,12 @@
 if (is_array($events) || is_object($events)) {
     foreach ($events as $event) : ?>
         <div class="card">
+            
             <img src="<?= $event["categoryImage"] ?>" alt="card background" class="card-img">
             <div class="card-text">
                 <h2><?= $event["eventName"] ?></h2>
                 <p class="category-name"><?= $event["categoryName"] ?></p>
-                <p class="event-date"><?= date('D, M d, g:i a', strtotime($event["eventDate"])); ?></p>
+                <p class="event-date"><?= $event["eventDate"] ?></p>
                 <p><?= $event["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
                 <?php
                     if (!empty($_SESSION['userId'])) {
@@ -23,9 +24,7 @@ if (is_array($events) || is_object($events)) {
                             <div class="hotsIcon">
                                 <i class="fas fa-user-tag"></i> 
                             </div>
-                            <div class="hostText">
-                                You are hosting this event
-                            </div>
+                        
                         </div>
                         <div class="insideIconEventCard">
                             <a href="index.php?action=addEditEvent&eventId=<?= $event['eventId']?>"><i class="far fa-edit"></i></a>
