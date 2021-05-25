@@ -130,9 +130,6 @@ a.card-btn:hover {
     flex-wrap: wrap;
 }
 
-.divider {
-    border-bottom: 2px solid #dadce0;
-}
 
 #mySportsList {
     padding: 0;
