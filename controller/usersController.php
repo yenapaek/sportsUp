@@ -15,19 +15,28 @@ function profile($userId)
 
     $infoProfile = $userManager->myProfileModel($userId);
     $mySports = $userManager->mySportsModel($userId);
-    $eventsSelect = $eventManager->myEventsModel($userId);
-    $attendingEvents = $userManager->displayAttendingEvents($userId);
-    $suggestionEvents = $eventManager->suggestionEventsModel($userId);
-    $suggestionArticles = '';
+    $hostingEvents= $eventManager->eventSearch('hostingEvents','');
+    $attendingEvents = $eventManager->eventSearch('attendingEvents','');
+    $suggestionEvents = $eventManager->suggestEvents($userId);
     $categories = $userManager->categoriesInfoModel(true);
     require('./view/profile.php');
 }
 
-function addAttendingEvent($userId, $eventId)
+function attendEvent($eventId)
 {
     $userManager = new UserManager();
-    $userManager->addAttendingEventModel($userId, $eventId);
-    header("Location: index.php?action=eventDetail&eventId=" . $eventId);
+    $userManager->addAttendingEvent($eventId);
+    header("Location: index.php?action=eventDetail&eventId={$eventId}");
+}
+
+function cancelAttendingEvent($eventId, $source)
+{
+    $userManager = new UserManager();
+    $userManager->removeAttendingEvent($eventId);
+    if ($source === "eventDetail"){
+        $source = "eventDetail&eventId={$eventId}";
+    }
+    header("Location: index.php?action={$source}");
 }
 
 function addMySport($userId, $categoryId)
@@ -135,6 +144,8 @@ function editProfile($firstName, $lastName, $email, $date, $city)
     $userManager = new UserManager();
     $userManager->editUserModel($firstName, $lastName, $email, $date, $city);
 }
+
+
 
 /**
  * editProfileAvatar allow you to update picture

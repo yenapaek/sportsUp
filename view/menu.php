@@ -29,7 +29,7 @@
             ?>
             <a href="index.php?action=events"><strong>Events</strong> </a>
             <a href="index.php?action=aboutUs"><strong>About Us</strong></a>
-            <a href="index.php"><strong>SHOP</strong></a>
+            <a href="index.php?action=premium"><strong>PREMIUM<i class="fas fa-crown"></i></strong></a>
             <?php if (isset($_SESSION['userId'])) {
             ?>
                 <a href="index.php?action=logout"><strong>Log Out</strong> </a>

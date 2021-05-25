@@ -18,7 +18,7 @@ ob_start();
         <div id="banner2" class="banner">
             <img src="./public/images/landing/banner2.jpeg" alt="banner image 2">
             <div class="text-box text-box2">
-                <h1>Users events</h1>
+                <h1>Join outdoors events everyday!</h1>
                 <span></span>
                 <p>Want to have friends to workout together ? </p>
                 <p>Create a public event to find your teammates !</p>

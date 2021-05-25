@@ -85,15 +85,20 @@ p {
 }
 
 .card-img {
-    width: 12rem;
+    width: 100%;
     -webkit-clip-path: polygon (0 0, 100% 0, 100% 78%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
 }
 
 .card-text {
+    text-align: center;
     padding: 0 20px 0 20px;
 }
 
+.InsideIconEventCard {
+    display: flex;
+    justify-content: space-evenly;
+}
 /* #TODO fix font weight of card title  */
 .category-name {
     font-family: "Open Sans", sans-serif;
@@ -150,7 +155,7 @@ a.card-btn:hover {
     padding-left: 26%;
 }
 
-/********************* menu red line **********************/
+/* red line animation for THE page */
 nav a,
 nav .start-home,
 a:hover ~ .animation {
@@ -158,12 +163,10 @@ a:hover ~ .animation {
 }
 nav .start-home,
 a:nth-child(1):hover ~ .animation {
-    left: 2.5%;
-    width: 10%;
+    left: 0;
 }
 nav a:nth-child(2):hover ~ .animation {
-    left: 16.5%;
-    width: 12%;
+    left: 16%;
 }
 
 nav a:nth-child(3):hover ~ .animation {
@@ -171,13 +174,12 @@ nav a:nth-child(3):hover ~ .animation {
 }
 
 nav a:nth-child(4):hover ~ .animation {
-    left: 48.5%;
-    width: 10%;
+    left: 47.5%;
 }
 
 nav a:nth-child(5):hover ~ .animation {
-    left: 72%;
-    width: 0px;
+    left: 62%;
+    /* width: 0px; */
 }
 
 /********************* Premium Text **********************/

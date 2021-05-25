@@ -35,7 +35,7 @@ ob_start();
             </div>
         </div>
         <div class="info-container" id="mySports">
-            <h1>My Sports</h1>
+            <h1>My Sports Interests</h1>
             <div>
                 <ul id="mySportsList">
                     <?php
@@ -51,7 +51,7 @@ ob_start();
                 </ul>
                 <div id="sportSelect">
                     <select name="sportsCategories" id="sportsCategories">
-                        <option value="default" selected disabled>Select Your Sport</option>
+                        <option value="default" selected disabled hidden>Select Your Sport</option>
                         <?php foreach ($categories as $category) : ?>
                             <option id="<?= $category['id']; ?>"><?= $category["name"]; ?></option>
                         <?php endforeach; ?>
@@ -65,24 +65,25 @@ ob_start();
     <div id="changedInfo">
         <section id="eventInfo">
             <div class="info-container" id="myEvents">
-                <h1>My Events</h1>
+                <h1>My Hosting Events</h1>
                 <div class="list-event-cards">
                     <?php
-                    if (!empty($eventsSelect)) {
-                        $events = $eventsSelect;
+                    if (!empty($hostingEvents)) {
+                        $events = $hostingEvents;
                         require('eventList.php');
                     } else {
                         echo '<p>No events added</p>';
                     }
                     ?>
                 </div>
-                <div class="divider"></div>
-                <h1>Attending Events</h1>
+            </div>
+            <div class="info-container" id="myEvents">
+                <h1>My Attending Events</h1>
                 <div class="list-event-cards">
-                    <!-- #TODO add attending events function -->
                     <?php
                     if (!empty($attendingEvents)) {
                         $events = $attendingEvents;
+                        // $attending = true;
                         require('eventList.php');
                     } else {
                         echo '<p> No attending events</p>';
