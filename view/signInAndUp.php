@@ -12,11 +12,18 @@
     </div>
 
     <?php 
-        echo "New user is created: ".$newUser;
-        if ($title === 'signIn') { 
+        if ($title === 'signIn') {
     ?>
         <h1>LOG IN</h1>
-        <section id="signInFormSection">
+            <div class="userSubmissionFeedback"><?= isset($userCreationErrorFeedback) ? $userCreationErrorFeedback : "";  ?></div>
+        <?php
+            if (!empty($goPrem)) {
+        ?>
+            <div class="userSubmissionFeedback"><p>Please login to complete your premium membership registration.</p></div>
+        <?php
+            }
+        ?>
+            <section id="signInFormSection">
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
@@ -51,17 +58,16 @@
         </section>
         <?php
     } else {
-        echo "go prem: ".$goPrem;
-        // if (!$goPrem) {
         if (!empty($goPrem)) {
-
         ?>
             <h1>SIGN UP</h1>
-            <h2>You must create an account before going premium</h2>
+            <div class="userSubmissionFeedback"><p>You must create an account before going premium.</p></div>
+            <div class="userSubmissionFeedback"><p><?= isset($userCreationErrorFeedback) ? $userCreationErrorFeedback : "";  ?></p></div>
         <?php
         } else {
         ?>
             <h1>SIGN UP</h1>
+            <div class="userSubmissionFeedback"><p><?= isset($userCreationErrorFeedback) ? $userCreationErrorFeedback : "";  ?></p></div>
         <?php
         }
         ?>
@@ -79,7 +85,7 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
-                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ? $goPrem : '' ?>">
                     <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">

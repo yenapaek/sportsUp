@@ -77,14 +77,28 @@ function signInAndUpPage($param, $goPrem, $plan)
 function newUser($user, $email, $pass, $conf, $goPrem, $plan)
 {
     $userManager = new UserManager();
-    $newUser = $userManager->newUserModel($user, $email, $pass, $conf);
-
-    $title = $newUser ? 'signIn' : 'signUp';
-    if ($newUser && $goPrem) {
-        $goPrem;
-        $plan;
+    $userCreationFeedback = $userManager->newUserModel($user, $email, $pass, $conf);
+    switch ($userCreationFeedback){
+        case "submitted":
+            $title = 'signIn';
+            $userCreationErrorFeedback = 'Sign-up was successful.';
+            if ($goPrem){
+                $goPrem;
+                $plan;
+            }
+            break;
+        case "user exists":
+            $title = 'signUp';
+            $userCreationErrorFeedback = "Username or email exists. Please use a unique username and email.";
+            break;
+        case "submission error":
+            $title = 'signUp';
+            $userCreationErrorFeedback = "Submission error. Please try again.";
+            break;
+        default:
+            $title = 'signUp';
+            break;
     }
-
     require("./view/signInAndUp.php");
 }
 
