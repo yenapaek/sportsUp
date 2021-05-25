@@ -59,13 +59,13 @@ ob_start();
             SportsUp is a community of sports lovers.
             Join us to enjoy activities and make new friends !
         </p>
-        <p>
+        <p class="toBeHidden">
             You want to propose an event like seeing a professional baseball team match ?
         </p>
-        <p>
+        <p class="toBeHidden">
             You can become premium member in order to propose global events including a participation fee.
         </p>
-        <p>
+        <p class ="toBeHidden">
             Being premium member will insure that your transactions will be secured through our Website!
         </p>
         <div class="boxContainer">
