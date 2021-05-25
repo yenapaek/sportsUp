@@ -23,7 +23,7 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     <div class="dividerGrey"></div>
                     <p>Up to <?= $event['playerNumber'] ?> people</p>
                     <div class="dividerGrey"></div>
-                    <p><?= $event['eventDate'] ?></p>
+                    <p ><?= date('D, M d, g:i a', strtotime($event["eventDate"])); ?></p>
                     <div class="dividerGrey"></div>
                     <p>Duration : <?= $event['duration'] ?> hours</p>
                     <div class="dividerGrey"></div>
