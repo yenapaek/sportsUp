@@ -29,6 +29,7 @@ class EventManager extends Manager
                     e.city AS city,
                     c.image AS categoryImage,
                     u.premiumId AS premiumId,
+                    u.userName AS organizerName,
                 (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
                 (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus 
                 FROM events e
@@ -128,13 +129,12 @@ class EventManager extends Manager
 
         $db = $this->dbConnect();
         $userId = $_SESSION['userId'];
-        $req = $db->prepare("INSERT INTO events(name, categoryId, picture, organizerId, playerNumber, duration, description, eventDate, fee, city)
-                        VALUES(:name, :categoryId, :picture, :organizerId, :playerNumber, :eventDuration, :eventDescription, :eventDate, :eventFee, :city)");
+        $req = $db->prepare("INSERT INTO events(name, categoryId, organizerId, playerNumber, duration, description, eventDate, fee, city)
+                        VALUES(:name, :categoryId, :organizerId, :playerNumber, :eventDuration, :eventDescription, :eventDate, :eventFee, :city)");
 
         $req->bindparam(':name', $name, PDO::PARAM_STR);
         $req->bindparam(':organizerId', $userId, PDO::PARAM_INT);
         $req->bindparam(':categoryId', $categoryId, PDO::PARAM_INT);
-        $req->bindValue(':picture', null, PDO::PARAM_STR);
         $req->bindparam(':city', $city, PDO::PARAM_STR);
         $req->bindparam(':playerNumber', $playerNumber, PDO::PARAM_INT);
         $req->bindparam(':eventDuration', $duration, PDO::PARAM_INT);
@@ -276,5 +276,28 @@ class EventManager extends Manager
         $req->closeCursor();
 
         return $this->selectComment($eventId);
+    }
+
+    /**
+     * usersAttending returns all the usernames who attend an event
+     *
+     * @param  mixed $eventId
+     * @return array of returns all the usernames who attend an event
+     */
+    function usersAttending($eventId)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT u.userName as userNameAtt
+        FROM users u
+        JOIN attendingevents a ON u.id = a.userId
+        WHERE eventId=?");
+        $req->bindParam(1, $eventId, PDO::PARAM_INT);
+
+        $req->execute();
+        $usersAttending = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $usersAttending;
     }
 }

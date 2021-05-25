@@ -3,6 +3,7 @@ $title = "Event Detail";
 $style = '<link href="./public/css/events.css" rel="stylesheet" /> <link href="./public/css/eventDetail.css" rel="stylesheet" />';
 ob_start();
 // print_r($eventDetail);
+// print_r($usersAttending);
 if (is_array($eventDetail) || is_object($eventDetail)) {
     foreach ($eventDetail as $event) : ?>
         <section id="eventDetail">
@@ -13,14 +14,12 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
 
             <div class="eventMainBox">
                 <div class="eventPicture">
-                    <!-- #TODO categoryImg -->
-                    <!-- <p>Picture :<?= $event['picture'] ?></p> -->
-                    <img src="<?= $event['categoryImage'] ?>" alt="">
+                    <img src="<?= $event['categoryImage'] ?>" alt="category image">
                     <p class="descriptionBox">Description : <?= $eventDetail['0']['eventDescription'] ?></p>
                 </div>
 
                 <div class="eventRightBox">
-                    <p>Host : <?= $event['organizerId']; ?></p>
+                    <p>Host : <?= $event['organizerName']; ?></p>
                     <div class="dividerGrey"></div>
                     <p>Up to <?= $event['playerNumber'] ?> people</p>
                     <div class="dividerGrey"></div>
@@ -29,7 +28,6 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     <p>Duration : <?= $event['duration'] ?> hours</p>
                     <div class="dividerGrey"></div>
 
-
                     <?php if (!is_null($event['fee'])) { ?>
                         <p>Fee : <?= $event['fee']; ?></p>
                         <div class="dividerGrey"></div>
@@ -37,6 +35,8 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     }
                     ?>
                     <p>City : <?= $event['city'] ?></p>
+                    <div class="dividerGrey"></div>
+                    <p>Attending : <?= $event['howMany']; ?> / <?= $event['playerNumber']; ?> </p>
                     <section class="editDeleteBtns">
                         <?php
                         if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']) :
@@ -75,18 +75,36 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
         </div>
         </div>
         </section>
-        <section>
-            <form id="formComment" method="post" onsubmit="return false">
-                <input type="hidden" name="action" value="postComment">
-                <input type="hidden" name="eventIdAdd" value="<?= $event['eventId']; ?>">
 
-                <label for="commentAdd">Comment :</label>
-                <input type="text" name="commentAdd" id="commentAdd">
-                <input type="submit" value="Send" onclick="addComment(<?= $event['eventId']; ?>)">
-            </form>
-        </section>
         <section id="allMessage">
-            <?php include("eventDetailListMessage.php"); ?>
+            <div id="comment">
+                <section id="formSection">
+                    <form id="formComment" method="post" onsubmit="return false">
+                        <input type="hidden" name="action" value="postComment">
+                        <input type="hidden" name="eventIdAdd" value="<?= $event['eventId']; ?>">
+
+                        <label for="commentAdd">Comment :</label>
+                        <input type="text" name="commentAdd" id="commentAdd">
+                        <input type="submit" value="Send" onclick="addComment(<?= $event['eventId']; ?>)">
+                    </form>
+                </section>
+
+                <?php include("eventDetailListMessage.php"); ?>
+
+            </div>
+            <div id="whosComing">
+                <p>Who's coming :</p>
+
+                <div class="dividerGrey"></div>
+                <?php
+                foreach ($usersAttending as $user) {
+                ?>
+                    <p><?= $user['userNameAtt']; ?></p>
+
+                <?php
+                }
+                ?>
+            </div>
         </section>
 
 

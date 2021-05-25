@@ -16,7 +16,7 @@ class UserManager extends Manager
     {
         $submittable = true;
 
-        $user = addslashes(h6tmlspecialchars(htmlentities(trim($user))));
+        $user = addslashes(htmlspecialchars(htmlentities(trim($user))));
         $email = addslashes(htmlspecialchars(htmlentities(trim($email))));
 
         if (strlen($user) < 6) {
@@ -75,7 +75,7 @@ class UserManager extends Manager
         }
         return false;
     }
-    
+
     /**
      * kakaoAPICallModel allows user to login and sign-up using Kakao
      *
@@ -96,7 +96,7 @@ class UserManager extends Manager
         $kakaoUserId = $kakaoUserInfo->id;
         return $kakaoUserId;
     }
-    
+
     /**
      * getTokens
      *
@@ -125,7 +125,7 @@ class UserManager extends Manager
         curl_close($curl);
         return $tokens;
     }
-    
+
     /**
      * requestKakaoAPIUserData uses access token to request user info to create user
      *
@@ -328,7 +328,7 @@ class UserManager extends Manager
         $attendingEventsCount = $req->fetchColumn();
         $req->closeCursor();
 
-        if ($attendingEventsCount == 0){
+        if ($attendingEventsCount == 0) {
             $req = $db->prepare("INSERT INTO attendingevents(id, userId, eventId) VALUES (null, ?, ?)");
             $req->bindParam(1, $userId, PDO::PARAM_INT);
             $req->bindParam(2, $eventId, PDO::PARAM_INT);

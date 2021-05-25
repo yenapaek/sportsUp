@@ -73,6 +73,8 @@ function eventDetail($eventId)
 {
     $eventManager =  new EventManager();
     $eventDetail = $eventManager->eventSearch('eventDetail', $eventId);
+    $usersAttending = $eventManager->usersAttending($eventId);
+
     $eventMessage = $eventManager->selectComment($eventId);
     require("./view/eventDetail.php");
 }
@@ -105,7 +107,6 @@ function postComment($userId, $eventId, $comment)
 {
     $eventManager = new EventManager();
     $eventMessage = $eventManager->postComment($userId, $eventId, $comment);
-    // $eventDetail = $eventManager->eventSearch('eventDetail', $eventId);
     require("./view/eventDetailListMessage.php");
 }
 
@@ -120,6 +121,5 @@ function deleteComment($commentId, $eventId)
     $eventManager = new EventManager();
     $eventManager->deleteComment($commentId, $eventId);
     $eventDetail = $eventManager->eventSearch('eventDetail', $eventId);
-    // header("Location: index.php?action=eventDetail&eventId={$eventId}");
-    // require("./view/eventDetail.php");
+
 }
