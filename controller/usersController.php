@@ -78,22 +78,22 @@ function newUser($user, $email, $pass, $conf, $goPrem, $plan)
 {
     $userManager = new UserManager();
     $userCreationFeedback = $userManager->newUserModel($user, $email, $pass, $conf);
+    if ($goPrem){
+        $goPrem;
+        $plan;
+    }
     switch ($userCreationFeedback){
         case "submitted":
             $title = 'signIn';
-            $userCreationErrorFeedback = 'Sign-up was successful.';
-            if ($goPrem){
-                $goPrem;
-                $plan;
-            }
+            $userFeedback = 'Sign-up was successful.';
             break;
         case "user exists":
             $title = 'signUp';
-            $userCreationErrorFeedback = "Username or email exists. Please use a unique username and email.";
+            $userFeedback = "Username or email exists. Please use a unique username and email.";
             break;
         case "submission error":
             $title = 'signUp';
-            $userCreationErrorFeedback = "Submission error. Please try again.";
+            $userFeedback = "Submission error. Please try again.";
             break;
         default:
             $title = 'signUp';
@@ -113,6 +113,10 @@ function manualLogin($email, $pass, $goPrem, $plan)
 {
     $userManager = new UserManager();
     $userInfo = $userManager->manualLoginModel($email, $pass);
+    if ($goPrem && $plan){
+        $goPrem;
+        $plan;
+    }
     if ($userInfo && $goPrem && $plan) {
         $_SESSION['userId'] = $userInfo['id'];
         header("Location: index.php?action=premium&q=$plan");
@@ -121,7 +125,8 @@ function manualLogin($email, $pass, $goPrem, $plan)
         header("Location: index.php?action=profile");
     } else {
         $title = 'signIn';
-        header("Location: index.php?action=signIn");
+        $userFeedback = "Error. Incorrect email or password.";
+        require("./view/signInAndUp.php");
     }
 }
 

@@ -10,14 +10,13 @@
         </label>
         <p>LOG IN</p>
     </div>
-
     <?php 
         if ($title === 'signIn') {
     ?>
         <h1>LOG IN</h1>
-            <div class="userSubmissionFeedback"><?= isset($userCreationErrorFeedback) ? $userCreationErrorFeedback : "";  ?></div>
+            <div class="userSubmissionFeedback"><?= isset($userFeedback) ? $userFeedback : "";  ?></div>
         <?php
-            if (!empty($goPrem)) {
+            if ($goPrem && $plan) {
         ?>
             <div class="userSubmissionFeedback"><p>Please login to complete your premium membership registration.</p></div>
         <?php
@@ -27,7 +26,7 @@
             <div>
                 <form id="signInForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signInSubmit">
-                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ?>">
+                    <input type="hidden" name="goPrem" value="<?= $goPrem; ?>">
                     <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">
@@ -58,20 +57,19 @@
         </section>
         <?php
     } else {
-        if (!empty($goPrem)) {
+        if ($goPrem && $plan) {
         ?>
             <h1>SIGN UP</h1>
             <div class="userSubmissionFeedback"><p>You must create an account before going premium.</p></div>
-            <div class="userSubmissionFeedback"><p><?= isset($userCreationErrorFeedback) ? $userCreationErrorFeedback : "";  ?></p></div>
+            <div class="userSubmissionFeedback"><p><?= isset($userFeedback) ? $userFeedback : "";  ?></p></div>
         <?php
         } else {
         ?>
             <h1>SIGN UP</h1>
-            <div class="userSubmissionFeedback"><p><?= isset($userCreationErrorFeedback) ? $userCreationErrorFeedback : "";  ?></p></div>
+            <div class="userSubmissionFeedback"><p><?= isset($userFeedback) ? $userFeedback : "";  ?></p></div>
         <?php
         }
         ?>
-
         <section id="signUpFormSection">
             <div class="kakaoDiv">
                 <h1>Or</h1>
@@ -85,7 +83,7 @@
             <div>
                 <form id="signUpForm" class="form" action="index.php" method="post">
                     <input type="hidden" name="action" value="signUpSubmit">
-                    <input type="hidden" name="goPrem" value="<?= isset($goPrem) ? $goPrem : '' ?>">
+                    <input type="hidden" name="goPrem" value="<?= $goPrem; ?>">
                     <input type="hidden" name="q" value="<?= isset($plan) ? $plan : '' ?>">
 
                     <div class="formControl">

@@ -13,9 +13,7 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
             
             <div class="eventMainBox">
                 <div class="eventPicture">
-                    <!-- #TODO categoryImg -->
-                    <!-- <p>Picture :<?= $event['picture'] ?></p> -->
-                    <img src="./public/images/sports/acro-sports.jpeg" alt="">
+                    <img src="<?= $event['categoryImage'] ?>" alt="categoryName">
                 </div>
                 
                 <div class="eventRightBox">
