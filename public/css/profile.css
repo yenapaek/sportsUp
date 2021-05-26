@@ -225,3 +225,13 @@ nav a:nth-child(5):hover ~ .animation {
         width: 100%;
     }
 }
+
+#sportsCategories {    
+    border: 1px solid #dadce0;
+    border-radius: 100px;
+    width: 0.8rem;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: black;
+    width: 100%;
+}

@@ -51,10 +51,9 @@ ob_start();
                 </ul>
                 <div id="sportSelect">
                     <select name="sportsCategories" id="sportsCategories">
-                        <option value="default" selected disabled hidden>Select Your Sport</option>
                         <?php foreach ($categories as $category) : ?>
-                            <option id="<?= $category['id']; ?>"><?= $category["name"]; ?></option>
-                        <?php endforeach; ?>
+                            <option selected id="<?= $category['id']; ?>"><?= $category["name"]; ?></option>
+                            <?php endforeach; ?>
                     </select>
                     <a id="addSport" class="card-btn" onclick="addMySport();">Add sport</a>
                 </div>

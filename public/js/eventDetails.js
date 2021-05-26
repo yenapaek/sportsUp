@@ -1,5 +1,5 @@
 const addComment = (eventId) => {
-    const allBox = document.querySelector("#allMessage");
+    const allBox = document.querySelector("#comment");
     const form = document.querySelector("#formComment");
     const input = document.querySelector("#commentAdd");
   

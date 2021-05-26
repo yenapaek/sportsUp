@@ -2,7 +2,7 @@
 $title = "Sports Up - Create Event";
 $style = '<link href="./public/css/addEditEvent.css" rel="stylesheet" />';
 ob_start();
-?>  
+?>
 <div id="addEditEvent">
 
     <h1><?= $formTitle ?> an event</h1>
@@ -21,10 +21,6 @@ ob_start();
                     <option value="<?=$category["id"]; ?>"><?=$category["name"]; ?></option>
                 <?php endforeach; ?>
             </select>
-            
-            <label for="eventPicture">Select Image for you event</label>
-            <input type="file" id="eventPicture" name="eventPicture" accept="image/png, image/jpeg">
-
             <label for="city">City + address</label>
             <input type="text" id="city" name="city" value="<?= isset($eventDetail[0]["city"])?$eventDetail[0]["city"] :'' ; ?>" required>
 
@@ -43,23 +39,23 @@ ob_start();
                 if(isset($eventDetail[0]["premiumId"])){
             ?>
                 <label for="eventFee">Fee</label>
-                <input type="text" id="eventFee" name="eventFee" value="<?= isset($eventDetail[0]["fee"])?$eventDetail[0]["fee"]:'';?>" >
+                <input type="text" id="eventFee" name="eventFee" value="<?= isset($eventDetail[0]["fee"]) ? $eventDetail[0]["fee"] : ''; ?>">
             <?php
-            }else{
+            } else {
             ?>
-               <input  type="hidden" id="eventFee" name="eventFee" value="" >
+                <input type="hidden" id="eventFee" name="eventFee" value="">
             <?php
             }
             ?>
 
             <label for="eventDescription">Description</label>
-            <input type="text" id="eventDescription" class="eventDescription" name="eventDescription" value="<?= isset($eventDetail[0]["eventDescription"])?$eventDetail[0]["eventDescription"]:''; ?>">
-            
-        
-            <div class="btnForm">      
-                <input type="submit" id="btn" class="btn btn-white btn-animation-1" name="btn" value="<?= $formTitle?>">
+            <input type="text" id="eventDescription" class="eventDescription" name="eventDescription" value="<?= isset($eventDetail[0]["eventDescription"]) ? $eventDetail[0]["eventDescription"] : ''; ?>">
+
+
+            <div class="btnForm">
+                <input type="submit" id="btn" class="btn btn-white btn-animation-1" name="btn" value="<?= $formTitle ?>">
             </div>
-        </div>                
+        </div>
         </form>
     </div>
 </div>
