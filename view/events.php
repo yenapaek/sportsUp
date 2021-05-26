@@ -8,21 +8,23 @@
             <form action="" id="formCriteria" method="POST">
                 <input type="hidden" name="action" value="searchSubmit">
                 <div id="searchWrapper">
-                    <label for="searchTitle">Choose your criteria</label>
+                    <label for="searchTitle">Search</label>
                 </div>
                 <div id="searchBar">
-                    <select name="selectCriteria" id="selectCriteria" dataUserId="<?= $_SESSION['userId'] ?>">
-                        <option value="Event" selected>By Event</option>
-                        <option value="Sport">By Sport</option>
-                        <option value="Popularity">By Popularity</option>
-                        <?php  
-                            if(isset($_SESSION['userId'])) { ?> 
-                                <option value="attendingEvents">My Attending Events</option>
-                                <option value="hostingEvents">My Hosting Events</option>
-                                <option value="wishlist">My Wishlist Events</option>
-                                    <?php } 
-                        ?>
-                    </select>
+                    <div id="searchSelect">
+                        <select name="selectCriteria" id="selectCriteria" dataUserId="<?= $_SESSION['userId'] ?>">
+                            <option value="Event" selected>By Event</option>
+                            <option value="Sport">By Sport</option>
+                            <option value="Popularity">By Popularity</option>
+                            <?php  
+                                if(isset($_SESSION['userId'])) { ?> 
+                                    <option value="attendingEvents">My Attending Events</option>
+                                    <option value="hostingEvents">My Hosting Events</option>
+                                    <option value="wishlist">My Wishlist Events</option>
+                                        <?php } 
+                            ?>
+                        </select>
+                    </div>
                     <div id="sportSelect">
                         <select name="sportsCriteria" id="sportsCriteria">
                             <option value="default" selected disabled>Select Your Sport</option>
@@ -31,21 +33,23 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <input type="text" name="searchEvent" id="searchInput" placeholder="Type Here">
+                    <div>
+                        <input type="text" name="searchEvent" id="searchInput" placeholder="Event name">
+                    </div>
+                    <div>
+                        <input type="submit" value="Apply" id="submitButton">
+                    </div>
                 </div>
-                <div>
-                    <input type="submit" value="search" id="submitButton">
-                </div>
-            </form>
-            <?php 
-                if (isset($_SESSION['userId'])):
-            ?>
+                <?php 
+                    if (isset($_SESSION['userId'])):
+                ?>
                     <div id="createEventBox">
                         <a href="index.php?action=addEditEvent" class="createEventBtn">Create Event</a> 
                     </div>
-            <?php
-                endif;
-            ?>
+                <?php
+                    endif;
+                ?>
+            </form>
         </header>
         <section>
             <div>List of events</div>

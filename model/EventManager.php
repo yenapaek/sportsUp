@@ -14,10 +14,10 @@ class EventManager extends Manager
     {
         $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : "";
 
-        // $expiredChecker = "";
-        // if ($search != "attendingEvents" && $search != "wishlist") {
-        //     $expiredChecker = " WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+1 DAY AND curdate() + INTERVAL DAYOFWEEK(curdate())+12 MONTH";
-        // }
+        $expiredChecker = "";
+        if ($search != "attendingEvents" && $search != "wishlist") {
+            $expiredChecker = " WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+1 DAY AND curdate() + INTERVAL DAYOFWEEK(curdate())+12 MONTH";
+        }
 
         $db = $this->dbConnect();
         $add = "";
@@ -36,11 +36,10 @@ class EventManager extends Manager
                     u.premiumId AS premiumId,
                 (SELECT COUNT(eventId) AS howMany FROM attendingevents WHERE eventId=e.id) AS howMany,
                 (SELECT COUNT(eventId) AS attendingStatus FROM attendingevents WHERE eventId=e.id AND userId=:userId) AS attendingStatus,
-                (SELECT heart from wishlist WHERE eventId=e.id) AS isHeart
+                (SELECT heart from wishlist WHERE eventId=e.id AND userId=:userId) AS isHeart
                 FROM events e 
                 JOIN categories c ON e.categoryId = c.id
-                JOIN users u ON u.id = e.organizerId";
-                // $expiredChecker
+                JOIN users u ON u.id = e.organizerId {$expiredChecker}";
         switch ($search) {
             case "input":
                 $add = " AND e.name LIKE '%$name%'";
