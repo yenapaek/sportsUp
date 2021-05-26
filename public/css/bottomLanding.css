@@ -179,4 +179,18 @@ html {
         width: 100%;
         left: 15px;
     }
+    .container {
+        width: 90%
+    }
+    .pricing-button {
+        margin: 5px;
+        padding: 5px;
+    }
+    .pricing-price {
+        font-size: 23px;
+    }
+    #thirdSection  {
+        width: 88%;
+        margin-left: 15px;
+    }
 }

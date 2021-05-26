@@ -5,6 +5,7 @@
 body {
     background: #ffffff;
     width: 99%;
+    
 }
 #top {
     display: flex;
@@ -199,6 +200,7 @@ nav .animation {
 /*-------------------style for footer--------------  */
 footer {
     margin-top: 100px;
+    padding-top: 100PX;
 }
 .footerContent {
     font-family: "Varela Round", sans-serif;
@@ -266,7 +268,7 @@ p {
         align-items: center;
         z-index: 15;
         width: 55px;
-        height: 85vh;
+        height: 65vh;
         border: 1px solid #dadce0;
         border-radius: 8px;
         background: white;

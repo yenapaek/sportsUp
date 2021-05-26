@@ -4,7 +4,7 @@ section {
     height: 500px;
     width: 100%;
     padding: 20px 17%;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); */
 }
 
 h1 {
