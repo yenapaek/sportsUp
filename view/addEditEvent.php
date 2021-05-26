@@ -7,38 +7,38 @@ ob_start();
 
     <h1><?= $formTitle ?> an event</h1>
     <div class="eventForm">
-    <div class="formFirstPart">     
-        <form action="index.php" method="POST">
-            <input hidden name="action" value="<?= $form ?>">
-            <input hidden name="eventId" value="<?= isset($eventDetail[0]['eventId']) ? $eventDetail[0]['eventId'] : '';?>">
-            <label for="eventName">Event Name</label>
-            <input type="text" id="eventName" name="eventName" value="<?= isset($eventDetail[0]["eventName"])? $eventDetail[0]['eventName'] : '';?>" required>
+        <div class="formFirstPart">
+            <form action="index.php" method="POST">
+                <input hidden name="action" value="<?= $form ?>">
+                <input hidden name="eventId" value="<?= isset($eventDetail[0]['eventId']) ? $eventDetail[0]['eventId'] : ''; ?>">
+                <label for="eventName">Event Name</label>
+                <input type="text" id="eventName" name="eventName" value="<?= isset($eventDetail[0]["eventName"]) ? $eventDetail[0]['eventName'] : ''; ?>" required>
 
-            <label for="sportCategory">Choose category</label>
-            <select name="sportCategory" id="sportCategory" required>
-                <option value="<?= !empty($eventDetail[0]["categoryId"]) ? $eventDetail[0]['categoryId'] : 'default';?> " selected > <?= !empty($eventDetail[0]["categoryName"]) ? $eventDetail[0]['categoryName'] :"Select Your Sport";?></option>
-                <?php foreach ($categories as $category) : ?>
-                    <option value="<?=$category["id"]; ?>"><?=$category["name"]; ?></option>
-                <?php endforeach; ?>
-            </select>
-            <label for="city">City + address</label>
-            <input type="text" id="city" name="city" value="<?= isset($eventDetail[0]["city"])?$eventDetail[0]["city"] :'' ; ?>" required>
+                <label for="sportCategory">Choose category</label>
+                <select name="sportCategory" id="sportCategory" required>
+                    <option value="<?= !empty($eventDetail[0]["categoryId"]) ? $eventDetail[0]['categoryId'] : 'default'; ?> " selected> <?= !empty($eventDetail[0]["categoryName"]) ? $eventDetail[0]['categoryName'] : "Select Your Sport"; ?></option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?= $category["id"]; ?>"><?= $category["name"]; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <label for="city">City + address</label>
+                <input type="text" id="city" name="city" value="<?= isset($eventDetail[0]["city"]) ? $eventDetail[0]["city"] : ''; ?>" required>
 
-            <label for="maxPlayers">How many people can join your event?</label>
-            <input type="number" min="1" id="maxPlayers" name="maxPlayers" value="<?= isset($eventDetail[0]["playerNumber"])?$eventDetail[0]["playerNumber"]:''; ?>" required>
+                <label for="maxPlayers">How many people can join your event?</label>
+                <input type="number" min="1" id="maxPlayers" name="maxPlayers" value="<?= isset($eventDetail[0]["playerNumber"]) ? $eventDetail[0]["playerNumber"] : ''; ?>" required>
 
-            <label for="eventDate">When </label>
-            <input type="datetime-local" id="eventDate" placeholder="Date" name="eventDate" value ="<?= $date = isset($eventDetail[0]["eventDate"])?date("Y-m-d\TH:i:s", strtotime($eventDetail[0]["eventDate"])):''; ?>" required>        
-        </div>            
-        <div class="formSecondPart">            
+                <label for="eventDate">When </label>
+                <input type="datetime-local" id="eventDate" placeholder="Date" name="eventDate" value="<?= $date = isset($eventDetail[0]["eventDate"]) ? date("Y-m-d\TH:i:s", strtotime($eventDetail[0]["eventDate"])) : ''; ?>" required>
+        </div>
+        <div class="formSecondPart">
 
-            <label for="eventDuration">Duration</label>
-            <input type="number" min="1" id="eventDuration" name="eventDuration" value="<?= isset($eventDetail[0]["duration"])?$eventDetail[0]["duration"]:'';?>" required>
-            
-            <?php 
-                if(isset($eventDetail[0]["premiumId"])){
+            <label for="eventDuration">Duration (Hr)</label>
+            <input type="number" min="1" id="eventDuration" name="eventDuration" value="<?= isset($eventDetail[0]["duration"]) ? $eventDetail[0]["duration"] : ''; ?>" required>
+
+            <?php
+            if (isset($eventDetail[0]["premiumId"])) {
             ?>
-                <label for="eventFee">Fee</label>
+                <label for="eventFee">Fee ($)</label>
                 <input type="text" id="eventFee" name="eventFee" value="<?= isset($eventDetail[0]["fee"]) ? $eventDetail[0]["fee"] : ''; ?>">
             <?php
             } else {
