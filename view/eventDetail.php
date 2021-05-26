@@ -82,7 +82,7 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                         <input type="hidden" name="eventIdAdd" value="<?= $event['eventId']; ?>">
 
                         <label for="commentAdd">Comment :</label>
-                        <div>
+                        <div class="toBeARow">
                             <input type="text" name="commentAdd" id="commentAdd">
                             <input type="submit" value="Send" onclick="addComment(<?= $event['eventId']; ?>)">
                         </div>
