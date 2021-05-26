@@ -48,22 +48,18 @@ class EventManager extends Manager
             case "select":
                 $add = " AND c.name = '$name'";
                 break;
-            
             case "popularity":
                 $add = " ORDER BY howMany DESC";
                 break;
-
             case "hostingEvents":
                 $add = " AND organizerId=:userId";
                 break;
             case "attendingEvents":
                 $add = " JOIN attendingevents a ON a.eventId = e.id WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+1 DAY AND curdate() + INTERVAL DAYOFWEEK(curdate())+12 MONTH AND a.userId =:userId HAVING attendingStatus = 1";
                 break;
-
             case "wishlist":
                 $add = " JOIN wishlist w ON w.eventId = e.id WHERE eventDate BETWEEN curdate() - INTERVAL DAYOFWEEK(curdate())+1 DAY AND curdate() + INTERVAL DAYOFWEEK(curdate())+12 MONTH AND w.userId =:userId";
                 break;
-
             case "eventDetail":
                 $add = " AND e.id = '$name'";
                 break;
@@ -84,18 +80,19 @@ class EventManager extends Manager
         $events = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
-        for ($i=0; $i < COUNT($events); $i++) {
-            $currentDate = date('Y-m-d H:i:s');
-            $restingHours = strtotime ('-3 hour', strtotime ($currentDate));
-            $dateToCompare = date ( 'Y-m-d H:i:s' , $restingHours); 
+        if ($search != "addEditEventDetail"){
+            for ($i=0; $i < COUNT($events); $i++) {
+                $currentDate = date('Y-m-d H:i:s');
+                $restingHours = strtotime ('-3 hour', strtotime ($currentDate));
+                $dateToCompare = date ( 'Y-m-d H:i:s' , $restingHours); 
 
-            $dateFromEvent = $events[$i]['eventDate'];
+                $dateFromEvent = $events[$i]['eventDate'];
 
-            if ($dateToCompare > $dateFromEvent) {
-                $events[$i] += [ "isExpired" => true ];
+                if ($dateToCompare > $dateFromEvent) {
+                    $events[$i] += [ "isExpired" => true ];
+                }
             }
         }
-
         return $events;
     }
     /**
