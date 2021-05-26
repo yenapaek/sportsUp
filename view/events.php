@@ -8,7 +8,7 @@
             <form action="" id="formCriteria" method="POST">
                 <input type="hidden" name="action" value="searchSubmit">
                 <div id="searchWrapper">
-                    <label for="searchTitle">Search</label>
+                    <label for="searchTitle">Find Your Event</label>
                 </div>
                 <div id="searchBar">
                     <div id="searchSelect">
@@ -21,7 +21,8 @@
                                     <option value="attendingEvents">My Attending Events</option>
                                     <option value="hostingEvents">My Hosting Events</option>
                                     <option value="wishlist">My Wishlist Events</option>
-                                        <?php } 
+                            <?php 
+                                } 
                             ?>
                         </select>
                     </div>

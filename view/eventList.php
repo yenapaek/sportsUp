@@ -19,7 +19,7 @@ if (is_array($events) || is_object($events)) {
                 <h2><?= $event["eventName"] ?></h2>
                 <p class="category-name"><?= $event["categoryName"] ?></p>
                 <p class="event-date"><?= date('D, M d, g:i a', strtotime($event["eventDate"])); ?></p>
-                <p><?= $event["howMany"] ?> join out of <?= $event["playerNumber"] ?></p>
+                <p><?= $event["howMany"] ?> / <?= $event["playerNumber"] ?> attendees</p>
                 <?php
                     if (!empty($_SESSION['userId'])) {
                         $btnAction = "eventDetail&eventId=".$event['eventId'];
