@@ -27,8 +27,16 @@ if (is_array($events) || is_object($events)) {
                         $btnAction = "signUp";
                     }
                 ?>
-                <a href="index.php?action=<?= $btnAction; ?>" class="card-btn" target="_blank">View Event</a>
                 <?php
+                    if (!empty($event['isExpired']) && isset($myHostingEventsChecker)){
+                ?>
+                    <a href="" onclick="return false;" class="expired-card-btn">Expired Event</a>
+                <?php   
+                    } else {
+                ?>
+                    <a href="index.php?action=<?= $btnAction; ?>" class="card-btn" target="_blank">View Event</a>
+                <?php
+                    }
                     if (!empty($_SESSION['userId']) && !isset($attending) && $event['organizerId'] == $_SESSION['userId']):
                 ?>
                         <div class="hostIconText">

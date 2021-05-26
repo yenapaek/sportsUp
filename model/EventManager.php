@@ -84,6 +84,18 @@ class EventManager extends Manager
         $events = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
+        for ($i=0; $i < COUNT($events); $i++) {
+            $currentDate = date('Y-m-d H:i:s');
+            $restingHours = strtotime ('-3 hour', strtotime ($currentDate));
+            $dateToCompare = date ( 'Y-m-d H:i:s' , $restingHours); 
+
+            $dateFromEvent = $events[$i]['eventDate'];
+
+            if ($dateToCompare > $dateFromEvent) {
+                $events[$i] += [ "isExpired" => true ];
+            }
+        }
+
         return $events;
     }
     /**

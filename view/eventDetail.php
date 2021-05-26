@@ -35,6 +35,14 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     <p>City : <?= $event['city'] ?></p>
                     <div class="dividerGrey"></div>
                     <p>Attending : <?= $event['howMany']; ?> / <?= $event['playerNumber']; ?> </p>
+                    <?php
+                        if (!empty($event['howMany']) && !empty($event['playerNumber']) && $event['howMany'] >= $event['playerNumber']){
+                    ?>
+                        <div class="dividerGrey"></div>
+                        <p class="eventFullMsg">Event is full.</p>
+                    <?php
+                        } 
+                    ?>
                     <section class="editDeleteBtns">
                         <?php
                         if (!empty($_SESSION['userId']) && $event['organizerId'] == $_SESSION['userId']) :
@@ -53,19 +61,33 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                     </section>
                     <div class="attendBtn">
                         <?php
-                        if (!empty($event['attendingStatus']) && $event['attendingStatus'] > 0) {
+                        if (!empty($event['attendingStatus']) > 0) {
                             $attendingAction = "cancelAttendingEvent";
                             $attendingBtnMsg = "Cancel Attending";
-                        } else {
+                        }elseif(!empty($event['attendingStatus']) == 0 && !empty($event['howMany']) < !empty($event['playerNumber'])) {
                             $attendingAction = "attendEvent";
                             $attendingBtnMsg = "Attend Event";
+                        } 
+                        else {
+                            $attendingAction = "";
+                            $attendingBtnMsg = "Event Full";
                         }
                         ?>
                         <a href="index.php?action=<?= $attendingAction ?>&eventId=<?= $event['eventId'] ?>&source=<?php if (!isset($_GET['action'])) {
                                                                                                                         echo "eventDetail";
                                                                                                                     } else {
                                                                                                                         echo $_GET['action'];
-                                                                                                                    } ?>" class="card-btn"><?= $attendingBtnMsg ?></a>
+                                                                                                                    } ?>" class="card-btn"
+                                                                                                                    <?php
+                                                                                                                    if (empty($attendingAction)){
+                                                                                                                    ?>
+                                                                                                                        onclick='return false;';
+                                                                                                                        style="background-color: grey;"
+                                                                                                                    <?php
+                                                                                                                    }
+                                                                                                                    ?>
+                                                                                                                    >
+                                                                                                                    <?= $attendingBtnMsg ?></a>
                     </div>
                 </div>
             </div>

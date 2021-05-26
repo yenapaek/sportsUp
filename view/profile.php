@@ -69,6 +69,7 @@ ob_start();
                     <?php
                     if (!empty($hostingEvents)) {
                         $events = $hostingEvents;
+                        $myHostingEventsChecker = true;
                         require('eventList.php');
                     } else {
                         echo '<p>No events added</p>';
