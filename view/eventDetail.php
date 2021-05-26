@@ -82,8 +82,10 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
                         <input type="hidden" name="eventIdAdd" value="<?= $event['eventId']; ?>">
 
                         <label for="commentAdd">Comment :</label>
-                        <input type="text" name="commentAdd" id="commentAdd">
-                        <input type="submit" value="Send" onclick="addComment(<?= $event['eventId']; ?>)">
+                        <div>
+                            <input type="text" name="commentAdd" id="commentAdd">
+                            <input type="submit" value="Send" onclick="addComment(<?= $event['eventId']; ?>)">
+                        </div>
                     </form>
                 </section>
 
@@ -91,13 +93,13 @@ if (is_array($eventDetail) || is_object($eventDetail)) {
 
             </div>
             <div id="whosComing">
-                <p>Who's coming :</p>
+                <p>Who's coming :  </p>
 
-                <div class="dividerGrey"></div>
+                <!-- <div class="dividerGrey"></div> -->
                 <?php
                 foreach ($usersAttending as $user) {
                 ?>
-                    <p><?= $user['userNameAtt']; ?></p>
+                    <p> <?= $user['userNameAtt']; ?></p>
 
                 <?php
                 }
